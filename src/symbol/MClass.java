@@ -6,12 +6,18 @@ public class MClass extends MIdentifier implements VarContainer{
 	protected HashMap<String, MMethod> methods;
 	protected HashMap<String, MVariable> variables;
 	protected MClass parent;
-	public MClass(String _id,  MClass _parent, MScope _scope){
+	protected String parentName;
+	protected int serialNumber;
+	static int classCount = 0;
+	public MClass(String _id,  String _parent, MScope _scope){
 		super(_id,_scope);
 		methods = new HashMap<>();
 		variables = new HashMap<>();
-		parent = _parent;
+		parentName = _parent;
+		serialNumber = classCount;
+		classCount++;
 	}
+
 	public void addMethod(MMethod method){
 		String mid = method.id;
 		if(methods.containsKey(mid)){
@@ -24,7 +30,9 @@ public class MClass extends MIdentifier implements VarContainer{
 	public MMethod getMethod(String id){
 		return methods.get(id);
 	}
-	
+	public void setParent(MClass _parent){
+		parent = _parent;
+	}
 	@Override
 	public void addVariable(MVariable variable) {
 		String vid = variable.id;

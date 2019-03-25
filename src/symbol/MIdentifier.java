@@ -1,4 +1,7 @@
 package symbol;
+
+import javafx.util.Pair;
+
 interface VarContainer{
 	void addVariable(MVariable variable);
 }
@@ -9,5 +12,7 @@ public class MIdentifier extends MScope{
 		id = _id;
 		scope = _scope;
 	}
-	
+	public Pair<String,MScope> Key(){
+		return new Pair<String,MScope>(id,scope);
+	}
 }
