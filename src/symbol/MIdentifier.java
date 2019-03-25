@@ -1,9 +1,13 @@
 package symbol;
-
-public class MIdentifier extends MType{
+interface VarContainer{
+	void addVariable(MVariable variable);
+}
+public class MIdentifier extends MScope{
 	protected String id;
-	public MIdentifier(String id){
-		this.id = id;
+	protected MScope scope;
+	public MIdentifier(String _id,MScope _scope){
+		id = _id;
+		scope = _scope;
 	}
 	
 }

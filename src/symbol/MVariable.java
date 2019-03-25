@@ -1,9 +1,9 @@
 package symbol;
 
 public class MVariable extends MIdentifier{
-	protected MType parent_scope;
-	public MVariable(String _id, MType _parent){
-		super(_id);
-		parent_scope = _parent;
+	protected VarType type;
+	public MVariable(String _id, MScope _scope,VarType _type){
+		super(_id,_scope);
+		type = _type;
 	}
 }

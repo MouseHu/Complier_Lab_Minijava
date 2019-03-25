@@ -3,14 +3,14 @@ class Test{
         System.out.println(new Start().start());
     }
 }
+class A {
+	int a;
+}
 
-class Start{
-    public int Start(){
-        int a;
-        int b;
-        a = 1;
-        b = a+1;
-        return 0;
+class B extends A{
+	int b;
+}
 
-    }
+class C extends A{
+	int c;
 }
