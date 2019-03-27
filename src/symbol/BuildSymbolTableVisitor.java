@@ -8,31 +8,31 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 
 import javafx.util.Pair;
-public class BuildSymbolTableVisitor extends GJDepthFirst<MScope,MScope>{
-	protected HashMap<Pair<String,MScope>,MScope> symbolTable;
+public class BuildSymbolTableVisitor extends GJDepthFirst<MType,MType>{
+	protected HashMap<Pair<String,MType>,MType> symbolTable;
 	
 	public BuildSymbolTableVisitor(){
 		symbolTable = new HashMap<>();
 	}
-	public HashMap<Pair<String,MScope>,MScope> getTable(){
+	public HashMap<Pair<String,MType>,MType> getTable(){
 		return this.symbolTable;
 	}
-	public MScope visit(Goal n, MScope argu){
+	public MType visit(Goal n, MType argu){
 		
 		MClassList classList = new MClassList();
 		//System.out.println("Global Scope");
 		n.f0.accept(this,classList);
 		n.f1.accept(this,classList);
 		n.f2.accept(this,classList);
-		this.symbolTable.put(new Pair<String,MScope>("Global Scope",null),classList);
+		this.symbolTable.put(new Pair<String,MType>("Global Scope",null),classList);
 		return classList;
 	}
-	public MScope visit(ClassDeclaration n, MScope argu){
+	public MType visit(ClassDeclaration n, MType argu){
 		
 		String id = n.f1.f0.toString();
 		//System.out.println("New class:"+id);
 		MClass mclass = new MClass(id,null,argu);
-		this.symbolTable.put(new Pair<String, MScope>(id,argu), mclass);
+		this.symbolTable.put(new Pair<String, MType>(id,argu), mclass);
 		//System.out.println(id);
 		n.f0.accept(this,mclass);
 		n.f1.accept(this,mclass);
@@ -45,12 +45,12 @@ public class BuildSymbolTableVisitor extends GJDepthFirst<MScope,MScope>{
 		return mclass;
 	}
 	
-	public MScope visit(ClassExtendsDeclaration n, MScope argu){
+	public MType visit(ClassExtendsDeclaration n, MType argu){
 		String id = n.f1.f0.toString();
 		String parent = n.f3.f0.toString();
 		//MClass parent = ((MClassList)argu).getClass(parentName);
 		MClass mclass = new MClass(id,parent,argu);
-		this.symbolTable.put(new Pair<String, MScope>(id,argu), mclass);
+		this.symbolTable.put(new Pair<String, MType>(id,argu), mclass);
 		n.f0.accept(this,mclass);
 		n.f1.accept(this,mclass);
 		n.f2.accept(this,mclass);
@@ -64,12 +64,12 @@ public class BuildSymbolTableVisitor extends GJDepthFirst<MScope,MScope>{
 		return mclass;
 	}
 	
-	public MScope visit(VarDeclaration n, MScope argu){
+	public MType visit(VarDeclaration n, MType argu){
 		
 		String id = n.f1.f0.toString();
 		//System.out.println("New class:"+id);
 		MVariable mvariable = new MVariable(id,argu,convertType(n.f0));
-		this.symbolTable.put(new Pair<String, MScope>(id,argu), mvariable);
+		this.symbolTable.put(new Pair<String, MType>(id,argu), mvariable);
 		//System.out.println(id);
 		n.f0.accept(this,mvariable);
 		n.f1.accept(this,mvariable);
@@ -78,12 +78,12 @@ public class BuildSymbolTableVisitor extends GJDepthFirst<MScope,MScope>{
 		return mvariable;
 	}
 	
-	public MScope visit(MethodDeclaration n, MScope argu){
+	public MType visit(MethodDeclaration n, MType argu){
 		
 		String id = n.f2.f0.toString();
 		//System.out.println("New class:"+id);
 		MMethod mmethod = new MMethod(id,argu,convertType(n.f1));
-		this.symbolTable.put(new Pair<String,MScope>(id,argu), mmethod);
+		this.symbolTable.put(new Pair<String,MType>(id,argu), mmethod);
 		//System.out.println(id);
 		n.f0.accept(this,mmethod);
 		n.f1.accept(this,mmethod);
@@ -97,12 +97,12 @@ public class BuildSymbolTableVisitor extends GJDepthFirst<MScope,MScope>{
 		return mmethod;
 	}
 	
-	public MScope visit(FormalParameter n, MScope argu){
+	public MType visit(FormalParameter n, MType argu){
 		
 		String id = n.f1.f0.toString();
 		//System.out.println("New class:"+id);
 		MVariable mparameter = new MVariable(id,argu,convertType(n.f0));
-		this.symbolTable.put(new Pair<String, MScope>(id,argu), mparameter);
+		this.symbolTable.put(new Pair<String, MType>(id,argu), mparameter);
 		//System.out.println(id);
 		n.f0.accept(this,mparameter);
 		n.f1.accept(this,mparameter);
@@ -114,8 +114,8 @@ public class BuildSymbolTableVisitor extends GJDepthFirst<MScope,MScope>{
 		return VarType.Integer;
 	}
 	
-	public MScope getGlobalScope(){
-		return symbolTable.get(new Pair<String,MScope>("Global Scope",null));// problem??
+	public MType getGlobalScope(){
+		return symbolTable.get(new Pair<String,MType>("Global Scope",null));// problem??
 	}
 	
 	public void InheritCheck(){

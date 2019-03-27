@@ -6,8 +6,8 @@ enum VarType{
 	IntArray,
 	ClassType
 }
-public class MScope {
-	public MScope(){
+public class MType {
+	public MType(){
 		
 	}
 	

@@ -5,7 +5,7 @@ public class MMethod extends MIdentifier implements VarContainer{
 	protected VarType returnType;
 	protected Hashtable<String,MVariable> parameters;
 	protected Hashtable<String,MVariable> variables;
-	public MMethod(String _id,MScope _scope,VarType _returnType){
+	public MMethod(String _id,MType _scope,VarType _returnType){
 		super(_id,_scope);
 		returnType = _returnType;
 		parameters = new Hashtable<>();

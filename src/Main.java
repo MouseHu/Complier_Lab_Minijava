@@ -17,10 +17,10 @@ public class Main {
 			Node root = MiniJavaParser.Goal();
 			//System.out.println("??");
 			BuildSymbolTableVisitor symbolTableVisitor= new BuildSymbolTableVisitor();
-			root.accept(symbolTableVisitor,(MScope)null);
+			root.accept(symbolTableVisitor,(MType)null);
 			symbolTableVisitor.InheritCheck();
-			HashMap<Pair<String,MScope>,MScope> symbolTable = symbolTableVisitor.getTable();
-			for(Entry<Pair<String, MScope>, MScope> entry:symbolTable.entrySet()){
+			HashMap<Pair<String,MType>,MType> symbolTable = symbolTableVisitor.getTable();
+			for(Entry<Pair<String, MType>, MType> entry:symbolTable.entrySet()){
 					System.out.println("Name:"+entry.getKey().getKey()+" Scope: "+entry.getKey().getValue()+" Node: "+entry.getValue());
 			}
 			

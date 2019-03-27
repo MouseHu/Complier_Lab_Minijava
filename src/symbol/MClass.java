@@ -9,7 +9,7 @@ public class MClass extends MIdentifier implements VarContainer{
 	protected String parentName;
 	protected int serialNumber;
 	static int classCount = 0;
-	public MClass(String _id,  String _parent, MScope _scope){
+	public MClass(String _id,  String _parent, MType _scope){
 		super(_id,_scope);
 		methods = new HashMap<>();
 		variables = new HashMap<>();

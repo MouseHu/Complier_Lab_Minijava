@@ -5,14 +5,14 @@ import javafx.util.Pair;
 interface VarContainer{
 	void addVariable(MVariable variable);
 }
-public class MIdentifier extends MScope{
+public class MIdentifier extends MType{
 	protected String id;
-	protected MScope scope;
-	public MIdentifier(String _id,MScope _scope){
+	protected MType scope;
+	public MIdentifier(String _id,MType _scope){
 		id = _id;
 		scope = _scope;
 	}
-	public Pair<String,MScope> Key(){
-		return new Pair<String,MScope>(id,scope);
+	public Pair<String,MType> Key(){
+		return new Pair<String,MType>(id,scope);
 	}
 }

@@ -2,7 +2,7 @@ package symbol;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
-public class MClassList extends MScope{
+public class MClassList extends MType{
 	protected HashMap<String,MClass> classList;
 	public MClassList(){
 		super();
