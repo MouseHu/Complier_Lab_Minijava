@@ -1,6 +1,6 @@
 class Test{
     public static void main(String[] a){
-        System.out.println(new Start().start());
+        //System.out.println(new Start().start());
     }
 }
 class A{
@@ -9,4 +9,11 @@ class A{
 
 class B extends A{
 	B b;
+	public int xxx(){
+		int a;
+		boolean b;
+		boolean c;
+		c = b*a;
+		return a;
+	}
 }

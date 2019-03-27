@@ -23,7 +23,6 @@ public class BuildSymbolTableVisitor extends GJDepthFirst<MType,MType>{
 		//System.out.println("Global Scope");
 		n.f0.accept(this,classList);
 		n.f1.accept(this,classList);
-		n.f2.accept(this,classList);
 		this.symbolTable.put(new Pair<String,MType>("Global Scope",null),classList);
 		return classList;
 	}
@@ -34,14 +33,30 @@ public class BuildSymbolTableVisitor extends GJDepthFirst<MType,MType>{
 		MClass mclass = new MClass(id,null,argu);
 		this.symbolTable.put(new Pair<String, MType>(id,argu), mclass);
 		//System.out.println(id);
-		n.f0.accept(this,mclass);
 		n.f1.accept(this,mclass);
-		n.f2.accept(this,mclass);
 		n.f3.accept(this,mclass);
 		n.f4.accept(this,mclass);
-		n.f5.accept(this,mclass);
 		MClassList list= (MClassList)argu;
 		(list).addClass(mclass,id);
+		return mclass;
+	}
+	
+	public MType visit(MainClass n, MType argu){
+		
+		String id = n.f1.f0.toString();
+		String input_id = n.f11.f0.toString();
+		//System.out.println("New class:"+id);
+		MClass mclass = new MClass(id,null,argu);
+		MVariable mvariable = new MVariable(input_id,argu,"String[]");
+		mclass.addVariable(mvariable);
+		this.symbolTable.put(new Pair<String, MType>(id,argu), mclass);
+		this.symbolTable.put(new Pair<String, MType>(input_id,mclass), mvariable);
+		//System.out.println(id);
+		n.f1.accept(this,mclass);
+		n.f11.accept(this,mclass);
+		n.f14.accept(this,mclass);
+		n.f15.accept(this,mclass);
+		((MClassList)argu).addClass(mclass,id);
 		return mclass;
 	}
 	
@@ -51,14 +66,10 @@ public class BuildSymbolTableVisitor extends GJDepthFirst<MType,MType>{
 		//MClass parent = ((MClassList)argu).getClass(parentName);
 		MClass mclass = new MClass(id,parent,argu);
 		this.symbolTable.put(new Pair<String, MType>(id,argu), mclass);
-		n.f0.accept(this,mclass);
 		n.f1.accept(this,mclass);
-		n.f2.accept(this,mclass);
 		n.f3.accept(this,mclass);
-		n.f4.accept(this,mclass);
 		n.f5.accept(this,mclass);
 		n.f6.accept(this,mclass);
-		n.f7.accept(this,mclass);
 		MClassList list= (MClassList)argu;
 		(list).addClass(mclass,id);
 		return mclass;
@@ -68,30 +79,46 @@ public class BuildSymbolTableVisitor extends GJDepthFirst<MType,MType>{
 		
 		String id = n.f1.f0.toString();
 		//System.out.println("New class:"+id);
-		MVariable mvariable = new MVariable(id,argu,convertType(n.f0));
-		this.symbolTable.put(new Pair<String, MType>(id,argu), mvariable);
+		
 		//System.out.println(id);
+		
+		MVariable mvariable = new MVariable(id,argu);
+		this.symbolTable.put(new Pair<String, MType>(id,argu), mvariable);
 		n.f0.accept(this,mvariable);
 		n.f1.accept(this,mvariable);
 		n.f2.accept(this,mvariable);
 		((VarContainer)argu).addVariable(mvariable);
 		return mvariable;
 	}
+	public MType visit(Type n,MType argu){
+		MType type =n.f0.accept(this,argu);
+		argu.setType(type.getType());
+		return type;
+	}
+	
+	public MType visit(IntegerType n,MType argu){
+		return new MType("int");
+	}
+	
+	public MType visit(BooleanType n,MType argu){
+		return new MType("boolean");
+	}
+	public MType visit(ArrayType n,MType argu){
+		return new MType("int[]");
+	}
+	public MType visit(Identifier n,MType argu){
+		return new MType(n.f0.toString());
+	}
+	
 	
 	public MType visit(MethodDeclaration n, MType argu){
 		
 		String id = n.f2.f0.toString();
-		//System.out.println("New class:"+id);
-		MMethod mmethod = new MMethod(id,argu,convertType(n.f1));
+		
+		MMethod mmethod = new MMethod(id,argu);
 		this.symbolTable.put(new Pair<String,MType>(id,argu), mmethod);
-		//System.out.println(id);
-		n.f0.accept(this,mmethod);
 		n.f1.accept(this,mmethod);
-		n.f2.accept(this,mmethod);
-		n.f3.accept(this,mmethod);
 		n.f4.accept(this,mmethod);
-		n.f5.accept(this,mmethod);
-		n.f6.accept(this,mmethod);
 		n.f7.accept(this,mmethod);
 		((MClass)argu).addMethod(mmethod);
 		return mmethod;
@@ -101,7 +128,7 @@ public class BuildSymbolTableVisitor extends GJDepthFirst<MType,MType>{
 		
 		String id = n.f1.f0.toString();
 		//System.out.println("New class:"+id);
-		MVariable mparameter = new MVariable(id,argu,convertType(n.f0));
+		MVariable mparameter = new MVariable(id,argu);
 		this.symbolTable.put(new Pair<String, MType>(id,argu), mparameter);
 		//System.out.println(id);
 		n.f0.accept(this,mparameter);

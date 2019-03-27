@@ -2,12 +2,17 @@ package symbol;
 import java.util.Hashtable;
 
 public class MMethod extends MIdentifier implements VarContainer{
-	protected VarType returnType;
 	protected Hashtable<String,MVariable> parameters;
 	protected Hashtable<String,MVariable> variables;
-	public MMethod(String _id,MType _scope,VarType _returnType){
+	public MMethod(String _id,MType _scope,String _returnType){
 		super(_id,_scope);
-		returnType = _returnType;
+		type = _returnType;
+		parameters = new Hashtable<>();
+		variables = new Hashtable<>();
+		scope = _scope;
+	}
+	public MMethod(String _id,MType _scope){
+		super(_id,_scope);
 		parameters = new Hashtable<>();
 		variables = new Hashtable<>();
 		scope = _scope;

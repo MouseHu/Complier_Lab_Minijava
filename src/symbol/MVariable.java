@@ -1,9 +1,10 @@
 package symbol;
 
 public class MVariable extends MIdentifier{
-	protected VarType type;
-	public MVariable(String _id, MType _scope,VarType _type){
+	public MVariable(String _id, MType _scope,String _type){
+		super(_id,_scope,_type);
+	}
+	public MVariable(String _id, MType _scope){
 		super(_id,_scope);
-		type = _type;
 	}
 }

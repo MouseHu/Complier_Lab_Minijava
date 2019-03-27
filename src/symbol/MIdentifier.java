@@ -7,12 +7,17 @@ interface VarContainer{
 }
 public class MIdentifier extends MType{
 	protected String id;
-	protected MType scope;
+	protected String type;
 	public MIdentifier(String _id,MType _scope){
 		id = _id;
 		scope = _scope;
 	}
-	public Pair<String,MType> Key(){
-		return new Pair<String,MType>(id,scope);
+	public MIdentifier(String _id,MType _scope,String _type){
+		super(_type);
+		id = _id;
+		scope = _scope;
+		
 	}
+	
+
 }

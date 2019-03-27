@@ -15,14 +15,19 @@ public class Main {
 			InputStream in = new FileInputStream("./Test.java");
 			new MiniJavaParser(in);
 			Node root = MiniJavaParser.Goal();
-			//System.out.println("??");
 			BuildSymbolTableVisitor symbolTableVisitor= new BuildSymbolTableVisitor();
 			root.accept(symbolTableVisitor,(MType)null);
 			symbolTableVisitor.InheritCheck();
+			
 			HashMap<Pair<String,MType>,MType> symbolTable = symbolTableVisitor.getTable();
-			for(Entry<Pair<String, MType>, MType> entry:symbolTable.entrySet()){
-					System.out.println("Name:"+entry.getKey().getKey()+" Scope: "+entry.getKey().getValue()+" Node: "+entry.getValue());
-			}
+			root.accept(new TypeCheckVisitor(symbolTable),symbolTableVisitor.getGlobalScope());
+		
+			//for(Entry<Pair<String, MType>, MType> entry:symbolTable.entrySet()){
+					//System.out.println("Name:"+entry.getKey().getKey()+" Scope: "+entry.getKey().getValue()+" Node: "+entry.getValue());
+			//		System.out.println("Name:"+entry.getKey().getKey()+" Scope: "+entry.getKey().getValue()+" Type: "+entry.getValue().getType());
+			//}
+			
+			System.out.println("Type Check Finished. No Error Found.");
 			
 		} catch (ParseException e) {
 			e.printStackTrace();
