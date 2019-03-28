@@ -14,6 +14,7 @@ public class MClass extends MIdentifier implements VarContainer{
 		methods = new HashMap<>();
 		variables = new HashMap<>();
 		parentName = _parent;
+		type = _id;
 		serialNumber = classCount;
 		classCount++;
 	}
