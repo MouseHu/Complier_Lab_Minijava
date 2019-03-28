@@ -20,7 +20,9 @@ class B extends A{
 	}
 	public int yyy(int b){
 		int x;
-		x =0;
+		int y;
+		x = 0;
+		y = new B();
 		return x;
 	}
 }

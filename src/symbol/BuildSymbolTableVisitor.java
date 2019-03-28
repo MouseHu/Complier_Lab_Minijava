@@ -31,6 +31,7 @@ public class BuildSymbolTableVisitor extends GJDepthFirst<MType,MType>{
 		String id = n.f1.f0.toString();
 		//System.out.println("New class:"+id);
 		MClass mclass = new MClass(id,null,argu);
+		System.out.println("here "+mclass.getType());
 		this.symbolTable.put(new Pair<String, MType>(id,argu), mclass);
 		//System.out.println(id);
 		n.f1.accept(this,mclass);

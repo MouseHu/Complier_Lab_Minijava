@@ -95,7 +95,7 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 			System.out.println("Error: Declaration of token \""+id+"\" not found");
 			System.exit(1);
 		}
-		//System.out.println(declaration);
+		//System.out.println(declaration.toString()+declaration.getType());
 		return declaration;
 	}
 	
@@ -110,6 +110,12 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 			System.exit(1);
 		}
 		return new MType("boolean");
+	}
+	public MType visit(AllocationExpression n, MType argu){
+		//System.out.println("???");
+		System.out.println(n.f1.f0.toString());
+		System.out.println(n.f1.accept(this,argu));
+		return n.f1.accept(this,argu);
 	}
 	
 	public MType visit(CompareExpression n,MType argu){
@@ -137,4 +143,6 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 		}
 		return new MType("int");
 	}
+
+	
 }
