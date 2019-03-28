@@ -45,13 +45,11 @@ public class BuildSymbolTableVisitor extends GJDepthFirst<MType,MType>{
 		
 		String id = n.f1.f0.toString();
 		String input_id = n.f11.f0.toString();
-		//System.out.println("New class:"+id);
 		MClass mclass = new MClass(id,null,argu);
 		MVariable mvariable = new MVariable(input_id,argu,"String[]");
 		mclass.addVariable(mvariable);
 		this.symbolTable.put(new Pair<String, MType>(id,argu), mclass);
 		this.symbolTable.put(new Pair<String, MType>(input_id,mclass), mvariable);
-		//System.out.println(id);
 		n.f1.accept(this,mclass);
 		n.f11.accept(this,mclass);
 		n.f14.accept(this,mclass);
@@ -78,10 +76,6 @@ public class BuildSymbolTableVisitor extends GJDepthFirst<MType,MType>{
 	public MType visit(VarDeclaration n, MType argu){
 		
 		String id = n.f1.f0.toString();
-		//System.out.println("New class:"+id);
-		
-		//System.out.println(id);
-		
 		MVariable mvariable = new MVariable(id,argu);
 		this.symbolTable.put(new Pair<String, MType>(id,argu), mvariable);
 		n.f0.accept(this,mvariable);

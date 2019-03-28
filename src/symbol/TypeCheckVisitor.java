@@ -11,7 +11,7 @@ import javafx.util.Pair;
 
 public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	protected HashMap<Pair<String,MType>,MType> symbolTable;
-	
+	protected MType globalScope;
 	public TypeCheckVisitor(){
 		symbolTable = new HashMap<>();
 	}
@@ -31,6 +31,7 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	public MType visit(ClassDeclaration n,MType argu){
 		String id = n.f1.f0.toString();
 		MType declaration =  symbolTable.get(MType.Key(id, argu));
+		n.f3.accept(this,declaration);
 		n.f4.accept(this,declaration);
 		return declaration;
 	}
@@ -38,11 +39,13 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	public MType visit(ClassExtendsDeclaration n,MType argu){
 		String id = n.f1.f0.toString();
 		MType declaration =  symbolTable.get(MType.Key(id, argu));
+		n.f5.accept(this,declaration);
 		n.f6.accept(this,declaration);
 		return declaration;
 	}
 	
 	public MType visit(MainClass n,MType argu){
+		this.globalScope = argu;
 		String id = n.f1.f0.toString();
 		MType declaration =  symbolTable.get(MType.Key(id, argu));
 		n.f1.accept(this,declaration);
@@ -55,6 +58,7 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	public MType visit(MethodDeclaration n,MType argu){
 		String id = n.f2.f0.toString();
 		MType declaration =  symbolTable.get(MType.Key(id, argu));
+		n.f7.accept(this,declaration);
 		n.f8.accept(this,declaration);
 		MType returnType=n.f10.accept(this,declaration);
 		if(returnType.getType()!=declaration.getType()){
@@ -64,6 +68,20 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 		return declaration;
 	}
 	
+	public MType visit(VarDeclaration n,MType argu){
+		MType type = n.f1.accept(this,argu);
+		String typeName = type.getType();
+		if((typeName == "int") || (typeName == "boolean") || (typeName == "int[]") )
+			return type;
+		else{
+			MClass mclass = (MClass)symbolTable.get(MType.Key(typeName, globalScope));
+			if(mclass==null){
+				System.out.println("Error: Type of Class \""+typeName+"\" not found.");
+				System.exit(1);
+			}
+		}
+		return type;	
+	}
 	public MType visit(Identifier n,MType argu){
 		String id = n.f0.toString();
 		MType scope = argu;
@@ -74,9 +92,10 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 			declaration =  symbolTable.get(MType.Key(id, scope));
 		}
 		if(declaration == null){
-			System.out.println("Error: Token \""+id+"\" not found");
+			System.out.println("Error: Declaration of token \""+id+"\" not found");
 			System.exit(1);
 		}
+		//System.out.println(declaration);
 		return declaration;
 	}
 	
