@@ -1,27 +1,32 @@
 class Test{
     public static void main(String[] a){
     	int b;
-    	b=b+1;
+    	b=1+1;
         //System.out.println(new Start().start());
     }
 }
 class A{
-	int a;
+	public int zzz() {
+		return 0;
+	}
 }
-
 class B extends A{
-	B b;
-	public int xxx(){
-		int a;
-		boolean b;
-		boolean c;
-		c=B.yyy(c);
-		return a;
-	}
+	A ab;
+	
+	
+	
 	public int yyy(int b){
-		int x;
-		x =0;
-		return x;
+		boolean x;
+		int p;
+		return 1;
 	}
-}
+	public A xxx(){
+		A a;
+		a = new A();
+		ab.zzz();
+		//a = new A();
+		//return a;
+		return new A();
+	}
 
+}

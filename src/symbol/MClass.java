@@ -10,11 +10,11 @@ public class MClass extends MIdentifier implements VarContainer{
 	protected int serialNumber;
 	static int classCount = 0;
 	public MClass(String _id,  String _parent, MType _scope){
-		super(_id,_scope);
+		super(_id,_scope,_id);
 		methods = new HashMap<>();
 		variables = new HashMap<>();
 		parentName = _parent;
-		type = _id;
+		//type = _id;
 		serialNumber = classCount;
 		classCount++;
 	}
