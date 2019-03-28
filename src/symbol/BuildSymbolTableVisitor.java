@@ -18,7 +18,6 @@ public class BuildSymbolTableVisitor extends GJDepthFirst<MType,MType>{
 		return this.symbolTable;
 	}
 	public MType visit(Goal n, MType argu){
-		
 		MClassList classList = new MClassList();
 		//System.out.println("Global Scope");
 		n.f0.accept(this,classList);
