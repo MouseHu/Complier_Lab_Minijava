@@ -12,12 +12,63 @@ import javafx.util.Pair;
 public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	protected HashMap<Pair<String,MType>,MType> symbolTable;
 	protected MType globalScope;
+	protected HashMap<String, String> extends_relation= new HashMap<>();
+	protected HashMap<MType, ParaList> parameters = new HashMap<>();
+	protected ParaList tempcheck=null;
+	
+	public class ParaList{
+		int size = 0;
+		String[] typelist = new String[100];
+		void addnode(String s) {
+			typelist[size] = s;
+			size++;
+		}
+	}
+	
 	public TypeCheckVisitor(){
 		symbolTable = new HashMap<>();
 	}	
 	public TypeCheckVisitor(HashMap<Pair<String,MType>,MType> _symbolTable){
 		symbolTable = _symbolTable;
 	}
+	/*
+	public MType visit(FormalParameterList n, MType argu) {
+		n.f0.accept(this, argu);
+		if(n.f1!=null) {
+			n.f1.accept(this, argu);
+		}
+		return null;
+	}
+	public MType visit(FormalParameter n, MType argu) {
+		MType paratype = n.f0.accept(this, globalScope);
+		ParaList p = parameters.get(argu);
+		
+		System.out.println("formal:");
+		System.out.println(paratype.getType());
+		
+		p.addnode(paratype.getType());
+		parameters.put(argu, p);
+		n.f1.accept(this, argu);
+		return null;
+	}
+	*/
+	public MType visit(Type n, MType argu) {
+		return n.f0.accept(this, argu);
+	}
+	public MType visit(ArrayType n, MType argu) {
+		return new MType("int[]");
+	}
+	public MType visit(BooleanType n, MType argu) {
+		return new MType("boolean");
+	}
+	public MType visit(IntegerType n, MType argu) {
+		return new MType("int");
+	}
+	public MType visit(FormalParameterRest n, MType argu) {
+		n.f1.accept(this, argu);
+		return null;
+	}
+	
 	public MType visit(Goal n, MType argu) {
 		n.f0.accept(this, argu);
 		n.f1.accept(this, argu);
@@ -94,6 +145,8 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	
 	public MType visit(ClassExtendsDeclaration n,MType argu){
 		String id = n.f1.f0.toString();
+		String parentid = n.f3.f0.toString();
+		extends_relation.put(id, parentid);
 		MType declaration =  symbolTable.get(MType.Key(id, argu));
 		n.f5.accept(this,declaration);
 		n.f6.accept(this,declaration);
@@ -104,7 +157,6 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 		this.globalScope = argu;
 		String id = n.f1.f0.toString();
 		MType declaration =  symbolTable.get(MType.Key(id, argu));
-		//System.out.println("MainClass:" + declaration.type);
 		n.f1.accept(this,argu);
 		n.f14.accept(this,declaration);
 		n.f15.accept(this,declaration);
@@ -114,6 +166,10 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	public MType visit(MethodDeclaration n,MType argu){
 		String id = n.f2.f0.toString();
 		MType declaration = symbolTable.get(MType.Key(id, argu));
+		parameters.put(declaration, new ParaList());
+		if(n.f4!=null) {
+			n.f4.accept(this,declaration);
+		}
 		n.f7.accept(this,declaration);
 		n.f8.accept(this,declaration);
 		MType returnType=n.f10.accept(this,declaration);
@@ -143,11 +199,22 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 		String id = n.f0.toString();
 		MType scope = argu;
 		MType declaration =  symbolTable.get(MType.Key(id, argu));
+		String classid = null;
 		while((scope!=null) &&(declaration==null)){
+			if(scope.scope==globalScope) {
+				classid = scope.getType();
+				//System.out.println(classid);
+			}
 			scope = scope.scope;
 			declaration =  symbolTable.get(MType.Key(id, scope));
 		}
 		if(declaration == null){
+			while(extends_relation.get(classid)!=null) {
+				String pid = extends_relation.get(classid);
+				if(symbolTable.get(MType.Key(id, symbolTable.get(MType.Key(pid, globalScope))))!=null) {
+					return symbolTable.get(MType.Key(id, symbolTable.get(MType.Key(pid, globalScope))));
+				}
+			}
 			System.out.println("Error: Declaration of token \""+id+"\" not found");
 			System.exit(1);
 		}
@@ -257,6 +324,31 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 		}
 		MType metType = n.f2.accept(this, idnType);
 		MType optType = n.f4.accept(this, argu);
+		/*
+		if(tempcheck==null && parameters.get(metType.getType())==null){
+			return metType;
+		}
+		if(tempcheck==null && parameters.get(metType.getType())!=null){
+			System.out.println("Error: parameters not match.");
+			System.exit(1);
+		}
+		if(tempcheck!=null && parameters.get(metType.getType())==null){
+			System.out.println("Error: parameters not match.");
+			System.exit(1);
+		}
+		if(tempcheck.size!=parameters.get(metType.getType()).size){
+			System.out.println("Error: parameters not match.");
+			System.exit(1);
+		}
+		int i;
+		for(i=0; i<tempcheck.size; i++) {
+			if(tempcheck.typelist[i]!=parameters.get(metType.getType()).typelist[i]) {
+				System.out.println("Error: parameters not match.");
+				System.exit(1);
+			}
+		}
+		tempcheck = null;
+		*/
 		return metType;
 	}
 	
@@ -268,6 +360,9 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	public MType visit(AssignmentStatement n, MType argu) {
 		MType objType = n.f0.accept(this, argu);
 		MType valType = n.f2.accept(this, argu);
+		//System.out.println(objType.getType());
+		//System.out.println(valType.getType());
+
 		if(objType.getType()!=valType.getType()) {
 			System.out.println("Error: assignment type should be consistent. Got:"+objType.getType()+" and "+valType.getType());
 			System.exit(1);
@@ -321,13 +416,22 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	}
 	
 	public MType visit(ExpressionList n, MType argu) {
-		n.f0.accept(this, argu);
+		/*
+		tempcheck = new ParaList();
+		MType exprtype = n.f0.accept(this, argu);
+		System.out.println(exprtype.getType());
+		tempcheck.addnode(exprtype.getType());
+		*/
 		n.f1.accept(this, argu);
 		return null;
 	}
 	
 	public MType visit(ExpressionRest n, MType argu) {
-		n.f1.accept(this, argu);
+		MType exprtype = n.f1.accept(this, argu);
+		/*
+		System.out.println(exprtype.getType());
+		tempcheck.addnode(exprtype.getType());
+		*/
 		return null;
 	}
 	

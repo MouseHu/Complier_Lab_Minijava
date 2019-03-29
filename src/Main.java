@@ -12,8 +12,8 @@ public class Main {
 	public static void main(String args[]){
 		try{
 			//InputStream in = new FileInputStream(args[0]);
-			//InputStream in = new FileInputStream("../examples/TreeVisitor.java");
-			InputStream in = new FileInputStream("../Test.java");
+			InputStream in = new FileInputStream("../examples/TreeVisitor.java");
+			//InputStream in = new FileInputStream("../Test.java");
 			new MiniJavaParser(in);
 			Node root = MiniJavaParser.Goal();
 			BuildSymbolTableVisitor symbolTableVisitor= new BuildSymbolTableVisitor();
@@ -23,8 +23,7 @@ public class Main {
 			HashMap<Pair<String,MType>,MType> symbolTable = symbolTableVisitor.getTable();
 			for(Entry<Pair<String, MType>, MType> entry:symbolTable.entrySet()){
 				System.out.println("Name:"+entry.getKey().getKey()+" Scope: "+entry.getKey().getValue()+" Node: "+entry.getValue());
-		//		System.out.println("Name:"+entry.getKey().getKey()+" Scope: "+entry.getKey().getValue()+" Type: "+entry.getValue().getType());
-		}
+			}
 			//System.out.println(symbolTableVisitor.getGlobalScope());
 			root.accept(new TypeCheckVisitor(symbolTable),symbolTableVisitor.getGlobalScope());
 			System.out.println("Type Check Finished. No Error Found.");
