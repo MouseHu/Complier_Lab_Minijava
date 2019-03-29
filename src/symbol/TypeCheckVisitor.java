@@ -14,7 +14,7 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	protected MType globalScope;
 	protected HashMap<String, String> extends_relation= new HashMap<>();
 	protected HashMap<MType, ParaList> parameters = new HashMap<>();
-	protected ParaList tempcheck=null;
+	//protected ParaList tempcheck=null;
 	
 	public class ParaList{
 		int size = 0;
@@ -312,7 +312,7 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 		}
 		return new MType("int");
 	}
-	//still buggy, Tree Node = new Tree(); Node.Init(); method
+
 	public MType visit(MessageSend n, MType argu) {
 		MType objType = n.f0.accept(this, argu);
 		MType idnType = null;
@@ -360,9 +360,6 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	public MType visit(AssignmentStatement n, MType argu) {
 		MType objType = n.f0.accept(this, argu);
 		MType valType = n.f2.accept(this, argu);
-		//System.out.println(objType.getType());
-		//System.out.println(valType.getType());
-
 		if(objType.getType()!=valType.getType()) {
 			System.out.println("Error: assignment type should be consistent. Got:"+objType.getType()+" and "+valType.getType());
 			System.exit(1);
