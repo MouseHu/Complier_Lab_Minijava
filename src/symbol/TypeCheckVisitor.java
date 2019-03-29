@@ -46,12 +46,18 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 		return new MType("boolean");
 	}
 	
-	/*
+	
 	public MType visit(ThisExpression n, MType argu) {
-		System.out.println(argu.type);
-		return argu;
+		MType funType = null;
+		for(HashMap.Entry<Pair<String, MType>, MType> p: symbolTable.entrySet()) {
+			if(p.getValue()==argu) {
+				funType = p.getKey().getValue();
+				break;
+			}
+		}
+		return funType;
 	}
-	*/
+	
 	public MType visit(ArrayAllocationExpression n, MType argu) {
 		MType exprtype = n.f3.accept(this, argu);
 		if(exprtype.type!="int") {
@@ -97,11 +103,9 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	public MType visit(MainClass n, MType argu){
 		this.globalScope = argu;
 		String id = n.f1.f0.toString();
-		//MType declaration =  argu;
 		MType declaration =  symbolTable.get(MType.Key(id, argu));
 		//System.out.println("MainClass:" + declaration.type);
 		n.f1.accept(this,argu);
-		//n.f11.accept(this,declaration);
 		n.f14.accept(this,declaration);
 		n.f15.accept(this,declaration);
 		return declaration;
@@ -112,11 +116,7 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 		MType declaration = symbolTable.get(MType.Key(id, argu));
 		n.f7.accept(this,declaration);
 		n.f8.accept(this,declaration);
-		//System.out.println(n.f10);
 		MType returnType=n.f10.accept(this,declaration);
-		//System.out.println("....................");
-		//System.out.println(returnType);
-		//System.out.println((n.f10.f0.choice)); //returnExpression->
 		if(returnType.getType()!=declaration.getType()){
 			System.out.println("Error: Return type of \""+((MMethod)declaration).id+"\" in class: \""+((MClass)argu).id+"\" does not match. Expecting: \""+declaration.getType()+"\", Got \""+returnType.getType()+"\".");
 			System.exit(1);
@@ -138,13 +138,11 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 		}
 		return type;	
 	}
+	
 	public MType visit(Identifier n,MType argu){
 		String id = n.f0.toString();
 		MType scope = argu;
 		MType declaration =  symbolTable.get(MType.Key(id, argu));
-		//System.out.println(id);
-		//System.out.println(argu);
-		//System.out.println(declaration);
 		while((scope!=null) &&(declaration==null)){
 			scope = scope.scope;
 			declaration =  symbolTable.get(MType.Key(id, scope));
@@ -153,7 +151,6 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 			System.out.println("Error: Declaration of token \""+id+"\" not found");
 			System.exit(1);
 		}
-		//System.out.println(declaration);
 		return declaration;
 	}
 	
@@ -225,11 +222,21 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 		}
 		return new MType("int");
 	}
-	/*
+	
 	public MType visit(ArrayLookup n, MType argu) {
-		
+		MType isarray = n.f0.accept(this, argu);
+		MType isint = n.f2.accept(this, argu);
+		if(isarray.getType()!="int[]") {
+			System.out.println("Error: assignment to array should have an object with type int[]. Got:"+isarray.getType());
+			System.exit(1);
+		}
+		if(isint.getType()!="int") {
+			System.out.println("Error: assignment to array should have an index with type int. Got:"+isint.getType());
+			System.exit(1);
+		}
+		return new MType("int");
 	}
-	*/
+	
 	public MType visit(ArrayLength n, MType argu) {
 		MType arrayname = n.f0.accept(this, argu);
 		if(arrayname.getType()!="int[]") {
@@ -238,26 +245,34 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 		}
 		return new MType("int");
 	}
-	/*
+	//still buggy, Tree Node = new Tree(); Node.Init(); method
 	public MType visit(MessageSend n, MType argu) {
-		
-	}*/
+		MType objType = n.f0.accept(this, argu);
+		MType idnType = null;
+		for(HashMap.Entry<Pair<String, MType>, MType> p: symbolTable.entrySet()) {
+			if(p.getKey().getKey() == objType.getType()) {
+				idnType = p.getValue();
+				break;
+			}
+		}
+		MType metType = n.f2.accept(this, idnType);
+		MType optType = n.f4.accept(this, argu);
+		return metType;
+	}
 	
 	public MType visit(Block n, MType argu) {
 		n.f1.accept(this, argu);
-		return new MType("Block");
+		return null;
 	}
 	
 	public MType visit(AssignmentStatement n, MType argu) {
 		MType objType = n.f0.accept(this, argu);
 		MType valType = n.f2.accept(this, argu);
-		//System.out.println(objType);
-		//System.out.println(valType);
 		if(objType.getType()!=valType.getType()) {
 			System.out.println("Error: assignment type should be consistent. Got:"+objType.getType()+" and "+valType.getType());
 			System.exit(1);
 		}
-		return new MType("statement");
+		return null;
 	}
 	
 	public MType visit(ArrayAssignmentStatement n, MType argu) {
@@ -276,19 +291,18 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 			System.out.println("Error: value assigning to an array should be int. Got:" + valType.getType());
 			System.exit(1);
 		}
-		return new MType("statement");
+		return null;
 	}
 	
 	public MType visit(IfStatement n, MType argu) {
 		MType isbool = n.f2.accept(this, argu);
 		MType expr1 = n.f4.accept(this, argu);
 		MType expr2 = n.f6.accept(this, argu);
-		System.out.println(isbool.getType());
 		if(isbool.getType()!="boolean") {
 			System.out.println("Error: type of judgement expression after \"if\" should be boolean. Got: "+isbool.getType());
 			System.exit(1);
 		}
-		return new MType("if");
+		return null;
 	}
 	
 	public MType visit(WhileStatement n, MType argu) {
@@ -298,23 +312,23 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 			System.out.println("Error: type of judgement expression after \"while\" should be boolean. Got: "+isbool.getType());
 			System.exit(1);
 		}
-		return new MType("while");
+		return null;
 	}
 	
 	public MType visit(PrintStatement n, MType argu) {
 		n.f2.accept(this, argu);
-		return new MType("print");
+		return null;
 	}
 	
 	public MType visit(ExpressionList n, MType argu) {
 		n.f0.accept(this, argu);
 		n.f1.accept(this, argu);
-		return new MType("exprlist");
+		return null;
 	}
 	
 	public MType visit(ExpressionRest n, MType argu) {
 		n.f1.accept(this, argu);
-		return new MType("exprrest");
+		return null;
 	}
 	
 }

@@ -1,3 +1,5 @@
+//entends
+//parameters checking
 class Test{
     public static void main(String[] a){
     	int b;
@@ -6,26 +8,22 @@ class Test{
     }
 }
 class A{
-	public int zzz() {
-		return 0;
+	A ab;
+	public A zzz() {
+		return new A();
 	}
 }
 class B extends A{
-	A ab;
-	
-	
-	
 	public int yyy(int b){
 		boolean x;
-		int p;
+		int[] p;
 		return 1;
 	}
 	public A xxx(){
 		A a;
-		a = new A();
-		ab.zzz();
-		//a = new A();
-		//return a;
+		B b;
+		a = ab.zzz();
+		b = b.zzz();
 		return new A();
 	}
 
