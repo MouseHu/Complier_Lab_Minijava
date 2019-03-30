@@ -12,7 +12,7 @@ public class Main {
 	public static void main(String args[]){
 		try{
 			//InputStream in = new FileInputStream(args[0]);
-			InputStream in = new FileInputStream("../examples/TreeVisitor.java");
+			InputStream in = new FileInputStream("../examples/TreeVisitor-error.java");
 			//InputStream in = new FileInputStream("../Test.java");
 			new MiniJavaParser(in);
 			Node root = MiniJavaParser.Goal();

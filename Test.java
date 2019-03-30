@@ -14,7 +14,7 @@ class A{
 	}
 }
 class B extends A{
-	public int yyy(int b, int t, C z){
+	public int yyy(int b, int t){
 		boolean x;
 		int[] p;
 		return 1;
@@ -22,7 +22,9 @@ class B extends A{
 	public A xxx(){
 		A a;
 		B b;
-		a = ab.zzz();
+		int c;
+		int d;
+		c = b.yyy(c,d);
 		return new A();
 	}
 
