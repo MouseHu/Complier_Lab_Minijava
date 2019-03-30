@@ -12,27 +12,19 @@ public class Main {
 	public static void main(String args[]){
 		try{
 			//InputStream in = new FileInputStream(args[0]);
-			InputStream in = new FileInputStream("../examples/TreeVisitor-error.java");
-			//InputStream in = new FileInputStream("../Test.java");
+			//InputStream in = new FileInputStream("./examples/TreeVisitor.java");// BinaryTree BubbleSort Factorial LinearSearch MoreThan4 LinkedList QuickSort TreeVisitor
+			//InputStream in = new FileInputStream("./examples/TreeVisitor-Error.java");
+			InputStream in = new FileInputStream("./Test.java");
 			new MiniJavaParser(in);
 			Node root = MiniJavaParser.Goal();
+			
 			BuildSymbolTableVisitor symbolTableVisitor= new BuildSymbolTableVisitor();
 			root.accept(symbolTableVisitor,(MType)null);
 			symbolTableVisitor.InheritCheck();
 			
 			HashMap<Pair<String,MType>,MType> symbolTable = symbolTableVisitor.getTable();
-			for(Entry<Pair<String, MType>, MType> entry:symbolTable.entrySet()){
-<<<<<<< HEAD
-					//System.out.println("Name:"+entry.getKey().getKey()+" Scope: "+entry.getKey().getValue()+" Node: "+entry.getValue());
-					System.out.println("Name:"+entry.getKey().getKey()+" Scope: "+entry.getKey().getValue()+" Type: "+entry.getValue().getType());
-			}
-			
-=======
-				System.out.println("Name:"+entry.getKey().getKey()+" Scope: "+entry.getKey().getValue()+" Node: "+entry.getValue());
-			}
-			//System.out.println(symbolTableVisitor.getGlobalScope());
 			root.accept(new TypeCheckVisitor(symbolTable),symbolTableVisitor.getGlobalScope());
->>>>>>> 0c0cd0f808cab3e1485361197d241a790fd29ca5
+			
 			System.out.println("Type Check Finished. No Error Found.");
 			
 		} catch (ParseException e) {

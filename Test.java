@@ -14,22 +14,10 @@ class A{
 	}
 }
 class B extends A{
-<<<<<<< HEAD
 	A ab;
-	
-	
-	
-	public int yyy(int b){
-<<<<<<< HEAD
-		int x;
-		int y;
-		x = 0;
-		y = new B();
-		return x;
-=======
-=======
-	public int yyy(int b, int t){
->>>>>>> b0ac69de14256387458535552b001e53c106e3f8
+
+	public int yyy(int b, boolean t){
+
 		boolean x;
 		int[] p;
 		return 1;
@@ -39,9 +27,9 @@ class B extends A{
 		B b;
 		int c;
 		int d;
-		c = b.yyy(c,d);
-		return new A();
->>>>>>> 0c0cd0f808cab3e1485361197d241a790fd29ca5
+		c = b.yyy(c,true);
+		a=b;
+		return new B();
 	}
 
 }

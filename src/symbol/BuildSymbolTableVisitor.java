@@ -19,7 +19,6 @@ public class BuildSymbolTableVisitor extends GJDepthFirst<MType,MType>{
 	}
 	public MType visit(Goal n, MType argu){
 		MClassList classList = new MClassList();
-		//System.out.println("Global Scope");
 		n.f0.accept(this,classList);
 		n.f1.accept(this,classList);
 		this.symbolTable.put(new Pair<String,MType>("Global Scope",null),classList);
@@ -28,14 +27,13 @@ public class BuildSymbolTableVisitor extends GJDepthFirst<MType,MType>{
 	public MType visit(ClassDeclaration n, MType argu){
 		
 		String id = n.f1.f0.toString();
-		//System.out.println("New class:"+id);
 		MClass mclass = new MClass(id,null,argu);
-		System.out.println("here "+mclass.getType());
 		this.symbolTable.put(new Pair<String, MType>(id,argu), mclass);
-		//System.out.println(id);
+		
 		n.f1.accept(this,mclass);
 		n.f3.accept(this,mclass);
 		n.f4.accept(this,mclass);
+		
 		MClassList list= (MClassList)argu;
 		(list).addClass(mclass,id);
 		return mclass;
@@ -121,19 +119,14 @@ public class BuildSymbolTableVisitor extends GJDepthFirst<MType,MType>{
 	public MType visit(FormalParameter n, MType argu){
 		
 		String id = n.f1.f0.toString();
-		//System.out.println("New class:"+id);
 		MVariable mparameter = new MVariable(id,argu);
 		this.symbolTable.put(new Pair<String, MType>(id,argu), mparameter);
-		//System.out.println(id);
 		n.f0.accept(this,mparameter);
 		n.f1.accept(this,mparameter);
 		((MMethod)argu).addParameter(mparameter);
 		return mparameter;
 	}
 	
-	public VarType convertType(Type t){
-		return VarType.Integer;
-	}
 	
 	public MType getGlobalScope(){
 		return symbolTable.get(new Pair<String,MType>("Global Scope",null));// problem??

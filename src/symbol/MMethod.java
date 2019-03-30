@@ -1,20 +1,24 @@
 package symbol;
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class MMethod extends MIdentifier implements VarContainer{
 	protected Hashtable<String,MVariable> parameters;
 	protected Hashtable<String,MVariable> variables;
+	protected ArrayList<MType> paramList;
 	public MMethod(String _id,MType _scope,String _returnType){
 		super(_id,_scope);
 		type = _returnType;
 		parameters = new Hashtable<>();
 		variables = new Hashtable<>();
+		paramList = new ArrayList<MType>();
 		scope = _scope;
 	}
 	public MMethod(String _id,MType _scope){
 		super(_id,_scope);
 		parameters = new Hashtable<>();
 		variables = new Hashtable<>();
+		paramList = new ArrayList<MType>();
 		scope = _scope;
 	}
 	public void addParameter(MVariable parameter){
@@ -24,7 +28,7 @@ public class MMethod extends MIdentifier implements VarContainer{
 			System.exit(1);
 		}
 		parameters.put(id,parameter);
-		
+		paramList.add(parameter);		
 	}
 	public MVariable getVariable(String id){
 		MVariable v = parameters.get(id);

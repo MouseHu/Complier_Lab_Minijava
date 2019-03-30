@@ -14,70 +14,46 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	protected HashMap<Pair<String,MType>,MType> symbolTable;
 	protected MType globalScope;
 	protected HashMap<String, String> extends_relation= new HashMap<>();
-	protected HashMap<MType, ParaList> parameters = new HashMap<>();
-	protected ParaList tempcheck=null;
-	protected ArrayList<paracheck> checklist = new ArrayList<>();
-	
-	public class paracheck{
-		MType method;
-		ParaList para;
-		paracheck(MType t, ParaList p){
-			method = t;
-			para = p;
-		}
-	}
-	
-	public class ParaList{
-		int size = 0;
-		ArrayList<String> typelist;
-		ParaList() {
-			size = 0;
-			typelist = new ArrayList<>();
-		}
-		void addnode(String s) {
-			typelist.add(s);
-			size++;
-		}
-	}
-	
+	protected ArrayList<MType> arguCheckList = new ArrayList<>();
+		
 	public TypeCheckVisitor(){
 		symbolTable = new HashMap<>();
 	}	
 	public TypeCheckVisitor(HashMap<Pair<String,MType>,MType> _symbolTable){
 		symbolTable = _symbolTable;
+		
+		for(Entry<Pair<String,MType>,MType> e:symbolTable.entrySet()){
+			if((e.getValue() instanceof MClass)&&((MClass)(e.getValue())).parentName!=null)
+				extends_relation.put(e.getValue().getType(), ((MClass)(e.getValue())).parentName);
+		}
 	}
-	public boolean parametercheck() {
-		for(paracheck ele: checklist) {
-			MType m = ele.method;
-			ParaList p = ele.para;
-			ParaList target = parameters.get(m);
-			if(p==null && target == null) {
-				continue;
-			}
-			if((p == null && target != null) || (p!=null&&target==null)) {
+	public boolean paramCheckUpcasting(MType mmethod){
+		ArrayList<MType> paramList = ((MMethod)mmethod).paramList;
+		//System.out.println(paramList.size()+"\t"+arguCheckList.size());
+		if(paramList.size()!=arguCheckList.size())
+			return false;
+		for(int i=0;i<paramList.size();i++){
+			if(!typeCheckUpcasting(paramList.get(i),arguCheckList.get(i)))
 				return false;
-			}
-			if(p.size!=target.size) {
-				return false;
-			}
-			for(int i=0; i<p.size; i++) {
-				if(p.typelist.get(i)!=target.typelist.get(i)) {
-					String classid = p.typelist.get(i);
-					boolean flag = false;
-					while(extends_relation.get(classid)!=null) {
-						String pid = extends_relation.get(classid);
-						if(pid == target.typelist.get(i)) {
-							flag = true;
-							break;
-						}
-					}
-					if(flag==false) return false;
-				}
-			}
 		}
 		return true;
 	}
 	
+	public boolean typeCheckUpcasting(MType objType,MType valType){
+		String objTypeName = objType.getType();
+		String valTypeName = valType.getType();
+		boolean flag = (objTypeName==valTypeName);
+		while((extends_relation.get(valTypeName)!=null) && (flag ==false)) {
+			String pid = extends_relation.get(valTypeName);
+			if(pid == objTypeName) {
+				flag = true;
+				break;
+			}
+			valTypeName = pid;
+		}
+		//System.out.println(objTypeName+"\t"+valTypeName+"\t"+extends_relation.get(valTypeName)+"\t"+flag);
+		return flag;
+	}
 	public MType visit(FormalParameterList n, MType argu) {
 		n.f0.accept(this, argu);
 		n.f1.accept(this, argu);
@@ -85,14 +61,9 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	}
 	public MType visit(FormalParameter n, MType argu) {
 		MType paratype = n.f0.accept(this, globalScope);
-		ParaList p = parameters.get(argu);
-		if(p == null) {
-			p = new ParaList();
-		}		
-		p.addnode(paratype.getType());
-		parameters.put(argu, p);
+
 		n.f1.accept(this, argu);
-		return null;
+		return paratype;
 	}
 	
 	public MType visit(Type n, MType argu) {
@@ -115,10 +86,6 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	public MType visit(Goal n, MType argu) {
 		n.f0.accept(this, argu);
 		n.f1.accept(this, argu);
-		if(parametercheck()==false) {
-			System.out.println("Error: Parameters not match!");
-			System.exit(1);
-		}
 		return null;
 	}
 
@@ -165,9 +132,6 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 		return new MType("int[]");
 	}
 	
-	public MType visit(AllocationExpression n, MType argu) {
-		return n.f1.accept(this, this.globalScope);
-	}
 	
 	public MType visit(BracketExpression n, MType argu) {
 		return n.f1.accept(this, argu);
@@ -193,7 +157,7 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	public MType visit(ClassExtendsDeclaration n,MType argu){
 		String id = n.f1.f0.toString();
 		String parentid = n.f3.f0.toString();
-		extends_relation.put(id, parentid);
+		//extends_relation.put(id, parentid);
 		MType declaration =  symbolTable.get(MType.Key(id, argu));
 		n.f5.accept(this,declaration);
 		n.f6.accept(this,declaration);
@@ -213,14 +177,16 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	public MType visit(MethodDeclaration n,MType argu){
 		String id = n.f2.f0.toString();
 		MType declaration = symbolTable.get(MType.Key(id, argu));
-		parameters.put(declaration, null);
+
 		if(n.f4!=null) {
 			n.f4.accept(this,declaration);
 		}
 		n.f7.accept(this,declaration);
 		n.f8.accept(this,declaration);
 		MType returnType=n.f10.accept(this,declaration);
-		if(returnType.getType()!=declaration.getType()){
+		
+		
+		if(!typeCheckUpcasting(declaration,returnType)) {
 			System.out.println("Error: Return type of \""+((MMethod)declaration).id+"\" in class: \""+((MClass)argu).id+"\" does not match. Expecting: \""+declaration.getType()+"\", Got \""+returnType.getType()+"\".");
 			System.exit(1);
 		}
@@ -264,10 +230,8 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 			System.out.println("Error: Declaration of token \""+id+"\" not found");
 			System.exit(1);
 		}
-<<<<<<< HEAD
 		//System.out.println(declaration.toString()+declaration.getType());
-=======
->>>>>>> b0ac69de14256387458535552b001e53c106e3f8
+
 		return declaration;
 	}
 	
@@ -287,9 +251,6 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 		return new MType("boolean");
 	}
 	public MType visit(AllocationExpression n, MType argu){
-		//System.out.println("???");
-		System.out.println(n.f1.f0.toString());
-		System.out.println(n.f1.accept(this,argu));
 		return n.f1.accept(this,argu);
 	}
 	
@@ -345,14 +306,8 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 		}
 		return new MType("int");
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-	/*
-=======
-	
->>>>>>> b0ac69de14256387458535552b001e53c106e3f8
+
 	public MType visit(ArrayLookup n, MType argu) {
 		MType isarray = n.f0.accept(this, argu);
 		MType isint = n.f2.accept(this, argu);
@@ -378,17 +333,14 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 
 	public MType visit(MessageSend n, MType argu) {
 		MType objType = n.f0.accept(this, argu);
-		MType idnType = null;
-		for(HashMap.Entry<Pair<String, MType>, MType> p: symbolTable.entrySet()) {
-			if(p.getKey().getKey() == objType.getType()) {
-				idnType = p.getValue();
-				break;
-			}
-		}
+		MType idnType = symbolTable.get(MType.Key(objType.getType(),this.globalScope));
+		arguCheckList = new ArrayList<MType>();
 		MType metType = n.f2.accept(this, idnType);
 		MType optType = n.f4.accept(this, argu);
-		checklist.add(new paracheck(metType, tempcheck));
-		tempcheck = null;
+		if(!paramCheckUpcasting(metType)){
+			System.out.println("Error: Param type of \""+((MMethod)metType).id+"\" in class: \""+((MClass)(idnType)).id+"\" does not match.");
+			System.exit(1);
+		}
 		return metType;
 	}
 	
@@ -400,10 +352,11 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	public MType visit(AssignmentStatement n, MType argu) {
 		MType objType = n.f0.accept(this, argu);
 		MType valType = n.f2.accept(this, argu);
-		if(objType.getType()!=valType.getType()) {
+		if(!typeCheckUpcasting(objType,valType)) {
 			System.out.println("Error: assignment type should be consistent. Got:"+objType.getType()+" and "+valType.getType());
 			System.exit(1);
 		}
+
 		return null;
 	}
 	
@@ -448,23 +401,21 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	}
 	
 	public MType visit(PrintStatement n, MType argu) {
-		n.f2.accept(this, argu);
-		return null;
+		
+		return n.f2.accept(this, argu);
 	}
 	
 	public MType visit(ExpressionList n, MType argu) {
 		MType exprtype = n.f0.accept(this, argu);
-		tempcheck = new ParaList();
-		tempcheck.addnode(exprtype.getType());
+		arguCheckList.add(exprtype);
 		n.f1.accept(this, argu);
-		return null;
+		return exprtype;
 	}
 	
 	public MType visit(ExpressionRest n, MType argu) {
 		MType exprtype = n.f1.accept(this, argu);
-		tempcheck.addnode(exprtype.getType());
-		return null;
+		arguCheckList.add(exprtype);
+		return exprtype;
 	}
->>>>>>> 0c0cd0f808cab3e1485361197d241a790fd29ca5
 	
 }
