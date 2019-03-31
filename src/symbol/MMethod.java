@@ -27,7 +27,7 @@ public class MMethod extends MIdentifier implements VarContainer{
 			System.out.println("Error: Multiple Definition of parameters: \""+pid+"\" in Method: \""+id+"\"");
 			System.exit(1);
 		}
-		parameters.put(id,parameter);
+		parameters.put(pid,parameter);
 		paramList.add(parameter);		
 	}
 	public MVariable getVariable(String id){

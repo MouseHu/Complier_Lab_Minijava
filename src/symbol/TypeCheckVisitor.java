@@ -39,6 +39,33 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 		return true;
 	}
 	
+	public boolean paramCheck(ArrayList<MType> a,ArrayList<MType> b){
+		if(a.size()!=b.size()){
+			return false;
+		}
+		for(int i=0;i<a.size();i++){
+			if(a.get(i).getType()!=b.get(i).getType()){
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public void checkOverload(MMethod mmethod,MClass mclass){
+		String parentName = mclass.id;
+		while(extends_relation.containsKey(parentName)){
+			parentName = extends_relation.get(parentName);
+			MClass parent = (MClass)symbolTable.get(MType.Key(parentName, globalScope));
+			if(parent.methods.containsKey(mmethod.id)){
+				if(!paramCheck(mmethod.paramList,parent.methods.get(mmethod.id).paramList)){
+					System.out.println("Error: Overload is forbidden in minijava");
+					System.exit(1);
+				}
+			}
+			//parentName = parent.id;
+		}
+	}
+	
 	public boolean typeCheckUpcasting(MType objType,MType valType){
 		String objTypeName = objType.getType();
 		String valTypeName = valType.getType();
@@ -61,7 +88,6 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	}
 	public MType visit(FormalParameter n, MType argu) {
 		MType paratype = n.f0.accept(this, globalScope);
-
 		n.f1.accept(this, argu);
 		return paratype;
 	}
@@ -177,7 +203,7 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	public MType visit(MethodDeclaration n,MType argu){
 		String id = n.f2.f0.toString();
 		MType declaration = symbolTable.get(MType.Key(id, argu));
-
+		checkOverload((MMethod)declaration, (MClass)argu);
 		if(n.f4!=null) {
 			n.f4.accept(this,declaration);
 		}
@@ -402,7 +428,13 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	
 	public MType visit(PrintStatement n, MType argu) {
 		
-		return n.f2.accept(this, argu);
+		MType printType = n.f2.accept(this, argu);
+		if(printType.getType()!="int"){
+			System.out.println("Error: Can only print int. Got: "+printType.getType());
+			System.exit(1);
+		}
+		
+		return printType;
 	}
 	
 	public MType visit(ExpressionList n, MType argu) {
