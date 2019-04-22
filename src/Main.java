@@ -14,7 +14,7 @@ public class Main {
 			//InputStream in = new FileInputStream(args[0]);
 			//InputStream in = new FileInputStream("./examples/TreeVisitor.java");// BinaryTree BubbleSort Factorial LinearSearch MoreThan4 LinkedList QuickSort TreeVisitor
 			//InputStream in = new FileInputStream("./examples/TreeVisitor-Error.java");
-			InputStream in = new FileInputStream("./Test.java");
+			InputStream in = new FileInputStream("./test54.java");
 			new MiniJavaParser(in);
 			Node root = MiniJavaParser.Goal();
 			

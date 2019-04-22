@@ -30,6 +30,9 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	public boolean paramCheckUpcasting(MType mmethod){
 		ArrayList<MType> paramList = ((MMethod)mmethod).paramList;
 		//System.out.println(paramList.size()+"\t"+arguCheckList.size());
+		//for(int i=0;i<paramList.size();i++){
+		//	System.out.println(paramList.get(i).getType());
+		//}
 		if(paramList.size()!=arguCheckList.size())
 			return false;
 		for(int i=0;i<paramList.size();i++){
@@ -57,7 +60,7 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 			parentName = extends_relation.get(parentName);
 			MClass parent = (MClass)symbolTable.get(MType.Key(parentName, globalScope));
 			if(parent.methods.containsKey(mmethod.id)){
-				if(!paramCheck(mmethod.paramList,parent.methods.get(mmethod.id).paramList)){
+				if(!paramCheck(mmethod.paramList,parent.methods.get(mmethod.id).paramList)||!(mmethod.getType()==parent.methods.get(mmethod.id).getType())){
 					System.out.println("Error: Overload is forbidden in minijava");
 					System.exit(1);
 				}
@@ -68,6 +71,7 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	
 	public boolean typeCheckUpcasting(MType objType,MType valType){
 		String objTypeName = objType.getType();
+		System.out.println(objTypeName);
 		String valTypeName = valType.getType();
 		boolean flag = (objTypeName==valTypeName);
 		while((extends_relation.get(valTypeName)!=null) && (flag ==false)) {
@@ -277,6 +281,12 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 		return new MType("boolean");
 	}
 	public MType visit(AllocationExpression n, MType argu){
+		MType newType = n.f1.accept(this,argu);
+		if(!(newType instanceof MClass)){
+			System.out.println("Error:"+n.f1.f0.toString()+" is not a class. ");
+			System.exit(1);
+		}
+			
 		return n.f1.accept(this,argu);
 	}
 	
@@ -363,11 +373,19 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 		arguCheckList = new ArrayList<MType>();
 		MType metType = n.f2.accept(this, idnType);
 		MType optType = n.f4.accept(this, argu);
+		for(int i=0;i<arguCheckList.size();i++){
+			System.out.println(arguCheckList.get(i).type);
+		}
+		//System.out.println("end");
+		//System.out.println(metType.type);
+		//if(optType != null)
+		//	System.out.println(optType.getType());
 		if(!paramCheckUpcasting(metType)){
 			System.out.println("Error: Param type of \""+((MMethod)metType).id+"\" in class: \""+((MClass)(idnType)).id+"\" does not match.");
 			System.exit(1);
 		}
-		return metType;
+		arguCheckList=new ArrayList<>();
+		return metType;//MType(((MMethod)metType).getType());
 	}
 	
 	public MType visit(Block n, MType argu) {
