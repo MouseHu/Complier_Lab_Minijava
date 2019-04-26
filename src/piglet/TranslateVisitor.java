@@ -254,7 +254,11 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 		return null;                                                                                       
 	}
 	
-	public String visit(VarDeclaration n,MType argu){
+	public String visit(VarDeclaration n,MType scope){
+		String varName = n.f1.f0.tokenImage;
+		MVariable variable = (MVariable) symbolTable.get(MType.Key(varName, scope));
+		if(variable.getRegister()=="")
+			variable.setRegister(getTemp());
 		return null;
 		
 	}

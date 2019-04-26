@@ -1,4 +1,6 @@
 MAIN
     MOVE TEMP 21
     5
+    PRINT
+        TEMP 21
 END
