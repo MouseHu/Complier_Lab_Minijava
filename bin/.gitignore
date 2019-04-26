@@ -1,6 +1,10 @@
 /HelloWorld.class
-/JTBToolkit.class
 /JavaCharStream.class
+/piglet/
+/symbol/
+/syntaxtree/
+/visitor/
+/JTBToolkit.class
 /Main.class
 /MiniJavaParser$JJCalls.class
 /MiniJavaParser$LookaheadSuccess.class
@@ -10,7 +14,3 @@
 /ParseException.class
 /Token.class
 /TokenMgrError.class
-/piglet/
-/symbol/
-/syntaxtree/
-/visitor/
