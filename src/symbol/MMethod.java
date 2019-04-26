@@ -50,5 +50,8 @@ public class MMethod extends MIdentifier implements VarContainer{
 		}
 		variables.put(vid, variable);		
 	}
+	public int paramNum(){
+		return paramList.size();
+	}
 	
 }

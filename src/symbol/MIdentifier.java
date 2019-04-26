@@ -6,7 +6,7 @@ interface VarContainer{
 	void addVariable(MVariable variable);
 }
 public class MIdentifier extends MType{
-	protected String id;
+	public String id;
 	protected String type;
 	public MIdentifier(String _id,MType _scope){
 		id = _id;

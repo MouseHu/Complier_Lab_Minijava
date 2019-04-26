@@ -1,14 +1,17 @@
 package symbol;
-import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.HashMap;
+
+import java.util.Map.Entry;
+import javafx.util.Pair;
 public class MClass extends MIdentifier implements VarContainer{
-	protected HashMap<String, MMethod> methods;
-	protected HashMap<String, MVariable> variables;
-	protected MClass parent;
+	public HashMap<String, Pair<MMethod,Integer>> methods;
+	public HashMap<String, Pair<MVariable,Integer>> variables;
+	public MClass parent;
 	protected String parentName;
 	protected int serialNumber;
 	static int classCount = 0;
+	int methodSize = 0;
+	int variableSize =0;
 	public MClass(String _id,  String _parent, MType _scope){
 		super(_id,_scope,_id);
 		methods = new HashMap<>();
@@ -25,11 +28,11 @@ public class MClass extends MIdentifier implements VarContainer{
 			System.out.println("Error: Multiple Method Definition/ Method Overload: \""+mid+"\" in Class:"+this.id+"\"");
 			System.exit(1);
 		}
-		methods.put(mid, method);
+		methods.put(mid, new Pair<MMethod,Integer>(method,methodSize++));
 	}
 	
 	public MMethod getMethod(String id){
-		return methods.get(id);
+		return methods.get(id).getKey();
 	}
 	public void setParent(MClass _parent){
 		parent = _parent;
@@ -41,6 +44,43 @@ public class MClass extends MIdentifier implements VarContainer{
 			System.out.println("Error: Multiple Variable Definition: \""+vid+"\" in Class:"+this.id+"\"");
 			System.exit(1);
 		}
-		variables.put(vid, variable);
+		variables.put(vid, new Pair<MVariable,Integer>(variable,variableSize++));
 	}
+	public int methodSize(){
+		int num = 0;
+		if(parent!=null){
+			num+=parent.methodSize();
+			
+		}
+		num += methodSize;
+		return num;
+	}
+	public int variableSize(){
+		int num = 0;
+		if(parent!=null){
+			num+=parent.variableSize();
+			
+		}
+		num += variableSize;
+		return num;
+	}
+	public int methodNumber(String methodName){
+		int num = 0;
+		if(parent!=null){
+			num+=parent.methodSize();
+			
+		}
+		num+=methods.get(methodName).getValue().intValue();
+		return num;
+	}
+	public int variableNumber(String variableName){
+		int num = 0;
+		if(parent!=null){
+			num+=parent.variableSize();
+			
+		}
+		num+=variables.get(variableName).getValue().intValue();
+		return num;
+	}
+
 }

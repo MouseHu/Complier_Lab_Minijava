@@ -11,6 +11,7 @@ enum VarType{
 public class MType {
 	protected String type;
 	protected MType scope;
+	protected String register = "";
 	public MType(){
 		type = "";
 		scope = null;
@@ -20,6 +21,12 @@ public class MType {
 	}
 	public String getType(){
 		return type;
+	}
+	public void setRegister(String r){
+		register = r;
+	}
+	public String getRegister(){
+		return register;
 	}
 	public void setType(String _type){
 		type=_type;

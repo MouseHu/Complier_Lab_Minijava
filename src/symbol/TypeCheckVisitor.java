@@ -60,7 +60,7 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 			parentName = extends_relation.get(parentName);
 			MClass parent = (MClass)symbolTable.get(MType.Key(parentName, globalScope));
 			if(parent.methods.containsKey(mmethod.id)){
-				if(!paramCheck(mmethod.paramList,parent.methods.get(mmethod.id).paramList)||!(mmethod.getType()==parent.methods.get(mmethod.id).getType())){
+				if(!paramCheck(mmethod.paramList,parent.methods.get(mmethod.id).getKey().paramList)||!(mmethod.getType()==parent.methods.get(mmethod.id).getKey().getType())){
 					System.out.println("Error: Overload is forbidden in minijava");
 					System.exit(1);
 				}
@@ -373,9 +373,9 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 		arguCheckList = new ArrayList<MType>();
 		MType metType = n.f2.accept(this, idnType);
 		MType optType = n.f4.accept(this, argu);
-		for(int i=0;i<arguCheckList.size();i++){
-			System.out.println(arguCheckList.get(i).type);
-		}
+		//for(int i=0;i<arguCheckList.size();i++){
+		//	System.out.println(arguCheckList.get(i).type);
+		//}
 		//System.out.println("end");
 		//System.out.println(metType.type);
 		//if(optType != null)
