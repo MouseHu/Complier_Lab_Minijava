@@ -65,14 +65,24 @@ public class MClass extends MIdentifier implements VarContainer{
 	}
 	public int methodNumber(String methodName){
 		int num = 0;
+		Pair<MMethod, Integer> variable = methods.get(methodName);
+		if(variable==null){
+			assert(parent!=null);
+			return parent.variableNumber(methodName);
+		}
 		if(parent!=null){
-			num+=parent.methodSize();	
+			num+=parent.methodSize();
 		}
 		num+=methods.get(methodName).getValue().intValue();
 		return num;
 	}
 	public int variableNumber(String variableName){
 		int num = 0;
+		Pair<MVariable, Integer> variable = variables.get(variableName);
+		if(variable==null){
+			assert(parent!=null);
+			return parent.variableNumber(variableName);
+		}
 		if(parent!=null){
 			num+=parent.variableSize();
 		}

@@ -146,6 +146,7 @@ public class BuildSymbolTableVisitor extends GJDepthFirst<MType,MType>{
 	    	}
 	    	else if(parent !=null){
 	    		parents[entry.getValue().serialNumber]=classList.get(parent).serialNumber;
+	    		entry.getValue().parent = classList.get(parent);
 	    	}
 	    }
 		for(int i =0;i<classList.size();i++)

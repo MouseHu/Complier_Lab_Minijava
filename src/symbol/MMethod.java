@@ -5,7 +5,7 @@ import java.util.Hashtable;
 public class MMethod extends MIdentifier implements VarContainer{
 	protected Hashtable<String,MVariable> parameters;
 	protected Hashtable<String,MVariable> variables;
-	protected ArrayList<MType> paramList;
+	public ArrayList<MType> paramList;
 	public MMethod(String _id,MType _scope,String _returnType){
 		super(_id,_scope);
 		type = _returnType;
@@ -27,15 +27,18 @@ public class MMethod extends MIdentifier implements VarContainer{
 			System.out.println("Error: Multiple Definition of parameters: \""+pid+"\" in Method: \""+id+"\"");
 			System.exit(1);
 		}
+		//System.out.println("???");
 		parameters.put(pid,parameter);
-		paramList.add(parameter);		
+		paramList.add(parameter);	
+		//System.out.println(parameters.size());
 	}
 	public MVariable getVariable(String id){
+		MVariable v = variables.get(id);
+		return v;	
+	}
+	public MVariable getParameter(String id){
 		MVariable v = parameters.get(id);
-		if(v!=null)
-			return v;
-		else
-			return variables.get(id);		
+		return v;
 	}
 	@Override
 	public void addVariable(MVariable variable) {
@@ -51,7 +54,11 @@ public class MMethod extends MIdentifier implements VarContainer{
 		variables.put(vid, variable);		
 	}
 	public int paramNum(){
-		return paramList.size();
+		//System.out.println(parameters.size());
+		return parameters.size();
+	}
+	public String getParamReg(String paramName){
+		return "TEMP "+(paramList.indexOf(getParameter(paramName))+1);
 	}
 	
 }

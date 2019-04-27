@@ -10,7 +10,7 @@ enum VarType{
 }
 public class MType {
 	protected String type;
-	protected MType scope;
+	public MType scope;
 	protected String register = "";
 	public MType(){
 		type = "";

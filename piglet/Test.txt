@@ -1,6 +1,67 @@
 MAIN
-    MOVE TEMP 21
-    5
     PRINT
-        TEMP 21
+        CALL
+        BEGIN
+            MOVE TEMP 21
+            BEGIN
+                MOVE TEMP 22 HALLOCATE 8
+                HSTORE TEMP 22 0 A_getb
+                HSTORE TEMP 22 4 B_getb
+                MOVE TEMP 23 HALLOCATE 20
+                HSTORE TEMP 23 4 0
+                HSTORE TEMP 23 8 0
+                HSTORE TEMP 23 12 0
+                HSTORE TEMP 23 16 0
+                HSTORE TEMP 23 0 TEMP 22
+                RETURN TEMP 23
+            END
+            HLOAD TEMP 24 TEMP 21 0
+            HLOAD TEMP 25 TEMP 24 4
+        RETURN TEMP 25
+        END
+        (TEMP 21
+        BEGIN
+            MOVE TEMP 26 HALLOCATE TIMES 4 0
+            RETURN TEMP 26
+        END
+        )
 END
+B_getb [ 2 ]
+    BEGIN
+        HSTORE TEMP 0 8
+        BEGIN
+            MOVE TEMP 27
+            10
+            MOVE TEMP 28 HALLOCATE TIMES 4 PLUS 1 TEMP 27
+            HSTORE TEMP 28 0 TEMP 27
+            RETURN TEMP 28
+        END
+        MOVE TEMP 29 PLUS TEMP 0 8
+        MOVE TEMP 30
+        2
+        HSTORE PLUS TEMP 29 TIMES 4 PLUS 1 TEMP 30 0
+        1
+        PRINT
+            BEGIN
+                MOVE TEMP 31
+                BEGIN
+                    HLOAD TEMP 32  8
+                    RETURN TEMP 32 
+                END
+                MOVE TEMP 33
+                2
+                MOVE TEMP 31 PLUS TEMP 31 TIMES 4 PLUS 1 TEMP 33
+                HLOAD TEMP 34 TEMP 31 0
+            RETURN TEMP 34
+            END
+        RETURN
+            0
+    END
+A_getb [ 2 ]
+    BEGIN
+        RETURN
+            BEGIN
+                HLOAD TEMP 35  4
+                RETURN TEMP 35 
+            END
+    END

@@ -23,7 +23,7 @@ public class Main {
 			
 			BuildSymbolTableVisitor symbolTableVisitor= new BuildSymbolTableVisitor();
 			root.accept(symbolTableVisitor,(MType)null);
-			//symbolTableVisitor.InheritCheck();
+			symbolTableVisitor.InheritCheck();
 			
 			HashMap<Pair<String,MType>,MType> symbolTable = symbolTableVisitor.getTable();
 			root.accept(new TypeCheckVisitor(symbolTable),symbolTableVisitor.getGlobalScope());
