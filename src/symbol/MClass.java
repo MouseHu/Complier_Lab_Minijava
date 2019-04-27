@@ -59,7 +59,6 @@ public class MClass extends MIdentifier implements VarContainer{
 		int num = 0;
 		if(parent!=null){
 			num+=parent.variableSize();
-			
 		}
 		num += variableSize;
 		return num;
@@ -67,8 +66,7 @@ public class MClass extends MIdentifier implements VarContainer{
 	public int methodNumber(String methodName){
 		int num = 0;
 		if(parent!=null){
-			num+=parent.methodSize();
-			
+			num+=parent.methodSize();	
 		}
 		num+=methods.get(methodName).getValue().intValue();
 		return num;
@@ -77,7 +75,6 @@ public class MClass extends MIdentifier implements VarContainer{
 		int num = 0;
 		if(parent!=null){
 			num+=parent.variableSize();
-			
 		}
 		num+=variables.get(variableName).getValue().intValue();
 		return num;
