@@ -247,14 +247,15 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 	public String visit(MethodDeclaration n,MType scope){
 		MMethod method = (MMethod) symbolTable.get(new Pair<String,MType>(n.f2.f0.tokenImage,scope));
 		int paramNum = method.paramNum();
+		
+
+		piglet_print(scope.getType()+"_"+n.f2.f0.tokenImage+" [ 2 ]\n", indent++);
+		piglet_print("BEGIN\n", indent++);
 		for(int i=0; i<paramNum; i++) {
 			String reg = getTemp();
 			piglet_print("HLOAD "+reg+" TEMP 1 "+i*4+"\n",indent);
 			method.paramList.get(i).setRegister(reg);
 		}
-
-		piglet_print(scope.getType()+"_"+n.f2.f0.tokenImage+" [ 2 ]\n", indent++);
-		piglet_print("BEGIN\n", indent++);
 		n.f8.accept(this,method);
 		piglet_print("RETURN\n", indent++);
 		n.f10.accept(this,method);
@@ -274,13 +275,18 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 	}
 	
 	public String visit(Identifier n,MType scope){
+		System.out.println("Iden:"+n.f0.tokenImage);
 		String varName = n.f0.tokenImage;
 		MVariable mvariable= (MVariable) symbolTable.get(new Pair<String,MType>(varName,scope));
 		String reg;
 		if(mvariable==null){
+			System.out.println(n.f0.tokenImage+"null!");
 			scope = ((MMethod)scope).scope;
-			mvariable= (MVariable) symbolTable.get(new Pair<String,MType>(varName,scope));
-			String vTable = scope.getRegister();
+			System.out.println("scope:"+scope.getClass());
+			mvariable= (MVariable)(symbolTable.get(new Pair<String,MType>(varName,scope)));
+			//String vTable = scope.getRegister();
+			String vTable = "TEMP 0";
+			System.out.println("vTableaddr:"+vTable);
 			reg = getTemp();
 			piglet_print("BEGIN\n",indent++);
 			piglet_print("HLOAD "+reg+" "+vTable+" "+(((MClass)scope).variableNumber(varName)*4+4)+"\n",indent);
@@ -347,7 +353,7 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 			pos+=mclass.parent.variableSize();
 		}
 		for (Entry<String, Pair<MVariable, Integer>> entry : mclass.variables.entrySet()) {
-			MVariable variable =entry.getValue().getKey();
+			//MVariable variable =entry.getValue().getKey();
 			int ind = entry.getValue().getValue();
 			piglet_print("HSTORE "+vTableAddr+" "+4*(ind+pos+1)+" "+"0\n",indent);
 		}
@@ -367,6 +373,7 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 		
 		//Allocate Dtable
 		String dTableAddr = getTemp();
+		System.out.println("Allocate "+n.f1.f0.tokenImage+":size "+4*mclass.methodSize());
 		piglet_print("MOVE "+dTableAddr+" HALLOCATE "+4*mclass.methodSize()+"\n",indent);
 		allocateDTable(mclass,dTableAddr);
 		
@@ -485,9 +492,11 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 		MClass mclass= (MClass) symbolTable.get(new Pair<String,MType>(pe.getType(),globalScope));
 		String func_name = n.f2.f0.tokenImage;
 		//System.out.println("func_name:"+func_name);
-		//System.out.println("mclass:"+mclass.id);
 		int fun_num = mclass.methodNumber(func_name);
+		//System.out.println(fun_num);
 		MMethod method = mclass.getMethod(func_name);
+		//if(method==null) System.out.println("null error!");
+		//else System.out.println("no error!");
 		piglet_print("HLOAD "+vtableaddr+" "+objaddr+" 0\n",indent);
 		piglet_print("HLOAD "+funcaddr+" "+vtableaddr+" "+(fun_num*4)+"\n",indent);
 		piglet_print("RETURN "+funcaddr+"\n",--indent);

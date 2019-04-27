@@ -1,10 +1,9 @@
+/Animal.class
+/AnimalAndDog.class
+/Dog.class
 /HelloWorld.class
-/JavaCharStream.class
-/piglet/
-/symbol/
-/syntaxtree/
-/visitor/
 /JTBToolkit.class
+/JavaCharStream.class
 /Main.class
 /MiniJavaParser$JJCalls.class
 /MiniJavaParser$LookaheadSuccess.class
@@ -14,3 +13,7 @@
 /ParseException.class
 /Token.class
 /TokenMgrError.class
+/piglet/
+/symbol/
+/syntaxtree/
+/visitor/

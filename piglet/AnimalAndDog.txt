@@ -1,11 +1,10 @@
 MAIN
     MOVE TEMP 20
     BEGIN
-        MOVE TEMP 21 HALLOCATE 16
+        MOVE TEMP 21 HALLOCATE 12
         HSTORE TEMP 21 0 Animal_change_id
         HSTORE TEMP 21 4 Animal_get_id
         HSTORE TEMP 21 8 Dog_change_id
-        HSTORE TEMP 21 12 Dog_paramcheck
         MOVE TEMP 22 HALLOCATE 12
         HSTORE TEMP 22 4 0
         HSTORE TEMP 22 8 0
@@ -33,7 +32,7 @@ MAIN
             MOVE TEMP 27
             TEMP 20
             HLOAD TEMP 28 TEMP 27 0
-            HLOAD TEMP 29 TEMP 28 12
+            HLOAD TEMP 29 TEMP 28 4
         RETURN TEMP 29
         END
         (TEMP 27
@@ -42,27 +41,44 @@ MAIN
             RETURN TEMP 30
         END
         )
+    MOVE TEMP 20
+    BEGIN
+        MOVE TEMP 31 HALLOCATE 8
+        HSTORE TEMP 31 0 Animal_change_id
+        HSTORE TEMP 31 4 Animal_get_id
+        MOVE TEMP 32 HALLOCATE 8
+        HSTORE TEMP 32 4 0
+        HSTORE TEMP 32 0 TEMP 31
+        RETURN TEMP 32
+    END
     PRINT
         CALL
         BEGIN
-            MOVE TEMP 31
+            MOVE TEMP 33
             TEMP 20
-            HLOAD TEMP 32 TEMP 31 0
-            HLOAD TEMP 33 TEMP 32 4
-        RETURN TEMP 33
+            HLOAD TEMP 34 TEMP 33 0
+            HLOAD TEMP 35 TEMP 34 0
+        RETURN TEMP 35
         END
-        (TEMP 31
+        (TEMP 33
         BEGIN
-            MOVE TEMP 34 HALLOCATE TIMES 4 4
-            HSTORE TEMP 34 0
-                5
-            HSTORE TEMP 34 4
-                10
-            HSTORE TEMP 34 8
-                15
-            HSTORE TEMP 34 12
-                20
-            RETURN TEMP 34
+            MOVE TEMP 36 HALLOCATE TIMES 4 0
+            RETURN TEMP 36
+        END
+        )
+    PRINT
+        CALL
+        BEGIN
+            MOVE TEMP 37
+            TEMP 20
+            HLOAD TEMP 38 TEMP 37 0
+            HLOAD TEMP 39 TEMP 38 4
+        RETURN TEMP 39
+        END
+        (TEMP 37
+        BEGIN
+            MOVE TEMP 40 HALLOCATE TIMES 4 0
+            RETURN TEMP 40
         END
         )
 END
@@ -72,16 +88,16 @@ Animal_change_id [ 2 ]
         1
         RETURN
             BEGIN
-                HLOAD TEMP 35 TEMP 0 4
-                RETURN TEMP 35 
+                HLOAD TEMP 41  4
+                RETURN TEMP 41 
             END
     END
 Animal_get_id [ 2 ]
     BEGIN
         RETURN
             BEGIN
-                HLOAD TEMP 36 TEMP 0 4
-                RETURN TEMP 36 
+                HLOAD TEMP 42  4
+                RETURN TEMP 42 
             END
     END
 Dog_change_id [ 2 ]
@@ -90,24 +106,7 @@ Dog_change_id [ 2 ]
         2
         RETURN
             BEGIN
-                HLOAD TEMP 37 TEMP 0 8
-                RETURN TEMP 37 
+                HLOAD TEMP 43  8
+                RETURN TEMP 43 
             END
-    END
-HLOAD TEMP 38 TEMP 1 0
-HLOAD TEMP 39 TEMP 1 4
-HLOAD TEMP 40 TEMP 1 8
-HLOAD TEMP 41 TEMP 1 12
-Dog_paramcheck [ 2 ]
-    BEGIN
-        PRINT
-            TEMP 38
-        PRINT
-            TEMP 39
-        PRINT
-            TEMP 40
-        PRINT
-            TEMP 41
-        RETURN
-            0
     END
