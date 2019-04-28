@@ -78,7 +78,7 @@ public class MClass extends MIdentifier implements VarContainer{
 		Pair<MMethod, Integer> variable = methods.get(methodName);
 		if(variable==null){
 			assert(parent!=null);
-			return parent.variableNumber(methodName);
+			return parent.methodNumber(methodName);
 		}
 		if(parent!=null){
 			num+=parent.methodSize();

@@ -17,7 +17,7 @@ MAIN
             MOVE TEMP 23
             TEMP 20
             HLOAD TEMP 24 TEMP 23 0
-            HLOAD TEMP 25 TEMP 24 0
+            HLOAD TEMP 25 TEMP 24 8
         RETURN TEMP 25
         END
         (TEMP 23

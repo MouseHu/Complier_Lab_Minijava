@@ -12,7 +12,7 @@ import javafx.util.Pair;
 
 public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	protected HashMap<Pair<String,MType>,MType> symbolTable;
-	protected MType globalScope;
+	public MType globalScope;
 	protected HashMap<String, String> extends_relation= new HashMap<>();
 	protected ArrayList<MType> arguCheckList = new ArrayList<>();
 		
@@ -92,7 +92,9 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	}
 	public MType visit(FormalParameter n, MType argu) {
 		MType paratype = n.f0.accept(this, globalScope);
-		n.f1.accept(this, argu);
+		MType variable = n.f1.accept(this, argu);
+		if(variable instanceof MVariable)
+			((MVariable)variable).setRunningType(paratype.getType());
 		return paratype;
 	}
 	
@@ -371,6 +373,7 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 		MType objType = n.f0.accept(this, argu);
 		MType idnType = symbolTable.get(MType.Key(objType.getType(),this.globalScope));
 		arguCheckList = new ArrayList<MType>();
+		//System.out.println("messagesend: "+this.globalScope);
 		MType metType = n.f2.accept(this, idnType);
 		MType optType = n.f4.accept(this, argu);
 		//for(int i=0;i<arguCheckList.size();i++){
@@ -400,7 +403,9 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 			System.out.println("Error: assignment type should be consistent. Got:"+objType.getType()+" and "+valType.getType());
 			System.exit(1);
 		}
-
+		if(objType instanceof MVariable){
+			((MVariable)objType).setRunningType(valType.getType());
+		}
 		return null;
 	}
 	
