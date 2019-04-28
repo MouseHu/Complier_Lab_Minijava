@@ -15,7 +15,7 @@ public class Main {
 			//InputStream in = new FileInputStream(args[0]);
 			//InputStream in = new FileInputStream("./examples/TreeVisitor.java");// BinaryTree BubbleSort Factorial LinearSearch MoreThan4 LinkedList QuickSort TreeVisitor
 			//InputStream in = new FileInputStream("./examples/TreeVisitor-Error.java");
-			String parse_file = "examples/TreeVisitor";
+			String parse_file = "SelfTestCases/5-OutOfBounds";
 			InputStream in = new FileInputStream("./"+parse_file+".java");
 			String outfile = "./piglet/"+parse_file+".txt";
 			new MiniJavaParser(in);
@@ -27,7 +27,7 @@ public class Main {
 			
 			HashMap<Pair<String,MType>,MType> symbolTable = symbolTableVisitor.getTable();
 			root.accept(new TypeCheckVisitor(symbolTable),symbolTableVisitor.getGlobalScope());
-			//System.out.println(symbolTable);
+			System.out.println(symbolTable);
 			System.out.println("Type Check Finished. No Error Found.");
 			root.accept(new TranslateVisitor(symbolTable,outfile),symbolTableVisitor.getGlobalScope());
 

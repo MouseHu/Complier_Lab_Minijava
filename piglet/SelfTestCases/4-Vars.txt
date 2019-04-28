@@ -1,0 +1,79 @@
+MAIN
+    PRINT
+        CALL
+        BEGIN
+            MOVE TEMP 20
+            BEGIN
+                MOVE TEMP 21 HALLOCATE 8
+                HSTORE TEMP 21 4 A_helper
+                HSTORE TEMP 21 0 A_run
+                MOVE TEMP 22 HALLOCATE 4
+                HSTORE TEMP 22 0 TEMP 21
+                RETURN TEMP 22
+            END
+            HLOAD TEMP 23 TEMP 20 0
+            HLOAD TEMP 24 TEMP 23 0
+        RETURN TEMP 24
+        END
+        (TEMP 20
+        BEGIN
+            MOVE TEMP 25 HALLOCATE TIMES 4 0
+            RETURN TEMP 25
+        END
+        )
+END
+A_run [ 2 ]
+    BEGIN
+        MOVE TEMP 26
+        CALL
+        BEGIN
+            MOVE TEMP 27
+            TEMP 0
+            HLOAD TEMP 28 TEMP 27 0
+            HLOAD TEMP 29 TEMP 28 4
+        RETURN TEMP 29
+        END
+        (TEMP 27
+        BEGIN
+            MOVE TEMP 30 HALLOCATE TIMES 4 1
+            HSTORE TEMP 30 0
+                12
+            RETURN TEMP 30
+        END
+        )
+        MOVE TEMP 31
+        CALL
+        BEGIN
+            MOVE TEMP 32
+            TEMP 0
+            HLOAD TEMP 33 TEMP 32 0
+            HLOAD TEMP 34 TEMP 33 4
+        RETURN TEMP 34
+        END
+        (TEMP 32
+        BEGIN
+            MOVE TEMP 35 HALLOCATE TIMES 4 1
+            HSTORE TEMP 35 0
+                15
+            RETURN TEMP 35
+        END
+        )
+        RETURN
+            PLUS
+            TEMP 26
+            TEMP 31
+    END
+A_helper [ 2 ]
+    BEGIN
+        HLOAD TEMP 36 TEMP 1 0
+        MOVE TEMP 37
+        TEMP 36
+        MOVE TEMP 36
+        PLUS
+        TEMP 36
+        1
+        PRINT
+            TEMP 37
+        RETURN
+            TEMP 37
+    END

@@ -217,9 +217,10 @@ LS_Search [ 2 ]
                 L4
                     CJUMP
                         LT
+                        LT
                         TEMP 64
                         TEMP 69
-                        LT null 1
+                        1
                         L6
                         MOVE TEMP 70
                         0
@@ -284,7 +285,7 @@ LS_Init [ 2 ]
             MINUS
             TEMP 76
             3
-            MOVE TEMP 81 PLUS TEMP 0 4
+            HLOAD TEMP 81 TEMP 0 4
             MOVE TEMP 82
             TEMP 75
             HSTORE PLUS TEMP 81 TIMES 4 PLUS 1 TEMP 82 0

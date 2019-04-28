@@ -80,6 +80,7 @@ Element_Equal [ 2 ]
         END
         )
         CJUMP
+            LT
             CALL
             BEGIN
                 MOVE TEMP 39
@@ -101,7 +102,7 @@ Element_Equal [ 2 ]
                 RETURN TEMP 42
             END
             )
-            LT null 1
+            1
             L0
             MOVE TEMP 33
             0
@@ -123,6 +124,7 @@ Element_Equal [ 2 ]
                 END
                 )
                 CJUMP
+                    LT
                     CALL
                     BEGIN
                         MOVE TEMP 49
@@ -144,7 +146,7 @@ Element_Equal [ 2 ]
                         RETURN TEMP 52
                     END
                     )
-                    LT null 1
+                    1
                     L2
                     MOVE TEMP 33
                     0
@@ -157,6 +159,7 @@ Element_Equal [ 2 ]
                             END
                             L4
                             CJUMP
+                                LT
                                 CALL
                                 BEGIN
                                     MOVE TEMP 55
@@ -171,7 +174,7 @@ Element_Equal [ 2 ]
                                     RETURN TEMP 58
                                 END
                                 )
-                                LT null 1
+                                1
                                 L5
                                 MOVE TEMP 33
                                 0
@@ -232,9 +235,10 @@ Element_Compare [ 2 ]
             L10
                 CJUMP
                     LT
+                    LT
                     TEMP 64
                     TEMP 67
-                    LT null 1
+                    1
                     L12
                     MOVE TEMP 66
                     0
@@ -354,11 +358,13 @@ List_Delete [ 2 ]
             L14 CJUMP
             BEGIN
                 CJUMP LT 0
+                LT
                 TEMP 88
-                LT null 1
+                1
                 L15                CJUMP LT 0
+                LT
                 TEMP 84
-                LT null 1
+                1
                 L15                MOVE TEMP 92 1
                 JUMP L16
                 L15 MOVE TEMP 92 0
@@ -453,8 +459,9 @@ List_Delete [ 2 ]
                     0
                 L21 NOOP
             CJUMP
+                LT
                 TEMP 84
-                LT null 1
+                1
                 L22
                 MOVE TEMP 87
                 TEMP 86
@@ -534,8 +541,9 @@ List_Search [ 2 ]
         END
         JUMP L24
             L24 CJUMP
+            LT
             TEMP 126
-            LT null 1
+            1
             L25
             CJUMP
                 CALL
@@ -652,8 +660,9 @@ List_Print [ 2 ]
         END
         JUMP L28
             L28 CJUMP
+            LT
             TEMP 151
-            LT null 1
+            1
             L29
             PRINT
                 CALL

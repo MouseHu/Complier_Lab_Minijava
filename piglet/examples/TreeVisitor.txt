@@ -231,7 +231,7 @@ TV_Start [ 2 ]
         BEGIN
             MOVE TEMP 71 HALLOCATE 8
             HSTORE TEMP 71 0 Visitor_visit
-            HSTORE TEMP 71 4 MyVisitor_visit
+            HSTORE TEMP 71 0 MyVisitor_visit
             MOVE TEMP 72 HALLOCATE 12
             HSTORE TEMP 72 8 0
             HSTORE TEMP 72 4 0

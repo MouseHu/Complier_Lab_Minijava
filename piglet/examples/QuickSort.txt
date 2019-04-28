@@ -170,9 +170,10 @@ QS_Sort [ 2 ]
                     END
                     CJUMP
                         LT
+                        LT
                         TEMP 57
                         TEMP 48
-                        LT null 1
+                        1
                         L5
                         MOVE TEMP 56
                         0
@@ -208,9 +209,10 @@ QS_Sort [ 2 ]
                     END
                     CJUMP
                         LT
+                        LT
                         TEMP 48
                         TEMP 57
-                        LT null 1
+                        1
                         L9
                         MOVE TEMP 56
                         0
@@ -234,7 +236,7 @@ QS_Sort [ 2 ]
                     HLOAD TEMP 69 TEMP 66 0
                 RETURN TEMP 69
                 END
-                MOVE TEMP 70 PLUS TEMP 0 4
+                HLOAD TEMP 70 TEMP 0 4
                 MOVE TEMP 71
                 TEMP 53
                 HSTORE PLUS TEMP 70 TIMES 4 PLUS 1 TEMP 71 0
@@ -250,7 +252,7 @@ QS_Sort [ 2 ]
                     HLOAD TEMP 75 TEMP 72 0
                 RETURN TEMP 75
                 END
-                MOVE TEMP 76 PLUS TEMP 0 4
+                HLOAD TEMP 76 TEMP 0 4
                 MOVE TEMP 77
                 TEMP 54
                 HSTORE PLUS TEMP 76 TIMES 4 PLUS 1 TEMP 77 0
@@ -271,7 +273,7 @@ QS_Sort [ 2 ]
                     L12 NOOP
                 JUMP L1
                 L2 NOOP
-            MOVE TEMP 78 PLUS TEMP 0 4
+            HLOAD TEMP 78 TEMP 0 4
             MOVE TEMP 79
             TEMP 54
             HSTORE PLUS TEMP 78 TIMES 4 PLUS 1 TEMP 79 0
@@ -287,7 +289,7 @@ QS_Sort [ 2 ]
                 HLOAD TEMP 83 TEMP 80 0
             RETURN TEMP 83
             END
-            MOVE TEMP 84 PLUS TEMP 0 4
+            HLOAD TEMP 84 TEMP 0 4
             MOVE TEMP 85
             TEMP 53
             HSTORE PLUS TEMP 84 TIMES 4 PLUS 1 TEMP 85 0
@@ -303,7 +305,7 @@ QS_Sort [ 2 ]
                 HLOAD TEMP 89 TEMP 86 0
             RETURN TEMP 89
             END
-            MOVE TEMP 90 PLUS TEMP 0 4
+            HLOAD TEMP 90 TEMP 0 4
             MOVE TEMP 91
             TEMP 46
             HSTORE PLUS TEMP 90 TIMES 4 PLUS 1 TEMP 91 0
@@ -406,52 +408,52 @@ QS_Init [ 2 ]
             HSTORE TEMP 109 0 TEMP 108
             RETURN TEMP 109
         END
-        MOVE TEMP 110 PLUS TEMP 0 4
+        HLOAD TEMP 110 TEMP 0 4
         MOVE TEMP 111
         0
         HSTORE PLUS TEMP 110 TIMES 4 PLUS 1 TEMP 111 0
         20
-        MOVE TEMP 112 PLUS TEMP 0 4
+        HLOAD TEMP 112 TEMP 0 4
         MOVE TEMP 113
         1
         HSTORE PLUS TEMP 112 TIMES 4 PLUS 1 TEMP 113 0
         7
-        MOVE TEMP 114 PLUS TEMP 0 4
+        HLOAD TEMP 114 TEMP 0 4
         MOVE TEMP 115
         2
         HSTORE PLUS TEMP 114 TIMES 4 PLUS 1 TEMP 115 0
         12
-        MOVE TEMP 116 PLUS TEMP 0 4
+        HLOAD TEMP 116 TEMP 0 4
         MOVE TEMP 117
         3
         HSTORE PLUS TEMP 116 TIMES 4 PLUS 1 TEMP 117 0
         18
-        MOVE TEMP 118 PLUS TEMP 0 4
+        HLOAD TEMP 118 TEMP 0 4
         MOVE TEMP 119
         4
         HSTORE PLUS TEMP 118 TIMES 4 PLUS 1 TEMP 119 0
         2
-        MOVE TEMP 120 PLUS TEMP 0 4
+        HLOAD TEMP 120 TEMP 0 4
         MOVE TEMP 121
         5
         HSTORE PLUS TEMP 120 TIMES 4 PLUS 1 TEMP 121 0
         11
-        MOVE TEMP 122 PLUS TEMP 0 4
+        HLOAD TEMP 122 TEMP 0 4
         MOVE TEMP 123
         6
         HSTORE PLUS TEMP 122 TIMES 4 PLUS 1 TEMP 123 0
         6
-        MOVE TEMP 124 PLUS TEMP 0 4
+        HLOAD TEMP 124 TEMP 0 4
         MOVE TEMP 125
         7
         HSTORE PLUS TEMP 124 TIMES 4 PLUS 1 TEMP 125 0
         9
-        MOVE TEMP 126 PLUS TEMP 0 4
+        HLOAD TEMP 126 TEMP 0 4
         MOVE TEMP 127
         8
         HSTORE PLUS TEMP 126 TIMES 4 PLUS 1 TEMP 127 0
         19
-        MOVE TEMP 128 PLUS TEMP 0 4
+        HLOAD TEMP 128 TEMP 0 4
         MOVE TEMP 129
         9
         HSTORE PLUS TEMP 128 TIMES 4 PLUS 1 TEMP 129 0

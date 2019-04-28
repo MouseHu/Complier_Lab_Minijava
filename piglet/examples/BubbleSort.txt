@@ -179,7 +179,7 @@ BBS_Sort [ 2 ]
                         HLOAD TEMP 64 TEMP 61 0
                     RETURN TEMP 64
                     END
-                    MOVE TEMP 65 PLUS TEMP 0 4
+                    HLOAD TEMP 65 TEMP 0 4
                     MOVE TEMP 66
                     TEMP 59
                     HSTORE PLUS TEMP 65 TIMES 4 PLUS 1 TEMP 66 0
@@ -195,7 +195,7 @@ BBS_Sort [ 2 ]
                         HLOAD TEMP 70 TEMP 67 0
                     RETURN TEMP 70
                     END
-                    MOVE TEMP 71 PLUS TEMP 0 4
+                    HLOAD TEMP 71 TEMP 0 4
                     MOVE TEMP 72
                     TEMP 47
                     HSTORE PLUS TEMP 71 TIMES 4 PLUS 1 TEMP 72 0
@@ -268,52 +268,52 @@ BBS_Init [ 2 ]
             HSTORE TEMP 82 0 TEMP 81
             RETURN TEMP 82
         END
-        MOVE TEMP 83 PLUS TEMP 0 4
+        HLOAD TEMP 83 TEMP 0 4
         MOVE TEMP 84
         0
         HSTORE PLUS TEMP 83 TIMES 4 PLUS 1 TEMP 84 0
         20
-        MOVE TEMP 85 PLUS TEMP 0 4
+        HLOAD TEMP 85 TEMP 0 4
         MOVE TEMP 86
         1
         HSTORE PLUS TEMP 85 TIMES 4 PLUS 1 TEMP 86 0
         7
-        MOVE TEMP 87 PLUS TEMP 0 4
+        HLOAD TEMP 87 TEMP 0 4
         MOVE TEMP 88
         2
         HSTORE PLUS TEMP 87 TIMES 4 PLUS 1 TEMP 88 0
         12
-        MOVE TEMP 89 PLUS TEMP 0 4
+        HLOAD TEMP 89 TEMP 0 4
         MOVE TEMP 90
         3
         HSTORE PLUS TEMP 89 TIMES 4 PLUS 1 TEMP 90 0
         18
-        MOVE TEMP 91 PLUS TEMP 0 4
+        HLOAD TEMP 91 TEMP 0 4
         MOVE TEMP 92
         4
         HSTORE PLUS TEMP 91 TIMES 4 PLUS 1 TEMP 92 0
         2
-        MOVE TEMP 93 PLUS TEMP 0 4
+        HLOAD TEMP 93 TEMP 0 4
         MOVE TEMP 94
         5
         HSTORE PLUS TEMP 93 TIMES 4 PLUS 1 TEMP 94 0
         11
-        MOVE TEMP 95 PLUS TEMP 0 4
+        HLOAD TEMP 95 TEMP 0 4
         MOVE TEMP 96
         6
         HSTORE PLUS TEMP 95 TIMES 4 PLUS 1 TEMP 96 0
         6
-        MOVE TEMP 97 PLUS TEMP 0 4
+        HLOAD TEMP 97 TEMP 0 4
         MOVE TEMP 98
         7
         HSTORE PLUS TEMP 97 TIMES 4 PLUS 1 TEMP 98 0
         9
-        MOVE TEMP 99 PLUS TEMP 0 4
+        HLOAD TEMP 99 TEMP 0 4
         MOVE TEMP 100
         8
         HSTORE PLUS TEMP 99 TIMES 4 PLUS 1 TEMP 100 0
         19
-        MOVE TEMP 101 PLUS TEMP 0 4
+        HLOAD TEMP 101 TEMP 0 4
         MOVE TEMP 102
         9
         HSTORE PLUS TEMP 101 TIMES 4 PLUS 1 TEMP 102 0

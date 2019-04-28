@@ -296,6 +296,7 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 			String vTable = "TEMP 0";
 			
 			//System.out.println("vTableaddr:"+vTable);
+			//MClass mclass= (MClass) symbolTable.get(MType.Key((mvariable).getRunningType(),globalScope));
 			reg = getTemp();
 			piglet_print("BEGIN\n",indent++);
 			piglet_print("HLOAD "+reg+" "+vTable+" "+(((MClass)scope).variableNumber(varName)*4+4)+"\n",indent);
@@ -347,12 +348,10 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 		if(mclass.parent!=null){
 			//System.out.print("find parent!");
 			allocateDTable(mclass.parent,dTableAddr);
-			pos+=mclass.parent.methodSize();
 		}
 		for (Entry<String, Pair<MMethod, Integer>> entry : mclass.methods.entrySet()) {
 			MMethod method =entry.getValue().getKey();
-			int ind = entry.getValue().getValue();
-			piglet_print("HSTORE "+dTableAddr+" "+4*(ind+pos)+" "+mclass.id+"_"+method.id+"\n",indent);
+			piglet_print("HSTORE "+dTableAddr+" "+4*mclass.methodNumber(method.id)+" "+mclass.id+"_"+method.id+"\n",indent);
 		}
 	}
 	public void allocateVTable(MClass mclass,String vTableAddr){
@@ -500,10 +499,10 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 		String funcaddr = getTemp();
 		MType pe = n.f0.accept(typecheck, argu);
 		MClass mclass = null;
-		if(pe instanceof MVariable){
-			mclass= (MClass) symbolTable.get(MType.Key(((MVariable)pe).getRunningType(),globalScope));
-			
-		}
+		if(pe instanceof MVariable)
+			mclass= (MClass) symbolTable.get(MType.Key(((MVariable)pe).getType(),globalScope));
+		//mclass= (MClass) symbolTable.get(MType.Key(((MVariable)pe).getRunnningType(),globalScope));
+
 		else if(pe instanceof MClass)
 			mclass = (MClass)pe;
 		else if(pe instanceof MMethod)
@@ -605,6 +604,7 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 		String var_addr;
 		if(variable==null){
 			MType varScope=((MMethod)scope).scope;
+			variable = symbolTable.get(MType.Key(varName,varScope));
 			while(variable==null){
 				varScope=((MClass)varScope).parent;
 				variable = symbolTable.get(MType.Key(varName,varScope));
@@ -612,7 +612,7 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 			var_addr = getTemp();
 			variable = symbolTable.get(MType.Key(varName,varScope));
 			varTemp ="TEMP 0 ";
-			piglet_print("MOVE "+ var_addr +" PLUS " +varTemp +(((MClass)varScope).variableNumber(varName)*4+4)+"\n",indent);
+			piglet_print("HLOAD "+ var_addr +" "+varTemp +(((MClass)varScope).variableNumber(varName)*4+4)+"\n",indent);//from move
 		}
 		else {
 			

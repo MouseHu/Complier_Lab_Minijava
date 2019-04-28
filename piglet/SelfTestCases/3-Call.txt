@@ -1,0 +1,30 @@
+MAIN
+    PRINT
+        CALL
+        BEGIN
+            MOVE TEMP 20
+            BEGIN
+                MOVE TEMP 21 HALLOCATE 4
+                HSTORE TEMP 21 0 A_run
+                MOVE TEMP 22 HALLOCATE 4
+                HSTORE TEMP 22 0 TEMP 21
+                RETURN TEMP 22
+            END
+            HLOAD TEMP 23 TEMP 20 0
+            HLOAD TEMP 24 TEMP 23 0
+        RETURN TEMP 24
+        END
+        (TEMP 20
+        BEGIN
+            MOVE TEMP 25 HALLOCATE TIMES 4 0
+            RETURN TEMP 25
+        END
+        )
+END
+A_run [ 2 ]
+    BEGIN
+        PRINT
+            42
+        RETURN
+            99
+    END

@@ -1,0 +1,6 @@
+MAIN
+    PRINT
+        PLUS
+        12
+        21
+END
