@@ -164,8 +164,9 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 	   * f1 -> Expression()
 	   */
 	public String visit(NotExpression n, MType argu) {
-		String s = n.f1.accept(this,argu);
-		piglet_print("LT "+s+" 1\n",indent);
+		piglet_print("LT\n",indent);
+		n.f1.accept(this,argu);
+		piglet_print("1\n",indent);
 		return null;
 	}
 	   /**
@@ -275,14 +276,15 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 	}
 	
 	public String visit(Identifier n,MType scope){
-		System.out.println("Iden:"+n.f0.tokenImage);
+		//System.out.println("Iden:"+n.f0.tokenImage);
 		String varName = n.f0.tokenImage;
 		MVariable mvariable= (MVariable) symbolTable.get(MType.Key(varName,scope));
 		String reg;
 		if(mvariable==null){
-			System.out.println(n.f0.tokenImage+"null!");
+			//System.out.println(n.f0.tokenImage+"null!");
+			//System.out.println("scope:"+scope.getType()+varName);
 			scope = ((MMethod)scope).scope;
-			System.out.println("scope:"+scope.getClass());
+
 			assert(scope instanceof MClass);
 			while(mvariable==null){
 				assert(scope != null);
@@ -446,6 +448,7 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 	    */
 
 	public String visit(ArrayLookup n, MType argu) {
+		//System.out.println("lookup:"+argu.getType());
 		piglet_print("BEGIN\n",indent++);
 	    String arr_addr = getTemp();
 	    piglet_print("MOVE "+arr_addr+"\n",indent);
@@ -558,6 +561,10 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 		if(variable==null){
 			MType varScope = ((MMethod)scope).scope;
 			variable = symbolTable.get(MType.Key(varName,varScope));
+			while(variable==null){
+				varScope=((MClass)varScope).parent;
+				variable = symbolTable.get(MType.Key(varName,varScope));
+			}
 			System.out.println(variable);
 			varTemp ="TEMP 0 ";
 			piglet_print("HSTORE "+ varTemp +(((MClass)varScope).variableNumber(varName)*4+4)+"\n",indent);
@@ -573,6 +580,10 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 			}
 			piglet_print("MOVE "+varTemp+"\n",indent);
 		}
+		
+		//System.out.println(scope.getType());
+		//System.out.println(n.f2.accept(typecheck,scope));
+		//System.out.println(variable);
 		((MVariable)variable).setRunningType(n.f2.accept(typecheck,scope).getType());
 		n.f2.accept(this,scope);
 		return null;
@@ -593,11 +604,15 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 		String varTemp;
 		String var_addr;
 		if(variable==null){
+			MType varScope=((MMethod)scope).scope;
+			while(variable==null){
+				varScope=((MClass)varScope).parent;
+				variable = symbolTable.get(MType.Key(varName,varScope));
+			}
 			var_addr = getTemp();
-			scope = ((MMethod)scope).scope;
-			variable = symbolTable.get(MType.Key(varName,scope));
+			variable = symbolTable.get(MType.Key(varName,varScope));
 			varTemp ="TEMP 0 ";
-			piglet_print("MOVE "+ var_addr +" PLUS " +varTemp +(((MClass)scope).variableNumber(varName)*4+4)+"\n",indent);
+			piglet_print("MOVE "+ var_addr +" PLUS " +varTemp +(((MClass)varScope).variableNumber(varName)*4+4)+"\n",indent);
 		}
 		else {
 			
@@ -626,6 +641,7 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 	 * f6 -> Statement()
 	 */
 	public String visit(IfStatement n, MType argu) {
+		//System.out.println("if:"+argu.getType());
 		piglet_print("CJUMP\n",indent++);
 		n.f2.accept(this,argu);
 		String lab1=getLabel();
@@ -648,6 +664,7 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 	 * f4 -> Statement()
 	 */
 	public String visit(WhileStatement n, MType argu) {
+		//System.out.println("while:"+argu.getType());
 		String lab1=getLabel();
 		piglet_print("JUMP "+lab1+"\n",indent++);
 		piglet_print(lab1+" CJUMP\n",indent);

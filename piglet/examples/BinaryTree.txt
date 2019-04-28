@@ -489,9 +489,10 @@ Tree_Compare [ 2 ]
             L0
                 CJUMP
                     LT
+                    LT
                     TEMP 117
                     TEMP 120
-                    LT null 1
+                    1
                     L2
                     MOVE TEMP 119
                     0
@@ -861,6 +862,7 @@ Tree_Delete [ 2 ]
                                 CJUMP
                                     BEGIN
                                         CJUMP LT 0
+                                        LT
                                         CALL
                                         BEGIN
                                             MOVE TEMP 196
@@ -875,8 +877,9 @@ Tree_Delete [ 2 ]
                                             RETURN TEMP 199
                                         END
                                         )
-                                        LT null 1
+                                        1
                                         L23                                        CJUMP LT 0
+                                        LT
                                         CALL
                                         BEGIN
                                             MOVE TEMP 200
@@ -891,7 +894,7 @@ Tree_Delete [ 2 ]
                                             RETURN TEMP 203
                                         END
                                         )
-                                        LT null 1
+                                        1
                                         L23                                        MOVE TEMP 204 1
                                         JUMP L24
                                         L23 MOVE TEMP 204 0
