@@ -27,7 +27,7 @@ public class Main {
 			
 			HashMap<Pair<String,MType>,MType> symbolTable = symbolTableVisitor.getTable();
 			root.accept(new TypeCheckVisitor(symbolTable),symbolTableVisitor.getGlobalScope());
-			System.out.println(symbolTable);
+			//System.out.println(symbolTable);
 			System.out.println("Type Check Finished. No Error Found.");
 			root.accept(new TranslateVisitor(symbolTable,outfile),symbolTableVisitor.getGlobalScope());
 

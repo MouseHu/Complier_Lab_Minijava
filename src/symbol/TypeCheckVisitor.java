@@ -71,7 +71,6 @@ public class TypeCheckVisitor extends GJDepthFirst<MType,MType>{
 	
 	public boolean typeCheckUpcasting(MType objType,MType valType){
 		String objTypeName = objType.getType();
-		System.out.println(objTypeName);
 		String valTypeName = valType.getType();
 		boolean flag = (objTypeName==valTypeName);
 		while((extends_relation.get(valTypeName)!=null) && (flag ==false)) {

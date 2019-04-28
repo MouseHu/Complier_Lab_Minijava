@@ -220,7 +220,6 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 	    * f17 -> "}"
 	    */
 	public String visit(MainClass n, MType scope){
-		System.out.println("hhh");
 		piglet_print("MAIN\n",indent++);
 		String className = n.f1.f0.tokenImage;
 		MType mclass = symbolTable.get(MType.Key(className,scope));
@@ -381,7 +380,6 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 		
 		//Allocate Dtable
 		String dTableAddr = getTemp();
-		System.out.println("Allocate "+n.f1.f0.tokenImage+":size "+4*mclass.methodSize());
 		piglet_print("MOVE "+dTableAddr+" HALLOCATE "+4*mclass.methodSize()+"\n",indent);
 		allocateDTable(mclass,dTableAddr);
 		
@@ -564,7 +562,6 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 				varScope=((MClass)varScope).parent;
 				variable = symbolTable.get(MType.Key(varName,varScope));
 			}
-			System.out.println(variable);
 			varTemp ="TEMP 0 ";
 			piglet_print("HSTORE "+ varTemp +(((MClass)varScope).variableNumber(varName)*4+4)+"\n",indent);
 		}

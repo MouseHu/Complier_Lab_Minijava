@@ -35,11 +35,11 @@ public class MClass extends MIdentifier implements VarContainer{
 	public MMethod getMethod(String id){
 		
 		if(methods.get(id) != null) {
-			System.out.print("found "+id+" in "+this.id);
+			//System.out.print("found "+id+" in "+this.id);
 			return methods.get(id).getKey();
 		}
 		else {
-			System.out.print("failed to found "+id+" in "+this.id);
+			//System.out.print("failed to found "+id+" in "+this.id);
 			return parent.getMethod(id);
 		}
 	}
