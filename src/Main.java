@@ -17,7 +17,7 @@ public class Main {
 			//InputStream in = new FileInputStream("./examples/TreeVisitor-Error.java");
 			String parse_file = "AnimalAndDog";
 			InputStream in = new FileInputStream("./"+parse_file+".java");
-			String outfile = "./piglet/"+parse_file+".pg";
+			String outfile = "./piglet/"+parse_file+".txt";
 			new MiniJavaParser(in);
 			Node root = MiniJavaParser.Goal();
 			

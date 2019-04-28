@@ -283,10 +283,17 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 			System.out.println(n.f0.tokenImage+"null!");
 			scope = ((MMethod)scope).scope;
 			System.out.println("scope:"+scope.getClass());
-			mvariable= (MVariable)(symbolTable.get(new Pair<String,MType>(varName,scope)));
-			//String vTable = scope.getRegister();
+			assert(scope instanceof MClass);
+			while(mvariable==null){
+				assert(scope != null);
+				mvariable= (MVariable)(symbolTable.get(new Pair<String,MType>(varName,scope)));
+				if(mvariable==null)
+					scope = ((MClass)scope).parent;
+			}
+			//String vTable = mvariable.getRegister();
 			String vTable = "TEMP 0";
-			System.out.println("vTableaddr:"+vTable);
+			
+			//System.out.println("vTableaddr:"+vTable);
 			reg = getTemp();
 			piglet_print("BEGIN\n",indent++);
 			piglet_print("HLOAD "+reg+" "+vTable+" "+(((MClass)scope).variableNumber(varName)*4+4)+"\n",indent);
@@ -493,10 +500,8 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 		String func_name = n.f2.f0.tokenImage;
 		//System.out.println("func_name:"+func_name);
 		int fun_num = mclass.methodNumber(func_name);
-		//System.out.println(fun_num);
+		System.out.println("fun_num"+fun_num);
 		MMethod method = mclass.getMethod(func_name);
-		//if(method==null) System.out.println("null error!");
-		//else System.out.println("no error!");
 		piglet_print("HLOAD "+vtableaddr+" "+objaddr+" 0\n",indent);
 		piglet_print("HLOAD "+funcaddr+" "+vtableaddr+" "+(fun_num*4)+"\n",indent);
 		piglet_print("RETURN "+funcaddr+"\n",--indent);

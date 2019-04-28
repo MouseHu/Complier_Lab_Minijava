@@ -1,113 +1,48 @@
 MAIN
     MOVE TEMP 20
-    BEGIN
-        MOVE TEMP 21 HALLOCATE 16
-        HSTORE TEMP 21 0 Animal_change_id
-        HSTORE TEMP 21 4 Animal_get_id
-        HSTORE TEMP 21 8 Dog_change_id
-        HSTORE TEMP 21 12 Dog_paramcheck
-        MOVE TEMP 22 HALLOCATE 12
-        HSTORE TEMP 22 4 0
-        HSTORE TEMP 22 8 0
-        HSTORE TEMP 22 0 TEMP 21
-        RETURN TEMP 22
-    END
+    5
+    PRINT
+        TEMP 20
     PRINT
         CALL
         BEGIN
-            MOVE TEMP 23
-            TEMP 20
-            HLOAD TEMP 24 TEMP 23 0
-            HLOAD TEMP 25 TEMP 24 0
-        RETURN TEMP 25
+            MOVE TEMP 22
+            BEGIN
+                MOVE TEMP 23 HALLOCATE 8
+                HSTORE TEMP 23 0 A_ma
+                HSTORE TEMP 23 4 B_getb
+                MOVE TEMP 24 HALLOCATE 12
+                HSTORE TEMP 24 4 0
+                HSTORE TEMP 24 8 0
+                HSTORE TEMP 24 0 TEMP 23
+                RETURN TEMP 24
+            END
+            HLOAD TEMP 25 TEMP 22 0
+            HLOAD TEMP 26 TEMP 25 0
+        RETURN TEMP 26
         END
-        (TEMP 23
+        (TEMP 22
         BEGIN
-            MOVE TEMP 26 HALLOCATE TIMES 4 0
-            RETURN TEMP 26
-        END
-        )
-    PRINT
-        CALL
-        BEGIN
-            MOVE TEMP 27
-            TEMP 20
-            HLOAD TEMP 28 TEMP 27 0
-            HLOAD TEMP 29 TEMP 28 12
-        RETURN TEMP 29
-        END
-        (TEMP 27
-        BEGIN
-            MOVE TEMP 30 HALLOCATE TIMES 4 0
-            RETURN TEMP 30
-        END
-        )
-    PRINT
-        CALL
-        BEGIN
-            MOVE TEMP 31
-            TEMP 20
-            HLOAD TEMP 32 TEMP 31 0
-            HLOAD TEMP 33 TEMP 32 4
-        RETURN TEMP 33
-        END
-        (TEMP 31
-        BEGIN
-            MOVE TEMP 34 HALLOCATE TIMES 4 4
-            HSTORE TEMP 34 0
-                5
-            HSTORE TEMP 34 4
-                10
-            HSTORE TEMP 34 8
-                15
-            HSTORE TEMP 34 12
-                20
-            RETURN TEMP 34
+            MOVE TEMP 27 HALLOCATE TIMES 4 0
+            RETURN TEMP 27
         END
         )
 END
-Animal_change_id [ 2 ]
+B_getb [ 2 ]
     BEGIN
-        HSTORE TEMP 0 4
+        RETURN
+            BEGIN
+                HLOAD TEMP 28 TEMP 0 8
+                RETURN TEMP 28 
+            END
+    END
+A_ma [ 2 ]
+    BEGIN
+        HLOAD TEMP 29 TEMP 1 0
+        MOVE TEMP 30
         1
-        RETURN
-            BEGIN
-                HLOAD TEMP 35 TEMP 0 4
-                RETURN TEMP 35 
-            END
-    END
-Animal_get_id [ 2 ]
-    BEGIN
-        RETURN
-            BEGIN
-                HLOAD TEMP 36 TEMP 0 4
-                RETURN TEMP 36 
-            END
-    END
-Dog_change_id [ 2 ]
-    BEGIN
-        HSTORE TEMP 0 8
-        2
-        RETURN
-            BEGIN
-                HLOAD TEMP 37 TEMP 0 8
-                RETURN TEMP 37 
-            END
-    END
-HLOAD TEMP 38 TEMP 1 0
-HLOAD TEMP 39 TEMP 1 4
-HLOAD TEMP 40 TEMP 1 8
-HLOAD TEMP 41 TEMP 1 12
-Dog_paramcheck [ 2 ]
-    BEGIN
         PRINT
-            TEMP 38
-        PRINT
-            TEMP 39
-        PRINT
-            TEMP 40
-        PRINT
-            TEMP 41
+            TEMP 30
         RETURN
-            0
+            TEMP 29
     END

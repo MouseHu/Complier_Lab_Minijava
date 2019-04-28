@@ -88,7 +88,7 @@ Animal_change_id [ 2 ]
         1
         RETURN
             BEGIN
-                HLOAD TEMP 41  4
+                HLOAD TEMP 41 TEMP 0 4
                 RETURN TEMP 41 
             END
     END
@@ -96,7 +96,7 @@ Animal_get_id [ 2 ]
     BEGIN
         RETURN
             BEGIN
-                HLOAD TEMP 42  4
+                HLOAD TEMP 42 TEMP 0 4
                 RETURN TEMP 42 
             END
     END
@@ -106,7 +106,7 @@ Dog_change_id [ 2 ]
         2
         RETURN
             BEGIN
-                HLOAD TEMP 43  8
+                HLOAD TEMP 43 TEMP 0 8
                 RETURN TEMP 43 
             END
     END

@@ -1,67 +1,78 @@
 MAIN
+    MOVE TEMP 20
+    5
+    PRINT
+        TEMP 20
     PRINT
         CALL
         BEGIN
-            MOVE TEMP 21
+            MOVE TEMP 22
             BEGIN
-                MOVE TEMP 22 HALLOCATE 8
-                HSTORE TEMP 22 0 A_getb
-                HSTORE TEMP 22 4 B_getb
-                MOVE TEMP 23 HALLOCATE 20
-                HSTORE TEMP 23 4 0
-                HSTORE TEMP 23 8 0
-                HSTORE TEMP 23 12 0
-                HSTORE TEMP 23 16 0
-                HSTORE TEMP 23 0 TEMP 22
-                RETURN TEMP 23
+                MOVE TEMP 23 HALLOCATE 8
+                HSTORE TEMP 23 0 A_ma
+                HSTORE TEMP 23 4 B_getb
+                MOVE TEMP 24 HALLOCATE 12
+                HSTORE TEMP 24 4 0
+                HSTORE TEMP 24 8 0
+                HSTORE TEMP 24 0 TEMP 23
+                RETURN TEMP 24
             END
-            HLOAD TEMP 24 TEMP 21 0
-            HLOAD TEMP 25 TEMP 24 4
-        RETURN TEMP 25
+            HLOAD TEMP 25 TEMP 22 0
+            HLOAD TEMP 26 TEMP 25 4
+        RETURN TEMP 26
         END
-        (TEMP 21
+        (TEMP 22
         BEGIN
-            MOVE TEMP 26 HALLOCATE TIMES 4 0
-            RETURN TEMP 26
+            MOVE TEMP 27 HALLOCATE TIMES 4 6
+            HSTORE TEMP 27 0
+                1
+            HSTORE TEMP 27 4
+                2
+            HSTORE TEMP 27 8
+                3
+            HSTORE TEMP 27 12
+                4
+            HSTORE TEMP 27 16
+                5
+            HSTORE TEMP 27 20
+                6
+            RETURN TEMP 27
         END
         )
 END
 B_getb [ 2 ]
     BEGIN
-        HSTORE TEMP 0 8
-        BEGIN
-            MOVE TEMP 27
-            10
-            MOVE TEMP 28 HALLOCATE TIMES 4 PLUS 1 TEMP 27
-            HSTORE TEMP 28 0 TEMP 27
-            RETURN TEMP 28
-        END
-        MOVE TEMP 29 PLUS TEMP 0 8
-        MOVE TEMP 30
-        2
-        HSTORE PLUS TEMP 29 TIMES 4 PLUS 1 TEMP 30 0
+        HLOAD TEMP 28 TEMP 1 0
+        HLOAD TEMP 29 TEMP 1 4
+        HLOAD TEMP 30 TEMP 1 8
+        HLOAD TEMP 31 TEMP 1 12
+        HLOAD TEMP 32 TEMP 1 16
+        HLOAD TEMP 33 TEMP 1 20
+        PRINT
+            TEMP 28
+        PRINT
+            TEMP 29
+        PRINT
+            TEMP 30
+        PRINT
+            TEMP 31
+        PRINT
+            TEMP 32
+        PRINT
+            TEMP 33
+        RETURN
+            BEGIN
+                HLOAD TEMP 34 TEMP 0 8
+                RETURN TEMP 34 
+            END
+    END
+A_ma [ 2 ]
+    BEGIN
+        HLOAD TEMP 35 TEMP 1 0
+        MOVE TEMP 36
         1
         PRINT
-            BEGIN
-                MOVE TEMP 31
-                BEGIN
-                    HLOAD TEMP 32  8
-                    RETURN TEMP 32 
-                END
-                MOVE TEMP 33
-                2
-                MOVE TEMP 31 PLUS TEMP 31 TIMES 4 PLUS 1 TEMP 33
-                HLOAD TEMP 34 TEMP 31 0
-            RETURN TEMP 34
-            END
+            TEMP 36
         RETURN
-            0
-    END
-A_getb [ 2 ]
-    BEGIN
-        RETURN
-            BEGIN
-                HLOAD TEMP 35  4
-                RETURN TEMP 35 
-            END
+            TEMP 36
     END
