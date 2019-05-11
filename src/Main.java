@@ -5,33 +5,39 @@ import java.util.Map.Entry;
 
 import javafx.util.Pair;
 import visitor.*;
+//import visitor_piglet;
+//import syntaxtree_piglet.*;
 import syntaxtree.*;
 import symbol.*;
 import piglet.*;
-
+import spiglet.*;
 public class Main {
 	public static void main(String args[]){
 		try{
 			//InputStream in = new FileInputStream(args[0]);
 			//InputStream in = new FileInputStream("./examples/TreeVisitor.java");// BinaryTree BubbleSort Factorial LinearSearch MoreThan4 LinkedList QuickSort TreeVisitor
 			//InputStream in = new FileInputStream("./examples/TreeVisitor-Error.java");
-			String parse_file = "SelfTestCases/5-OutOfBounds";
+			
+			
+			String parse_file = "SelfTestCases/5-OutOfBounds";//input file path 
 			InputStream in = new FileInputStream("./"+parse_file+".java");
-			String outfile = "./piglet/"+parse_file+".txt";
+			String outfile = "./piglet/"+parse_file+".txt";//output file path
 			new MiniJavaParser(in);
 			Node root = MiniJavaParser.Goal();
-			
-			BuildSymbolTableVisitor symbolTableVisitor= new BuildSymbolTableVisitor();
-			root.accept(symbolTableVisitor,(MType)null);
-			symbolTableVisitor.InheritCheck();
-			
-			HashMap<Pair<String,MType>,MType> symbolTable = symbolTableVisitor.getTable();
-			root.accept(new TypeCheckVisitor(symbolTable),symbolTableVisitor.getGlobalScope());
-			//System.out.println(symbolTable);
-			System.out.println("Type Check Finished. No Error Found.");
-			root.accept(new TranslateVisitor(symbolTable,outfile),symbolTableVisitor.getGlobalScope());
+			syntaxtree_piglet.Node root2 = syntaxtree_piglet.PigletParser.Goal();
+			SpigletVisitor spigletvisitor = new SpigletVisitor();
+			root2.accept(spigletvisitor,(MType)null);
+//			BuildSymbolTableVisitor symbolTableVisitor= new BuildSymbolTableVisitor();
+//			root.accept(symbolTableVisitor,(MType)null);
+//			symbolTableVisitor.InheritCheck();
+//			
+//			HashMap<Pair<String,MType>,MType> symbolTable = symbolTableVisitor.getTable();
+//			root.accept(new TypeCheckVisitor(symbolTable),symbolTableVisitor.getGlobalScope());
+//			//System.out.println(symbolTable);
+//			System.out.println("Type Check Finished. No Error Found.");
+//			root.accept(new TranslateVisitor(symbolTable,outfile),symbolTableVisitor.getGlobalScope());
 
-
+			
 			
 		} catch (ParseException e) {
 			e.printStackTrace();
