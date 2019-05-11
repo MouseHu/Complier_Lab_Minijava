@@ -18,25 +18,8 @@ public class SpigletVisitor extends GJDepthFirst<AbstractSPigletResult, Abstract
 	public static OutputStreamWriter writer;
 	String outfile;
 	
-	public AbstractSPigletResult visit(HStoreStmt n, AbstractSPigletResult argu) {
-		AbstractSPigletResult ret=null;
-		n.f0.accept(this,argu);
-		SPigletResult exp1=(SPigletResult)n.f1.accept(this,argu);
-		if(!exp1.isTemp()) {
-			String newTemp=getTemp();
-			spiglet_print("MOVE "+newTemp+" "+exp1,indent);
-			exp1=new SPigletResult("TEMP "+newTemp,true);
-		}
-		n.f2.accept(this,argu);
-		SPigletResult exp2=(SPigletResult)n.f3.accept(this,argu);
-		if(!exp2.isTemp()) {
-			String newTemp=getTemp();
-			spiglet_print("MOVE "+newTemp+" "+exp1,indent);
-			exp2=new SPigletResult("TEMP "+newTemp,true);
-		}
-		spiglet_print("HSTORE "+exp1+" "+n.f2.f0.tokenImage+" "+exp2,indent);
-		return ret;
-	}
+	//map to store previous temp
+	HashMap<String, String> tempmap=new HashMap<>();
 	
 	String getTemp() {
 		String s = "TEMP "+temp_num;
@@ -65,6 +48,264 @@ public class SpigletVisitor extends GJDepthFirst<AbstractSPigletResult, Abstract
 			e.printStackTrace();
 		}
 		return;
+	}
+	
+	/**
+	 * Grammar production:
+	 * f0 -> "MAIN"
+	 * f1 -> StmtList()
+	 * f2 -> "END"
+	 * f3 -> ( Procedure() )*
+	 * f4 -> <EOF>
+	 */
+	public AbstractSPigletResult visit(Goal n, AbstractSPigletResult argu) {
+		spiglet_print("MAIN",indent++);
+		n.f1.accept(this,argu);
+		spiglet_print("END", --indent);
+		n.f3.accept(this,argu);
+		return null;
+	}
+	
+	/**
+	 * Grammar production:
+	 * f0 -> ( ( Label() )? Stmt() )*
+	 */
+	public AbstractSPigletResult visit(StmtList n, AbstractSPigletResult argu) {
+		n.f0.accept(this,argu);
+		return null;
+	}
+	
+	/**
+	 * Grammar production:
+	 * f0 -> Label()
+	 * f1 -> "["
+	 * f2 -> IntegerLiteral()
+	 * f3 -> "]"
+	 * f4 -> StmtExp()
+	 */
+	public AbstractSPigletResult visit(Procedure n, AbstractSPigletResult argu) {
+		n.f0.accept(this,argu);
+		spiglet_print("["+n.f2.f0.toString()+"]",indent++);
+		n.f4.accept(this,argu);
+		indent--;
+		return null;
+	}
+	/**
+	 * Grammar production:
+	 * f0 -> NoOpStmt()
+	 *       | ErrorStmt()
+	 *       | CJumpStmt()
+	 *       | JumpStmt()
+	 *       | HStoreStmt()
+	 *       | HLoadStmt()
+	 *       | MoveStmt()
+	 *       | PrintStmt()
+	 */
+	public AbstractSPigletResult visit(Stmt n, AbstractSPigletResult argu) {
+		n.f0.accept(this,argu);
+		return null;
+	}
+	/**
+	 * Grammar production:
+	 * f0 -> "NOOP"
+	 */
+	public AbstractSPigletResult visit(NoOpStmt n, AbstractSPigletResult argu) {
+		spiglet_print(n.f0.toString(),indent);
+		return null;
+	}
+	/**
+	 * Grammar production:
+	 * f0 -> "ERROR"
+	 */
+	public AbstractSPigletResult visit(ErrorStmt n, AbstractSPigletResult argu) {
+		spiglet_print(n.f0.toString(),indent);
+		return null;
+	}
+	
+	/**
+	 * Grammar production:
+	 * f0 -> "CJUMP"
+	 * f1 -> Exp()
+	 * f2 -> Label()
+	 */
+	public AbstractSPigletResult visit(CJumpStmt n, AbstractSPigletResult argu) {
+		String exp = ((SPigletResult)n.f1.accept(this,argu)).toString();
+		
+		String temp = getTemp();
+		spiglet_print("MOVE "+temp+" "+exp,indent);
+		spiglet_print("CJUMP "+temp,indent);
+		n.f2.accept(this,argu);
+		return null;
+		
+	}
+	/**
+	 * Grammar production:
+	 * f0 -> "JUMP"
+	 * f1 -> Label()
+	 */
+	public AbstractSPigletResult visit(JumpStmt n, AbstractSPigletResult argu) {
+		spiglet_print("JUMP ",indent);
+		n.f1.accept(this,argu);
+		return null;
+	}
+	/**
+	 * Grammar production:
+	 * f0 -> "HLOAD"
+	 * f1 -> Temp()
+	 * f2 -> Exp()
+	 * f3 -> IntegerLiteral()
+	 */
+	//temp should NOT print
+	public AbstractSPigletResult visit(HLoadStmt n, AbstractSPigletResult argu) {
+		SPigletResult temp = (SPigletResult)n.f1.accept(this,argu);
+		SPigletResult exp = (SPigletResult)n.f2.accept(this,argu);
+		if(!exp.isTemp()) {
+			String t = getTemp();
+			spiglet_print("MOVE "+t+" "+exp.toString(),indent);
+			exp = new SPigletResult(t,true);
+		}
+		spiglet_print("HLOAD "+temp+" "+exp.toString()+" "+n.f3.f0.toString(),indent);
+		return temp;
+	}
+	/**
+	 * Grammar production:
+	 * f0 -> "MOVE"
+	 * f1 -> Temp()
+	 * f2 -> Exp()
+	 */
+	
+	public AbstractSPigletResult visit(MoveStmt n, AbstractSPigletResult argu) {
+		SPigletResult temp = (SPigletResult)n.f1.accept(this,argu);
+		SPigletResult exp = (SPigletResult)n.f2.accept(this,argu);
+		spiglet_print("MOVE "+temp+" "+exp,indent);
+		return null;
+	}
+	/**
+	 * Grammar production:
+	 * f0 -> "PRINT"
+	 * f1 -> Exp()
+	 */
+	public AbstractSPigletResult visit(PrintStmt n, AbstractSPigletResult argu) {
+		SPigletResult exp = (SPigletResult)n.f1.accept(this,argu);
+		if(!exp.isSimple()) {
+			String t = getTemp();
+			spiglet_print("MOVE "+t+" "+exp,indent);
+			exp = new SPigletResult(t,true);
+		}
+		spiglet_print("PRINT "+exp,indent);
+		return null;
+	}
+	/**
+	 * Grammar production:
+	 * f0 -> "HSTORE"
+	 * f1 -> Exp()
+	 * f2 -> IntegerLiteral()
+	 * f3 -> Exp()
+	 */
+	//ALWAYS returns null
+	public AbstractSPigletResult visit(HStoreStmt n, AbstractSPigletResult argu) {
+		AbstractSPigletResult ret=null;
+		SPigletResult exp1=(SPigletResult)n.f1.accept(this,argu);
+		if(!exp1.isTemp()) {
+			String newTemp=getTemp();
+			spiglet_print("MOVE "+newTemp+" "+exp1,indent);
+			exp1=new SPigletResult(newTemp,true);
+		}
+		SPigletResult exp2=(SPigletResult)n.f3.accept(this,argu);
+		if(!exp2.isTemp()) {
+			String newTemp=getTemp();
+			spiglet_print("MOVE "+newTemp+" "+exp2,indent);
+			exp2=new SPigletResult(newTemp,true);
+		}
+		spiglet_print("HSTORE "+exp1+" "+n.f2.f0.tokenImage+" "+exp2,indent);
+		return ret;
+	}
+	/**
+	 * Grammar production:
+	 * f0 -> StmtExp()
+	 *       | Call()
+	 *       | HAllocate()
+	 *       | BinOp()
+	 *       | Temp()
+	 *       | IntegerLiteral()
+	 *       | Label()
+	 */
+	public AbstractSPigletResult visit(Exp n, AbstractSPigletResult argu) {
+		
+	}
+	/**
+	 * Grammar production:
+	 * f0 -> NoOpStmt()
+	 *       | ErrorStmt()
+	 *       | CJumpStmt()
+	 *       | JumpStmt()
+	 *       | HStoreStmt()
+	 *       | HLoadStmt()
+	 *       | MoveStmt()
+	 *       | PrintStmt()
+	 */
+	public AbstractSPigletResult visit(StmtExp n, AbstractSPigletResult argu) {
+		
+	}
+	/**
+	 * Grammar production:
+	 * f0 -> "CALL"
+	 * f1 -> Exp()
+	 * f2 -> "("
+	 * f3 -> ( Exp() )*
+	 * f4 -> ")"
+	 */
+	public AbstractSPigletResult visit(Call n, AbstractSPigletResult argu) {
+		
+	}
+	/**
+	 * Grammar production:
+	 * f0 -> "HALLOCATE"
+	 * f1 -> Exp()
+	 */
+	public AbstractSPigletResult visit(HAllocate n, AbstractSPigletResult argu) {
+		
+	}
+	/**
+	 * Grammar production:
+	 * f0 -> Operator()
+	 * f1 -> Exp()
+	 * f2 -> Exp()
+	 */
+	public AbstractSPigletResult visit(BinOp n, AbstractSPigletResult argu) {
+		
+	}
+	/**
+	 * Grammar production:
+	 * f0 -> "LT"
+	 *       | "PLUS"
+	 *       | "MINUS"
+	 *       | "TIMES"
+	 */
+	public AbstractSPigletResult visit(Operator n, AbstractSPigletResult argu) {
+		
+	}
+	/**
+	 * Grammar production:
+	 * f0 -> "TEMP"
+	 * f1 -> IntegerLiteral()
+	 */
+	public AbstractSPigletResult visit(Temp n, AbstractSPigletResult argu) {
+		
+	}
+	/**
+	 * Grammar production:
+	 * f0 -> <IDENTIFIER>
+	 */
+	public AbstractSPigletResult visit(Label n, AbstractSPigletResult argu) {
+		
+	}
+	/**
+	 * Grammar production:
+	 * f0 -> <INTEGER_LITERAL>
+	 */
+	public AbstractSPigletResult visit(IntegerLiteral n, AbstractSPigletResult argu) {
+		
 	}
 }
 
