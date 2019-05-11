@@ -8,6 +8,7 @@ import visitor.*;
 //import visitor_piglet;
 //import syntaxtree_piglet.*;
 import syntaxtree.*;
+import syntaxtree_piglet.PigletParser;
 import symbol.*;
 import piglet.*;
 import spiglet.*;
@@ -20,10 +21,11 @@ public class Main {
 			
 			
 			String parse_file = "SelfTestCases/5-OutOfBounds";//input file path 
-			InputStream in = new FileInputStream("./"+parse_file+".java");
+//			InputStream in = new FileInputStream("./"+parse_file+".java");
+			InputStream in = new FileInputStream("./piglet/"+parse_file+".txt");
 			String outfile = "./piglet/"+parse_file+".txt";//output file path
-			new MiniJavaParser(in);
-			Node root = MiniJavaParser.Goal();
+			new PigletParser(in);
+//			Node root = MiniJavaParser.Goal();
 			syntaxtree_piglet.Node root2 = syntaxtree_piglet.PigletParser.Goal();
 			SpigletVisitor spigletvisitor = new SpigletVisitor();
 			root2.accept(spigletvisitor,(MType)null);
@@ -39,7 +41,7 @@ public class Main {
 
 			
 			
-		} catch (ParseException e) {
+		} catch (syntaxtree_piglet.ParseException e) {
 			e.printStackTrace();
 		} catch (TokenMgrError e) {
 			e.printStackTrace();
