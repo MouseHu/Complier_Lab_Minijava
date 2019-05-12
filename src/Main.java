@@ -23,7 +23,7 @@ public class Main {
 			String parse_file = "examples/Factorial";//input file path 
 //			InputStream in = new FileInputStream("./"+parse_file+".java");
 			InputStream in = new FileInputStream("./piglet/"+parse_file+".txt");
-			String outfile = "./piglet/"+parse_file+".spg";//output file path
+			String outfile = "./piglet/"+parse_file+"_spg.txt";//output file path
 			new PigletParser(in);
 //			Node root = MiniJavaParser.Goal();
 			syntaxtree_piglet.Node root2 = syntaxtree_piglet.PigletParser.Goal();

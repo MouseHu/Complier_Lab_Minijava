@@ -90,8 +90,8 @@ public class SpigletVisitor extends GJDepthFirst<AbstractSPigletResult, Abstract
 	 * f4 -> StmtExp()
 	 */
 	public AbstractSPigletResult visit(Procedure n, AbstractSPigletResult argu) {
-		n.f0.accept(this,argu);
-		spiglet_print("["+n.f2.f0.toString()+"]",indent++);
+		SPigletResult r = (SPigletResult)n.f0.accept(this,argu);
+		spiglet_print(r+" ["+n.f2.f0.toString()+"]",indent++);
 		n.f4.accept(this,argu);
 		indent--;
 		return null;
@@ -366,7 +366,7 @@ public class SpigletVisitor extends GJDepthFirst<AbstractSPigletResult, Abstract
 			temp = getTemp();
 			tempMap.put(temp_piglet, temp);
 		}
-		spiglet_print(temp,indent);
+//		spiglet_print(temp,indent);
 		return new SPigletResult(temp,true);
 		
 	}
