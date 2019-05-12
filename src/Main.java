@@ -20,15 +20,15 @@ public class Main {
 			//InputStream in = new FileInputStream("./examples/TreeVisitor-Error.java");
 			
 			
-			String parse_file = "SelfTestCases/5-OutOfBounds";//input file path 
+			String parse_file = "examples/Factorial";//input file path 
 //			InputStream in = new FileInputStream("./"+parse_file+".java");
 			InputStream in = new FileInputStream("./piglet/"+parse_file+".txt");
-			String outfile = "./piglet/"+parse_file+".txt";//output file path
+			String outfile = "./piglet/"+parse_file+".spg";//output file path
 			new PigletParser(in);
 //			Node root = MiniJavaParser.Goal();
 			syntaxtree_piglet.Node root2 = syntaxtree_piglet.PigletParser.Goal();
-			SpigletVisitor spigletvisitor = new SpigletVisitor();
-			root2.accept(spigletvisitor,(MType)null);
+			SpigletVisitor spigletvisitor = new SpigletVisitor(outfile);
+			root2.accept(spigletvisitor,null);
 //			BuildSymbolTableVisitor symbolTableVisitor= new BuildSymbolTableVisitor();
 //			root.accept(symbolTableVisitor,(MType)null);
 //			symbolTableVisitor.InheritCheck();

@@ -20,7 +20,11 @@ public class SpigletVisitor extends GJDepthFirst<AbstractSPigletResult, Abstract
 	
 	//map to store previous temp
 	HashMap<String, String> tempMap=new HashMap<>();
-	HashMap<String, String> labelMap=new HashMap<>();
+//	HashMap<String, String> labelMap=new HashMap<>();
+	public SpigletVisitor(String out) throws FileNotFoundException{
+		outfile = out;
+		writer = new OutputStreamWriter(new FileOutputStream(outfile));
+	}
 	String getTemp() {
 		String s = "TEMP "+temp_num;
 		temp_num+=1;
@@ -39,7 +43,7 @@ public class SpigletVisitor extends GJDepthFirst<AbstractSPigletResult, Abstract
 			res+="    ";
 		}
 		res+=s;
-//		res+='\n';
+		res+='\n';
 		try {
 			writer.write(res);
 			writer.flush();
@@ -50,15 +54,7 @@ public class SpigletVisitor extends GJDepthFirst<AbstractSPigletResult, Abstract
 		return;
 	}
 	
-	public String spiglet_put(String s, int indent){
-		String res = "";
-		for(int i=0;i<indent;i++) {
-			res+="    ";
-		}
-		res+=s;
-		res+='\n';
-		return res;
-	}
+
 	
 	/**
 	 * Grammar production:
@@ -228,7 +224,7 @@ public class SpigletVisitor extends GJDepthFirst<AbstractSPigletResult, Abstract
 			exp2=new SPigletResult(newTemp,true);
 		}
 //		n.f0.accept(this,argu);//assume operator is printed in Operator...
-		spiglet_print(exp1+" "+n.f2.f0.tokenImage+" "+exp2,indent);
+		spiglet_print("HSTORE "+exp1+" "+n.f2.f0.tokenImage+" "+exp2,indent);
 		return ret;
 	}
 	/**
@@ -259,13 +255,19 @@ public class SpigletVisitor extends GJDepthFirst<AbstractSPigletResult, Abstract
 	 */
 	public AbstractSPigletResult visit(StmtExp n, AbstractSPigletResult argu) {
 		String ret = "";
-		ret+=spiglet_put("BEGIN",indent);
-		ret+=n.f1.accept(this,argu).toString();
-		ret+=spiglet_put("RETURN",indent);
-		AbstractSPigletResult exp1= n.f3.accept(this,argu);
-		ret+=exp1;
-		ret+=spiglet_put("END",indent);
-		return new SPigletResult(ret,false);
+		spiglet_print("BEGIN",indent);
+		n.f1.accept(this,argu);
+		spiglet_print("RETURN",indent);
+		SPigletResult exp1= (SPigletResult)n.f3.accept(this,argu);
+		if(!exp1.isSimple()){
+			String newTemp=getTemp();
+			spiglet_print("MOVE "+newTemp+" "+exp1,indent);
+			exp1=new SPigletResult(newTemp,true);
+		
+		}
+		spiglet_print(exp1.toString(),indent);
+		spiglet_print("END",indent);
+		return new SPigletResult("",false);
 		
 	}
 	/**
@@ -277,20 +279,20 @@ public class SpigletVisitor extends GJDepthFirst<AbstractSPigletResult, Abstract
 	 * f4 -> ")"
 	 */
 	public AbstractSPigletResult visit(Call n, AbstractSPigletResult argu) {
-		String ret = "";
-		ret+=spiglet_put("CALL",indent++);
+		spiglet_print("CALL",indent++);
 		SPigletResult exp1 =(SPigletResult)n.f1.accept(this,argu);
 		if(!exp1.isSimple()){
 			String newTemp=getTemp();
 			spiglet_print("MOVE "+newTemp+" "+exp1,indent);
 			exp1=new SPigletResult(newTemp,true);
 		}
-		ret+=n.f3.accept(this,argu);// ? node list optional
-
-		ret+=spiglet_put("(",--indent);
-		ret+=spiglet_put("(",indent);
-		n.f3.accept(this,argu);
-		return argu;
+		spiglet_print(exp1.toString(),indent);
+		spiglet_print("(",indent++);
+		n.f3.accept(this,argu);// ? node list optional
+		spiglet_print(")",--indent);
+		indent--;
+//		n.f3.accept(this,argu);
+		return new SPigletResult("",false);
 		
 	}
 	/**
@@ -300,14 +302,14 @@ public class SpigletVisitor extends GJDepthFirst<AbstractSPigletResult, Abstract
 	 */
 	public AbstractSPigletResult visit(HAllocate n, AbstractSPigletResult argu) {
 		String ret = "";
-		ret+=spiglet_put("HALLOCATE",indent);
+		spiglet_print("HALLOCATE",indent);
 		SPigletResult exp1 = (SPigletResult)n.f1.accept(this,argu); 
 		if(!exp1.isSimple()) {
 			String newTemp=getTemp();
 			spiglet_print("MOVE "+newTemp+" "+exp1,indent);
 			exp1=new SPigletResult(newTemp,true);
 		}
-		ret+=exp1;
+		spiglet_print(exp1.toString(),indent);
 		return new SPigletResult(ret,false);
 	}
 	/**
@@ -322,19 +324,19 @@ public class SpigletVisitor extends GJDepthFirst<AbstractSPigletResult, Abstract
 		SPigletResult exp1=(SPigletResult)n.f1.accept(this,argu);
 		if(!exp1.isTemp()) {
 			String newTemp=getTemp();
-			ret+="MOVE "+newTemp+" "+exp1+"\n";
+			spiglet_print("MOVE "+newTemp+" "+exp1,indent);
 			exp1=new SPigletResult(newTemp,true);
 		}
 		
 		SPigletResult exp2=(SPigletResult)n.f2.accept(this,argu);
 		if(!exp2.isSimple()) {
 			String newTemp=getTemp();
-			ret+="MOVE "+newTemp+" "+exp2+"\n";
+			spiglet_print("MOVE "+newTemp+" "+exp2,indent);
 			exp2=new SPigletResult(newTemp,true);
 		}
-		AbstractSPigletResult op = n.f0.accept(this,argu);//assume operator is printed in Operator...
-		ret = op.toString() + exp1.toString()+" "+exp2.toString();
-		return new SPigletResult(ret,false);
+		n.f0.accept(this,argu);//assume operator is printed in Operator...
+		spiglet_print(exp1.toString()+" "+exp2,indent);
+		return new SPigletResult("",false);
 	}
 	/**
 	 * Grammar production:
@@ -373,7 +375,7 @@ public class SpigletVisitor extends GJDepthFirst<AbstractSPigletResult, Abstract
 	 * f0 -> <IDENTIFIER>
 	 */
 	public AbstractSPigletResult visit(Label n, AbstractSPigletResult argu) {
-		spiglet_print(n.f0.tokenImage,indent);
+//		spiglet_print(n.f0.tokenImage,indent);
 		return new SPigletResult(n.f0.tokenImage,true);
 		
 	}
@@ -382,7 +384,7 @@ public class SpigletVisitor extends GJDepthFirst<AbstractSPigletResult, Abstract
 	 * f0 -> <INTEGER_LITERAL>
 	 */
 	public AbstractSPigletResult visit(IntegerLiteral n, AbstractSPigletResult argu) {
-		spiglet_print(n.f0.tokenImage,indent);
+//		spiglet_print(n.f0.tokenImage,indent);
 		return new SPigletResult(n.f0.tokenImage,true);
 		
 	}

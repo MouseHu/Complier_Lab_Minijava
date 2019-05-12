@@ -1,0 +1,116 @@
+MAIN
+    CALL
+        BEGIN
+        TEMP 20
+        BEGIN
+        TEMP 21
+        HALLOCATE
+        4
+        MOVE TEMP 21 
+        TEMP 21
+        MOVE TEMP 22 Fac_ComputeFac
+        HSTORE TEMP 21 0 TEMP 22
+        TEMP 23
+        HALLOCATE
+        4
+        MOVE TEMP 23 
+        TEMP 23
+        TEMP 21
+        HSTORE TEMP 23 0 TEMP 21
+        RETURN
+        TEMP 23
+        TEMP 23
+        END
+        MOVE TEMP 20 
+        TEMP 24
+        TEMP 20
+        HLOAD TEMP 24 TEMP 20 0
+        TEMP 25
+        TEMP 24
+        HLOAD TEMP 25 TEMP 24 0
+        RETURN
+        TEMP 25
+        TEMP 25
+        END
+        MOVE TEMP 26 
+        TEMP 26
+        (
+            TEMP 20
+            BEGIN
+            TEMP 27
+            HALLOCATE
+            MOVE TEMP 28 4
+            TEMP 28 1
+            MOVE TEMP 29 
+            TEMP 29
+            MOVE TEMP 27 
+            TEMP 27
+            MOVE TEMP 30 10
+            HSTORE TEMP 27 0 TEMP 30
+            RETURN
+            TEMP 27
+            TEMP 27
+            END
+        )
+    MOVE TEMP 31 
+    PRINT TEMP 31
+END
+[2]
+    BEGIN
+    TEMP 32
+    TEMP 33
+    HLOAD TEMP 32 TEMP 33 0
+    TEMP 32
+    TEMP 32 1
+    MOVE TEMP 34 
+    CJUMP TEMP 34
+    TEMP 35
+    MOVE TEMP 35 1
+    JUMP 
+    TEMP 35
+    TEMP 32
+    CALL
+        BEGIN
+        TEMP 36
+        TEMP 37
+        MOVE TEMP 36 TEMP 37
+        TEMP 38
+        TEMP 36
+        HLOAD TEMP 38 TEMP 36 0
+        TEMP 39
+        TEMP 38
+        HLOAD TEMP 39 TEMP 38 0
+        RETURN
+        TEMP 39
+        TEMP 39
+        END
+        MOVE TEMP 40 
+        TEMP 40
+        (
+            TEMP 36
+            BEGIN
+            TEMP 41
+            HALLOCATE
+            MOVE TEMP 42 4
+            TEMP 42 1
+            MOVE TEMP 43 
+            TEMP 43
+            MOVE TEMP 41 
+            TEMP 41
+            TEMP 32
+            TEMP 32 1
+            MOVE TEMP 44 
+            HSTORE TEMP 41 0 TEMP 44
+            RETURN
+            TEMP 41
+            TEMP 41
+            END
+        )
+    MOVE TEMP 45 
+    TEMP 32 TEMP 45
+    MOVE TEMP 35 
+    NOOP
+    RETURN
+    TEMP 35
+    TEMP 35
+    END
