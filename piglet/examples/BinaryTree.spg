@@ -548,7 +548,6 @@ Tree_Compare [2]
         L0
         MOVE TEMP 247 0
         JUMP L1
-        ??
         L0
         MOVE TEMP 253
             LT TEMP 245 TEMP 248
@@ -559,13 +558,10 @@ Tree_Compare [2]
         L2
         MOVE TEMP 247 0
         JUMP L3
-        ??
         L2
         MOVE TEMP 247 1
-        ??
         L3
         NOOP
-        ??
         L1
         NOOP
         RETURN TEMP 247
@@ -657,7 +653,6 @@ Tree_Insert [2]
         MOVE TEMP 296 TEMP 0
         MOVE TEMP 297 1
         JUMP L4
-        ??
         L4
         MOVE TEMP 298 TEMP 297
         CJUMP TEMP 298
@@ -724,7 +719,6 @@ Tree_Insert [2]
                 )
         MOVE TEMP 296 TEMP 319
         JUMP L8
-        ??
         L7
         MOVE TEMP 297 0
         MOVE TEMP 328 TEMP 296
@@ -766,11 +760,9 @@ Tree_Insert [2]
                     TEMP 340
                 )
         MOVE TEMP 287 TEMP 336
-        ??
         L8
         NOOP
         JUMP L9
-        ??
         L6
         MOVE TEMP 345 TEMP 296
         HLOAD TEMP 346 TEMP 345 0
@@ -811,7 +803,6 @@ Tree_Insert [2]
                 )
         MOVE TEMP 296 TEMP 353
         JUMP L11
-        ??
         L10
         MOVE TEMP 297 0
         MOVE TEMP 362 TEMP 296
@@ -853,14 +844,11 @@ Tree_Insert [2]
                     TEMP 374
                 )
         MOVE TEMP 287 TEMP 370
-        ??
         L11
         NOOP
-        ??
         L9
         NOOP
         JUMP L4
-        ??
         L5
         NOOP
         RETURN 1
@@ -874,7 +862,6 @@ Tree_Delete [2]
         MOVE TEMP 382 0
         MOVE TEMP 383 1
         JUMP L12
-        ??
         L12
         MOVE TEMP 384 TEMP 381
         CJUMP TEMP 384
@@ -942,14 +929,11 @@ Tree_Delete [2]
                 )
         MOVE TEMP 379 TEMP 405
         JUMP L16
-        ??
         L15
         MOVE TEMP 381 0
-        ??
         L16
         NOOP
         JUMP L17
-        ??
         L14
         MOVE TEMP 413
             LT TEMP 385 TEMP 378
@@ -996,14 +980,11 @@ Tree_Delete [2]
                 )
         MOVE TEMP 379 TEMP 424
         JUMP L20
-        ??
         L19
         MOVE TEMP 381 0
-        ??
         L20
         NOOP
         JUMP L21
-        ??
         L18
         MOVE TEMP 432 TEMP 383
         CJUMP TEMP 432
@@ -1060,10 +1041,8 @@ Tree_Delete [2]
         L23
         MOVE TEMP 457 1
         JUMP L24
-        ??
         L23
         MOVE TEMP 457 0
-        ??
         L24
         NOOP
         MOVE TEMP 458 TEMP 457
@@ -1071,7 +1050,6 @@ Tree_Delete [2]
         L25
         MOVE TEMP 459 1
         JUMP L26
-        ??
         L25
         MOVE TEMP 461 TEMP 0
         HLOAD TEMP 462 TEMP 461 0
@@ -1093,11 +1071,9 @@ Tree_Delete [2]
                     TEMP 464
                 )
         MOVE TEMP 459 TEMP 460
-        ??
         L26
         NOOP
         JUMP L27
-        ??
         L22
         MOVE TEMP 469 TEMP 0
         HLOAD TEMP 470 TEMP 469 0
@@ -1119,20 +1095,16 @@ Tree_Delete [2]
                     TEMP 472
                 )
         MOVE TEMP 459 TEMP 468
-        ??
         L27
         NOOP
         MOVE TEMP 382 1
         MOVE TEMP 381 0
-        ??
         L21
         NOOP
-        ??
         L17
         NOOP
         MOVE TEMP 383 0
         JUMP L12
-        ??
         L13
         NOOP
         RETURN TEMP 382
@@ -1182,7 +1154,6 @@ Tree_Remove [2]
                 )
         MOVE TEMP 487 TEMP 488
         JUMP L29
-        ??
         L28
         MOVE TEMP 497 TEMP 477
         HLOAD TEMP 498 TEMP 497 0
@@ -1225,7 +1196,6 @@ Tree_Remove [2]
                 )
         MOVE TEMP 487 TEMP 505
         JUMP L31
-        ??
         L30
         MOVE TEMP 515 TEMP 477
         HLOAD TEMP 516 TEMP 515 0
@@ -1343,7 +1313,6 @@ Tree_Remove [2]
                 )
         MOVE TEMP 487 TEMP 557
         JUMP L33
-        ??
         L32
         MOVE TEMP 567 TEMP 476
         HLOAD TEMP 568 TEMP 567 0
@@ -1385,13 +1354,10 @@ Tree_Remove [2]
                     TEMP 579
                 )
         MOVE TEMP 487 TEMP 575
-        ??
         L33
         NOOP
-        ??
         L31
         NOOP
-        ??
         L29
         NOOP
         RETURN 1
@@ -1401,7 +1367,6 @@ Tree_RemoveRight [2]
         HLOAD TEMP 584 TEMP 1 0
         HLOAD TEMP 585 TEMP 1 4
         JUMP L34
-        ??
         L34
         MOVE TEMP 587 TEMP 585
         HLOAD TEMP 588 TEMP 587 0
@@ -1496,7 +1461,6 @@ Tree_RemoveRight [2]
                 )
         MOVE TEMP 585 TEMP 620
         JUMP L34
-        ??
         L35
         NOOP
         MOVE TEMP 629 TEMP 584
@@ -1546,7 +1510,6 @@ Tree_RemoveLeft [2]
         HLOAD TEMP 646 TEMP 1 0
         HLOAD TEMP 647 TEMP 1 4
         JUMP L36
-        ??
         L36
         MOVE TEMP 649 TEMP 647
         HLOAD TEMP 650 TEMP 649 0
@@ -1641,7 +1604,6 @@ Tree_RemoveLeft [2]
                 )
         MOVE TEMP 647 TEMP 682
         JUMP L36
-        ??
         L37
         NOOP
         MOVE TEMP 691 TEMP 646
@@ -1693,7 +1655,6 @@ Tree_Search [2]
         MOVE TEMP 710 1
         MOVE TEMP 711 0
         JUMP L38
-        ??
         L38
         MOVE TEMP 712 TEMP 710
         CJUMP TEMP 712
@@ -1760,14 +1721,11 @@ Tree_Search [2]
                 )
         MOVE TEMP 709 TEMP 733
         JUMP L42
-        ??
         L41
         MOVE TEMP 710 0
-        ??
         L42
         NOOP
         JUMP L43
-        ??
         L40
         MOVE TEMP 741
             LT TEMP 713 TEMP 708
@@ -1813,25 +1771,19 @@ Tree_Search [2]
                 )
         MOVE TEMP 709 TEMP 752
         JUMP L46
-        ??
         L45
         MOVE TEMP 710 0
-        ??
         L46
         NOOP
         JUMP L47
-        ??
         L44
         MOVE TEMP 711 1
         MOVE TEMP 710 0
-        ??
         L47
         NOOP
-        ??
         L43
         NOOP
         JUMP L38
-        ??
         L39
         NOOP
         RETURN TEMP 711
@@ -1920,10 +1872,8 @@ Tree_RecPrint [2]
                 )
         MOVE TEMP 780 TEMP 781
         JUMP L49
-        ??
         L48
         MOVE TEMP 780 1
-        ??
         L49
         NOOP
         MOVE TEMP 798 TEMP 770
@@ -2001,10 +1951,8 @@ Tree_RecPrint [2]
                 )
         MOVE TEMP 780 TEMP 814
         JUMP L51
-        ??
         L50
         MOVE TEMP 780 1
-        ??
         L51
         NOOP
         RETURN 1
