@@ -1,0 +1,101 @@
+MAIN
+    MOVE TEMP 23
+        HALLOCATE
+        8
+    MOVE TEMP 22 TEMP 23
+    MOVE TEMP 24 MT4_Start
+    HSTORE TEMP 22 0 TEMP 24
+    MOVE TEMP 25 MT4_Change
+    HSTORE TEMP 22 4 TEMP 25
+    MOVE TEMP 27
+        HALLOCATE
+        4
+    MOVE TEMP 26 TEMP 27
+    HSTORE TEMP 26 0 TEMP 22
+    MOVE TEMP 21 TEMP 26
+    HLOAD TEMP 28 TEMP 21 0
+    HLOAD TEMP 29 TEMP 28 0
+    MOVE TEMP 33 4
+    MOVE TEMP 32
+        TIMES TEMP 33 6
+    MOVE TEMP 31
+        HALLOCATE
+        TEMP 32
+    MOVE TEMP 30 TEMP 31
+    MOVE TEMP 34 1
+    HSTORE TEMP 30 0 TEMP 34
+    MOVE TEMP 35 2
+    HSTORE TEMP 30 4 TEMP 35
+    MOVE TEMP 36 3
+    HSTORE TEMP 30 8 TEMP 36
+    MOVE TEMP 37 4
+    HSTORE TEMP 30 12 TEMP 37
+    MOVE TEMP 38 5
+    HSTORE TEMP 30 16 TEMP 38
+    MOVE TEMP 39 6
+    HSTORE TEMP 30 20 TEMP 39
+    MOVE TEMP 20
+        CALL
+            TEMP 29
+            (
+                TEMP 21
+                TEMP 30
+            )
+    PRINT TEMP 20
+END
+MT4_Start [2]
+    BEGIN
+        HLOAD TEMP 40 TEMP 1 0
+        HLOAD TEMP 41 TEMP 1 4
+        HLOAD TEMP 42 TEMP 1 8
+        HLOAD TEMP 43 TEMP 1 12
+        HLOAD TEMP 44 TEMP 1 16
+        HLOAD TEMP 45 TEMP 1 20
+        PRINT TEMP 40
+        PRINT TEMP 41
+        PRINT TEMP 42
+        PRINT TEMP 43
+        PRINT TEMP 44
+        PRINT TEMP 45
+        MOVE TEMP 48 TEMP 0
+        HLOAD TEMP 49 TEMP 48 0
+        HLOAD TEMP 50 TEMP 49 4
+        MOVE TEMP 54 4
+        MOVE TEMP 53
+            TIMES TEMP 54 6
+        MOVE TEMP 52
+            HALLOCATE
+            TEMP 53
+        MOVE TEMP 51 TEMP 52
+        HSTORE TEMP 51 0 TEMP 45
+        HSTORE TEMP 51 4 TEMP 44
+        HSTORE TEMP 51 8 TEMP 43
+        HSTORE TEMP 51 12 TEMP 42
+        HSTORE TEMP 51 16 TEMP 41
+        HSTORE TEMP 51 20 TEMP 40
+        MOVE TEMP 47
+            CALL
+                TEMP 50
+                (
+                    TEMP 48
+                    TEMP 51
+                )
+        MOVE TEMP 46 TEMP 47
+        RETURN TEMP 46
+    END
+MT4_Change [2]
+    BEGIN
+        HLOAD TEMP 55 TEMP 1 0
+        HLOAD TEMP 56 TEMP 1 4
+        HLOAD TEMP 57 TEMP 1 8
+        HLOAD TEMP 58 TEMP 1 12
+        HLOAD TEMP 59 TEMP 1 16
+        HLOAD TEMP 60 TEMP 1 20
+        PRINT TEMP 55
+        PRINT TEMP 56
+        PRINT TEMP 57
+        PRINT TEMP 58
+        PRINT TEMP 59
+        PRINT TEMP 60
+        RETURN 0
+    END

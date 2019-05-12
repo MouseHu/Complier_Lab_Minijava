@@ -1,0 +1,2290 @@
+MAIN
+    MOVE TEMP 23
+        HALLOCATE
+        4
+    MOVE TEMP 22 TEMP 23
+    MOVE TEMP 24 TV_Start
+    HSTORE TEMP 22 0 TEMP 24
+    MOVE TEMP 26
+        HALLOCATE
+        4
+    MOVE TEMP 25 TEMP 26
+    HSTORE TEMP 25 0 TEMP 22
+    MOVE TEMP 21 TEMP 25
+    HLOAD TEMP 27 TEMP 21 0
+    HLOAD TEMP 28 TEMP 27 0
+    MOVE TEMP 32 4
+    MOVE TEMP 31
+        TIMES TEMP 32 0
+    MOVE TEMP 30
+        HALLOCATE
+        TEMP 31
+    MOVE TEMP 29 TEMP 30
+    MOVE TEMP 20
+        CALL
+            TEMP 28
+            (
+                TEMP 21
+                TEMP 29
+            )
+    PRINT TEMP 20
+END
+TV_Start [2]
+    BEGIN
+        MOVE TEMP 35
+            HALLOCATE
+            84
+        MOVE TEMP 34 TEMP 35
+        MOVE TEMP 36 Tree_Delete
+        HSTORE TEMP 34 52 TEMP 36
+        MOVE TEMP 37 Tree_SetHas_Left
+        HSTORE TEMP 34 36 TEMP 37
+        MOVE TEMP 38 Tree_RemoveLeft
+        HSTORE TEMP 34 64 TEMP 38
+        MOVE TEMP 39 Tree_GetKey
+        HSTORE TEMP 34 20 TEMP 39
+        MOVE TEMP 40 Tree_SetRight
+        HSTORE TEMP 34 4 TEMP 40
+        MOVE TEMP 41 Tree_GetLeft
+        HSTORE TEMP 34 16 TEMP 41
+        MOVE TEMP 42 Tree_GetRight
+        HSTORE TEMP 34 12 TEMP 42
+        MOVE TEMP 43 Tree_Remove
+        HSTORE TEMP 34 56 TEMP 43
+        MOVE TEMP 44 Tree_SetLeft
+        HSTORE TEMP 34 8 TEMP 44
+        MOVE TEMP 45 Tree_Insert
+        HSTORE TEMP 34 48 TEMP 45
+        MOVE TEMP 46 Tree_accept
+        HSTORE TEMP 34 80 TEMP 46
+        MOVE TEMP 47 Tree_Print
+        HSTORE TEMP 34 72 TEMP 47
+        MOVE TEMP 48 Tree_Init
+        HSTORE TEMP 34 0 TEMP 48
+        MOVE TEMP 49 Tree_GetHas_Right
+        HSTORE TEMP 34 28 TEMP 49
+        MOVE TEMP 50 Tree_GetHas_Left
+        HSTORE TEMP 34 32 TEMP 50
+        MOVE TEMP 51 Tree_RemoveRight
+        HSTORE TEMP 34 60 TEMP 51
+        MOVE TEMP 52 Tree_Search
+        HSTORE TEMP 34 68 TEMP 52
+        MOVE TEMP 53 Tree_SetKey
+        HSTORE TEMP 34 24 TEMP 53
+        MOVE TEMP 54 Tree_Compare
+        HSTORE TEMP 34 44 TEMP 54
+        MOVE TEMP 55 Tree_SetHas_Right
+        HSTORE TEMP 34 40 TEMP 55
+        MOVE TEMP 56 Tree_RecPrint
+        HSTORE TEMP 34 76 TEMP 56
+        MOVE TEMP 58
+            HALLOCATE
+            28
+        MOVE TEMP 57 TEMP 58
+        MOVE TEMP 59 0
+        HSTORE TEMP 57 4 TEMP 59
+        MOVE TEMP 60 0
+        HSTORE TEMP 57 20 TEMP 60
+        MOVE TEMP 61 0
+        HSTORE TEMP 57 24 TEMP 61
+        MOVE TEMP 62 0
+        HSTORE TEMP 57 8 TEMP 62
+        MOVE TEMP 63 0
+        HSTORE TEMP 57 16 TEMP 63
+        MOVE TEMP 64 0
+        HSTORE TEMP 57 12 TEMP 64
+        HSTORE TEMP 57 0 TEMP 34
+        MOVE TEMP 33 TEMP 57
+        MOVE TEMP 67 TEMP 33
+        HLOAD TEMP 68 TEMP 67 0
+        HLOAD TEMP 69 TEMP 68 0
+        MOVE TEMP 73 4
+        MOVE TEMP 72
+            TIMES TEMP 73 1
+        MOVE TEMP 71
+            HALLOCATE
+            TEMP 72
+        MOVE TEMP 70 TEMP 71
+        MOVE TEMP 74 16
+        HSTORE TEMP 70 0 TEMP 74
+        MOVE TEMP 66
+            CALL
+                TEMP 69
+                (
+                    TEMP 67
+                    TEMP 70
+                )
+        MOVE TEMP 65 TEMP 66
+        MOVE TEMP 76 TEMP 33
+        HLOAD TEMP 77 TEMP 76 0
+        HLOAD TEMP 78 TEMP 77 72
+        MOVE TEMP 82 4
+        MOVE TEMP 81
+            TIMES TEMP 82 0
+        MOVE TEMP 80
+            HALLOCATE
+            TEMP 81
+        MOVE TEMP 79 TEMP 80
+        MOVE TEMP 75
+            CALL
+                TEMP 78
+                (
+                    TEMP 76
+                    TEMP 79
+                )
+        MOVE TEMP 65 TEMP 75
+        PRINT 100000000
+        MOVE TEMP 84 TEMP 33
+        HLOAD TEMP 85 TEMP 84 0
+        HLOAD TEMP 86 TEMP 85 48
+        MOVE TEMP 90 4
+        MOVE TEMP 89
+            TIMES TEMP 90 1
+        MOVE TEMP 88
+            HALLOCATE
+            TEMP 89
+        MOVE TEMP 87 TEMP 88
+        MOVE TEMP 91 8
+        HSTORE TEMP 87 0 TEMP 91
+        MOVE TEMP 83
+            CALL
+                TEMP 86
+                (
+                    TEMP 84
+                    TEMP 87
+                )
+        MOVE TEMP 65 TEMP 83
+        MOVE TEMP 93 TEMP 33
+        HLOAD TEMP 94 TEMP 93 0
+        HLOAD TEMP 95 TEMP 94 48
+        MOVE TEMP 99 4
+        MOVE TEMP 98
+            TIMES TEMP 99 1
+        MOVE TEMP 97
+            HALLOCATE
+            TEMP 98
+        MOVE TEMP 96 TEMP 97
+        MOVE TEMP 100 24
+        HSTORE TEMP 96 0 TEMP 100
+        MOVE TEMP 92
+            CALL
+                TEMP 95
+                (
+                    TEMP 93
+                    TEMP 96
+                )
+        MOVE TEMP 65 TEMP 92
+        MOVE TEMP 102 TEMP 33
+        HLOAD TEMP 103 TEMP 102 0
+        HLOAD TEMP 104 TEMP 103 48
+        MOVE TEMP 108 4
+        MOVE TEMP 107
+            TIMES TEMP 108 1
+        MOVE TEMP 106
+            HALLOCATE
+            TEMP 107
+        MOVE TEMP 105 TEMP 106
+        MOVE TEMP 109 4
+        HSTORE TEMP 105 0 TEMP 109
+        MOVE TEMP 101
+            CALL
+                TEMP 104
+                (
+                    TEMP 102
+                    TEMP 105
+                )
+        MOVE TEMP 65 TEMP 101
+        MOVE TEMP 111 TEMP 33
+        HLOAD TEMP 112 TEMP 111 0
+        HLOAD TEMP 113 TEMP 112 48
+        MOVE TEMP 117 4
+        MOVE TEMP 116
+            TIMES TEMP 117 1
+        MOVE TEMP 115
+            HALLOCATE
+            TEMP 116
+        MOVE TEMP 114 TEMP 115
+        MOVE TEMP 118 12
+        HSTORE TEMP 114 0 TEMP 118
+        MOVE TEMP 110
+            CALL
+                TEMP 113
+                (
+                    TEMP 111
+                    TEMP 114
+                )
+        MOVE TEMP 65 TEMP 110
+        MOVE TEMP 120 TEMP 33
+        HLOAD TEMP 121 TEMP 120 0
+        HLOAD TEMP 122 TEMP 121 48
+        MOVE TEMP 126 4
+        MOVE TEMP 125
+            TIMES TEMP 126 1
+        MOVE TEMP 124
+            HALLOCATE
+            TEMP 125
+        MOVE TEMP 123 TEMP 124
+        MOVE TEMP 127 20
+        HSTORE TEMP 123 0 TEMP 127
+        MOVE TEMP 119
+            CALL
+                TEMP 122
+                (
+                    TEMP 120
+                    TEMP 123
+                )
+        MOVE TEMP 65 TEMP 119
+        MOVE TEMP 129 TEMP 33
+        HLOAD TEMP 130 TEMP 129 0
+        HLOAD TEMP 131 TEMP 130 48
+        MOVE TEMP 135 4
+        MOVE TEMP 134
+            TIMES TEMP 135 1
+        MOVE TEMP 133
+            HALLOCATE
+            TEMP 134
+        MOVE TEMP 132 TEMP 133
+        MOVE TEMP 136 28
+        HSTORE TEMP 132 0 TEMP 136
+        MOVE TEMP 128
+            CALL
+                TEMP 131
+                (
+                    TEMP 129
+                    TEMP 132
+                )
+        MOVE TEMP 65 TEMP 128
+        MOVE TEMP 138 TEMP 33
+        HLOAD TEMP 139 TEMP 138 0
+        HLOAD TEMP 140 TEMP 139 48
+        MOVE TEMP 144 4
+        MOVE TEMP 143
+            TIMES TEMP 144 1
+        MOVE TEMP 142
+            HALLOCATE
+            TEMP 143
+        MOVE TEMP 141 TEMP 142
+        MOVE TEMP 145 14
+        HSTORE TEMP 141 0 TEMP 145
+        MOVE TEMP 137
+            CALL
+                TEMP 140
+                (
+                    TEMP 138
+                    TEMP 141
+                )
+        MOVE TEMP 65 TEMP 137
+        MOVE TEMP 147 TEMP 33
+        HLOAD TEMP 148 TEMP 147 0
+        HLOAD TEMP 149 TEMP 148 72
+        MOVE TEMP 153 4
+        MOVE TEMP 152
+            TIMES TEMP 153 0
+        MOVE TEMP 151
+            HALLOCATE
+            TEMP 152
+        MOVE TEMP 150 TEMP 151
+        MOVE TEMP 146
+            CALL
+                TEMP 149
+                (
+                    TEMP 147
+                    TEMP 150
+                )
+        MOVE TEMP 65 TEMP 146
+        PRINT 100000000
+        MOVE TEMP 156
+            HALLOCATE
+            8
+        MOVE TEMP 155 TEMP 156
+        MOVE TEMP 157 Visitor_visit
+        HSTORE TEMP 155 0 TEMP 157
+        MOVE TEMP 158 MyVisitor_visit
+        HSTORE TEMP 155 0 TEMP 158
+        MOVE TEMP 160
+            HALLOCATE
+            12
+        MOVE TEMP 159 TEMP 160
+        MOVE TEMP 161 0
+        HSTORE TEMP 159 8 TEMP 161
+        MOVE TEMP 162 0
+        HSTORE TEMP 159 4 TEMP 162
+        HSTORE TEMP 159 0 TEMP 155
+        MOVE TEMP 154 TEMP 159
+        PRINT 50000000
+        MOVE TEMP 165 TEMP 33
+        HLOAD TEMP 166 TEMP 165 0
+        HLOAD TEMP 167 TEMP 166 80
+        MOVE TEMP 171 4
+        MOVE TEMP 170
+            TIMES TEMP 171 1
+        MOVE TEMP 169
+            HALLOCATE
+            TEMP 170
+        MOVE TEMP 168 TEMP 169
+        HSTORE TEMP 168 0 TEMP 154
+        MOVE TEMP 164
+            CALL
+                TEMP 167
+                (
+                    TEMP 165
+                    TEMP 168
+                )
+        MOVE TEMP 163 TEMP 164
+        PRINT 100000000
+        MOVE TEMP 173 TEMP 33
+        HLOAD TEMP 174 TEMP 173 0
+        HLOAD TEMP 175 TEMP 174 68
+        MOVE TEMP 179 4
+        MOVE TEMP 178
+            TIMES TEMP 179 1
+        MOVE TEMP 177
+            HALLOCATE
+            TEMP 178
+        MOVE TEMP 176 TEMP 177
+        MOVE TEMP 180 24
+        HSTORE TEMP 176 0 TEMP 180
+        MOVE TEMP 172
+            CALL
+                TEMP 175
+                (
+                    TEMP 173
+                    TEMP 176
+                )
+        PRINT TEMP 172
+        MOVE TEMP 182 TEMP 33
+        HLOAD TEMP 183 TEMP 182 0
+        HLOAD TEMP 184 TEMP 183 68
+        MOVE TEMP 188 4
+        MOVE TEMP 187
+            TIMES TEMP 188 1
+        MOVE TEMP 186
+            HALLOCATE
+            TEMP 187
+        MOVE TEMP 185 TEMP 186
+        MOVE TEMP 189 12
+        HSTORE TEMP 185 0 TEMP 189
+        MOVE TEMP 181
+            CALL
+                TEMP 184
+                (
+                    TEMP 182
+                    TEMP 185
+                )
+        PRINT TEMP 181
+        MOVE TEMP 191 TEMP 33
+        HLOAD TEMP 192 TEMP 191 0
+        HLOAD TEMP 193 TEMP 192 68
+        MOVE TEMP 197 4
+        MOVE TEMP 196
+            TIMES TEMP 197 1
+        MOVE TEMP 195
+            HALLOCATE
+            TEMP 196
+        MOVE TEMP 194 TEMP 195
+        MOVE TEMP 198 16
+        HSTORE TEMP 194 0 TEMP 198
+        MOVE TEMP 190
+            CALL
+                TEMP 193
+                (
+                    TEMP 191
+                    TEMP 194
+                )
+        PRINT TEMP 190
+        MOVE TEMP 200 TEMP 33
+        HLOAD TEMP 201 TEMP 200 0
+        HLOAD TEMP 202 TEMP 201 68
+        MOVE TEMP 206 4
+        MOVE TEMP 205
+            TIMES TEMP 206 1
+        MOVE TEMP 204
+            HALLOCATE
+            TEMP 205
+        MOVE TEMP 203 TEMP 204
+        MOVE TEMP 207 50
+        HSTORE TEMP 203 0 TEMP 207
+        MOVE TEMP 199
+            CALL
+                TEMP 202
+                (
+                    TEMP 200
+                    TEMP 203
+                )
+        PRINT TEMP 199
+        MOVE TEMP 209 TEMP 33
+        HLOAD TEMP 210 TEMP 209 0
+        HLOAD TEMP 211 TEMP 210 68
+        MOVE TEMP 215 4
+        MOVE TEMP 214
+            TIMES TEMP 215 1
+        MOVE TEMP 213
+            HALLOCATE
+            TEMP 214
+        MOVE TEMP 212 TEMP 213
+        MOVE TEMP 216 12
+        HSTORE TEMP 212 0 TEMP 216
+        MOVE TEMP 208
+            CALL
+                TEMP 211
+                (
+                    TEMP 209
+                    TEMP 212
+                )
+        PRINT TEMP 208
+        MOVE TEMP 218 TEMP 33
+        HLOAD TEMP 219 TEMP 218 0
+        HLOAD TEMP 220 TEMP 219 52
+        MOVE TEMP 224 4
+        MOVE TEMP 223
+            TIMES TEMP 224 1
+        MOVE TEMP 222
+            HALLOCATE
+            TEMP 223
+        MOVE TEMP 221 TEMP 222
+        MOVE TEMP 225 12
+        HSTORE TEMP 221 0 TEMP 225
+        MOVE TEMP 217
+            CALL
+                TEMP 220
+                (
+                    TEMP 218
+                    TEMP 221
+                )
+        MOVE TEMP 65 TEMP 217
+        MOVE TEMP 227 TEMP 33
+        HLOAD TEMP 228 TEMP 227 0
+        HLOAD TEMP 229 TEMP 228 72
+        MOVE TEMP 233 4
+        MOVE TEMP 232
+            TIMES TEMP 233 0
+        MOVE TEMP 231
+            HALLOCATE
+            TEMP 232
+        MOVE TEMP 230 TEMP 231
+        MOVE TEMP 226
+            CALL
+                TEMP 229
+                (
+                    TEMP 227
+                    TEMP 230
+                )
+        MOVE TEMP 65 TEMP 226
+        MOVE TEMP 235 TEMP 33
+        HLOAD TEMP 236 TEMP 235 0
+        HLOAD TEMP 237 TEMP 236 68
+        MOVE TEMP 241 4
+        MOVE TEMP 240
+            TIMES TEMP 241 1
+        MOVE TEMP 239
+            HALLOCATE
+            TEMP 240
+        MOVE TEMP 238 TEMP 239
+        MOVE TEMP 242 12
+        HSTORE TEMP 238 0 TEMP 242
+        MOVE TEMP 234
+            CALL
+                TEMP 237
+                (
+                    TEMP 235
+                    TEMP 238
+                )
+        PRINT TEMP 234
+        RETURN 0
+    END
+Tree_Init [2]
+    BEGIN
+        HLOAD TEMP 243 TEMP 1 0
+        HSTORE TEMP 0 12 TEMP 243
+        MOVE TEMP 244 0
+        HSTORE TEMP 0 16 TEMP 244
+        MOVE TEMP 245 0
+        HSTORE TEMP 0 20 TEMP 245
+        RETURN 1
+    END
+Tree_SetRight [2]
+    BEGIN
+        HLOAD TEMP 246 TEMP 1 0
+        HSTORE TEMP 0 8 TEMP 246
+        RETURN 1
+    END
+Tree_SetLeft [2]
+    BEGIN
+        HLOAD TEMP 247 TEMP 1 0
+        HSTORE TEMP 0 4 TEMP 247
+        RETURN 1
+    END
+Tree_GetRight [2]
+    BEGIN
+        HLOAD TEMP 248 TEMP 0 8
+        RETURN TEMP 248
+    END
+Tree_GetLeft [2]
+    BEGIN
+        HLOAD TEMP 249 TEMP 0 4
+        RETURN TEMP 249
+    END
+Tree_GetKey [2]
+    BEGIN
+        HLOAD TEMP 250 TEMP 0 12
+        RETURN TEMP 250
+    END
+Tree_SetKey [2]
+    BEGIN
+        HLOAD TEMP 251 TEMP 1 0
+        HSTORE TEMP 0 12 TEMP 251
+        RETURN 1
+    END
+Tree_GetHas_Right [2]
+    BEGIN
+        HLOAD TEMP 252 TEMP 0 20
+        RETURN TEMP 252
+    END
+Tree_GetHas_Left [2]
+    BEGIN
+        HLOAD TEMP 253 TEMP 0 16
+        RETURN TEMP 253
+    END
+Tree_SetHas_Left [2]
+    BEGIN
+        HLOAD TEMP 254 TEMP 1 0
+        HSTORE TEMP 0 16 TEMP 254
+        RETURN 1
+    END
+Tree_SetHas_Right [2]
+    BEGIN
+        HLOAD TEMP 255 TEMP 1 0
+        HSTORE TEMP 0 20 TEMP 255
+        RETURN 1
+    END
+Tree_Compare [2]
+    BEGIN
+        HLOAD TEMP 256 TEMP 1 0
+        HLOAD TEMP 257 TEMP 1 4
+        MOVE TEMP 258 0
+        MOVE TEMP 260
+            PLUS TEMP 257 1
+        MOVE TEMP 259 TEMP 260
+        MOVE TEMP 261
+            LT TEMP 256 TEMP 257
+        MOVE TEMP 262 TEMP 261
+        CJUMP TEMP 262
+        L0
+        MOVE TEMP 258 0
+        JUMP L1
+        L0
+        MOVE TEMP 264
+            LT TEMP 256 TEMP 259
+        MOVE TEMP 263
+            LT TEMP 264 1
+        MOVE TEMP 265 TEMP 263
+        CJUMP TEMP 265
+        L2
+        MOVE TEMP 258 0
+        JUMP L3
+        L2
+        MOVE TEMP 258 1
+        L3
+        NOOP
+        L1
+        NOOP
+        RETURN TEMP 258
+    END
+Tree_Insert [2]
+    BEGIN
+        HLOAD TEMP 266 TEMP 1 0
+        MOVE TEMP 269
+            HALLOCATE
+            84
+        MOVE TEMP 268 TEMP 269
+        MOVE TEMP 270 Tree_Delete
+        HSTORE TEMP 268 52 TEMP 270
+        MOVE TEMP 271 Tree_SetHas_Left
+        HSTORE TEMP 268 36 TEMP 271
+        MOVE TEMP 272 Tree_RemoveLeft
+        HSTORE TEMP 268 64 TEMP 272
+        MOVE TEMP 273 Tree_GetKey
+        HSTORE TEMP 268 20 TEMP 273
+        MOVE TEMP 274 Tree_SetRight
+        HSTORE TEMP 268 4 TEMP 274
+        MOVE TEMP 275 Tree_GetLeft
+        HSTORE TEMP 268 16 TEMP 275
+        MOVE TEMP 276 Tree_GetRight
+        HSTORE TEMP 268 12 TEMP 276
+        MOVE TEMP 277 Tree_Remove
+        HSTORE TEMP 268 56 TEMP 277
+        MOVE TEMP 278 Tree_SetLeft
+        HSTORE TEMP 268 8 TEMP 278
+        MOVE TEMP 279 Tree_Insert
+        HSTORE TEMP 268 48 TEMP 279
+        MOVE TEMP 280 Tree_accept
+        HSTORE TEMP 268 80 TEMP 280
+        MOVE TEMP 281 Tree_Print
+        HSTORE TEMP 268 72 TEMP 281
+        MOVE TEMP 282 Tree_Init
+        HSTORE TEMP 268 0 TEMP 282
+        MOVE TEMP 283 Tree_GetHas_Right
+        HSTORE TEMP 268 28 TEMP 283
+        MOVE TEMP 284 Tree_GetHas_Left
+        HSTORE TEMP 268 32 TEMP 284
+        MOVE TEMP 285 Tree_RemoveRight
+        HSTORE TEMP 268 60 TEMP 285
+        MOVE TEMP 286 Tree_Search
+        HSTORE TEMP 268 68 TEMP 286
+        MOVE TEMP 287 Tree_SetKey
+        HSTORE TEMP 268 24 TEMP 287
+        MOVE TEMP 288 Tree_Compare
+        HSTORE TEMP 268 44 TEMP 288
+        MOVE TEMP 289 Tree_SetHas_Right
+        HSTORE TEMP 268 40 TEMP 289
+        MOVE TEMP 290 Tree_RecPrint
+        HSTORE TEMP 268 76 TEMP 290
+        MOVE TEMP 292
+            HALLOCATE
+            28
+        MOVE TEMP 291 TEMP 292
+        MOVE TEMP 293 0
+        HSTORE TEMP 291 4 TEMP 293
+        MOVE TEMP 294 0
+        HSTORE TEMP 291 20 TEMP 294
+        MOVE TEMP 295 0
+        HSTORE TEMP 291 24 TEMP 295
+        MOVE TEMP 296 0
+        HSTORE TEMP 291 8 TEMP 296
+        MOVE TEMP 297 0
+        HSTORE TEMP 291 16 TEMP 297
+        MOVE TEMP 298 0
+        HSTORE TEMP 291 12 TEMP 298
+        HSTORE TEMP 291 0 TEMP 268
+        MOVE TEMP 267 TEMP 291
+        MOVE TEMP 301 TEMP 267
+        HLOAD TEMP 302 TEMP 301 0
+        HLOAD TEMP 303 TEMP 302 0
+        MOVE TEMP 307 4
+        MOVE TEMP 306
+            TIMES TEMP 307 1
+        MOVE TEMP 305
+            HALLOCATE
+            TEMP 306
+        MOVE TEMP 304 TEMP 305
+        HSTORE TEMP 304 0 TEMP 266
+        MOVE TEMP 300
+            CALL
+                TEMP 303
+                (
+                    TEMP 301
+                    TEMP 304
+                )
+        MOVE TEMP 299 TEMP 300
+        MOVE TEMP 308 TEMP 0
+        MOVE TEMP 309 1
+        JUMP L4
+        L4
+        MOVE TEMP 310 TEMP 309
+        CJUMP TEMP 310
+        L5
+        MOVE TEMP 313 TEMP 308
+        HLOAD TEMP 314 TEMP 313 0
+        HLOAD TEMP 315 TEMP 314 20
+        MOVE TEMP 319 4
+        MOVE TEMP 318
+            TIMES TEMP 319 0
+        MOVE TEMP 317
+            HALLOCATE
+            TEMP 318
+        MOVE TEMP 316 TEMP 317
+        MOVE TEMP 312
+            CALL
+                TEMP 315
+                (
+                    TEMP 313
+                    TEMP 316
+                )
+        MOVE TEMP 311 TEMP 312
+        MOVE TEMP 320
+            LT TEMP 266 TEMP 311
+        MOVE TEMP 321 TEMP 320
+        CJUMP TEMP 321
+        L6
+        MOVE TEMP 323 TEMP 308
+        HLOAD TEMP 324 TEMP 323 0
+        HLOAD TEMP 325 TEMP 324 32
+        MOVE TEMP 329 4
+        MOVE TEMP 328
+            TIMES TEMP 329 0
+        MOVE TEMP 327
+            HALLOCATE
+            TEMP 328
+        MOVE TEMP 326 TEMP 327
+        MOVE TEMP 322
+            CALL
+                TEMP 325
+                (
+                    TEMP 323
+                    TEMP 326
+                )
+        MOVE TEMP 330 TEMP 322
+        CJUMP TEMP 330
+        L7
+        MOVE TEMP 332 TEMP 308
+        HLOAD TEMP 333 TEMP 332 0
+        HLOAD TEMP 334 TEMP 333 16
+        MOVE TEMP 338 4
+        MOVE TEMP 337
+            TIMES TEMP 338 0
+        MOVE TEMP 336
+            HALLOCATE
+            TEMP 337
+        MOVE TEMP 335 TEMP 336
+        MOVE TEMP 331
+            CALL
+                TEMP 334
+                (
+                    TEMP 332
+                    TEMP 335
+                )
+        MOVE TEMP 308 TEMP 331
+        JUMP L8
+        L7
+        MOVE TEMP 309 0
+        MOVE TEMP 340 TEMP 308
+        HLOAD TEMP 341 TEMP 340 0
+        HLOAD TEMP 342 TEMP 341 36
+        MOVE TEMP 346 4
+        MOVE TEMP 345
+            TIMES TEMP 346 1
+        MOVE TEMP 344
+            HALLOCATE
+            TEMP 345
+        MOVE TEMP 343 TEMP 344
+        MOVE TEMP 347 1
+        HSTORE TEMP 343 0 TEMP 347
+        MOVE TEMP 339
+            CALL
+                TEMP 342
+                (
+                    TEMP 340
+                    TEMP 343
+                )
+        MOVE TEMP 299 TEMP 339
+        MOVE TEMP 349 TEMP 308
+        HLOAD TEMP 350 TEMP 349 0
+        HLOAD TEMP 351 TEMP 350 8
+        MOVE TEMP 355 4
+        MOVE TEMP 354
+            TIMES TEMP 355 1
+        MOVE TEMP 353
+            HALLOCATE
+            TEMP 354
+        MOVE TEMP 352 TEMP 353
+        HSTORE TEMP 352 0 TEMP 267
+        MOVE TEMP 348
+            CALL
+                TEMP 351
+                (
+                    TEMP 349
+                    TEMP 352
+                )
+        MOVE TEMP 299 TEMP 348
+        L8
+        NOOP
+        JUMP L9
+        L6
+        MOVE TEMP 357 TEMP 308
+        HLOAD TEMP 358 TEMP 357 0
+        HLOAD TEMP 359 TEMP 358 28
+        MOVE TEMP 363 4
+        MOVE TEMP 362
+            TIMES TEMP 363 0
+        MOVE TEMP 361
+            HALLOCATE
+            TEMP 362
+        MOVE TEMP 360 TEMP 361
+        MOVE TEMP 356
+            CALL
+                TEMP 359
+                (
+                    TEMP 357
+                    TEMP 360
+                )
+        MOVE TEMP 364 TEMP 356
+        CJUMP TEMP 364
+        L10
+        MOVE TEMP 366 TEMP 308
+        HLOAD TEMP 367 TEMP 366 0
+        HLOAD TEMP 368 TEMP 367 12
+        MOVE TEMP 372 4
+        MOVE TEMP 371
+            TIMES TEMP 372 0
+        MOVE TEMP 370
+            HALLOCATE
+            TEMP 371
+        MOVE TEMP 369 TEMP 370
+        MOVE TEMP 365
+            CALL
+                TEMP 368
+                (
+                    TEMP 366
+                    TEMP 369
+                )
+        MOVE TEMP 308 TEMP 365
+        JUMP L11
+        L10
+        MOVE TEMP 309 0
+        MOVE TEMP 374 TEMP 308
+        HLOAD TEMP 375 TEMP 374 0
+        HLOAD TEMP 376 TEMP 375 40
+        MOVE TEMP 380 4
+        MOVE TEMP 379
+            TIMES TEMP 380 1
+        MOVE TEMP 378
+            HALLOCATE
+            TEMP 379
+        MOVE TEMP 377 TEMP 378
+        MOVE TEMP 381 1
+        HSTORE TEMP 377 0 TEMP 381
+        MOVE TEMP 373
+            CALL
+                TEMP 376
+                (
+                    TEMP 374
+                    TEMP 377
+                )
+        MOVE TEMP 299 TEMP 373
+        MOVE TEMP 383 TEMP 308
+        HLOAD TEMP 384 TEMP 383 0
+        HLOAD TEMP 385 TEMP 384 4
+        MOVE TEMP 389 4
+        MOVE TEMP 388
+            TIMES TEMP 389 1
+        MOVE TEMP 387
+            HALLOCATE
+            TEMP 388
+        MOVE TEMP 386 TEMP 387
+        HSTORE TEMP 386 0 TEMP 267
+        MOVE TEMP 382
+            CALL
+                TEMP 385
+                (
+                    TEMP 383
+                    TEMP 386
+                )
+        MOVE TEMP 299 TEMP 382
+        L11
+        NOOP
+        L9
+        NOOP
+        JUMP L4
+        L5
+        NOOP
+        RETURN 1
+    END
+Tree_Delete [2]
+    BEGIN
+        HLOAD TEMP 390 TEMP 1 0
+        MOVE TEMP 391 TEMP 0
+        MOVE TEMP 392 TEMP 0
+        MOVE TEMP 393 1
+        MOVE TEMP 394 0
+        MOVE TEMP 395 1
+        JUMP L12
+        L12
+        MOVE TEMP 396 TEMP 393
+        CJUMP TEMP 396
+        L13
+        MOVE TEMP 399 TEMP 391
+        HLOAD TEMP 400 TEMP 399 0
+        HLOAD TEMP 401 TEMP 400 20
+        MOVE TEMP 405 4
+        MOVE TEMP 404
+            TIMES TEMP 405 0
+        MOVE TEMP 403
+            HALLOCATE
+            TEMP 404
+        MOVE TEMP 402 TEMP 403
+        MOVE TEMP 398
+            CALL
+                TEMP 401
+                (
+                    TEMP 399
+                    TEMP 402
+                )
+        MOVE TEMP 397 TEMP 398
+        MOVE TEMP 406
+            LT TEMP 390 TEMP 397
+        MOVE TEMP 407 TEMP 406
+        CJUMP TEMP 407
+        L14
+        MOVE TEMP 409 TEMP 391
+        HLOAD TEMP 410 TEMP 409 0
+        HLOAD TEMP 411 TEMP 410 32
+        MOVE TEMP 415 4
+        MOVE TEMP 414
+            TIMES TEMP 415 0
+        MOVE TEMP 413
+            HALLOCATE
+            TEMP 414
+        MOVE TEMP 412 TEMP 413
+        MOVE TEMP 408
+            CALL
+                TEMP 411
+                (
+                    TEMP 409
+                    TEMP 412
+                )
+        MOVE TEMP 416 TEMP 408
+        CJUMP TEMP 416
+        L15
+        MOVE TEMP 392 TEMP 391
+        MOVE TEMP 418 TEMP 391
+        HLOAD TEMP 419 TEMP 418 0
+        HLOAD TEMP 420 TEMP 419 16
+        MOVE TEMP 424 4
+        MOVE TEMP 423
+            TIMES TEMP 424 0
+        MOVE TEMP 422
+            HALLOCATE
+            TEMP 423
+        MOVE TEMP 421 TEMP 422
+        MOVE TEMP 417
+            CALL
+                TEMP 420
+                (
+                    TEMP 418
+                    TEMP 421
+                )
+        MOVE TEMP 391 TEMP 417
+        JUMP L16
+        L15
+        MOVE TEMP 393 0
+        L16
+        NOOP
+        JUMP L17
+        L14
+        MOVE TEMP 425
+            LT TEMP 397 TEMP 390
+        MOVE TEMP 426 TEMP 425
+        CJUMP TEMP 426
+        L18
+        MOVE TEMP 428 TEMP 391
+        HLOAD TEMP 429 TEMP 428 0
+        HLOAD TEMP 430 TEMP 429 28
+        MOVE TEMP 434 4
+        MOVE TEMP 433
+            TIMES TEMP 434 0
+        MOVE TEMP 432
+            HALLOCATE
+            TEMP 433
+        MOVE TEMP 431 TEMP 432
+        MOVE TEMP 427
+            CALL
+                TEMP 430
+                (
+                    TEMP 428
+                    TEMP 431
+                )
+        MOVE TEMP 435 TEMP 427
+        CJUMP TEMP 435
+        L19
+        MOVE TEMP 392 TEMP 391
+        MOVE TEMP 437 TEMP 391
+        HLOAD TEMP 438 TEMP 437 0
+        HLOAD TEMP 439 TEMP 438 12
+        MOVE TEMP 443 4
+        MOVE TEMP 442
+            TIMES TEMP 443 0
+        MOVE TEMP 441
+            HALLOCATE
+            TEMP 442
+        MOVE TEMP 440 TEMP 441
+        MOVE TEMP 436
+            CALL
+                TEMP 439
+                (
+                    TEMP 437
+                    TEMP 440
+                )
+        MOVE TEMP 391 TEMP 436
+        JUMP L20
+        L19
+        MOVE TEMP 393 0
+        L20
+        NOOP
+        JUMP L21
+        L18
+        MOVE TEMP 444 TEMP 395
+        CJUMP TEMP 444
+        L22
+        MOVE TEMP 446 0
+        MOVE TEMP 449 TEMP 391
+        HLOAD TEMP 450 TEMP 449 0
+        HLOAD TEMP 451 TEMP 450 28
+        MOVE TEMP 455 4
+        MOVE TEMP 454
+            TIMES TEMP 455 0
+        MOVE TEMP 453
+            HALLOCATE
+            TEMP 454
+        MOVE TEMP 452 TEMP 453
+        MOVE TEMP 448
+            CALL
+                TEMP 451
+                (
+                    TEMP 449
+                    TEMP 452
+                )
+        MOVE TEMP 447
+            LT TEMP 448 1
+        MOVE TEMP 445
+            LT TEMP 446 TEMP 447
+        MOVE TEMP 456 TEMP 445
+        CJUMP TEMP 456
+        L23
+        MOVE TEMP 458 0
+        MOVE TEMP 461 TEMP 391
+        HLOAD TEMP 462 TEMP 461 0
+        HLOAD TEMP 463 TEMP 462 32
+        MOVE TEMP 467 4
+        MOVE TEMP 466
+            TIMES TEMP 467 0
+        MOVE TEMP 465
+            HALLOCATE
+            TEMP 466
+        MOVE TEMP 464 TEMP 465
+        MOVE TEMP 460
+            CALL
+                TEMP 463
+                (
+                    TEMP 461
+                    TEMP 464
+                )
+        MOVE TEMP 459
+            LT TEMP 460 1
+        MOVE TEMP 457
+            LT TEMP 458 TEMP 459
+        MOVE TEMP 468 TEMP 457
+        CJUMP TEMP 468
+        L23
+        MOVE TEMP 469 1
+        JUMP L24
+        L23
+        MOVE TEMP 469 0
+        L24
+        NOOP
+        MOVE TEMP 470 TEMP 469
+        CJUMP TEMP 470
+        L25
+        MOVE TEMP 471 1
+        JUMP L26
+        L25
+        MOVE TEMP 473 TEMP 0
+        HLOAD TEMP 474 TEMP 473 0
+        HLOAD TEMP 475 TEMP 474 56
+        MOVE TEMP 479 4
+        MOVE TEMP 478
+            TIMES TEMP 479 2
+        MOVE TEMP 477
+            HALLOCATE
+            TEMP 478
+        MOVE TEMP 476 TEMP 477
+        HSTORE TEMP 476 0 TEMP 392
+        HSTORE TEMP 476 4 TEMP 391
+        MOVE TEMP 472
+            CALL
+                TEMP 475
+                (
+                    TEMP 473
+                    TEMP 476
+                )
+        MOVE TEMP 471 TEMP 472
+        L26
+        NOOP
+        JUMP L27
+        L22
+        MOVE TEMP 481 TEMP 0
+        HLOAD TEMP 482 TEMP 481 0
+        HLOAD TEMP 483 TEMP 482 56
+        MOVE TEMP 487 4
+        MOVE TEMP 486
+            TIMES TEMP 487 2
+        MOVE TEMP 485
+            HALLOCATE
+            TEMP 486
+        MOVE TEMP 484 TEMP 485
+        HSTORE TEMP 484 0 TEMP 392
+        HSTORE TEMP 484 4 TEMP 391
+        MOVE TEMP 480
+            CALL
+                TEMP 483
+                (
+                    TEMP 481
+                    TEMP 484
+                )
+        MOVE TEMP 471 TEMP 480
+        L27
+        NOOP
+        MOVE TEMP 394 1
+        MOVE TEMP 393 0
+        L21
+        NOOP
+        L17
+        NOOP
+        MOVE TEMP 395 0
+        JUMP L12
+        L13
+        NOOP
+        RETURN TEMP 394
+    END
+Tree_Remove [2]
+    BEGIN
+        HLOAD TEMP 488 TEMP 1 0
+        HLOAD TEMP 489 TEMP 1 4
+        MOVE TEMP 491 TEMP 489
+        HLOAD TEMP 492 TEMP 491 0
+        HLOAD TEMP 493 TEMP 492 32
+        MOVE TEMP 497 4
+        MOVE TEMP 496
+            TIMES TEMP 497 0
+        MOVE TEMP 495
+            HALLOCATE
+            TEMP 496
+        MOVE TEMP 494 TEMP 495
+        MOVE TEMP 490
+            CALL
+                TEMP 493
+                (
+                    TEMP 491
+                    TEMP 494
+                )
+        MOVE TEMP 498 TEMP 490
+        CJUMP TEMP 498
+        L28
+        MOVE TEMP 501 TEMP 0
+        HLOAD TEMP 502 TEMP 501 0
+        HLOAD TEMP 503 TEMP 502 64
+        MOVE TEMP 507 4
+        MOVE TEMP 506
+            TIMES TEMP 507 2
+        MOVE TEMP 505
+            HALLOCATE
+            TEMP 506
+        MOVE TEMP 504 TEMP 505
+        HSTORE TEMP 504 0 TEMP 488
+        HSTORE TEMP 504 4 TEMP 489
+        MOVE TEMP 500
+            CALL
+                TEMP 503
+                (
+                    TEMP 501
+                    TEMP 504
+                )
+        MOVE TEMP 499 TEMP 500
+        JUMP L29
+        L28
+        MOVE TEMP 509 TEMP 489
+        HLOAD TEMP 510 TEMP 509 0
+        HLOAD TEMP 511 TEMP 510 28
+        MOVE TEMP 515 4
+        MOVE TEMP 514
+            TIMES TEMP 515 0
+        MOVE TEMP 513
+            HALLOCATE
+            TEMP 514
+        MOVE TEMP 512 TEMP 513
+        MOVE TEMP 508
+            CALL
+                TEMP 511
+                (
+                    TEMP 509
+                    TEMP 512
+                )
+        MOVE TEMP 516 TEMP 508
+        CJUMP TEMP 516
+        L30
+        MOVE TEMP 518 TEMP 0
+        HLOAD TEMP 519 TEMP 518 0
+        HLOAD TEMP 520 TEMP 519 60
+        MOVE TEMP 524 4
+        MOVE TEMP 523
+            TIMES TEMP 524 2
+        MOVE TEMP 522
+            HALLOCATE
+            TEMP 523
+        MOVE TEMP 521 TEMP 522
+        HSTORE TEMP 521 0 TEMP 488
+        HSTORE TEMP 521 4 TEMP 489
+        MOVE TEMP 517
+            CALL
+                TEMP 520
+                (
+                    TEMP 518
+                    TEMP 521
+                )
+        MOVE TEMP 499 TEMP 517
+        JUMP L31
+        L30
+        MOVE TEMP 527 TEMP 489
+        HLOAD TEMP 528 TEMP 527 0
+        HLOAD TEMP 529 TEMP 528 20
+        MOVE TEMP 533 4
+        MOVE TEMP 532
+            TIMES TEMP 533 0
+        MOVE TEMP 531
+            HALLOCATE
+            TEMP 532
+        MOVE TEMP 530 TEMP 531
+        MOVE TEMP 526
+            CALL
+                TEMP 529
+                (
+                    TEMP 527
+                    TEMP 530
+                )
+        MOVE TEMP 525 TEMP 526
+        MOVE TEMP 538 TEMP 488
+        HLOAD TEMP 539 TEMP 538 0
+        HLOAD TEMP 540 TEMP 539 16
+        MOVE TEMP 544 4
+        MOVE TEMP 543
+            TIMES TEMP 544 0
+        MOVE TEMP 542
+            HALLOCATE
+            TEMP 543
+        MOVE TEMP 541 TEMP 542
+        MOVE TEMP 537
+            CALL
+                TEMP 540
+                (
+                    TEMP 538
+                    TEMP 541
+                )
+        MOVE TEMP 536 TEMP 537
+        HLOAD TEMP 545 TEMP 536 0
+        HLOAD TEMP 546 TEMP 545 20
+        MOVE TEMP 550 4
+        MOVE TEMP 549
+            TIMES TEMP 550 0
+        MOVE TEMP 548
+            HALLOCATE
+            TEMP 549
+        MOVE TEMP 547 TEMP 548
+        MOVE TEMP 535
+            CALL
+                TEMP 546
+                (
+                    TEMP 536
+                    TEMP 547
+                )
+        MOVE TEMP 534 TEMP 535
+        MOVE TEMP 552 TEMP 0
+        HLOAD TEMP 553 TEMP 552 0
+        HLOAD TEMP 554 TEMP 553 44
+        MOVE TEMP 558 4
+        MOVE TEMP 557
+            TIMES TEMP 558 2
+        MOVE TEMP 556
+            HALLOCATE
+            TEMP 557
+        MOVE TEMP 555 TEMP 556
+        HSTORE TEMP 555 0 TEMP 525
+        HSTORE TEMP 555 4 TEMP 534
+        MOVE TEMP 551
+            CALL
+                TEMP 554
+                (
+                    TEMP 552
+                    TEMP 555
+                )
+        MOVE TEMP 559 TEMP 551
+        CJUMP TEMP 559
+        L32
+        MOVE TEMP 561 TEMP 488
+        HLOAD TEMP 562 TEMP 561 0
+        HLOAD TEMP 563 TEMP 562 8
+        MOVE TEMP 567 4
+        MOVE TEMP 566
+            TIMES TEMP 567 1
+        MOVE TEMP 565
+            HALLOCATE
+            TEMP 566
+        MOVE TEMP 564 TEMP 565
+        HLOAD TEMP 568 TEMP 0 24
+        HSTORE TEMP 564 0 TEMP 568
+        MOVE TEMP 560
+            CALL
+                TEMP 563
+                (
+                    TEMP 561
+                    TEMP 564
+                )
+        MOVE TEMP 499 TEMP 560
+        MOVE TEMP 570 TEMP 488
+        HLOAD TEMP 571 TEMP 570 0
+        HLOAD TEMP 572 TEMP 571 36
+        MOVE TEMP 576 4
+        MOVE TEMP 575
+            TIMES TEMP 576 1
+        MOVE TEMP 574
+            HALLOCATE
+            TEMP 575
+        MOVE TEMP 573 TEMP 574
+        MOVE TEMP 577 0
+        HSTORE TEMP 573 0 TEMP 577
+        MOVE TEMP 569
+            CALL
+                TEMP 572
+                (
+                    TEMP 570
+                    TEMP 573
+                )
+        MOVE TEMP 499 TEMP 569
+        JUMP L33
+        L32
+        MOVE TEMP 579 TEMP 488
+        HLOAD TEMP 580 TEMP 579 0
+        HLOAD TEMP 581 TEMP 580 4
+        MOVE TEMP 585 4
+        MOVE TEMP 584
+            TIMES TEMP 585 1
+        MOVE TEMP 583
+            HALLOCATE
+            TEMP 584
+        MOVE TEMP 582 TEMP 583
+        HLOAD TEMP 586 TEMP 0 24
+        HSTORE TEMP 582 0 TEMP 586
+        MOVE TEMP 578
+            CALL
+                TEMP 581
+                (
+                    TEMP 579
+                    TEMP 582
+                )
+        MOVE TEMP 499 TEMP 578
+        MOVE TEMP 588 TEMP 488
+        HLOAD TEMP 589 TEMP 588 0
+        HLOAD TEMP 590 TEMP 589 40
+        MOVE TEMP 594 4
+        MOVE TEMP 593
+            TIMES TEMP 594 1
+        MOVE TEMP 592
+            HALLOCATE
+            TEMP 593
+        MOVE TEMP 591 TEMP 592
+        MOVE TEMP 595 0
+        HSTORE TEMP 591 0 TEMP 595
+        MOVE TEMP 587
+            CALL
+                TEMP 590
+                (
+                    TEMP 588
+                    TEMP 591
+                )
+        MOVE TEMP 499 TEMP 587
+        L33
+        NOOP
+        L31
+        NOOP
+        L29
+        NOOP
+        RETURN 1
+    END
+Tree_RemoveRight [2]
+    BEGIN
+        HLOAD TEMP 596 TEMP 1 0
+        HLOAD TEMP 597 TEMP 1 4
+        JUMP L34
+        L34
+        MOVE TEMP 599 TEMP 597
+        HLOAD TEMP 600 TEMP 599 0
+        HLOAD TEMP 601 TEMP 600 28
+        MOVE TEMP 605 4
+        MOVE TEMP 604
+            TIMES TEMP 605 0
+        MOVE TEMP 603
+            HALLOCATE
+            TEMP 604
+        MOVE TEMP 602 TEMP 603
+        MOVE TEMP 598
+            CALL
+                TEMP 601
+                (
+                    TEMP 599
+                    TEMP 602
+                )
+        MOVE TEMP 606 TEMP 598
+        CJUMP TEMP 606
+        L35
+        MOVE TEMP 609 TEMP 597
+        HLOAD TEMP 610 TEMP 609 0
+        HLOAD TEMP 611 TEMP 610 24
+        MOVE TEMP 615 4
+        MOVE TEMP 614
+            TIMES TEMP 615 1
+        MOVE TEMP 613
+            HALLOCATE
+            TEMP 614
+        MOVE TEMP 612 TEMP 613
+        MOVE TEMP 619 TEMP 597
+        HLOAD TEMP 620 TEMP 619 0
+        HLOAD TEMP 621 TEMP 620 12
+        MOVE TEMP 625 4
+        MOVE TEMP 624
+            TIMES TEMP 625 0
+        MOVE TEMP 623
+            HALLOCATE
+            TEMP 624
+        MOVE TEMP 622 TEMP 623
+        MOVE TEMP 618
+            CALL
+                TEMP 621
+                (
+                    TEMP 619
+                    TEMP 622
+                )
+        MOVE TEMP 617 TEMP 618
+        HLOAD TEMP 626 TEMP 617 0
+        HLOAD TEMP 627 TEMP 626 20
+        MOVE TEMP 631 4
+        MOVE TEMP 630
+            TIMES TEMP 631 0
+        MOVE TEMP 629
+            HALLOCATE
+            TEMP 630
+        MOVE TEMP 628 TEMP 629
+        MOVE TEMP 616
+            CALL
+                TEMP 627
+                (
+                    TEMP 617
+                    TEMP 628
+                )
+        HSTORE TEMP 612 0 TEMP 616
+        MOVE TEMP 608
+            CALL
+                TEMP 611
+                (
+                    TEMP 609
+                    TEMP 612
+                )
+        MOVE TEMP 607 TEMP 608
+        MOVE TEMP 596 TEMP 597
+        MOVE TEMP 633 TEMP 597
+        HLOAD TEMP 634 TEMP 633 0
+        HLOAD TEMP 635 TEMP 634 12
+        MOVE TEMP 639 4
+        MOVE TEMP 638
+            TIMES TEMP 639 0
+        MOVE TEMP 637
+            HALLOCATE
+            TEMP 638
+        MOVE TEMP 636 TEMP 637
+        MOVE TEMP 632
+            CALL
+                TEMP 635
+                (
+                    TEMP 633
+                    TEMP 636
+                )
+        MOVE TEMP 597 TEMP 632
+        JUMP L34
+        L35
+        NOOP
+        MOVE TEMP 641 TEMP 596
+        HLOAD TEMP 642 TEMP 641 0
+        HLOAD TEMP 643 TEMP 642 4
+        MOVE TEMP 647 4
+        MOVE TEMP 646
+            TIMES TEMP 647 1
+        MOVE TEMP 645
+            HALLOCATE
+            TEMP 646
+        MOVE TEMP 644 TEMP 645
+        HLOAD TEMP 648 TEMP 0 24
+        HSTORE TEMP 644 0 TEMP 648
+        MOVE TEMP 640
+            CALL
+                TEMP 643
+                (
+                    TEMP 641
+                    TEMP 644
+                )
+        MOVE TEMP 607 TEMP 640
+        MOVE TEMP 650 TEMP 596
+        HLOAD TEMP 651 TEMP 650 0
+        HLOAD TEMP 652 TEMP 651 40
+        MOVE TEMP 656 4
+        MOVE TEMP 655
+            TIMES TEMP 656 1
+        MOVE TEMP 654
+            HALLOCATE
+            TEMP 655
+        MOVE TEMP 653 TEMP 654
+        MOVE TEMP 657 0
+        HSTORE TEMP 653 0 TEMP 657
+        MOVE TEMP 649
+            CALL
+                TEMP 652
+                (
+                    TEMP 650
+                    TEMP 653
+                )
+        MOVE TEMP 607 TEMP 649
+        RETURN 1
+    END
+Tree_RemoveLeft [2]
+    BEGIN
+        HLOAD TEMP 658 TEMP 1 0
+        HLOAD TEMP 659 TEMP 1 4
+        JUMP L36
+        L36
+        MOVE TEMP 661 TEMP 659
+        HLOAD TEMP 662 TEMP 661 0
+        HLOAD TEMP 663 TEMP 662 32
+        MOVE TEMP 667 4
+        MOVE TEMP 666
+            TIMES TEMP 667 0
+        MOVE TEMP 665
+            HALLOCATE
+            TEMP 666
+        MOVE TEMP 664 TEMP 665
+        MOVE TEMP 660
+            CALL
+                TEMP 663
+                (
+                    TEMP 661
+                    TEMP 664
+                )
+        MOVE TEMP 668 TEMP 660
+        CJUMP TEMP 668
+        L37
+        MOVE TEMP 671 TEMP 659
+        HLOAD TEMP 672 TEMP 671 0
+        HLOAD TEMP 673 TEMP 672 24
+        MOVE TEMP 677 4
+        MOVE TEMP 676
+            TIMES TEMP 677 1
+        MOVE TEMP 675
+            HALLOCATE
+            TEMP 676
+        MOVE TEMP 674 TEMP 675
+        MOVE TEMP 681 TEMP 659
+        HLOAD TEMP 682 TEMP 681 0
+        HLOAD TEMP 683 TEMP 682 16
+        MOVE TEMP 687 4
+        MOVE TEMP 686
+            TIMES TEMP 687 0
+        MOVE TEMP 685
+            HALLOCATE
+            TEMP 686
+        MOVE TEMP 684 TEMP 685
+        MOVE TEMP 680
+            CALL
+                TEMP 683
+                (
+                    TEMP 681
+                    TEMP 684
+                )
+        MOVE TEMP 679 TEMP 680
+        HLOAD TEMP 688 TEMP 679 0
+        HLOAD TEMP 689 TEMP 688 20
+        MOVE TEMP 693 4
+        MOVE TEMP 692
+            TIMES TEMP 693 0
+        MOVE TEMP 691
+            HALLOCATE
+            TEMP 692
+        MOVE TEMP 690 TEMP 691
+        MOVE TEMP 678
+            CALL
+                TEMP 689
+                (
+                    TEMP 679
+                    TEMP 690
+                )
+        HSTORE TEMP 674 0 TEMP 678
+        MOVE TEMP 670
+            CALL
+                TEMP 673
+                (
+                    TEMP 671
+                    TEMP 674
+                )
+        MOVE TEMP 669 TEMP 670
+        MOVE TEMP 658 TEMP 659
+        MOVE TEMP 695 TEMP 659
+        HLOAD TEMP 696 TEMP 695 0
+        HLOAD TEMP 697 TEMP 696 16
+        MOVE TEMP 701 4
+        MOVE TEMP 700
+            TIMES TEMP 701 0
+        MOVE TEMP 699
+            HALLOCATE
+            TEMP 700
+        MOVE TEMP 698 TEMP 699
+        MOVE TEMP 694
+            CALL
+                TEMP 697
+                (
+                    TEMP 695
+                    TEMP 698
+                )
+        MOVE TEMP 659 TEMP 694
+        JUMP L36
+        L37
+        NOOP
+        MOVE TEMP 703 TEMP 658
+        HLOAD TEMP 704 TEMP 703 0
+        HLOAD TEMP 705 TEMP 704 8
+        MOVE TEMP 709 4
+        MOVE TEMP 708
+            TIMES TEMP 709 1
+        MOVE TEMP 707
+            HALLOCATE
+            TEMP 708
+        MOVE TEMP 706 TEMP 707
+        HLOAD TEMP 710 TEMP 0 24
+        HSTORE TEMP 706 0 TEMP 710
+        MOVE TEMP 702
+            CALL
+                TEMP 705
+                (
+                    TEMP 703
+                    TEMP 706
+                )
+        MOVE TEMP 669 TEMP 702
+        MOVE TEMP 712 TEMP 658
+        HLOAD TEMP 713 TEMP 712 0
+        HLOAD TEMP 714 TEMP 713 36
+        MOVE TEMP 718 4
+        MOVE TEMP 717
+            TIMES TEMP 718 1
+        MOVE TEMP 716
+            HALLOCATE
+            TEMP 717
+        MOVE TEMP 715 TEMP 716
+        MOVE TEMP 719 0
+        HSTORE TEMP 715 0 TEMP 719
+        MOVE TEMP 711
+            CALL
+                TEMP 714
+                (
+                    TEMP 712
+                    TEMP 715
+                )
+        MOVE TEMP 669 TEMP 711
+        RETURN 1
+    END
+Tree_Search [2]
+    BEGIN
+        HLOAD TEMP 720 TEMP 1 0
+        MOVE TEMP 721 TEMP 0
+        MOVE TEMP 722 1
+        MOVE TEMP 723 0
+        JUMP L38
+        L38
+        MOVE TEMP 724 TEMP 722
+        CJUMP TEMP 724
+        L39
+        MOVE TEMP 727 TEMP 721
+        HLOAD TEMP 728 TEMP 727 0
+        HLOAD TEMP 729 TEMP 728 20
+        MOVE TEMP 733 4
+        MOVE TEMP 732
+            TIMES TEMP 733 0
+        MOVE TEMP 731
+            HALLOCATE
+            TEMP 732
+        MOVE TEMP 730 TEMP 731
+        MOVE TEMP 726
+            CALL
+                TEMP 729
+                (
+                    TEMP 727
+                    TEMP 730
+                )
+        MOVE TEMP 725 TEMP 726
+        MOVE TEMP 734
+            LT TEMP 720 TEMP 725
+        MOVE TEMP 735 TEMP 734
+        CJUMP TEMP 735
+        L40
+        MOVE TEMP 737 TEMP 721
+        HLOAD TEMP 738 TEMP 737 0
+        HLOAD TEMP 739 TEMP 738 32
+        MOVE TEMP 743 4
+        MOVE TEMP 742
+            TIMES TEMP 743 0
+        MOVE TEMP 741
+            HALLOCATE
+            TEMP 742
+        MOVE TEMP 740 TEMP 741
+        MOVE TEMP 736
+            CALL
+                TEMP 739
+                (
+                    TEMP 737
+                    TEMP 740
+                )
+        MOVE TEMP 744 TEMP 736
+        CJUMP TEMP 744
+        L41
+        MOVE TEMP 746 TEMP 721
+        HLOAD TEMP 747 TEMP 746 0
+        HLOAD TEMP 748 TEMP 747 16
+        MOVE TEMP 752 4
+        MOVE TEMP 751
+            TIMES TEMP 752 0
+        MOVE TEMP 750
+            HALLOCATE
+            TEMP 751
+        MOVE TEMP 749 TEMP 750
+        MOVE TEMP 745
+            CALL
+                TEMP 748
+                (
+                    TEMP 746
+                    TEMP 749
+                )
+        MOVE TEMP 721 TEMP 745
+        JUMP L42
+        L41
+        MOVE TEMP 722 0
+        L42
+        NOOP
+        JUMP L43
+        L40
+        MOVE TEMP 753
+            LT TEMP 725 TEMP 720
+        MOVE TEMP 754 TEMP 753
+        CJUMP TEMP 754
+        L44
+        MOVE TEMP 756 TEMP 721
+        HLOAD TEMP 757 TEMP 756 0
+        HLOAD TEMP 758 TEMP 757 28
+        MOVE TEMP 762 4
+        MOVE TEMP 761
+            TIMES TEMP 762 0
+        MOVE TEMP 760
+            HALLOCATE
+            TEMP 761
+        MOVE TEMP 759 TEMP 760
+        MOVE TEMP 755
+            CALL
+                TEMP 758
+                (
+                    TEMP 756
+                    TEMP 759
+                )
+        MOVE TEMP 763 TEMP 755
+        CJUMP TEMP 763
+        L45
+        MOVE TEMP 765 TEMP 721
+        HLOAD TEMP 766 TEMP 765 0
+        HLOAD TEMP 767 TEMP 766 12
+        MOVE TEMP 771 4
+        MOVE TEMP 770
+            TIMES TEMP 771 0
+        MOVE TEMP 769
+            HALLOCATE
+            TEMP 770
+        MOVE TEMP 768 TEMP 769
+        MOVE TEMP 764
+            CALL
+                TEMP 767
+                (
+                    TEMP 765
+                    TEMP 768
+                )
+        MOVE TEMP 721 TEMP 764
+        JUMP L46
+        L45
+        MOVE TEMP 722 0
+        L46
+        NOOP
+        JUMP L47
+        L44
+        MOVE TEMP 723 1
+        MOVE TEMP 722 0
+        L47
+        NOOP
+        L43
+        NOOP
+        JUMP L38
+        L39
+        NOOP
+        RETURN TEMP 723
+    END
+Tree_Print [2]
+    BEGIN
+        MOVE TEMP 772 TEMP 0
+        MOVE TEMP 775 TEMP 0
+        HLOAD TEMP 776 TEMP 775 0
+        HLOAD TEMP 777 TEMP 776 76
+        MOVE TEMP 781 4
+        MOVE TEMP 780
+            TIMES TEMP 781 1
+        MOVE TEMP 779
+            HALLOCATE
+            TEMP 780
+        MOVE TEMP 778 TEMP 779
+        HSTORE TEMP 778 0 TEMP 772
+        MOVE TEMP 774
+            CALL
+                TEMP 777
+                (
+                    TEMP 775
+                    TEMP 778
+                )
+        MOVE TEMP 773 TEMP 774
+        RETURN 1
+    END
+Tree_RecPrint [2]
+    BEGIN
+        HLOAD TEMP 782 TEMP 1 0
+        MOVE TEMP 784 TEMP 782
+        HLOAD TEMP 785 TEMP 784 0
+        HLOAD TEMP 786 TEMP 785 32
+        MOVE TEMP 790 4
+        MOVE TEMP 789
+            TIMES TEMP 790 0
+        MOVE TEMP 788
+            HALLOCATE
+            TEMP 789
+        MOVE TEMP 787 TEMP 788
+        MOVE TEMP 783
+            CALL
+                TEMP 786
+                (
+                    TEMP 784
+                    TEMP 787
+                )
+        MOVE TEMP 791 TEMP 783
+        CJUMP TEMP 791
+        L48
+        MOVE TEMP 794 TEMP 0
+        HLOAD TEMP 795 TEMP 794 0
+        HLOAD TEMP 796 TEMP 795 76
+        MOVE TEMP 800 4
+        MOVE TEMP 799
+            TIMES TEMP 800 1
+        MOVE TEMP 798
+            HALLOCATE
+            TEMP 799
+        MOVE TEMP 797 TEMP 798
+        MOVE TEMP 802 TEMP 782
+        HLOAD TEMP 803 TEMP 802 0
+        HLOAD TEMP 804 TEMP 803 16
+        MOVE TEMP 808 4
+        MOVE TEMP 807
+            TIMES TEMP 808 0
+        MOVE TEMP 806
+            HALLOCATE
+            TEMP 807
+        MOVE TEMP 805 TEMP 806
+        MOVE TEMP 801
+            CALL
+                TEMP 804
+                (
+                    TEMP 802
+                    TEMP 805
+                )
+        HSTORE TEMP 797 0 TEMP 801
+        MOVE TEMP 793
+            CALL
+                TEMP 796
+                (
+                    TEMP 794
+                    TEMP 797
+                )
+        MOVE TEMP 792 TEMP 793
+        JUMP L49
+        L48
+        MOVE TEMP 792 1
+        L49
+        NOOP
+        MOVE TEMP 810 TEMP 782
+        HLOAD TEMP 811 TEMP 810 0
+        HLOAD TEMP 812 TEMP 811 20
+        MOVE TEMP 816 4
+        MOVE TEMP 815
+            TIMES TEMP 816 0
+        MOVE TEMP 814
+            HALLOCATE
+            TEMP 815
+        MOVE TEMP 813 TEMP 814
+        MOVE TEMP 809
+            CALL
+                TEMP 812
+                (
+                    TEMP 810
+                    TEMP 813
+                )
+        PRINT TEMP 809
+        MOVE TEMP 818 TEMP 782
+        HLOAD TEMP 819 TEMP 818 0
+        HLOAD TEMP 820 TEMP 819 28
+        MOVE TEMP 824 4
+        MOVE TEMP 823
+            TIMES TEMP 824 0
+        MOVE TEMP 822
+            HALLOCATE
+            TEMP 823
+        MOVE TEMP 821 TEMP 822
+        MOVE TEMP 817
+            CALL
+                TEMP 820
+                (
+                    TEMP 818
+                    TEMP 821
+                )
+        MOVE TEMP 825 TEMP 817
+        CJUMP TEMP 825
+        L50
+        MOVE TEMP 827 TEMP 0
+        HLOAD TEMP 828 TEMP 827 0
+        HLOAD TEMP 829 TEMP 828 76
+        MOVE TEMP 833 4
+        MOVE TEMP 832
+            TIMES TEMP 833 1
+        MOVE TEMP 831
+            HALLOCATE
+            TEMP 832
+        MOVE TEMP 830 TEMP 831
+        MOVE TEMP 835 TEMP 782
+        HLOAD TEMP 836 TEMP 835 0
+        HLOAD TEMP 837 TEMP 836 12
+        MOVE TEMP 841 4
+        MOVE TEMP 840
+            TIMES TEMP 841 0
+        MOVE TEMP 839
+            HALLOCATE
+            TEMP 840
+        MOVE TEMP 838 TEMP 839
+        MOVE TEMP 834
+            CALL
+                TEMP 837
+                (
+                    TEMP 835
+                    TEMP 838
+                )
+        HSTORE TEMP 830 0 TEMP 834
+        MOVE TEMP 826
+            CALL
+                TEMP 829
+                (
+                    TEMP 827
+                    TEMP 830
+                )
+        MOVE TEMP 792 TEMP 826
+        JUMP L51
+        L50
+        MOVE TEMP 792 1
+        L51
+        NOOP
+        RETURN 1
+    END
+Tree_accept [2]
+    BEGIN
+        HLOAD TEMP 842 TEMP 1 0
+        PRINT 333
+        MOVE TEMP 845 TEMP 842
+        HLOAD TEMP 846 TEMP 845 0
+        HLOAD TEMP 847 TEMP 846 0
+        MOVE TEMP 851 4
+        MOVE TEMP 850
+            TIMES TEMP 851 1
+        MOVE TEMP 849
+            HALLOCATE
+            TEMP 850
+        MOVE TEMP 848 TEMP 849
+        HSTORE TEMP 848 0 TEMP 0
+        MOVE TEMP 844
+            CALL
+                TEMP 847
+                (
+                    TEMP 845
+                    TEMP 848
+                )
+        MOVE TEMP 843 TEMP 844
+        RETURN 0
+    END
+Visitor_visit [2]
+    BEGIN
+        HLOAD TEMP 852 TEMP 1 0
+        MOVE TEMP 854 TEMP 852
+        HLOAD TEMP 855 TEMP 854 0
+        HLOAD TEMP 856 TEMP 855 28
+        MOVE TEMP 860 4
+        MOVE TEMP 859
+            TIMES TEMP 860 0
+        MOVE TEMP 858
+            HALLOCATE
+            TEMP 859
+        MOVE TEMP 857 TEMP 858
+        MOVE TEMP 853
+            CALL
+                TEMP 856
+                (
+                    TEMP 854
+                    TEMP 857
+                )
+        MOVE TEMP 861 TEMP 853
+        CJUMP TEMP 861
+        L52
+        MOVE TEMP 863 TEMP 852
+        HLOAD TEMP 864 TEMP 863 0
+        HLOAD TEMP 865 TEMP 864 12
+        MOVE TEMP 869 4
+        MOVE TEMP 868
+            TIMES TEMP 869 0
+        MOVE TEMP 867
+            HALLOCATE
+            TEMP 868
+        MOVE TEMP 866 TEMP 867
+        MOVE TEMP 862
+            CALL
+                TEMP 865
+                (
+                    TEMP 863
+                    TEMP 866
+                )
+        HSTORE TEMP 0 8 TEMP 862
+        HLOAD TEMP 873 TEMP 0 8
+        MOVE TEMP 872 TEMP 873
+        HLOAD TEMP 874 TEMP 872 0
+        HLOAD TEMP 875 TEMP 874 80
+        MOVE TEMP 879 4
+        MOVE TEMP 878
+            TIMES TEMP 879 1
+        MOVE TEMP 877
+            HALLOCATE
+            TEMP 878
+        MOVE TEMP 876 TEMP 877
+        HSTORE TEMP 876 0 TEMP 0
+        MOVE TEMP 871
+            CALL
+                TEMP 875
+                (
+                    TEMP 872
+                    TEMP 876
+                )
+        MOVE TEMP 870 TEMP 871
+        JUMP L53
+        L52
+        MOVE TEMP 870 0
+        L53
+        NOOP
+        MOVE TEMP 881 TEMP 852
+        HLOAD TEMP 882 TEMP 881 0
+        HLOAD TEMP 883 TEMP 882 32
+        MOVE TEMP 887 4
+        MOVE TEMP 886
+            TIMES TEMP 887 0
+        MOVE TEMP 885
+            HALLOCATE
+            TEMP 886
+        MOVE TEMP 884 TEMP 885
+        MOVE TEMP 880
+            CALL
+                TEMP 883
+                (
+                    TEMP 881
+                    TEMP 884
+                )
+        MOVE TEMP 888 TEMP 880
+        CJUMP TEMP 888
+        L54
+        MOVE TEMP 890 TEMP 852
+        HLOAD TEMP 891 TEMP 890 0
+        HLOAD TEMP 892 TEMP 891 16
+        MOVE TEMP 896 4
+        MOVE TEMP 895
+            TIMES TEMP 896 0
+        MOVE TEMP 894
+            HALLOCATE
+            TEMP 895
+        MOVE TEMP 893 TEMP 894
+        MOVE TEMP 889
+            CALL
+                TEMP 892
+                (
+                    TEMP 890
+                    TEMP 893
+                )
+        HSTORE TEMP 0 4 TEMP 889
+        HLOAD TEMP 899 TEMP 0 4
+        MOVE TEMP 898 TEMP 899
+        HLOAD TEMP 900 TEMP 898 0
+        HLOAD TEMP 901 TEMP 900 80
+        MOVE TEMP 905 4
+        MOVE TEMP 904
+            TIMES TEMP 905 1
+        MOVE TEMP 903
+            HALLOCATE
+            TEMP 904
+        MOVE TEMP 902 TEMP 903
+        HSTORE TEMP 902 0 TEMP 0
+        MOVE TEMP 897
+            CALL
+                TEMP 901
+                (
+                    TEMP 898
+                    TEMP 902
+                )
+        MOVE TEMP 870 TEMP 897
+        JUMP L55
+        L54
+        MOVE TEMP 870 0
+        L55
+        NOOP
+        RETURN 0
+    END
+MyVisitor_visit [2]
+    BEGIN
+        HLOAD TEMP 906 TEMP 1 0
+        MOVE TEMP 908 TEMP 906
+        HLOAD TEMP 909 TEMP 908 0
+        HLOAD TEMP 910 TEMP 909 28
+        MOVE TEMP 914 4
+        MOVE TEMP 913
+            TIMES TEMP 914 0
+        MOVE TEMP 912
+            HALLOCATE
+            TEMP 913
+        MOVE TEMP 911 TEMP 912
+        MOVE TEMP 907
+            CALL
+                TEMP 910
+                (
+                    TEMP 908
+                    TEMP 911
+                )
+        MOVE TEMP 915 TEMP 907
+        CJUMP TEMP 915
+        L56
+        MOVE TEMP 917 TEMP 906
+        HLOAD TEMP 918 TEMP 917 0
+        HLOAD TEMP 919 TEMP 918 12
+        MOVE TEMP 923 4
+        MOVE TEMP 922
+            TIMES TEMP 923 0
+        MOVE TEMP 921
+            HALLOCATE
+            TEMP 922
+        MOVE TEMP 920 TEMP 921
+        MOVE TEMP 916
+            CALL
+                TEMP 919
+                (
+                    TEMP 917
+                    TEMP 920
+                )
+        HSTORE TEMP 0 8 TEMP 916
+        HLOAD TEMP 927 TEMP 0 8
+        MOVE TEMP 926 TEMP 927
+        HLOAD TEMP 928 TEMP 926 0
+        HLOAD TEMP 929 TEMP 928 80
+        MOVE TEMP 933 4
+        MOVE TEMP 932
+            TIMES TEMP 933 1
+        MOVE TEMP 931
+            HALLOCATE
+            TEMP 932
+        MOVE TEMP 930 TEMP 931
+        HSTORE TEMP 930 0 TEMP 0
+        MOVE TEMP 925
+            CALL
+                TEMP 929
+                (
+                    TEMP 926
+                    TEMP 930
+                )
+        MOVE TEMP 924 TEMP 925
+        JUMP L57
+        L56
+        MOVE TEMP 924 0
+        L57
+        NOOP
+        MOVE TEMP 935 TEMP 906
+        HLOAD TEMP 936 TEMP 935 0
+        HLOAD TEMP 937 TEMP 936 20
+        MOVE TEMP 941 4
+        MOVE TEMP 940
+            TIMES TEMP 941 0
+        MOVE TEMP 939
+            HALLOCATE
+            TEMP 940
+        MOVE TEMP 938 TEMP 939
+        MOVE TEMP 934
+            CALL
+                TEMP 937
+                (
+                    TEMP 935
+                    TEMP 938
+                )
+        PRINT TEMP 934
+        MOVE TEMP 943 TEMP 906
+        HLOAD TEMP 944 TEMP 943 0
+        HLOAD TEMP 945 TEMP 944 32
+        MOVE TEMP 949 4
+        MOVE TEMP 948
+            TIMES TEMP 949 0
+        MOVE TEMP 947
+            HALLOCATE
+            TEMP 948
+        MOVE TEMP 946 TEMP 947
+        MOVE TEMP 942
+            CALL
+                TEMP 945
+                (
+                    TEMP 943
+                    TEMP 946
+                )
+        MOVE TEMP 950 TEMP 942
+        CJUMP TEMP 950
+        L58
+        MOVE TEMP 952 TEMP 906
+        HLOAD TEMP 953 TEMP 952 0
+        HLOAD TEMP 954 TEMP 953 16
+        MOVE TEMP 958 4
+        MOVE TEMP 957
+            TIMES TEMP 958 0
+        MOVE TEMP 956
+            HALLOCATE
+            TEMP 957
+        MOVE TEMP 955 TEMP 956
+        MOVE TEMP 951
+            CALL
+                TEMP 954
+                (
+                    TEMP 952
+                    TEMP 955
+                )
+        HSTORE TEMP 0 4 TEMP 951
+        HLOAD TEMP 961 TEMP 0 4
+        MOVE TEMP 960 TEMP 961
+        HLOAD TEMP 962 TEMP 960 0
+        HLOAD TEMP 963 TEMP 962 80
+        MOVE TEMP 967 4
+        MOVE TEMP 966
+            TIMES TEMP 967 1
+        MOVE TEMP 965
+            HALLOCATE
+            TEMP 966
+        MOVE TEMP 964 TEMP 965
+        HSTORE TEMP 964 0 TEMP 0
+        MOVE TEMP 959
+            CALL
+                TEMP 963
+                (
+                    TEMP 960
+                    TEMP 964
+                )
+        MOVE TEMP 924 TEMP 959
+        JUMP L59
+        L58
+        MOVE TEMP 924 0
+        L59
+        NOOP
+        RETURN 0
+    END

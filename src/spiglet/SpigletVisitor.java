@@ -83,10 +83,20 @@ public class SpigletVisitor extends GJDepthFirst<AbstractSPigletResult, Abstract
 	 * f0 -> ( ( Label() )? Stmt() )*
 	 */
 	public AbstractSPigletResult visit(StmtList n, AbstractSPigletResult argu) {
+//		for(int i=0;i<n.f0.nodes.size();i++){
+//			spiglet_print(n.f0.nodes.get(i).f0.nodechoice.f0.toString(),indent);
+//			n.f0.nodes.get(i).f1.accept(this,argu);
+//		}
 		n.f0.accept(this,argu);
 		return null;
 	}
 	
+	public AbstractSPigletResult visit(NodeOptional n, AbstractSPigletResult argu) {
+		if(n.present()){
+			spiglet_print(n.node.accept(this,argu).toString(),indent);
+		}
+		return null;
+	}
 	/**
 	 * Grammar production:
 	 * f0 -> Label()
@@ -144,12 +154,16 @@ public class SpigletVisitor extends GJDepthFirst<AbstractSPigletResult, Abstract
 	 * f2 -> Label()
 	 */
 	public AbstractSPigletResult visit(CJumpStmt n, AbstractSPigletResult argu) {
-		String exp = ((SPigletResult)n.f1.accept(this,argu)).toString();
-		
+		SPigletResult exp = ((SPigletResult)n.f1.accept(this,argu));
+		if(!exp.isTemp()) {
+			String newTemp1=getTemp();
+			spiglet_print("MOVE "+newTemp1+" "+exp,indent);
+			exp=new SPigletResult(newTemp1,true);
+		}
 		String temp = getTemp();
 		spiglet_print("MOVE "+temp+" "+exp,indent);
 		spiglet_print("CJUMP "+temp,indent);
-		n.f2.accept(this,argu);
+		spiglet_print(n.f2.accept(this,argu).toString(),indent);
 		return null;
 		
 	}
@@ -159,8 +173,9 @@ public class SpigletVisitor extends GJDepthFirst<AbstractSPigletResult, Abstract
 	 * f1 -> Label()
 	 */
 	public AbstractSPigletResult visit(JumpStmt n, AbstractSPigletResult argu) {
-		spiglet_print("JUMP ",indent);
-		n.f1.accept(this,argu);
+		spiglet_print("JUMP "+n.f1.accept(this,argu).toString(),indent);
+//		spiglet_print(,indent);
+		
 		return null;
 	}
 	/**
@@ -174,6 +189,11 @@ public class SpigletVisitor extends GJDepthFirst<AbstractSPigletResult, Abstract
 	public AbstractSPigletResult visit(HLoadStmt n, AbstractSPigletResult argu) {
 		SPigletResult temp = (SPigletResult)n.f1.accept(this,argu);
 		SPigletResult exp = (SPigletResult)n.f2.accept(this,argu);
+		if(!exp.isTemp()) {
+			String newTemp=getTemp();
+			spiglet_print("MOVE "+newTemp+" "+exp,indent);
+			exp=new SPigletResult(newTemp,true);
+		}
 //		if(!exp.isTemp()) {
 //			String t = getTemp();
 //			spiglet_print("MOVE "+t+" "+exp.toString(),indent);
@@ -221,12 +241,22 @@ public class SpigletVisitor extends GJDepthFirst<AbstractSPigletResult, Abstract
 	public AbstractSPigletResult visit(HStoreStmt n, AbstractSPigletResult argu) {
 		AbstractSPigletResult ret=null;
 		SPigletResult exp1=(SPigletResult)n.f1.accept(this,argu);
+		if(!exp1.isTemp()) {
+			String newTemp1=getTemp();
+			spiglet_print("MOVE "+newTemp1+" "+exp1,indent);
+			exp1=new SPigletResult(newTemp1,true);
+		}
 //		if(!exp1.isTemp()) {
 //			String newTemp=getTemp();
 //			spiglet_print("MOVE "+newTemp+" "+exp1,indent);
 //			exp1=new SPigletResult(newTemp,true);
 //		}
 		SPigletResult exp2=(SPigletResult)n.f3.accept(this,argu);
+		if(!exp2.isTemp()) {
+			String newTemp2=getTemp();
+			spiglet_print("MOVE "+newTemp2+" "+exp2,indent);
+			exp2=new SPigletResult(newTemp2,true);
+		}
 //		if(!exp2.isTemp()) {
 //			String newTemp=getTemp();
 //			spiglet_print("MOVE "+newTemp+" "+exp2,indent);
@@ -350,6 +380,11 @@ public class SpigletVisitor extends GJDepthFirst<AbstractSPigletResult, Abstract
 		
 		
 		SPigletResult exp1=(SPigletResult)n.f1.accept(this,argu);
+		if(!exp1.isTemp()) {
+			String newTemp1=getTemp();
+			spiglet_print("MOVE "+newTemp1+" "+exp1,indent);
+			exp1=new SPigletResult(newTemp1,true);
+		}
 //		if(!exp1.isTemp()) {
 //			String newTemp=getTemp();
 //			spiglet_print("MOVE "+newTemp+" "+exp1,indent);
@@ -388,7 +423,9 @@ public class SpigletVisitor extends GJDepthFirst<AbstractSPigletResult, Abstract
 	 */
 	public AbstractSPigletResult visit(Temp n, AbstractSPigletResult argu) {
 		String temp;
-		String temp_piglet = "TEMP "+n.f1.f0.tokenImage; 
+		String temp_piglet = "TEMP "+n.f1.f0.tokenImage;
+		if(Integer.parseInt(n.f1.f0.tokenImage) <20)
+			return new SPigletResult(temp_piglet,true);
 		if(tempMap.containsKey(temp_piglet)){
 			temp = tempMap.get(temp_piglet);
 		}

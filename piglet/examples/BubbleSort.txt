@@ -225,7 +225,8 @@ BBS_Print [ 2 ]
         MOVE TEMP 74
         0
         JUMP L6
-            L6 CJUMP
+            L6 
+            CJUMP
             LT
             TEMP 74
             BEGIN
