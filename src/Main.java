@@ -2,7 +2,8 @@ import java.io.*;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map.Entry;
-
+import spiglet.SpigletParser;
+import toKanga.KangaVisitor;	
 import javafx.util.Pair;
 import visitor.*;
 //import visitor_piglet;
@@ -24,8 +25,8 @@ public class Main {
 			// BinaryTree BubbleSort Factorial LinearSearch MoreThan4 LinkedList QuickSort TreeVisitor
 			//1-PrintLiteral 2-Add 3-Call 4-Vars 5-OutOfBounds
 			
-			piglet2spiglet("./piglet/examples/QuickSort");
-			
+			//piglet2spiglet("./piglet/examples/QuickSort");
+			spiglet2kanga("./spiglet/BinaryTree");
 
 		} catch (TokenMgrError e) {
 			e.printStackTrace();
@@ -33,7 +34,17 @@ public class Main {
 			e.printStackTrace();
 		}
 	}
-	
+	public static void spiglet2kanga(String arg0) throws FileNotFoundException, spiglet.ParseException{
+		String parse_file = arg0;//input file path  TreeVisitor BubbleSort MoreThan4
+		InputStream in = new FileInputStream(parse_file+".spg");
+		String outfile = parse_file+".kg";//output file path
+		
+		//Translate
+		new spiglet.SpigletParser(in);
+		spiglet.syntaxtree.Node spigletroot = SpigletParser.Goal();
+		spigletroot.accept(new KangaVisitor(),null);
+		System.out.println("Piglet to sPiglet Finished");
+	}
 	public static void piglet2spiglet(String arg0) throws FileNotFoundException, ParseException{
 		String parse_file = arg0;//input file path  TreeVisitor BubbleSort MoreThan4
 		InputStream in = new FileInputStream(parse_file+".txt");

@@ -4,7 +4,8 @@ public class Put {
 	static String filename;
 	static String output = "";
 	public static void con(String s){
-		output += Tab + s;
+		//output += Tab + s;
+		System.out.print(Tab+s);
 	}
 	public static void file(String s){
 		
