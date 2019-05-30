@@ -301,7 +301,7 @@ public class TranslateVisitor extends GJDepthFirst<String, MType>{
 			piglet_print("HLOAD "+reg+" "+vTable+" "+(((MClass)scope).variableNumber(varName)*4+4)+"\n",indent);
 			piglet_print("RETURN "+reg+" \n",indent);
 			piglet_print("END\n",--indent);
-			//reg = ???;
+			
 		}
 		else {
 
