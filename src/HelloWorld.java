@@ -1,23 +1,17 @@
+import java.util.Hashtable;
 
 public class HelloWorld {
-	public static void main(String args[]){
-		System.out.println("Hello World");
-		A aa = new B();
-		System.out.println(aa.a());
+	public static void main(String [] args){
+		Hashtable<Integer,str> t=new Hashtable<Integer,str>();
+		t.put(1,new str(1));
+		str s=t.get(1);
+		s.a=2;
+		System.out.println(t.get(1).a);
 	}
 }
-
-class A{
-	public int x =2;
-	public int a(){
-		return 0;
+class str{
+	int a;
+	public str(int k){
+		a=k;
 	}
 }
-
-class B extends A{
-	public int b(){
-		return 2;
-	}
-}
-
-
