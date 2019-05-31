@@ -74,7 +74,7 @@ public class RegAllocator {
 				}
 	});
 	
-	public RegAllocator(Hashtable<Integer, TempInterval> temptable, TreeSet<TempInterval> t, int argnum) {
+	public RegAllocator(TreeSet<TempInterval> t, int argnum) {
 		nargs=argnum;
 		tempList=t;
 		stackpos=0;

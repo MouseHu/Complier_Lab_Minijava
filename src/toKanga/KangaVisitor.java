@@ -3,18 +3,35 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.Comparator;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.TreeSet;
+import java.util.Vector;
 
+import spiglet.visitor.*;
 import spiglet.syntaxtree.*;
-import toKanga.*;
-import spiglet.visitor.GJVoidDepthFirst;
-
-public class KangaVisitor extends GJVoidDepthFirst{
+class environ{
+	String funcName;
+	int position=0;
+	int regNum=0;
+	LinkedList<Table> tables;
+	public environ(LinkedList<Table> t,String s,int pos,int n) {
+		position=pos;
+		regNum=n;
+		funcName=s;
+		tables=t;
+	}
+}
+public class KangaVisitor extends GJVoidDepthFirst<environ>{
 	public static OutputStreamWriter writer;
 	String outfile;
 	int indent;
 	public KangaVisitor(String out) throws FileNotFoundException{
 		outfile = out;
 		writer = new OutputStreamWriter(new FileOutputStream(outfile));
+		indent=0;
 	}
 	public void kpln(String s, int indent){
 		String res = "";
@@ -56,15 +73,39 @@ public class KangaVisitor extends GJVoidDepthFirst{
 	 * f3 -> ( Procedure() )*
 	 * f4 -> <EOF>
 	 */
-	public void visit(Goal n){
+	public void visit(Goal n,environ e){
+		IntervalVisitor vis=new IntervalVisitor();
+		n.accept(vis);
+		RegAllocator alloc=new RegAllocator(vis.temp_list,vis.max_args);
+		kpln("MAIN [ 0 ][ "+alloc.stackpos+" ][ "+alloc.nargs+" ]",indent++);
+		n.f1.accept(this,new environ(alloc.tables,"MAIN",0,alloc.usedRegNum));
+		kpln("END",--indent);
+		n.f3.accept(this,null);	
 	}
 	/**
 	 * Grammar production:
 	 * f0 -> ( ( Label() )? Stmt() )*
 	 */
-	public void visit(StmtList n){
+	public void visit(StmtList n, environ e){
+		n.f0.accept(this,e);
+		return;
 	}
-	
+	/**
+	 * Grammar production:
+	 * f0 -> NoOpStmt()
+	 *       | ErrorStmt()
+	 *       | CJumpStmt()
+	 *       | JumpStmt()
+	 *       | HStoreStmt()
+	 *       | HLoadStmt()
+	 *       | MoveStmt()
+	 *       | PrintStmt()
+	 */
+	public void visit(Stmt n, environ e) {
+		e.position++;
+		n.f0.accept(this,e);
+		return;
+	}
 	/**
 	 * Grammar production:
 	 * f0 -> Label()
@@ -73,19 +114,28 @@ public class KangaVisitor extends GJVoidDepthFirst{
 	 * f3 -> "]"
 	 * f4 -> StmtExp()
 	 */
-	public void visit(Procedure n){
+	public void visit(Procedure n, environ e){
+		IntervalVisitor vis=new IntervalVisitor();
+		n.accept(vis);
+		RegAllocator alloc=new RegAllocator(vis.temp_list,vis.max_args);
+		genHead(n.f0.f0.toString(),Integer.parseInt(n.f2.f0.toString()),alloc.stackpos,alloc.nargs,alloc.usedReg,alloc.usedRegNum);
+		n.f4.accept(this,new environ(alloc.tables,n.f0.f0.toString(),0,alloc.usedRegNum));
+		genTail(alloc.usedReg,alloc.usedRegNum);
+		return;
 	}
 	/**
 	 * Grammar production:
 	 * f0 -> "NOOP"
 	 */
-	public void visit(NoOpStmt n) {
+	public void visit(NoOpStmt n,environ e) {
+		kpln("NOOP",indent);
 	}
 	/**
 	 * Grammar production:
 	 * f0 -> "ERROR"
 	 */
-	public void visit(ErrorStmt n){
+	public void visit(ErrorStmt n,environ e){
+		kpln("ERROR",indent);
 	}
 	/**
 	 * Grammar production:
@@ -93,14 +143,20 @@ public class KangaVisitor extends GJVoidDepthFirst{
 	 * f1 -> Temp()
 	 * f2 -> Label()
 	 */
-	public void visit(CJumpStmt n){
+	public void visit(CJumpStmt n,environ e){
+		kp("CJUMP",indent);
+		n.f1.accept(this,e);
+		kpln(e.funcName+"_"+n.f2.toString(),indent);
+		return;
 	}
 	/**
 	 * Grammar production:
 	 * f0 -> "JUMP"
 	 * f1 -> Label()
 	 */	
-	public void visit(JumpStmt n){
+	public void visit(JumpStmt n,environ e){
+		kpln("JUMP "+e.funcName+"_"+n.f1.f0.toString(),indent);
+		return;
 	}
 	/**
 	 * Grammar production:
@@ -193,5 +249,31 @@ public class KangaVisitor extends GJVoidDepthFirst{
 	public void visit(Label n){
 	
 	}
-	
+	void genHead(String name, int a,int b,int c,int[] regs,int usedNum) {
+		kpln(name+" [ "+a+" ][ "+b+" ][ "+c+" ]",indent++);
+		for(int i=0;i<usedNum;i++) {
+			kpln("ASTORE SPILLDARG "+i+" "+RegNames.REGS[regs[i]],indent);
+		}
+	}
+	void genTail(int[] regs,int usedNum) {
+		for(int i=0;i<usedNum;i++) {
+			kpln("ALOAD "+RegNames.REGS[regs[i]]+" SPILLEDARG "+i,indent);
+		}
+	}
+	String readTemp(int t, environ e) {
+		Iterator<Table> itr=e.tables.iterator();
+		Table node=e.tables.getFirst();
+		int pos=e.position;
+		while(itr.hasNext()) {
+			node=itr.next();
+			if(node.pos>pos)  break;
+		}
+		if(node.regs.containsKey(t)) {
+			return RegNames.REGS[node.regs.get(t).regnum];
+		}
+		else if(node.stacks.containsKey(t)) {
+			kpln("ALOAD")
+		}
+		return outfile;
+	}
 }
