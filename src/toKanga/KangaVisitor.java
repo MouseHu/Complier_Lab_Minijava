@@ -169,7 +169,7 @@ public class KangaVisitor extends GJVoidDepthFirst<environ>{
 	 */
 	public void visit(CJumpStmt n,environ env){
 		kp("CJUMP ",indent);
-		String f1 = readTemp(Integer.parseInt(n.f1.f1.toString()),env,0);
+		String f1 = readTemp(Integer.parseInt(n.f1.f1.f0.tokenImage),env,0);
 //		kpln(e.funcName+"_"+n.f2.toString(),indent);
 		
 		kpln(env.funcName+"_"+n.f2.f0.toString(),indent);
@@ -251,7 +251,7 @@ public class KangaVisitor extends GJVoidDepthFirst<environ>{
 			return;
 		case 2:
 			BinOp b = ((BinOp)n.f2.f0.choice);
-			s1 = readTemp(Integer.parseInt(b.f1.f0.tokenImage), env, 0);
+			s1 = readTemp(Integer.parseInt(b.f1.f1.f0.tokenImage), env, 0);
 			s2 = simpleExp(b.f2, env, 1);
 			s3 = writeTemp(Integer.parseInt(n.f1.f1.f0.tokenImage), env, 0, tempWrite);
 			kp("MOVE " + s3 + " ",indent);
@@ -380,7 +380,7 @@ public class KangaVisitor extends GJVoidDepthFirst<environ>{
 			return RegNames.REGS[node.regs.get(t).regnum];
 		}
 		else if(node.stacks.containsKey(t)) {
-			kpln("ALOAD " + RegNames.REGS[cond+22] + " SPILLEDARG " + node.regs.get(t).stackpos,indent);
+			kpln("ALOAD " + RegNames.REGS[cond+22] + " SPILLEDARG " + node.stacks.get(t).stackpos,indent);
 			
 //			kpln("ALOAD",indent);
 			return  RegNames.REGS[cond+22];
@@ -401,7 +401,7 @@ public class KangaVisitor extends GJVoidDepthFirst<environ>{
 
 		temp = node.regs.get(t);
 
-		if(temp.isreg == true)
+		if(temp!=null)
 		{
 //			int oldTempnum = regMan.getVar(templ.loc);
 //			if(c.Curr.spillToMem.containsKey(new Integer(oldTempnum)))
@@ -414,7 +414,8 @@ public class KangaVisitor extends GJVoidDepthFirst<environ>{
 			return RegNames.REGS[temp.regnum];
 		}
 		else
-		{			
+		{		
+			temp = node.stacks.get(t);
 			return  RegNames.REGS[cond+22];
 		}	
 	}
@@ -423,7 +424,7 @@ public class KangaVisitor extends GJVoidDepthFirst<environ>{
 	{
 		switch(n.f0.which)
 		{
-			case 0:	return readTemp(Integer.parseInt(((Temp)n.f0.choice).f1.toString()), env, cond);
+			case 0:	return readTemp(Integer.parseInt(((Temp)n.f0.choice).f1.f0.tokenImage), env, cond);
 			case 1: return ((IntegerLiteral)n.f0.choice).f0.toString();
 			case 2: return ((Label)n.f0.choice).f0.toString();
 		}

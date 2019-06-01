@@ -63,7 +63,7 @@ public class RegAllocator {
 	TreeSet<TempInterval> tempList;
 	int stackpos;
 	public LinkedList<Table> tables= new LinkedList<Table>();
-	regManager manager;
+	regManager manager = new regManager();
 	public int usedReg[]=new int[24];
 	TreeSet<TempInterval> active = new TreeSet<TempInterval>(
 			new Comparator<TempInterval>()
