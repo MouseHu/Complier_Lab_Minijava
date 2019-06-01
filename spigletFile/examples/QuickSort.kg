@@ -1,0 +1,519 @@
+MAIN [ 0 ][ 4 ][ 2 ]
+    MOVE t0 HALLOCATE 16
+    MOVE t1 t0
+    MOVE t0 QS_Print
+    HSTORE t1     8       t0
+    MOVE t0 QS_Init
+    HSTORE t1     12       t0
+    MOVE t0 QS_Start
+    HSTORE t1     0       t0
+    MOVE t0 QS_Sort
+    HSTORE t1     4       t0
+    MOVE t0 HALLOCATE 12
+    MOVE t2 t0
+    MOVE t0 0
+    HSTORE t2     4       t0
+    MOVE t0 0
+    HSTORE t2     8       t0
+    HSTORE t2     0       t1
+    MOVE t0 t2
+    HLOAD t1 t0     0      
+    HLOAD t2 t1     0      
+    MOVE t1 4
+    MOVE t3      TIMES       t1 1
+    MOVE t1 HALLOCATE t3
+    MOVE t3 t1
+    MOVE t1 10
+    HSTORE t3     0       t1
+    MOVE a0 t0
+    MOVE a1 t3
+    CALL t2
+    
+    MOVE t1 v0
+    PRINT t1
+    ALOAD t0 SPILLEDARG 0
+    ALOAD t1 SPILLEDARG 1
+    ALOAD t2 SPILLEDARG 2
+    ALOAD t3 SPILLEDARG 3
+END
+QS_Start [ 2 ][ 6 ][ 2 ]
+    ASTORE SPILLEDARG 0 t0
+    ASTORE SPILLEDARG 1 t1
+    ASTORE SPILLEDARG 2 t2
+    ASTORE SPILLEDARG 3 t3
+    ASTORE SPILLEDARG 4 t4
+    ASTORE SPILLEDARG 5 t5
+    MOVE t1 a0
+    MOVE t0 a1
+    HLOAD t2 t0     0      
+    MOVE t0 t1
+    HLOAD t3 t0     0      
+    HLOAD t4 t3     12      
+    MOVE t3 4
+    MOVE t5      TIMES       t3 1
+    MOVE t3 HALLOCATE t5
+    MOVE t5 t3
+    HSTORE t5     0       t2
+    MOVE a0 t0
+    MOVE a1 t5
+    CALL t4
+    
+    MOVE t2 v0
+    MOVE t0 t2
+    MOVE t2 t1
+    HLOAD t3 t2     0      
+    HLOAD t4 t3     8      
+    MOVE t3 4
+    MOVE t5      TIMES       t3 0
+    MOVE t3 HALLOCATE t5
+    MOVE t5 t3
+    MOVE a0 t2
+    MOVE a1 t5
+    CALL t4
+    
+    MOVE t3 v0
+    MOVE t0 t3
+    PRINT 9999
+    HLOAD t2 t1     8      
+    MOVE t3      MINUS       t2 1
+    MOVE t0 t3
+    MOVE t2 t1
+    HLOAD t3 t2     0      
+    HLOAD t4 t3     4      
+    MOVE t3 4
+    MOVE t5      TIMES       t3 2
+    MOVE t3 HALLOCATE t5
+    MOVE t5 t3
+    MOVE t3 0
+    HSTORE t5     0       t3
+    HSTORE t5     4       t0
+    MOVE a0 t2
+    MOVE a1 t5
+    CALL t4
+    
+    MOVE t3 v0
+    MOVE t0 t3
+    MOVE t2 t1
+    HLOAD t1 t2     0      
+    HLOAD t3 t1     8      
+    MOVE t1 4
+    MOVE t4      TIMES       t1 0
+    MOVE t1 HALLOCATE t4
+    MOVE t4 t1
+    MOVE a0 t2
+    MOVE a1 t4
+    CALL t3
+    
+    MOVE t1 v0
+    MOVE t0 t1
+    MOVE v0 0
+    ALOAD t0 SPILLEDARG 0
+    ALOAD t1 SPILLEDARG 1
+    ALOAD t2 SPILLEDARG 2
+    ALOAD t3 SPILLEDARG 3
+    ALOAD t4 SPILLEDARG 4
+    ALOAD t5 SPILLEDARG 5
+END
+QS_Sort [ 2 ][ 17 ][ 2 ]
+    ASTORE SPILLEDARG 0 t0
+    ASTORE SPILLEDARG 1 t1
+    ASTORE SPILLEDARG 2 t2
+    ASTORE SPILLEDARG 3 t3
+    ASTORE SPILLEDARG 4 t4
+    ASTORE SPILLEDARG 5 t5
+    ASTORE SPILLEDARG 6 t6
+    ASTORE SPILLEDARG 7 t7
+    ASTORE SPILLEDARG 8 s0
+    ASTORE SPILLEDARG 9 s1
+    ASTORE SPILLEDARG 10 s2
+    ASTORE SPILLEDARG 11 s3
+    ASTORE SPILLEDARG 12 s4
+    ASTORE SPILLEDARG 13 s5
+    ASTORE SPILLEDARG 14 s6
+    ASTORE SPILLEDARG 15 s7
+    ASTORE SPILLEDARG 16 t8
+    MOVE t1 a0
+    MOVE t0 a1
+    HLOAD t2 t0     0      
+    HLOAD t3 t0     4      
+    MOVE t0 0
+    MOVE t4      LT       t2 t3
+    MOVE t5 t4
+    CJUMP t5     QS_Sort_L0
+    HLOAD t4 t1     4      
+    MOVE t5 t4
+    MOVE t4 t3
+    MOVE t6 4
+    MOVE t7 1
+    MOVE s0      PLUS       t7 t4
+    MOVE t4      TIMES       t6 s0
+    MOVE t6      PLUS       t5 t4
+    MOVE t5 t6
+    HLOAD t4 t5     0      
+    MOVE t5 t4
+    MOVE t4      MINUS       t2 1
+    MOVE t6 t4
+    MOVE t4 t3
+    MOVE t7 1
+    JUMP QS_Sort_L1
+QS_Sort_L1      MOVE s0 t7
+    CJUMP s0     QS_Sort_L2
+    MOVE s1 1
+    JUMP QS_Sort_L3
+QS_Sort_L3      MOVE s2 s1
+    CJUMP s2     QS_Sort_L4
+    MOVE s3      PLUS       t6 1
+    MOVE t6 s3
+    HLOAD s3 t1     4      
+    MOVE s4 s3
+    MOVE s3 t6
+    MOVE s5 4
+    MOVE s6 1
+    MOVE s7      PLUS       s6 s3
+    MOVE s3      TIMES       s5 s7
+    MOVE s5      PLUS       s4 s3
+    MOVE s4 s5
+    HLOAD s3 s4     0      
+    MOVE s4 s3
+    MOVE s3      LT       s4 t5
+    MOVE s5      LT       s3 1
+    MOVE s3 s5
+    CJUMP s3     QS_Sort_L5
+    MOVE s1 0
+    JUMP QS_Sort_L6
+QS_Sort_L5      MOVE s1 1
+QS_Sort_L6      NOOP 
+    JUMP QS_Sort_L3
+QS_Sort_L4      NOOP 
+    MOVE s1 1
+    JUMP QS_Sort_L7
+QS_Sort_L7      MOVE s2 s1
+    CJUMP s2     QS_Sort_L8
+    MOVE s3      MINUS       t4 1
+    MOVE t4 s3
+    HLOAD s3 t1     4      
+    MOVE s5 s3
+    MOVE s3 t4
+    MOVE s6 4
+    MOVE s7 1
+    MOVE t8      PLUS       s7 s3
+    MOVE s3      TIMES       s6 t8
+    MOVE s6      PLUS       s5 s3
+    MOVE s5 s6
+    HLOAD s3 s5     0      
+    MOVE s4 s3
+    MOVE s3      LT       t5 s4
+    MOVE s5      LT       s3 1
+    MOVE s3 s5
+    CJUMP s3     QS_Sort_L9
+    MOVE s1 0
+    JUMP QS_Sort_L10
+QS_Sort_L9      MOVE s1 1
+QS_Sort_L10      NOOP 
+    JUMP QS_Sort_L7
+QS_Sort_L8      NOOP 
+    HLOAD s1 t1     4      
+    MOVE s2 s1
+    MOVE s1 t6
+    MOVE s3 4
+    MOVE s4 1
+    MOVE s5      PLUS       s4 s1
+    MOVE s1      TIMES       s3 s5
+    MOVE s3      PLUS       s2 s1
+    MOVE s2 s3
+    HLOAD s1 s2     0      
+    MOVE t0 s1
+    HLOAD s1 t1     4      
+    MOVE s2 t6
+    MOVE s3 4
+    MOVE s4 1
+    MOVE s5      PLUS       s4 s2
+    MOVE s2      TIMES       s3 s5
+    MOVE s3      PLUS       s1 s2
+    HLOAD s1 t1     4      
+    MOVE s2 s1
+    MOVE s1 t4
+    MOVE s4 4
+    MOVE s5 1
+    MOVE s6      PLUS       s5 s1
+    MOVE s1      TIMES       s4 s6
+    MOVE s4      PLUS       s2 s1
+    MOVE s2 s4
+    HLOAD s1 s2     0      
+    HSTORE s3     0       s1
+    HLOAD s1 t1     4      
+    MOVE s2 t4
+    MOVE s3 4
+    MOVE s4 1
+    MOVE s5      PLUS       s4 s2
+    MOVE s2      TIMES       s3 s5
+    MOVE s3      PLUS       s1 s2
+    HSTORE s3     0       t0
+    MOVE s1      PLUS       t6 1
+    MOVE s2      LT       t4 s1
+    MOVE s1 s2
+    CJUMP s1     QS_Sort_L11
+    MOVE t7 0
+    JUMP QS_Sort_L12
+QS_Sort_L11      MOVE t7 1
+QS_Sort_L12      NOOP 
+    JUMP QS_Sort_L1
+QS_Sort_L2      NOOP 
+    HLOAD t5 t1     4      
+    MOVE t7 t4
+    MOVE t4 4
+    MOVE s0 1
+    MOVE s1      PLUS       s0 t7
+    MOVE t7      TIMES       t4 s1
+    MOVE t4      PLUS       t5 t7
+    HLOAD t5 t1     4      
+    MOVE t7 t5
+    MOVE t5 t6
+    MOVE s0 4
+    MOVE s1 1
+    MOVE s2      PLUS       s1 t5
+    MOVE t5      TIMES       s0 s2
+    MOVE s0      PLUS       t7 t5
+    MOVE t7 s0
+    HLOAD t5 t7     0      
+    HSTORE t4     0       t5
+    HLOAD t4 t1     4      
+    MOVE t5 t6
+    MOVE t7 4
+    MOVE s0 1
+    MOVE s1      PLUS       s0 t5
+    MOVE t5      TIMES       t7 s1
+    MOVE t7      PLUS       t4 t5
+    HLOAD t4 t1     4      
+    MOVE t5 t4
+    MOVE t4 t3
+    MOVE s0 4
+    MOVE s1 1
+    MOVE s2      PLUS       s1 t4
+    MOVE t4      TIMES       s0 s2
+    MOVE s0      PLUS       t5 t4
+    MOVE t5 s0
+    HLOAD t4 t5     0      
+    HSTORE t7     0       t4
+    HLOAD t4 t1     4      
+    MOVE t5 t3
+    MOVE t7 4
+    MOVE s0 1
+    MOVE s1      PLUS       s0 t5
+    MOVE t5      TIMES       t7 s1
+    MOVE t7      PLUS       t4 t5
+    HSTORE t7     0       t0
+    MOVE t0 t1
+    HLOAD t4 t0     0      
+    HLOAD t5 t4     4      
+    MOVE t4 4
+    MOVE t7      TIMES       t4 2
+    MOVE t4 HALLOCATE t7
+    MOVE t7 t4
+    HSTORE t7     0       t2
+    MOVE t2      MINUS       t6 1
+    HSTORE t7     4       t2
+    MOVE a0 t0
+    MOVE a1 t7
+    CALL t5
+    
+    MOVE t2 v0
+    MOVE t0 t2
+    MOVE t2 t1
+    HLOAD t1 t2     0      
+    HLOAD t4 t1     4      
+    MOVE t1 4
+    MOVE t5      TIMES       t1 2
+    MOVE t1 HALLOCATE t5
+    MOVE t5 t1
+    MOVE t1      PLUS       t6 1
+    HSTORE t5     0       t1
+    HSTORE t5     4       t3
+    MOVE a0 t2
+    MOVE a1 t5
+    CALL t4
+    
+    MOVE t1 v0
+    MOVE t0 t1
+    JUMP QS_Sort_L13
+QS_Sort_L0      MOVE t0 0
+QS_Sort_L13      NOOP 
+    MOVE v0 0
+    ALOAD t0 SPILLEDARG 0
+    ALOAD t1 SPILLEDARG 1
+    ALOAD t2 SPILLEDARG 2
+    ALOAD t3 SPILLEDARG 3
+    ALOAD t4 SPILLEDARG 4
+    ALOAD t5 SPILLEDARG 5
+    ALOAD t6 SPILLEDARG 6
+    ALOAD t7 SPILLEDARG 7
+    ALOAD s0 SPILLEDARG 8
+    ALOAD s1 SPILLEDARG 9
+    ALOAD s2 SPILLEDARG 10
+    ALOAD s3 SPILLEDARG 11
+    ALOAD s4 SPILLEDARG 12
+    ALOAD s5 SPILLEDARG 13
+    ALOAD s6 SPILLEDARG 14
+    ALOAD s7 SPILLEDARG 15
+    ALOAD t8 SPILLEDARG 16
+END
+QS_Print [ 2 ][ 8 ][ 0 ]
+    ASTORE SPILLEDARG 0 t0
+    ASTORE SPILLEDARG 1 t1
+    ASTORE SPILLEDARG 2 t2
+    ASTORE SPILLEDARG 3 t3
+    ASTORE SPILLEDARG 4 t4
+    ASTORE SPILLEDARG 5 t5
+    ASTORE SPILLEDARG 6 t6
+    ASTORE SPILLEDARG 7 t7
+    MOVE t0 a0
+    MOVE a1 a1
+    MOVE t1 0
+    JUMP QS_Print_L14
+QS_Print_L14      HLOAD t2 t0     8      
+    MOVE t3      LT       t1 t2
+    MOVE t4 t3
+    CJUMP t4     QS_Print_L15
+    HLOAD t3 t0     4      
+    MOVE t4 t3
+    MOVE t3 t1
+    MOVE t5 4
+    MOVE t6 1
+    MOVE t7      PLUS       t6 t3
+    MOVE t3      TIMES       t5 t7
+    MOVE t5      PLUS       t4 t3
+    MOVE t4 t5
+    HLOAD t3 t4     0      
+    PRINT t3
+    MOVE t3      PLUS       t1 1
+    MOVE t1 t3
+    JUMP QS_Print_L14
+QS_Print_L15      NOOP 
+    MOVE v0 0
+    ALOAD t0 SPILLEDARG 0
+    ALOAD t1 SPILLEDARG 1
+    ALOAD t2 SPILLEDARG 2
+    ALOAD t3 SPILLEDARG 3
+    ALOAD t4 SPILLEDARG 4
+    ALOAD t5 SPILLEDARG 5
+    ALOAD t6 SPILLEDARG 6
+    ALOAD t7 SPILLEDARG 7
+END
+QS_Init [ 2 ][ 6 ][ 0 ]
+    ASTORE SPILLEDARG 0 t0
+    ASTORE SPILLEDARG 1 t1
+    ASTORE SPILLEDARG 2 t2
+    ASTORE SPILLEDARG 3 t3
+    ASTORE SPILLEDARG 4 t4
+    ASTORE SPILLEDARG 5 t5
+    MOVE t1 a0
+    MOVE t0 a1
+    HLOAD t2 t0     0      
+    HSTORE t1     8       t2
+    MOVE t0 t2
+    MOVE t2 4
+    MOVE t3 1
+    MOVE t4      PLUS       t3 t0
+    MOVE t3      TIMES       t2 t4
+    MOVE t2 HALLOCATE t3
+    MOVE t3 t2
+    HSTORE t3     0       t0
+    HSTORE t1     4       t3
+    HLOAD t0 t1     4      
+    MOVE t2 0
+    MOVE t3 4
+    MOVE t4 1
+    MOVE t5      PLUS       t4 t2
+    MOVE t2      TIMES       t3 t5
+    MOVE t3      PLUS       t0 t2
+    MOVE t0 20
+    HSTORE t3     0       t0
+    HLOAD t0 t1     4      
+    MOVE t2 1
+    MOVE t3 4
+    MOVE t4 1
+    MOVE t5      PLUS       t4 t2
+    MOVE t2      TIMES       t3 t5
+    MOVE t3      PLUS       t0 t2
+    MOVE t0 7
+    HSTORE t3     0       t0
+    HLOAD t0 t1     4      
+    MOVE t2 2
+    MOVE t3 4
+    MOVE t4 1
+    MOVE t5      PLUS       t4 t2
+    MOVE t2      TIMES       t3 t5
+    MOVE t3      PLUS       t0 t2
+    MOVE t0 12
+    HSTORE t3     0       t0
+    HLOAD t0 t1     4      
+    MOVE t2 3
+    MOVE t3 4
+    MOVE t4 1
+    MOVE t5      PLUS       t4 t2
+    MOVE t2      TIMES       t3 t5
+    MOVE t3      PLUS       t0 t2
+    MOVE t0 18
+    HSTORE t3     0       t0
+    HLOAD t0 t1     4      
+    MOVE t2 4
+    MOVE t3 4
+    MOVE t4 1
+    MOVE t5      PLUS       t4 t2
+    MOVE t2      TIMES       t3 t5
+    MOVE t3      PLUS       t0 t2
+    MOVE t0 2
+    HSTORE t3     0       t0
+    HLOAD t0 t1     4      
+    MOVE t2 5
+    MOVE t3 4
+    MOVE t4 1
+    MOVE t5      PLUS       t4 t2
+    MOVE t2      TIMES       t3 t5
+    MOVE t3      PLUS       t0 t2
+    MOVE t0 11
+    HSTORE t3     0       t0
+    HLOAD t0 t1     4      
+    MOVE t2 6
+    MOVE t3 4
+    MOVE t4 1
+    MOVE t5      PLUS       t4 t2
+    MOVE t2      TIMES       t3 t5
+    MOVE t3      PLUS       t0 t2
+    MOVE t0 6
+    HSTORE t3     0       t0
+    HLOAD t0 t1     4      
+    MOVE t2 7
+    MOVE t3 4
+    MOVE t4 1
+    MOVE t5      PLUS       t4 t2
+    MOVE t2      TIMES       t3 t5
+    MOVE t3      PLUS       t0 t2
+    MOVE t0 9
+    HSTORE t3     0       t0
+    HLOAD t0 t1     4      
+    MOVE t2 8
+    MOVE t3 4
+    MOVE t4 1
+    MOVE t5      PLUS       t4 t2
+    MOVE t2      TIMES       t3 t5
+    MOVE t3      PLUS       t0 t2
+    MOVE t0 19
+    HSTORE t3     0       t0
+    HLOAD t0 t1     4      
+    MOVE t1 9
+    MOVE t2 4
+    MOVE t3 1
+    MOVE t4      PLUS       t3 t1
+    MOVE t1      TIMES       t2 t4
+    MOVE t2      PLUS       t0 t1
+    MOVE t0 5
+    HSTORE t2     0       t0
+    MOVE v0 0
+    ALOAD t0 SPILLEDARG 0
+    ALOAD t1 SPILLEDARG 1
+    ALOAD t2 SPILLEDARG 2
+    ALOAD t3 SPILLEDARG 3
+    ALOAD t4 SPILLEDARG 4
+    ALOAD t5 SPILLEDARG 5
+END

@@ -1,5 +1,6 @@
 package toKanga;
 import java.util.Comparator;
+import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.TreeSet;
@@ -30,11 +31,12 @@ public class IntervalVisitor extends DepthFirstVisitor{
 	 */
 	public void visit(StmtList n)
 	{
-		Vector<spiglet.syntaxtree.Node> list=n.f0.nodes;
-		for(int i=0;i<list.size();i++) {
-			position++;
-			list.get(i).accept(this);
-		}
+		if ( n.f0.present() )
+	         for ( Enumeration<Node> e = n.f0.elements(); e.hasMoreElements(); )
+	         {
+	        	 position++;//ÿһ�䣬position++;
+	        	 e.nextElement().accept(this);
+	         }
 		return;
 	}
 	/**
@@ -64,7 +66,7 @@ public class IntervalVisitor extends DepthFirstVisitor{
 	 */
 	public void visit(Procedure n)
 	{		
-		position=0;
+//		position=0;
 		n.f4.accept(this);
 	}
 	

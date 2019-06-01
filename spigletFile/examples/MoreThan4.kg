@@ -1,0 +1,127 @@
+MAIN [ 0 ][ 4 ][ 2 ]
+    MOVE t0 HALLOCATE 8
+    MOVE t1 t0
+    MOVE t0 MT4_Start
+    HSTORE t1     0       t0
+    MOVE t0 MT4_Change
+    HSTORE t1     4       t0
+    MOVE t0 HALLOCATE 4
+    MOVE t2 t0
+    HSTORE t2     0       t1
+    MOVE t0 t2
+    HLOAD t1 t0     0      
+    HLOAD t2 t1     0      
+    MOVE t1 4
+    MOVE t3      TIMES       t1 6
+    MOVE t1 HALLOCATE t3
+    MOVE t3 t1
+    MOVE t1 1
+    HSTORE t3     0       t1
+    MOVE t1 2
+    HSTORE t3     4       t1
+    MOVE t1 3
+    HSTORE t3     8       t1
+    MOVE t1 4
+    HSTORE t3     12       t1
+    MOVE t1 5
+    HSTORE t3     16       t1
+    MOVE t1 6
+    HSTORE t3     20       t1
+    MOVE a0 t0
+    MOVE a1 t3
+    CALL t2
+    
+    MOVE t1 v0
+    PRINT t1
+    ALOAD t0 SPILLEDARG 0
+    ALOAD t1 SPILLEDARG 1
+    ALOAD t2 SPILLEDARG 2
+    ALOAD t3 SPILLEDARG 3
+END
+MT4_Start [ 2 ][ 10 ][ 2 ]
+    ASTORE SPILLEDARG 0 t0
+    ASTORE SPILLEDARG 1 t1
+    ASTORE SPILLEDARG 2 t2
+    ASTORE SPILLEDARG 3 t3
+    ASTORE SPILLEDARG 4 t4
+    ASTORE SPILLEDARG 5 t5
+    ASTORE SPILLEDARG 6 t6
+    ASTORE SPILLEDARG 7 t7
+    ASTORE SPILLEDARG 8 s0
+    ASTORE SPILLEDARG 9 s1
+    MOVE t1 a0
+    MOVE t0 a1
+    HLOAD t2 t0     0      
+    HLOAD t3 t0     4      
+    HLOAD t4 t0     8      
+    HLOAD t5 t0     12      
+    HLOAD t6 t0     16      
+    HLOAD t7 t0     20      
+    PRINT t2
+    PRINT t3
+    PRINT t4
+    PRINT t5
+    PRINT t6
+    PRINT t7
+    MOVE t0 t1
+    HLOAD t1 t0     0      
+    HLOAD s0 t1     4      
+    MOVE t1 4
+    MOVE s1      TIMES       t1 6
+    MOVE t1 HALLOCATE s1
+    MOVE s1 t1
+    HSTORE s1     0       t7
+    HSTORE s1     4       t6
+    HSTORE s1     8       t5
+    HSTORE s1     12       t4
+    HSTORE s1     16       t3
+    HSTORE s1     20       t2
+    MOVE a0 t0
+    MOVE a1 s1
+    CALL s0
+    
+    MOVE t1 v0
+    MOVE t0 t1
+    MOVE v0 t0
+    ALOAD t0 SPILLEDARG 0
+    ALOAD t1 SPILLEDARG 1
+    ALOAD t2 SPILLEDARG 2
+    ALOAD t3 SPILLEDARG 3
+    ALOAD t4 SPILLEDARG 4
+    ALOAD t5 SPILLEDARG 5
+    ALOAD t6 SPILLEDARG 6
+    ALOAD t7 SPILLEDARG 7
+    ALOAD s0 SPILLEDARG 8
+    ALOAD s1 SPILLEDARG 9
+END
+MT4_Change [ 2 ][ 7 ][ 0 ]
+    ASTORE SPILLEDARG 0 t0
+    ASTORE SPILLEDARG 1 t1
+    ASTORE SPILLEDARG 2 t2
+    ASTORE SPILLEDARG 3 t3
+    ASTORE SPILLEDARG 4 t4
+    ASTORE SPILLEDARG 5 t5
+    ASTORE SPILLEDARG 6 t6
+    MOVE a0 a0
+    MOVE t0 a1
+    HLOAD t1 t0     0      
+    HLOAD t2 t0     4      
+    HLOAD t3 t0     8      
+    HLOAD t4 t0     12      
+    HLOAD t5 t0     16      
+    HLOAD t6 t0     20      
+    PRINT t1
+    PRINT t2
+    PRINT t3
+    PRINT t4
+    PRINT t5
+    PRINT t6
+    MOVE v0 0
+    ALOAD t0 SPILLEDARG 0
+    ALOAD t1 SPILLEDARG 1
+    ALOAD t2 SPILLEDARG 2
+    ALOAD t3 SPILLEDARG 3
+    ALOAD t4 SPILLEDARG 4
+    ALOAD t5 SPILLEDARG 5
+    ALOAD t6 SPILLEDARG 6
+END

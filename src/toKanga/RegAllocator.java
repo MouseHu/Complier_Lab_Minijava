@@ -22,51 +22,67 @@ class temp2reg{
 	}
 }
 class Table{
-	int pos;
-	Hashtable<Integer,temp2reg> regs;
-	Hashtable<Integer,temp2reg> stacks;
+	public int pos;
+	public Hashtable<Integer,temp2reg> regs;
+//	Hashtable<Integer,temp2reg> stacks;
+	public Hashtable<Integer,temp2reg> spills;
 	public Table(int p){
 		pos=p;
 		regs=new Hashtable<Integer,temp2reg>();
-		stacks=new Hashtable<Integer,temp2reg>();
+		spills=new Hashtable<Integer,temp2reg>();
 	}
-	public void addnode(temp2reg t) {
-		if(t.isreg==true) regs.put(t.tempnum,t);
-		else stacks.put(t.tempnum,t);
-	}
+//	public void addNode(temp2reg t) {
+//		if(t.isreg==true) regs.put(t.tempnum,t);
+//		else stacks.put(t.tempnum,t);
+//	}
+//	
+//	public void modifyNode(temp2reg t){
+//		regs.get(t.tempnum).isreg=t.isreg;
+//		regs.get(t.tempnum).stackpos=t.stackpos;
+//		regs.get(t.tempnum).regnum=t.regnum;
+//	}
 }
 
 class regManager{
 	public boolean regTable[]=new boolean[24];
-	public int tempinreg[]=new int[24];
+	int [] tempInReg = new int[24];//寄存器i存的是哪个变量
+	public int allocated = 0;
 	public regManager(){
 		for(int i=0;i<24;i++) {
 			regTable[i]=false;
+			tempInReg[i]=0;
 		}
 	}
 	void free(int freeNo) {
 		regTable[freeNo]=false;
+		tempInReg[freeNo]=-1;
+		allocated--;
 	}
-	int allocate() {
+	int allocate(int tempnum) {
 		for(int i=4;i<22;i++) {
 			if(regTable[i]==false) {
+				allocated++;
 				regTable[i]=true;
+				tempInReg[i]= tempnum;
 				return i;
 			}
 		}
 		return -1;
 	}
 	void assign(int a,int b) {
-		this.tempinreg[a]=b;
+		if(regTable[a]==false)
+			allocated++;
+		tempInReg[a]=b;
 		regTable[a]=true;
 	}
 	int get(int a) {
 		if(regTable[a]==false) return -1;
-		else return tempinreg[a];
+		else return tempInReg[a];
 	}
 }
 
 public class RegAllocator {
+	final static int GENERALREG = 18;
 	int nargs;
 	public int usedRegNum=0;
 	TreeSet<TempInterval> tempList;
@@ -79,7 +95,12 @@ public class RegAllocator {
 			{
 				public int compare(TempInterval a,TempInterval b)
 				{
-					return a.end - b.end;
+					if(a==b)
+						return 0;
+					if( a.end == b.end)
+						return 1;
+					else
+						return a.end - b.end;
 				}
 	});
 	
@@ -90,18 +111,18 @@ public class RegAllocator {
 		Table tab=new Table(0);
 		for(int i=0;i<nargs&&i<4;i++) {
 			temp2reg temp=new temp2reg(i,true,i);
-			tab.addnode(temp);
+			tab.regs.put(i,temp);
 		}
 		for(int i=4;i<nargs;i++) {
 			temp2reg temp=new temp2reg(i,false,stackpos++);
-			tab.addnode(temp);
+			tab.regs.put(i,temp);
 		}
 		tables.add(tab);
 		
 		/* allocation */
 		Iterator<TempInterval> itr=tempList.iterator();
 		Table prevnode=tables.getFirst();
-		
+		active.clear();
 		//go through tempList, at each point of birth, review table again and add new tables if necessary
 		while(itr.hasNext()) {
 			TempInterval temp=itr.next();
@@ -109,41 +130,78 @@ public class RegAllocator {
 			if(prevnode.pos<temp.beg) {
 				prevnode=new Table(temp.beg);
 				prevnode.regs=new Hashtable<Integer,temp2reg>(tables.getLast().regs);
-				prevnode.stacks=new Hashtable<Integer,temp2reg>(tables.getLast().stacks);
+				prevnode.spills=new Hashtable<Integer,temp2reg>(tables.getLast().spills);
 				add=true;
 			}
-			prevnode = refresh(temp,prevnode);
-			int allopos=manager.allocate();
-			if(allopos==-1) {
+			refresh(temp,prevnode);
+			if(active.size() == GENERALREG){//如果寄存器已满，选择某个活跃变量溢出到内存中
 				TempInterval a=active.last();
 				if(a.end>temp.end) { 
 					//spill a
 					int replaced=prevnode.regs.get(a.temp_num).regnum;
-					prevnode.addnode(new temp2reg(a.temp_num,false,stackpos++));
-					prevnode.regs.remove(a.temp_num);
+					manager.assign(temp.temp_num, replaced);
+					prevnode.regs.get(temp.temp_num).isreg=false;
+					prevnode.regs.get(temp.temp_num).stackpos=stackpos;
+					prevnode.spills.put(temp.temp_num,new temp2reg(temp.temp_num,false,replaced));
+					prevnode.regs.put(a.temp_num,new temp2reg(a.temp_num,true,stackpos++));
+
 					active.remove(a);
-					prevnode.addnode(new temp2reg(temp.temp_num,true,replaced));
 					active.add(temp);
 				}
 				else {
 					//spill temp
-					prevnode.addnode(new temp2reg(temp.temp_num,false,stackpos++));
-					
+//					prevnode.addNode(new temp2reg(temp.temp_num,false,stackpos++));
+					prevnode.regs.put(temp.temp_num,new temp2reg(temp.temp_num,false,stackpos++));
 				}
 			}
-			else {
-				active.add(temp);
-				temp2reg newTemp=new temp2reg(temp.temp_num,true,allopos);
-				prevnode.regs.put(temp.temp_num,newTemp);
-				boolean flag=false;
-				for(int i=0;i<usedRegNum;i++) {
-					if(usedReg[i]==allopos) {
-						flag=true;
+			else//否则分配一个寄存器
+			{
+				int regNum = manager.allocate(temp.temp_num);
+				int i;
+				for(i=0;i<usedRegNum;i++)//被分配寄存器的数目
+				{
+					if(usedReg[i]==regNum)
 						break;
-					}
 				}
-				if(flag==false) usedReg[usedRegNum++]=allopos;
+				if(i == usedRegNum)
+				{
+					usedReg[usedRegNum++]=regNum;//usedRegsArray为保存寄存器序列
+				}
+				active.add(temp);//当前a被分配了寄存器
+				prevnode.regs.put(temp.temp_num,new temp2reg(temp.temp_num,true, regNum));//分配信息在分配表中	
 			}
+
+//			int allopos=manager.allocate();
+//			if(allopos==-1) {
+//				TempInterval a=active.last();
+//				if(a.end>temp.end) { 
+//					//spill a
+//					int replaced=prevnode.regs.get(a.temp_num).regnum;
+//					prevnode.addnode(new temp2reg(a.temp_num,false,stackpos++));
+//					prevnode.regs.remove(a.temp_num);
+//					active.remove(a);
+//					prevnode.addnode(new temp2reg(temp.temp_num,true,replaced));
+//					active.add(temp);
+//				}
+//				else {
+//					//spill temp
+//					prevnode.addnode(new temp2reg(temp.temp_num,false,stackpos++));
+//					
+//				}
+//			}
+//			else {
+//				active.add(temp);
+//				temp2reg newTemp=new temp2reg(temp.temp_num,true,allopos);
+//				prevnode.regs.put(temp.temp_num,newTemp);
+//				boolean flag=false;
+//				for(int i=0;i<usedRegNum;i++) {
+//					if(usedReg[i]==allopos) {
+//						flag=true;
+//						break;
+//					}
+//				}
+//				if(flag==false) usedReg[usedRegNum++]=allopos;
+//			}
 			if(add==true) {
 				tables.add(prevnode);
 			}
@@ -152,19 +210,20 @@ public class RegAllocator {
 		return;
 	}
 	
-	Table refresh(TempInterval t, Table prevnode) {
+	void refresh(TempInterval t, Table prevnode) {
 		int stage=t.beg;
 		Iterator<TempInterval> itr=active.iterator();
 		while(itr.hasNext()) {
 			TempInterval a=itr.next();
 			if(a.end<stage) {
 				itr.remove();
-				manager.free(prevnode.regs.get(a.temp_num).regnum);
+				if (prevnode.regs.get(a.temp_num).isreg)
+					manager.free(prevnode.regs.get(a.temp_num).regnum);
 				prevnode.regs.remove(a.temp_num);
 			}
-			else return prevnode;
+			else return;
 		}
-		return prevnode;
+		return;
 	}
 	
 	
