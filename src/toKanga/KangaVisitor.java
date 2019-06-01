@@ -305,6 +305,7 @@ public class KangaVisitor extends GJVoidDepthFirst<environ>{
 	public void visit(Call n,environ env){
 		int size = n.f3.size();
 		int i;
+//		env.position++;
 		Iterator<Node> Itr = n.f3.nodes.iterator();
 		for(i=0;i<4&&i<size;i++)
 		{
@@ -373,7 +374,7 @@ public class KangaVisitor extends GJVoidDepthFirst<environ>{
 		int pos=e.position;
 		while(itr.hasNext()) {
 			node=itr.next();
-			if(node.pos>pos)  break;
+			if(node.pos>=pos)  break;
 		}
 
 		if(node.regs.containsKey(t)) {
@@ -381,8 +382,6 @@ public class KangaVisitor extends GJVoidDepthFirst<environ>{
 		}
 		else if(node.stacks.containsKey(t)) {
 			kpln("ALOAD " + RegNames.REGS[cond+22] + " SPILLEDARG " + node.stacks.get(t).stackpos,indent);
-			
-//			kpln("ALOAD",indent);
 			return  RegNames.REGS[cond+22];
 		}
 		return outfile;
@@ -396,7 +395,7 @@ public class KangaVisitor extends GJVoidDepthFirst<environ>{
 		int pos=env.position;
 		while(itr.hasNext()) {
 			node=itr.next();
-			if(node.pos>pos)  break;
+			if(node.pos>=pos)  break;
 		}
 
 		temp = node.regs.get(t);
@@ -436,7 +435,7 @@ public class KangaVisitor extends GJVoidDepthFirst<environ>{
 		Table node=env.tables.getFirst();
 		while(itr.hasNext()) {
 			node=itr.next();
-			if(node.pos>env.position)  
+			if(node.pos>=env.position)  
 				break;
 		}
 		int i;

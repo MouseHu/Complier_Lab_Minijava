@@ -1,0 +1,1966 @@
+MAIN [ 0 ][ 688 ][ 2 ]
+    ASTORE  SPILLEDARG 670 t2
+    ASTORE  SPILLEDARG 671 t3
+    ASTORE  SPILLEDARG 672 t4
+    ASTORE  SPILLEDARG 673 t5
+    ASTORE  SPILLEDARG 674 t6
+    ASTORE  SPILLEDARG 675 t7
+    ASTORE  SPILLEDARG 676 s0
+    ASTORE  SPILLEDARG 677 s1
+    ASTORE  SPILLEDARG 678 s2
+    ASTORE  SPILLEDARG 679 s3
+    ASTORE  SPILLEDARG 680 s4
+    ASTORE  SPILLEDARG 681 s5
+    ASTORE  SPILLEDARG 682 s6
+    ASTORE  SPILLEDARG 683 s7
+    ASTORE  SPILLEDARG 684 t8
+    ASTORE  SPILLEDARG 685 t9
+    ASTORE  SPILLEDARG 686 v0
+    ASTORE  SPILLEDARG 687 v1
+    MOVE t4 v0
+     MOVE v0 t4
+     MOVE v0 BT_Start
+    ALOAD v0 SPILLEDARG 8
+    ALOAD v1 SPILLEDARG 23
+    HSTORE v0     0       v1
+    MOVE v0 v0
+    ALOAD v0 SPILLEDARG 40
+     MOVE v0 v0
+    ALOAD v0 SPILLEDARG 42
+    ALOAD v1 SPILLEDARG 8
+    HSTORE v0     0       v1
+    ALOAD v0 SPILLEDARG 42
+     MOVE v0 v0
+    ALOAD v0 SPILLEDARG 58
+    HLOAD t4 v0     0      
+    HLOAD v0 t4     0      
+     MOVE v0 4
+    ALOAD v0 SPILLEDARG 89
+    MOVE t4      TIMES       v0 0
+    MOVE v0 v0
+    ALOAD v0 SPILLEDARG 97
+     MOVE t4 v0
+    ALOAD v0 SPILLEDARG 58
+    MOVE a0 v0
+    MOVE a1 ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 73
+    CALL v0
+    
+    MOVE v0 v0
+    ALOAD v0 SPILLEDARG 111
+    PRINT v0
+     ALOAD t2 SPILLEDARG 670
+     ALOAD t3 SPILLEDARG 671
+     ALOAD t4 SPILLEDARG 672
+     ALOAD t5 SPILLEDARG 673
+     ALOAD t6 SPILLEDARG 674
+     ALOAD t7 SPILLEDARG 675
+     ALOAD s0 SPILLEDARG 676
+     ALOAD s1 SPILLEDARG 677
+     ALOAD s2 SPILLEDARG 678
+     ALOAD s3 SPILLEDARG 679
+     ALOAD s4 SPILLEDARG 680
+     ALOAD s5 SPILLEDARG 681
+     ALOAD s6 SPILLEDARG 682
+     ALOAD s7 SPILLEDARG 683
+     ALOAD t8 SPILLEDARG 684
+     ALOAD t9 SPILLEDARG 685
+     ALOAD v0 SPILLEDARG 686
+     ALOAD v1 SPILLEDARG 687
+END
+BT_Start [ 2 ][ 42 ][ 2 ]
+    ASTORE SPILLDARG 0 t2
+    ASTORE SPILLDARG 1 t3
+    ASTORE SPILLDARG 2 t4
+    ASTORE SPILLDARG 3 t5
+    ASTORE SPILLDARG 4 t6
+    ASTORE SPILLDARG 5 t7
+    ASTORE SPILLDARG 6 s0
+    ASTORE SPILLDARG 7 s1
+    ASTORE SPILLDARG 8 s2
+    ASTORE SPILLDARG 9 s3
+    ASTORE SPILLDARG 10 s4
+    ASTORE SPILLDARG 11 s5
+    ASTORE SPILLDARG 12 s6
+    ASTORE SPILLDARG 13 s7
+    ASTORE SPILLDARG 14 t8
+    ASTORE SPILLDARG 15 t9
+    ASTORE SPILLDARG 16 v0
+    ASTORE SPILLDARG 17 v1
+    MOVE a0 a0
+    MOVE a1 a1
+    MOVE t2 v0
+     MOVE t3 t2
+     MOVE t2 Tree_Delete
+    HSTORE t3     52       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 Tree_SetHas_Left
+    HSTORE t3     36       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 Tree_RemoveLeft
+    HSTORE t3     64       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 Tree_GetKey
+    HSTORE t3     20       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 Tree_SetRight
+    HSTORE t3     4       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 Tree_GetLeft
+    HSTORE t3     16       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 Tree_GetRight
+    HSTORE t3     12       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 Tree_Remove
+    HSTORE t3     56       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 Tree_SetLeft
+    HSTORE t3     8       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 Tree_Insert
+    HSTORE t3     48       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 Tree_Print
+    HSTORE t3     72       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 Tree_Init
+    HSTORE t3     0       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 Tree_GetHas_Right
+    HSTORE t3     28       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 Tree_GetHas_Left
+    HSTORE t3     32       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 Tree_RemoveRight
+    HSTORE t3     60       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 Tree_Search
+    HSTORE t3     68       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 Tree_SetKey
+    HSTORE t3     24       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 Tree_Compare
+    HSTORE t3     44       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 Tree_SetHas_Right
+    HSTORE t3     40       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 Tree_RecPrint
+    HSTORE t3     76       ./spigletFile/examples/BinaryTree.kg
+    MOVE t2 v0
+     MOVE t4 t2
+     MOVE t2 0
+    HSTORE t4     4       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 0
+    HSTORE t4     20       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 0
+    HSTORE t4     24       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 0
+    HSTORE t4     8       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 0
+    HSTORE t4     16       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 0
+    HSTORE t4     12       ./spigletFile/examples/BinaryTree.kg
+    HSTORE t4     0       ./spigletFile/examples/BinaryTree.kg
+     MOVE t2 t4
+     MOVE t3 t2
+    HLOAD t4 t3     0      
+    HLOAD t5 t4     0      
+     MOVE t4 4
+    MOVE t6      TIMES       t4 1
+    MOVE t4 v0
+     MOVE t6 t4
+     MOVE t4 16
+    HSTORE t6     0       ./spigletFile/examples/BinaryTree.kg
+    MOVE a0 ./spigletFile/examples/BinaryTree.kg
+    MOVE a1 t6
+    CALL t5
+    
+    MOVE t4 v0
+     MOVE t3 ./spigletFile/examples/BinaryTree.kg
+     MOVE t4 t2
+    HLOAD t7 t4     0      
+    HLOAD s0 ./spigletFile/examples/BinaryTree.kg     72      
+     MOVE t7 4
+    MOVE s1      TIMES       ./spigletFile/examples/BinaryTree.kg 0
+    MOVE t7 v0
+     MOVE s1 ./spigletFile/examples/BinaryTree.kg
+    MOVE a0 ./spigletFile/examples/BinaryTree.kg
+    MOVE a1 s1
+    CALL s0
+    
+    MOVE v0 v0
+     MOVE t3 ./spigletFile/examples/BinaryTree.kg
+    PRINT 100000000
+     MOVE t4 t2
+    HLOAD v0 t4     0      
+    HLOAD s2 ./spigletFile/examples/BinaryTree.kg     48      
+     MOVE v0 4
+    MOVE v0      TIMES       ./spigletFile/examples/BinaryTree.kg 1
+    MOVE v0 v0
+     MOVE s3 ./spigletFile/examples/BinaryTree.kg
+     MOVE v0 8
+    HSTORE s3     0       ./spigletFile/examples/BinaryTree.kg
+    MOVE a0 ./spigletFile/examples/BinaryTree.kg
+    MOVE a1 s3
+    CALL s2
+    
+    MOVE v0 v0
+     MOVE t3 ./spigletFile/examples/BinaryTree.kg
+     MOVE t4 t2
+    HLOAD v0 t4     0      
+    HLOAD s4 ./spigletFile/examples/BinaryTree.kg     72      
+     MOVE v0 4
+    MOVE v0      TIMES       ./spigletFile/examples/BinaryTree.kg 0
+    MOVE v0 v0
+     MOVE s5 ./spigletFile/examples/BinaryTree.kg
+    MOVE a0 ./spigletFile/examples/BinaryTree.kg
+    MOVE a1 s5
+    CALL s4
+    
+    MOVE v0 v0
+     MOVE t3 ./spigletFile/examples/BinaryTree.kg
+     MOVE t4 t2
+    HLOAD v0 t4     0      
+    HLOAD s6 ./spigletFile/examples/BinaryTree.kg     48      
+     MOVE v0 4
+    MOVE v0      TIMES       ./spigletFile/examples/BinaryTree.kg 1
+    MOVE v0 v0
+     MOVE s7 ./spigletFile/examples/BinaryTree.kg
+     MOVE v0 24
+    HSTORE s7     0       ./spigletFile/examples/BinaryTree.kg
+    MOVE a0 ./spigletFile/examples/BinaryTree.kg
+    MOVE a1 s7
+    CALL s6
+    
+    MOVE v0 v0
+     MOVE t3 ./spigletFile/examples/BinaryTree.kg
+     MOVE t4 t2
+    HLOAD v0 t4     0      
+    HLOAD t8 ./spigletFile/examples/BinaryTree.kg     48      
+     MOVE v0 4
+    MOVE v0      TIMES       ./spigletFile/examples/BinaryTree.kg 1
+    MOVE v0 v0
+     MOVE t9 ./spigletFile/examples/BinaryTree.kg
+     MOVE v0 4
+    HSTORE t9     0       ./spigletFile/examples/BinaryTree.kg
+    MOVE a0 ./spigletFile/examples/BinaryTree.kg
+    MOVE a1 t9
+    CALL t8
+    
+    MOVE v0 v0
+     MOVE t3 ./spigletFile/examples/BinaryTree.kg
+     MOVE t4 t2
+    HLOAD v0 t4     0      
+    HLOAD v0 ./spigletFile/examples/BinaryTree.kg     48      
+     MOVE v0 4
+    MOVE v0      TIMES       ./spigletFile/examples/BinaryTree.kg 1
+    MOVE v0 v0
+     MOVE v1 ./spigletFile/examples/BinaryTree.kg
+     MOVE v0 12
+    HSTORE v1     0       ./spigletFile/examples/BinaryTree.kg
+    MOVE a0 ./spigletFile/examples/BinaryTree.kg
+    MOVE a1 v1
+    CALL v0
+    
+    MOVE v0 v0
+     MOVE v0 ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 0
+     MOVE t4 v0
+    HLOAD v0 t4     0      
+    HLOAD t2 ./spigletFile/examples/BinaryTree.kg     48      
+     MOVE v0 4
+    MOVE v0      TIMES       ./spigletFile/examples/BinaryTree.kg 1
+    MOVE v0 v0
+     MOVE t3 ./spigletFile/examples/BinaryTree.kg
+     MOVE v0 20
+    HSTORE t3     0       ./spigletFile/examples/BinaryTree.kg
+    MOVE a0 ./spigletFile/examples/BinaryTree.kg
+    MOVE a1 t3
+    CALL t2
+    
+    MOVE v0 v0
+     MOVE v0 ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 0
+     MOVE v0 v0
+    ALOAD v0 SPILLEDARG 3
+    HLOAD v0 v0     0      
+    HLOAD v0 ./spigletFile/examples/BinaryTree.kg     48      
+     MOVE v0 4
+    MOVE v0      TIMES       ./spigletFile/examples/BinaryTree.kg 1
+    MOVE v0 v0
+     MOVE v0 ./spigletFile/examples/BinaryTree.kg
+     MOVE v0 28
+    HSTORE ./spigletFile/examples/BinaryTree.kg     0       ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 3
+    MOVE a0 v0
+    MOVE a1 ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 2
+    CALL v0
+    
+    MOVE v0 v0
+     MOVE v0 ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 0
+     MOVE v0 v0
+    ALOAD v0 SPILLEDARG 5
+    HLOAD v0 v0     0      
+    HLOAD v0 ./spigletFile/examples/BinaryTree.kg     48      
+     MOVE v0 4
+    MOVE v0      TIMES       ./spigletFile/examples/BinaryTree.kg 1
+    MOVE v0 v0
+     MOVE v0 ./spigletFile/examples/BinaryTree.kg
+     MOVE v0 14
+    HSTORE ./spigletFile/examples/BinaryTree.kg     0       ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 5
+    MOVE a0 v0
+    MOVE a1 ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 4
+    CALL v0
+    
+    MOVE v0 v0
+     MOVE v0 ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 0
+     MOVE v0 v0
+    ALOAD v0 SPILLEDARG 7
+    HLOAD v0 v0     0      
+    HLOAD v0 ./spigletFile/examples/BinaryTree.kg     72      
+     MOVE v0 4
+    MOVE v0      TIMES       ./spigletFile/examples/BinaryTree.kg 0
+    MOVE v0 v0
+     MOVE v0 ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 7
+    MOVE a0 v0
+    MOVE a1 ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 6
+    CALL v0
+    
+    MOVE v0 v0
+     MOVE v0 ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 0
+     MOVE v0 v0
+    ALOAD v0 SPILLEDARG 9
+    HLOAD v0 v0     0      
+    HLOAD v0 ./spigletFile/examples/BinaryTree.kg     68      
+     MOVE v0 4
+    MOVE v0      TIMES       ./spigletFile/examples/BinaryTree.kg 1
+    MOVE v0 v0
+     MOVE v0 ./spigletFile/examples/BinaryTree.kg
+     MOVE v0 24
+    HSTORE ./spigletFile/examples/BinaryTree.kg     0       ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 9
+    MOVE a0 v0
+    MOVE a1 ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 8
+    CALL v0
+    
+    MOVE v0 v0
+    PRINT ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 0
+     MOVE v0 v0
+    ALOAD v0 SPILLEDARG 11
+    HLOAD v0 v0     0      
+    HLOAD v0 ./spigletFile/examples/BinaryTree.kg     68      
+     MOVE v0 4
+    MOVE v0      TIMES       ./spigletFile/examples/BinaryTree.kg 1
+    MOVE v0 v0
+     MOVE v0 ./spigletFile/examples/BinaryTree.kg
+     MOVE v0 12
+    HSTORE ./spigletFile/examples/BinaryTree.kg     0       ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 11
+    MOVE a0 v0
+    MOVE a1 ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 10
+    CALL v0
+    
+    MOVE v0 v0
+    PRINT ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 0
+     MOVE v0 v0
+    ALOAD v0 SPILLEDARG 13
+    HLOAD v0 v0     0      
+    HLOAD v0 ./spigletFile/examples/BinaryTree.kg     68      
+     MOVE v0 4
+    MOVE v0      TIMES       ./spigletFile/examples/BinaryTree.kg 1
+    MOVE v0 v0
+     MOVE v0 ./spigletFile/examples/BinaryTree.kg
+     MOVE v0 16
+    HSTORE ./spigletFile/examples/BinaryTree.kg     0       ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 13
+    MOVE a0 v0
+    MOVE a1 ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 12
+    CALL v0
+    
+    MOVE v0 v0
+    PRINT ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 0
+     MOVE v0 v0
+    ALOAD v0 SPILLEDARG 15
+    HLOAD v0 v0     0      
+    HLOAD v0 ./spigletFile/examples/BinaryTree.kg     68      
+     MOVE v0 4
+    MOVE v0      TIMES       ./spigletFile/examples/BinaryTree.kg 1
+    MOVE v0 v0
+     MOVE v0 ./spigletFile/examples/BinaryTree.kg
+     MOVE v0 50
+    HSTORE ./spigletFile/examples/BinaryTree.kg     0       ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 15
+    MOVE a0 v0
+    MOVE a1 ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 14
+    CALL v0
+    
+    MOVE v0 v0
+    PRINT ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 0
+     MOVE v0 v0
+    ALOAD v0 SPILLEDARG 17
+    HLOAD v0 v0     0      
+    HLOAD v0 ./spigletFile/examples/BinaryTree.kg     68      
+     MOVE v0 4
+    MOVE v0      TIMES       ./spigletFile/examples/BinaryTree.kg 1
+    MOVE v0 v0
+     MOVE v0 ./spigletFile/examples/BinaryTree.kg
+     MOVE v0 12
+    HSTORE ./spigletFile/examples/BinaryTree.kg     0       ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 17
+    MOVE a0 v0
+    MOVE a1 ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 16
+    CALL v0
+    
+    MOVE v0 v0
+    PRINT ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 0
+     MOVE v0 v0
+    ALOAD v0 SPILLEDARG 19
+    HLOAD v0 v0     0      
+    HLOAD v0 ./spigletFile/examples/BinaryTree.kg     52      
+     MOVE v0 4
+    MOVE v0      TIMES       ./spigletFile/examples/BinaryTree.kg 1
+    MOVE v0 v0
+     MOVE v0 ./spigletFile/examples/BinaryTree.kg
+     MOVE v0 12
+    HSTORE ./spigletFile/examples/BinaryTree.kg     0       ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 19
+    MOVE a0 v0
+    MOVE a1 ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 18
+    CALL v0
+    
+    MOVE v0 v0
+     MOVE v0 ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 0
+     MOVE v0 v0
+    ALOAD v0 SPILLEDARG 21
+    HLOAD v0 v0     0      
+    HLOAD v0 ./spigletFile/examples/BinaryTree.kg     72      
+     MOVE v0 4
+    MOVE v0      TIMES       ./spigletFile/examples/BinaryTree.kg 0
+    MOVE v0 v0
+     MOVE v0 ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 21
+    MOVE a0 v0
+    MOVE a1 ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 20
+    CALL v0
+    
+    MOVE v0 v0
+     MOVE v0 ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 0
+     MOVE v0 v0
+    ALOAD v0 SPILLEDARG 23
+    HLOAD v0 v0     0      
+    HLOAD v0 ./spigletFile/examples/BinaryTree.kg     68      
+     MOVE v0 4
+    MOVE v0      TIMES       ./spigletFile/examples/BinaryTree.kg 1
+    MOVE v0 v0
+     MOVE t4 ./spigletFile/examples/BinaryTree.kg
+     MOVE v0 12
+    HSTORE t4     0       ./spigletFile/examples/BinaryTree.kg
+    ALOAD v0 SPILLEDARG 23
+    MOVE a0 v0
+    MOVE a1 t4
+    ALOAD v0 SPILLEDARG 22
+    CALL v0
+    
+    MOVE t7 v0
+    PRINT t7
+    MOVE v0 0
+    ALOAD t2 SPILLEDARG 0
+    ALOAD t3 SPILLEDARG 1
+    ALOAD t4 SPILLEDARG 2
+    ALOAD t5 SPILLEDARG 3
+    ALOAD t6 SPILLEDARG 4
+    ALOAD t7 SPILLEDARG 5
+    ALOAD s0 SPILLEDARG 6
+    ALOAD s1 SPILLEDARG 7
+    ALOAD s2 SPILLEDARG 8
+    ALOAD s3 SPILLEDARG 9
+    ALOAD s4 SPILLEDARG 10
+    ALOAD s5 SPILLEDARG 11
+    ALOAD s6 SPILLEDARG 12
+    ALOAD s7 SPILLEDARG 13
+    ALOAD t8 SPILLEDARG 14
+    ALOAD t9 SPILLEDARG 15
+    ALOAD v0 SPILLEDARG 16
+    ALOAD v1 SPILLEDARG 17
+    Tree_Init [ 2 ][ 3 ][ 0 ]
+        ASTORE SPILLDARG 0 t2
+        ASTORE SPILLDARG 1 t3
+        ASTORE SPILLDARG 2 t4
+        MOVE t3 a0
+        MOVE t2 a1
+        HLOAD t4 t2         0          
+        HSTORE t3         12           ./spigletFile/examples/BinaryTree.kg
+         MOVE t2 0
+        HSTORE t3         16           ./spigletFile/examples/BinaryTree.kg
+         MOVE t2 0
+        HSTORE t3         20           t2
+        MOVE v0 1
+        ALOAD t2 SPILLEDARG 0
+        ALOAD t3 SPILLEDARG 1
+        ALOAD t4 SPILLEDARG 2
+        Tree_SetRight [ 2 ][ 3 ][ 0 ]
+            ASTORE SPILLDARG 0 t2
+            ASTORE SPILLDARG 1 t3
+            ASTORE SPILLDARG 2 t4
+            MOVE t3 a0
+            MOVE t2 a1
+            HLOAD t4 t2             0              
+            HSTORE t3             8               t4
+            MOVE v0 1
+            ALOAD t2 SPILLEDARG 0
+            ALOAD t3 SPILLEDARG 1
+            ALOAD t4 SPILLEDARG 2
+            Tree_SetLeft [ 2 ][ 3 ][ 0 ]
+                ASTORE SPILLDARG 0 t2
+                ASTORE SPILLDARG 1 t3
+                ASTORE SPILLDARG 2 t4
+                MOVE t3 a0
+                MOVE t2 a1
+                HLOAD t4 t2                 0                  
+                HSTORE t3                 4                   t4
+                MOVE v0 1
+                ALOAD t2 SPILLEDARG 0
+                ALOAD t3 SPILLEDARG 1
+                ALOAD t4 SPILLEDARG 2
+                Tree_GetRight [ 2 ][ 2 ][ 0 ]
+                    ASTORE SPILLDARG 0 t2
+                    ASTORE SPILLDARG 1 t3
+                    MOVE t2 a0
+                    MOVE a1 a1
+                    HLOAD t3 t2                     8                      
+                    MOVE v0 t3
+                    ALOAD t2 SPILLEDARG 0
+                    ALOAD t3 SPILLEDARG 1
+                    Tree_GetLeft [ 2 ][ 2 ][ 0 ]
+                        ASTORE SPILLDARG 0 t2
+                        ASTORE SPILLDARG 1 t3
+                        MOVE t2 a0
+                        MOVE a1 a1
+                        HLOAD t3 t2                         4                          
+                        MOVE v0 t3
+                        ALOAD t2 SPILLEDARG 0
+                        ALOAD t3 SPILLEDARG 1
+                        Tree_GetKey [ 2 ][ 2 ][ 0 ]
+                            ASTORE SPILLDARG 0 t2
+                            ASTORE SPILLDARG 1 t3
+                            MOVE t2 a0
+                            MOVE a1 a1
+                            HLOAD t3 t2                             12                              
+                            MOVE v0 t3
+                            ALOAD t2 SPILLEDARG 0
+                            ALOAD t3 SPILLEDARG 1
+                            Tree_SetKey [ 2 ][ 3 ][ 0 ]
+                                ASTORE SPILLDARG 0 t2
+                                ASTORE SPILLDARG 1 t3
+                                ASTORE SPILLDARG 2 t4
+                                MOVE t3 a0
+                                MOVE t2 a1
+                                HLOAD t4 t2                                 0                                  
+                                HSTORE t3                                 12                                   t4
+                                MOVE v0 1
+                                ALOAD t2 SPILLEDARG 0
+                                ALOAD t3 SPILLEDARG 1
+                                ALOAD t4 SPILLEDARG 2
+                                Tree_GetHas_Right [ 2 ][ 2 ][ 0 ]
+                                    ASTORE SPILLDARG 0 t2
+                                    ASTORE SPILLDARG 1 t3
+                                    MOVE t2 a0
+                                    MOVE a1 a1
+                                    HLOAD t3 t2                                     20                                      
+                                    MOVE v0 t3
+                                    ALOAD t2 SPILLEDARG 0
+                                    ALOAD t3 SPILLEDARG 1
+                                    Tree_GetHas_Left [ 2 ][ 2 ][ 0 ]
+                                        ASTORE SPILLDARG 0 t2
+                                        ASTORE SPILLDARG 1 t3
+                                        MOVE t2 a0
+                                        MOVE a1 a1
+                                        HLOAD t3 t2                                         16                                          
+                                        MOVE v0 t3
+                                        ALOAD t2 SPILLEDARG 0
+                                        ALOAD t3 SPILLEDARG 1
+                                        Tree_SetHas_Left [ 2 ][ 3 ][ 0 ]
+                                            ASTORE SPILLDARG 0 t2
+                                            ASTORE SPILLDARG 1 t3
+                                            ASTORE SPILLDARG 2 t4
+                                            MOVE t3 a0
+                                            MOVE t2 a1
+                                            HLOAD t4 t2                                             0                                              
+                                            HSTORE t3                                             16                                               t4
+                                            MOVE v0 1
+                                            ALOAD t2 SPILLEDARG 0
+                                            ALOAD t3 SPILLEDARG 1
+                                            ALOAD t4 SPILLEDARG 2
+                                            Tree_SetHas_Right [ 2 ][ 3 ][ 0 ]
+                                                ASTORE SPILLDARG 0 t2
+                                                ASTORE SPILLDARG 1 t3
+                                                ASTORE SPILLDARG 2 t4
+                                                MOVE t3 a0
+                                                MOVE t2 a1
+                                                HLOAD t4 t2                                                 0                                                  
+                                                HSTORE t3                                                 20                                                   t4
+                                                MOVE v0 1
+                                                ALOAD t2 SPILLEDARG 0
+                                                ALOAD t3 SPILLEDARG 1
+                                                ALOAD t4 SPILLEDARG 2
+                                                Tree_Compare [ 2 ][ 5 ][ 0 ]
+                                                    ASTORE SPILLDARG 0 t2
+                                                    ASTORE SPILLDARG 1 t3
+                                                    ASTORE SPILLDARG 2 t4
+                                                    ASTORE SPILLDARG 3 t5
+                                                    ASTORE SPILLDARG 4 t6
+                                                    MOVE a0 a0
+                                                    MOVE t2 a1
+                                                    HLOAD t3 t2                                                     0                                                      
+                                                    HLOAD t4 t2                                                     4                                                      
+                                                     MOVE t2 0
+                                                    MOVE t5                                                      PLUS                                                       t4 1
+                                                     MOVE t6 t5
+                                                    MOVE t5                                                      LT                                                       t3 t4
+                                                     MOVE t4 t5
+                                                    CJUMP                                                      Tree_Compare_L0
+                                                     MOVE t2 0
+                                                    JUMP Tree_Compare_L1
+                                                    Tree_Compare_L0                                                      MOVE t4                                                      LT                                                       t3 t6
+                                                    MOVE t3                                                      LT                                                       t4 1
+                                                     MOVE t4 t3
+                                                    CJUMP                                                      Tree_Compare_L2
+                                                     MOVE t2 0
+                                                    JUMP Tree_Compare_L3
+                                                    Tree_Compare_L2                                                       MOVE t2 1
+                                                    Tree_Compare_L3                                                      NOOP 
+                                                    Tree_Compare_L1                                                      NOOP 
+                                                    MOVE v0 t2
+                                                    ALOAD t2 SPILLEDARG 0
+                                                    ALOAD t3 SPILLEDARG 1
+                                                    ALOAD t4 SPILLEDARG 2
+                                                    ALOAD t5 SPILLEDARG 3
+                                                    ALOAD t6 SPILLEDARG 4
+                                                    Tree_Insert [ 2 ][ 28 ][ 2 ]
+                                                        ASTORE SPILLDARG 0 t2
+                                                        ASTORE SPILLDARG 1 t3
+                                                        ASTORE SPILLDARG 2 t4
+                                                        ASTORE SPILLDARG 3 t5
+                                                        ASTORE SPILLDARG 4 t6
+                                                        ASTORE SPILLDARG 5 t7
+                                                        ASTORE SPILLDARG 6 s0
+                                                        ASTORE SPILLDARG 7 s1
+                                                        ASTORE SPILLDARG 8 s2
+                                                        ASTORE SPILLDARG 9 s3
+                                                        ASTORE SPILLDARG 10 s4
+                                                        ASTORE SPILLDARG 11 s5
+                                                        ASTORE SPILLDARG 12 s6
+                                                        ASTORE SPILLDARG 13 s7
+                                                        ASTORE SPILLDARG 14 t8
+                                                        ASTORE SPILLDARG 15 t9
+                                                        ASTORE SPILLDARG 16 v0
+                                                        ASTORE SPILLDARG 17 v1
+                                                        MOVE t3 a0
+                                                        MOVE t2 a1
+                                                        HLOAD t4 t2                                                         0                                                          
+                                                        MOVE t2 v0
+                                                         MOVE t5 t2
+                                                         MOVE t2 Tree_Delete
+                                                        HSTORE t5                                                         52                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 Tree_SetHas_Left
+                                                        HSTORE t5                                                         36                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 Tree_RemoveLeft
+                                                        HSTORE t5                                                         64                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 Tree_GetKey
+                                                        HSTORE t5                                                         20                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 Tree_SetRight
+                                                        HSTORE t5                                                         4                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 Tree_GetLeft
+                                                        HSTORE t5                                                         16                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 Tree_GetRight
+                                                        HSTORE t5                                                         12                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 Tree_Remove
+                                                        HSTORE t5                                                         56                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 Tree_SetLeft
+                                                        HSTORE t5                                                         8                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 Tree_Insert
+                                                        HSTORE t5                                                         48                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 Tree_Print
+                                                        HSTORE t5                                                         72                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 Tree_Init
+                                                        HSTORE t5                                                         0                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 Tree_GetHas_Right
+                                                        HSTORE t5                                                         28                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 Tree_GetHas_Left
+                                                        HSTORE t5                                                         32                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 Tree_RemoveRight
+                                                        HSTORE t5                                                         60                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 Tree_Search
+                                                        HSTORE t5                                                         68                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 Tree_SetKey
+                                                        HSTORE t5                                                         24                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 Tree_Compare
+                                                        HSTORE t5                                                         44                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 Tree_SetHas_Right
+                                                        HSTORE t5                                                         40                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 Tree_RecPrint
+                                                        HSTORE t5                                                         76                                                           ./spigletFile/examples/BinaryTree.kg
+                                                        MOVE t2 v0
+                                                         MOVE t6 t2
+                                                         MOVE t2 0
+                                                        HSTORE t6                                                         4                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 0
+                                                        HSTORE t6                                                         20                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 0
+                                                        HSTORE t6                                                         24                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 0
+                                                        HSTORE t6                                                         8                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 0
+                                                        HSTORE t6                                                         16                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 0
+                                                        HSTORE t6                                                         12                                                           ./spigletFile/examples/BinaryTree.kg
+                                                        HSTORE t6                                                         0                                                           ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t2 t6
+                                                         MOVE t5 t2
+                                                        HLOAD t6 t5                                                         0                                                          
+                                                        HLOAD t7 t6                                                         0                                                          
+                                                         MOVE t6 4
+                                                        MOVE s0                                                          TIMES                                                           t6 1
+                                                        MOVE t6 v0
+                                                         MOVE s0 t6
+                                                        HSTORE s0                                                         0                                                           t4
+                                                        MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                        MOVE a1 s0
+                                                        CALL t7
+                                                        
+                                                        MOVE t6 v0
+                                                         MOVE t5 ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t6 ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE t3 1
+                                                        JUMP Tree_Insert_L4
+                                                        Tree_Insert_L4                                                           MOVE s1 t3
+                                                        CJUMP                                                          Tree_Insert_L5
+                                                         MOVE s2 t6
+                                                        HLOAD s3 s2                                                         0                                                          
+                                                        HLOAD s4 ./spigletFile/examples/BinaryTree.kg                                                         20                                                          
+                                                         MOVE s3 4
+                                                        MOVE s5                                                          TIMES                                                           ./spigletFile/examples/BinaryTree.kg 0
+                                                        MOVE s3 v0
+                                                         MOVE s5 ./spigletFile/examples/BinaryTree.kg
+                                                        MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                        MOVE a1 s5
+                                                        CALL s4
+                                                        
+                                                        MOVE v0 v0
+                                                         MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                        MOVE v0                                                          LT                                                           t4 ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                        CJUMP                                                          Tree_Insert_L6
+                                                         MOVE s2 t6
+                                                        HLOAD v0 s2                                                         0                                                          
+                                                        HLOAD s6 ./spigletFile/examples/BinaryTree.kg                                                         32                                                          
+                                                         MOVE v0 4
+                                                        MOVE v0                                                          TIMES                                                           ./spigletFile/examples/BinaryTree.kg 0
+                                                        MOVE v0 v0
+                                                         MOVE s7 ./spigletFile/examples/BinaryTree.kg
+                                                        MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                        MOVE a1 s7
+                                                        CALL s6
+                                                        
+                                                        MOVE v0 v0
+                                                         MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                        CJUMP                                                          Tree_Insert_L7
+                                                         MOVE s2 t6
+                                                        HLOAD v0 s2                                                         0                                                          
+                                                        HLOAD t8 ./spigletFile/examples/BinaryTree.kg                                                         16                                                          
+                                                         MOVE v0 4
+                                                        MOVE v0                                                          TIMES                                                           ./spigletFile/examples/BinaryTree.kg 0
+                                                        MOVE v0 v0
+                                                         MOVE t9 ./spigletFile/examples/BinaryTree.kg
+                                                        MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                        MOVE a1 t9
+                                                        CALL t8
+                                                        
+                                                        MOVE v0 v0
+                                                         MOVE t6 ./spigletFile/examples/BinaryTree.kg
+                                                        JUMP Tree_Insert_L8
+                                                        Tree_Insert_L7                                                           MOVE t3 0
+                                                         MOVE s2 t6
+                                                        HLOAD v0 s2                                                         0                                                          
+                                                        HLOAD v0 ./spigletFile/examples/BinaryTree.kg                                                         36                                                          
+                                                         MOVE v0 4
+                                                        MOVE v0                                                          TIMES                                                           ./spigletFile/examples/BinaryTree.kg 1
+                                                        MOVE v0 v0
+                                                         MOVE v1 ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE v0 1
+                                                        HSTORE v1                                                         0                                                           ./spigletFile/examples/BinaryTree.kg
+                                                        MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                        MOVE a1 v1
+                                                        CALL v0
+                                                        
+                                                        MOVE v0 v0
+                                                         MOVE t5 ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE v0 t6
+                                                        ALOAD v0 SPILLEDARG 1
+                                                        HLOAD v0 v0                                                         0                                                          
+                                                        HLOAD t4 ./spigletFile/examples/BinaryTree.kg                                                         8                                                          
+                                                         MOVE v0 4
+                                                        MOVE v0                                                          TIMES                                                           ./spigletFile/examples/BinaryTree.kg 1
+                                                        MOVE v0 v0
+                                                         MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                        HSTORE ./spigletFile/examples/BinaryTree.kg                                                         0                                                           t2
+                                                        ALOAD v0 SPILLEDARG 1
+                                                        MOVE a0 v0
+                                                        MOVE a1 ./spigletFile/examples/BinaryTree.kg
+                                                        CALL t4
+                                                        
+                                                        MOVE v0 v0
+                                                         MOVE t5 ./spigletFile/examples/BinaryTree.kg
+                                                        Tree_Insert_L8                                                          NOOP 
+                                                        JUMP Tree_Insert_L9
+                                                        Tree_Insert_L6                                                           MOVE v0 t6
+                                                        ALOAD v0 SPILLEDARG 3
+                                                        HLOAD v0 v0                                                         0                                                          
+                                                        HLOAD v0 ./spigletFile/examples/BinaryTree.kg                                                         28                                                          
+                                                         MOVE v0 4
+                                                        MOVE v0                                                          TIMES                                                           ./spigletFile/examples/BinaryTree.kg 0
+                                                        MOVE v0 v0
+                                                         MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                        ALOAD v0 SPILLEDARG 3
+                                                        MOVE a0 v0
+                                                        MOVE a1 ./spigletFile/examples/BinaryTree.kg
+                                                        ALOAD v0 SPILLEDARG 2
+                                                        CALL v0
+                                                        
+                                                        MOVE v0 v0
+                                                         MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                        CJUMP                                                          Tree_Insert_L10
+                                                         MOVE v0 t6
+                                                        ALOAD v0 SPILLEDARG 5
+                                                        HLOAD v0 v0                                                         0                                                          
+                                                        HLOAD v0 ./spigletFile/examples/BinaryTree.kg                                                         12                                                          
+                                                         MOVE v0 4
+                                                        MOVE v0                                                          TIMES                                                           ./spigletFile/examples/BinaryTree.kg 0
+                                                        MOVE v0 v0
+                                                         MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                        ALOAD v0 SPILLEDARG 5
+                                                        MOVE a0 v0
+                                                        MOVE a1 ./spigletFile/examples/BinaryTree.kg
+                                                        ALOAD v0 SPILLEDARG 4
+                                                        CALL v0
+                                                        
+                                                        MOVE v0 v0
+                                                         MOVE t6 ./spigletFile/examples/BinaryTree.kg
+                                                        JUMP Tree_Insert_L11
+                                                        Tree_Insert_L10                                                           MOVE t3 0
+                                                         MOVE v0 t6
+                                                        ALOAD v0 SPILLEDARG 7
+                                                        HLOAD v0 v0                                                         0                                                          
+                                                        HLOAD v0 ./spigletFile/examples/BinaryTree.kg                                                         40                                                          
+                                                         MOVE v0 4
+                                                        MOVE v0                                                          TIMES                                                           ./spigletFile/examples/BinaryTree.kg 1
+                                                        MOVE v0 v0
+                                                         MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE v0 1
+                                                        HSTORE ./spigletFile/examples/BinaryTree.kg                                                         0                                                           ./spigletFile/examples/BinaryTree.kg
+                                                        ALOAD v0 SPILLEDARG 7
+                                                        MOVE a0 v0
+                                                        MOVE a1 ./spigletFile/examples/BinaryTree.kg
+                                                        ALOAD v0 SPILLEDARG 6
+                                                        CALL v0
+                                                        
+                                                        MOVE v0 v0
+                                                         MOVE t5 ./spigletFile/examples/BinaryTree.kg
+                                                         MOVE v0 t6
+                                                        ALOAD v0 SPILLEDARG 9
+                                                        HLOAD v0 v0                                                         0                                                          
+                                                        HLOAD v0 ./spigletFile/examples/BinaryTree.kg                                                         4                                                          
+                                                         MOVE v0 4
+                                                        MOVE v0                                                          TIMES                                                           ./spigletFile/examples/BinaryTree.kg 1
+                                                        MOVE v0 v0
+                                                         MOVE s2 ./spigletFile/examples/BinaryTree.kg
+                                                        HSTORE s2                                                         0                                                           t2
+                                                        ALOAD v0 SPILLEDARG 9
+                                                        MOVE a0 v0
+                                                        MOVE a1 s2
+                                                        ALOAD v0 SPILLEDARG 8
+                                                        CALL v0
+                                                        
+                                                        MOVE s3 v0
+                                                         MOVE t5 s3
+                                                        Tree_Insert_L11                                                          NOOP 
+                                                        Tree_Insert_L9                                                          NOOP 
+                                                        JUMP Tree_Insert_L4
+                                                        Tree_Insert_L5                                                          NOOP 
+                                                        MOVE v0 1
+                                                        ALOAD t2 SPILLEDARG 0
+                                                        ALOAD t3 SPILLEDARG 1
+                                                        ALOAD t4 SPILLEDARG 2
+                                                        ALOAD t5 SPILLEDARG 3
+                                                        ALOAD t6 SPILLEDARG 4
+                                                        ALOAD t7 SPILLEDARG 5
+                                                        ALOAD s0 SPILLEDARG 6
+                                                        ALOAD s1 SPILLEDARG 7
+                                                        ALOAD s2 SPILLEDARG 8
+                                                        ALOAD s3 SPILLEDARG 9
+                                                        ALOAD s4 SPILLEDARG 10
+                                                        ALOAD s5 SPILLEDARG 11
+                                                        ALOAD s6 SPILLEDARG 12
+                                                        ALOAD s7 SPILLEDARG 13
+                                                        ALOAD t8 SPILLEDARG 14
+                                                        ALOAD t9 SPILLEDARG 15
+                                                        ALOAD v0 SPILLEDARG 16
+                                                        ALOAD v1 SPILLEDARG 17
+                                                        Tree_Delete [ 2 ][ 31 ][ 2 ]
+                                                            ASTORE SPILLDARG 0 t2
+                                                            ASTORE SPILLDARG 1 t3
+                                                            ASTORE SPILLDARG 2 t4
+                                                            ASTORE SPILLDARG 3 t5
+                                                            ASTORE SPILLDARG 4 t6
+                                                            ASTORE SPILLDARG 5 t7
+                                                            ASTORE SPILLDARG 6 s0
+                                                            ASTORE SPILLDARG 7 s1
+                                                            ASTORE SPILLDARG 8 s2
+                                                            ASTORE SPILLDARG 9 s3
+                                                            ASTORE SPILLDARG 10 s4
+                                                            ASTORE SPILLDARG 11 s5
+                                                            ASTORE SPILLDARG 12 s6
+                                                            ASTORE SPILLDARG 13 s7
+                                                            ASTORE SPILLDARG 14 t8
+                                                            ASTORE SPILLDARG 15 t9
+                                                            ASTORE SPILLDARG 16 v0
+                                                            ASTORE SPILLDARG 17 v1
+                                                            MOVE t3 a0
+                                                            MOVE t2 a1
+                                                            HLOAD t4 t2                                                             0                                                              
+                                                             MOVE t2 t3
+                                                             MOVE t5 t3
+                                                             MOVE t6 1
+                                                             MOVE t7 0
+                                                             MOVE s0 1
+                                                            JUMP Tree_Delete_L12
+                                                            Tree_Delete_L12                                                               MOVE s1 t6
+                                                            CJUMP                                                              Tree_Delete_L13
+                                                             MOVE s2 t2
+                                                            HLOAD s3 s2                                                             0                                                              
+                                                            HLOAD s4 s3                                                             20                                                              
+                                                             MOVE s3 4
+                                                            MOVE s5                                                              TIMES                                                               s3 0
+                                                            MOVE s3 v0
+                                                             MOVE s5 s3
+                                                            MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                            MOVE a1 s5
+                                                            CALL s4
+                                                            
+                                                            MOVE s3 v0
+                                                             MOVE s2 ./spigletFile/examples/BinaryTree.kg
+                                                            MOVE s3                                                              LT                                                               t4 s2
+                                                             MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                            CJUMP                                                              Tree_Delete_L14
+                                                             MOVE s3 t2
+                                                            HLOAD s6 s3                                                             0                                                              
+                                                            HLOAD s7 ./spigletFile/examples/BinaryTree.kg                                                             32                                                              
+                                                             MOVE s6 4
+                                                            MOVE t8                                                              TIMES                                                               ./spigletFile/examples/BinaryTree.kg 0
+                                                            MOVE s6 v0
+                                                             MOVE t8 ./spigletFile/examples/BinaryTree.kg
+                                                            MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                            MOVE a1 t8
+                                                            CALL s7
+                                                            
+                                                            MOVE v0 v0
+                                                             MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                            CJUMP                                                              Tree_Delete_L15
+                                                             MOVE t5 t2
+                                                             MOVE s3 t2
+                                                            HLOAD v0 s3                                                             0                                                              
+                                                            HLOAD t9 ./spigletFile/examples/BinaryTree.kg                                                             16                                                              
+                                                             MOVE v0 4
+                                                            MOVE v0                                                              TIMES                                                               ./spigletFile/examples/BinaryTree.kg 0
+                                                            MOVE v0 v0
+                                                             MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                            MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                            MOVE a1 v0
+                                                            CALL t9
+                                                            
+                                                            MOVE v0 v0
+                                                             MOVE t2 ./spigletFile/examples/BinaryTree.kg
+                                                            JUMP Tree_Delete_L16
+                                                            Tree_Delete_L15                                                               MOVE t6 0
+                                                            Tree_Delete_L16                                                              NOOP 
+                                                            JUMP Tree_Delete_L17
+                                                            Tree_Delete_L14                                                              MOVE v0                                                              LT                                                               ./spigletFile/examples/BinaryTree.kg t4
+                                                             MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                            CJUMP                                                              Tree_Delete_L18
+                                                             MOVE s2 t2
+                                                            HLOAD v0 s2                                                             0                                                              
+                                                            HLOAD s6 ./spigletFile/examples/BinaryTree.kg                                                             28                                                              
+                                                             MOVE v0 4
+                                                            MOVE v0                                                              TIMES                                                               ./spigletFile/examples/BinaryTree.kg 0
+                                                            MOVE v0 v0
+                                                             MOVE v1 ./spigletFile/examples/BinaryTree.kg
+                                                            MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                            MOVE a1 v1
+                                                            CALL s6
+                                                            
+                                                            MOVE v0 v0
+                                                             MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                            CJUMP                                                              Tree_Delete_L19
+                                                             MOVE t5 t2
+                                                             MOVE s2 t2
+                                                            HLOAD v0 s2                                                             0                                                              
+                                                            HLOAD t7 ./spigletFile/examples/BinaryTree.kg                                                             12                                                              
+                                                             MOVE v0 4
+                                                            MOVE v0                                                              TIMES                                                               ./spigletFile/examples/BinaryTree.kg 0
+                                                            MOVE v0 v0
+                                                             MOVE t3 ./spigletFile/examples/BinaryTree.kg
+                                                            MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                            MOVE a1 t3
+                                                            CALL t7
+                                                            
+                                                            MOVE v0 v0
+                                                             MOVE t2 ./spigletFile/examples/BinaryTree.kg
+                                                            JUMP Tree_Delete_L20
+                                                            Tree_Delete_L19                                                               MOVE t6 0
+                                                            Tree_Delete_L20                                                              NOOP 
+                                                            JUMP Tree_Delete_L21
+                                                            Tree_Delete_L18                                                               MOVE v0 s0
+                                                            CJUMP                                                              Tree_Delete_L22
+                                                             MOVE v0 0
+                                                             MOVE v0 t2
+                                                            ALOAD v0 SPILLEDARG 4
+                                                            HLOAD v0 v0                                                             0                                                              
+                                                            HLOAD v0 ./spigletFile/examples/BinaryTree.kg                                                             28                                                              
+                                                             MOVE v0 4
+                                                            MOVE v0                                                              TIMES                                                               ./spigletFile/examples/BinaryTree.kg 0
+                                                            MOVE v0 v0
+                                                             MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                            ALOAD v0 SPILLEDARG 4
+                                                            MOVE a0 v0
+                                                            MOVE a1 ./spigletFile/examples/BinaryTree.kg
+                                                            ALOAD v0 SPILLEDARG 3
+                                                            CALL v0
+                                                            
+                                                            MOVE v0 v0
+                                                            MOVE v0                                                              LT                                                               ./spigletFile/examples/BinaryTree.kg 1
+                                                            ALOAD v0 SPILLEDARG 2
+                                                            MOVE v0                                                              LT                                                               v0 ./spigletFile/examples/BinaryTree.kg
+                                                             MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                            CJUMP                                                              Tree_Delete_L23
+                                                             MOVE v0 0
+                                                             MOVE v0 t2
+                                                            ALOAD v0 SPILLEDARG 7
+                                                            HLOAD v0 v0                                                             0                                                              
+                                                            HLOAD v0 ./spigletFile/examples/BinaryTree.kg                                                             32                                                              
+                                                             MOVE v0 4
+                                                            MOVE v0                                                              TIMES                                                               ./spigletFile/examples/BinaryTree.kg 0
+                                                            MOVE v0 v0
+                                                             MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                            ALOAD v0 SPILLEDARG 7
+                                                            MOVE a0 v0
+                                                            MOVE a1 ./spigletFile/examples/BinaryTree.kg
+                                                            ALOAD v0 SPILLEDARG 6
+                                                            CALL v0
+                                                            
+                                                            MOVE v0 v0
+                                                            MOVE v0                                                              LT                                                               ./spigletFile/examples/BinaryTree.kg 1
+                                                            ALOAD v0 SPILLEDARG 5
+                                                            MOVE v0                                                              LT                                                               v0 ./spigletFile/examples/BinaryTree.kg
+                                                             MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                            CJUMP                                                              Tree_Delete_L23
+                                                             MOVE v0 1
+                                                            JUMP Tree_Delete_L24
+                                                            Tree_Delete_L23                                                               MOVE v0 0
+                                                            Tree_Delete_L24                                                              NOOP 
+                                                             MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                            CJUMP                                                              Tree_Delete_L25
+                                                             MOVE v0 1
+                                                            JUMP Tree_Delete_L26
+                                                            Tree_Delete_L25                                                              ALOAD v0 SPILLEDARG 1
+                                                             MOVE v0 v0
+                                                            ALOAD v0 SPILLEDARG 10
+                                                            HLOAD v0 v0                                                             0                                                              
+                                                            HLOAD v0 ./spigletFile/examples/BinaryTree.kg                                                             56                                                              
+                                                             MOVE v0 4
+                                                            MOVE v0                                                              TIMES                                                               ./spigletFile/examples/BinaryTree.kg 2
+                                                            MOVE v0 v0
+                                                             MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                            HSTORE ./spigletFile/examples/BinaryTree.kg                                                             0                                                               t5
+                                                            HSTORE ./spigletFile/examples/BinaryTree.kg                                                             4                                                               t2
+                                                            ALOAD v0 SPILLEDARG 10
+                                                            MOVE a0 v0
+                                                            MOVE a1 ./spigletFile/examples/BinaryTree.kg
+                                                            ALOAD v0 SPILLEDARG 9
+                                                            CALL v0
+                                                            
+                                                            MOVE v0 v0
+                                                             MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                            Tree_Delete_L26                                                              NOOP 
+                                                            JUMP Tree_Delete_L27
+                                                            Tree_Delete_L22                                                              ALOAD v0 SPILLEDARG 1
+                                                             MOVE v0 v0
+                                                            ALOAD v0 SPILLEDARG 12
+                                                            HLOAD v0 v0                                                             0                                                              
+                                                            HLOAD v0 ./spigletFile/examples/BinaryTree.kg                                                             56                                                              
+                                                             MOVE v0 4
+                                                            MOVE v0                                                              TIMES                                                               ./spigletFile/examples/BinaryTree.kg 2
+                                                            MOVE v0 v0
+                                                             MOVE s2 ./spigletFile/examples/BinaryTree.kg
+                                                            HSTORE s2                                                             0                                                               t5
+                                                            HSTORE s2                                                             4                                                               t2
+                                                            ALOAD v0 SPILLEDARG 12
+                                                            MOVE a0 v0
+                                                            MOVE a1 s2
+                                                            ALOAD v0 SPILLEDARG 11
+                                                            CALL v0
+                                                            
+                                                            MOVE s3 v0
+                                                             MOVE v0 s3
+                                                            Tree_Delete_L27                                                              NOOP 
+                                                             MOVE v0 1
+                                                             MOVE t6 0
+                                                            Tree_Delete_L21                                                              NOOP 
+                                                            Tree_Delete_L17                                                              NOOP 
+                                                             MOVE s0 0
+                                                            JUMP Tree_Delete_L12
+                                                            Tree_Delete_L13                                                              NOOP 
+                                                            ALOAD v0 SPILLEDARG 0
+                                                            MOVE v0 v0
+                                                            ALOAD t2 SPILLEDARG 0
+                                                            ALOAD t3 SPILLEDARG 1
+                                                            ALOAD t4 SPILLEDARG 2
+                                                            ALOAD t5 SPILLEDARG 3
+                                                            ALOAD t6 SPILLEDARG 4
+                                                            ALOAD t7 SPILLEDARG 5
+                                                            ALOAD s0 SPILLEDARG 6
+                                                            ALOAD s1 SPILLEDARG 7
+                                                            ALOAD s2 SPILLEDARG 8
+                                                            ALOAD s3 SPILLEDARG 9
+                                                            ALOAD s4 SPILLEDARG 10
+                                                            ALOAD s5 SPILLEDARG 11
+                                                            ALOAD s6 SPILLEDARG 12
+                                                            ALOAD s7 SPILLEDARG 13
+                                                            ALOAD t8 SPILLEDARG 14
+                                                            ALOAD t9 SPILLEDARG 15
+                                                            ALOAD v0 SPILLEDARG 16
+                                                            ALOAD v1 SPILLEDARG 17
+                                                            Tree_Remove [ 2 ][ 29 ][ 2 ]
+                                                                ASTORE SPILLDARG 0 t2
+                                                                ASTORE SPILLDARG 1 t3
+                                                                ASTORE SPILLDARG 2 t4
+                                                                ASTORE SPILLDARG 3 t5
+                                                                ASTORE SPILLDARG 4 t6
+                                                                ASTORE SPILLDARG 5 t7
+                                                                ASTORE SPILLDARG 6 s0
+                                                                ASTORE SPILLDARG 7 s1
+                                                                ASTORE SPILLDARG 8 s2
+                                                                ASTORE SPILLDARG 9 s3
+                                                                ASTORE SPILLDARG 10 s4
+                                                                ASTORE SPILLDARG 11 s5
+                                                                ASTORE SPILLDARG 12 s6
+                                                                ASTORE SPILLDARG 13 s7
+                                                                ASTORE SPILLDARG 14 t8
+                                                                ASTORE SPILLDARG 15 t9
+                                                                ASTORE SPILLDARG 16 v0
+                                                                ASTORE SPILLDARG 17 v1
+                                                                MOVE t3 a0
+                                                                MOVE t2 a1
+                                                                HLOAD t4 t2                                                                 0                                                                  
+                                                                HLOAD t5 t2                                                                 4                                                                  
+                                                                 MOVE t2 t5
+                                                                HLOAD t6 t2                                                                 0                                                                  
+                                                                HLOAD t7 t6                                                                 32                                                                  
+                                                                 MOVE t6 4
+                                                                MOVE s0                                                                  TIMES                                                                   t6 0
+                                                                MOVE t6 v0
+                                                                 MOVE s0 t6
+                                                                MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                MOVE a1 s0
+                                                                CALL t7
+                                                                
+                                                                MOVE t6 v0
+                                                                 MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                                CJUMP                                                                  Tree_Remove_L28
+                                                                 MOVE t2 t3
+                                                                HLOAD t6 t2                                                                 0                                                                  
+                                                                HLOAD s1 ./spigletFile/examples/BinaryTree.kg                                                                 64                                                                  
+                                                                 MOVE t6 4
+                                                                MOVE s2                                                                  TIMES                                                                   ./spigletFile/examples/BinaryTree.kg 2
+                                                                MOVE t6 v0
+                                                                 MOVE s2 ./spigletFile/examples/BinaryTree.kg
+                                                                HSTORE s2                                                                 0                                                                   t4
+                                                                HSTORE s2                                                                 4                                                                   t5
+                                                                MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                MOVE a1 s2
+                                                                CALL s1
+                                                                
+                                                                MOVE v0 v0
+                                                                 MOVE t2 ./spigletFile/examples/BinaryTree.kg
+                                                                JUMP Tree_Remove_L29
+                                                                Tree_Remove_L28                                                                   MOVE t6 t5
+                                                                HLOAD v0 t6                                                                 0                                                                  
+                                                                HLOAD s4 ./spigletFile/examples/BinaryTree.kg                                                                 28                                                                  
+                                                                 MOVE v0 4
+                                                                MOVE v0                                                                  TIMES                                                                   ./spigletFile/examples/BinaryTree.kg 0
+                                                                MOVE v0 v0
+                                                                 MOVE s5 ./spigletFile/examples/BinaryTree.kg
+                                                                MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                MOVE a1 s5
+                                                                CALL s4
+                                                                
+                                                                MOVE v0 v0
+                                                                 MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                                CJUMP                                                                  Tree_Remove_L30
+                                                                 MOVE t6 t3
+                                                                HLOAD v0 t6                                                                 0                                                                  
+                                                                HLOAD s6 ./spigletFile/examples/BinaryTree.kg                                                                 60                                                                  
+                                                                 MOVE v0 4
+                                                                MOVE v0                                                                  TIMES                                                                   ./spigletFile/examples/BinaryTree.kg 2
+                                                                MOVE v0 v0
+                                                                 MOVE s7 ./spigletFile/examples/BinaryTree.kg
+                                                                HSTORE s7                                                                 0                                                                   t4
+                                                                HSTORE s7                                                                 4                                                                   t5
+                                                                MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                MOVE a1 s7
+                                                                CALL s6
+                                                                
+                                                                MOVE v0 v0
+                                                                 MOVE t2 ./spigletFile/examples/BinaryTree.kg
+                                                                JUMP Tree_Remove_L31
+                                                                Tree_Remove_L30                                                                   MOVE t6 ./spigletFile/examples/BinaryTree.kg
+                                                                HLOAD v0 t6                                                                 0                                                                  
+                                                                HLOAD s3 ./spigletFile/examples/BinaryTree.kg                                                                 20                                                                  
+                                                                 MOVE v0 4
+                                                                MOVE v0                                                                  TIMES                                                                   ./spigletFile/examples/BinaryTree.kg 0
+                                                                MOVE v0 v0
+                                                                 MOVE t8 ./spigletFile/examples/BinaryTree.kg
+                                                                MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                MOVE a1 t8
+                                                                CALL s3
+                                                                
+                                                                MOVE v0 v0
+                                                                 MOVE t6 ./spigletFile/examples/BinaryTree.kg
+                                                                 MOVE t5 t4
+                                                                HLOAD v0 t5                                                                 0                                                                  
+                                                                HLOAD v0 ./spigletFile/examples/BinaryTree.kg                                                                 16                                                                  
+                                                                 MOVE v0 4
+                                                                MOVE v0                                                                  TIMES                                                                   ./spigletFile/examples/BinaryTree.kg 0
+                                                                MOVE v0 v0
+                                                                 MOVE v1 ./spigletFile/examples/BinaryTree.kg
+                                                                MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                MOVE a1 v1
+                                                                CALL v0
+                                                                
+                                                                MOVE v0 v0
+                                                                 MOVE t5 ./spigletFile/examples/BinaryTree.kg
+                                                                HLOAD v0 t5                                                                 0                                                                  
+                                                                HLOAD t2 ./spigletFile/examples/BinaryTree.kg                                                                 20                                                                  
+                                                                 MOVE v0 4
+                                                                MOVE v0                                                                  TIMES                                                                   ./spigletFile/examples/BinaryTree.kg 0
+                                                                MOVE v0 v0
+                                                                 MOVE t4 ./spigletFile/examples/BinaryTree.kg
+                                                                MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                MOVE a1 t4
+                                                                CALL t2
+                                                                
+                                                                MOVE v0 v0
+                                                                 MOVE t5 ./spigletFile/examples/BinaryTree.kg
+                                                                ALOAD v0 SPILLEDARG 2
+                                                                 MOVE v0 v0
+                                                                ALOAD v0 SPILLEDARG 4
+                                                                HLOAD v0 v0                                                                 0                                                                  
+                                                                HLOAD v0 ./spigletFile/examples/BinaryTree.kg                                                                 44                                                                  
+                                                                 MOVE v0 4
+                                                                MOVE v0                                                                  TIMES                                                                   ./spigletFile/examples/BinaryTree.kg 2
+                                                                MOVE v0 v0
+                                                                 MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                                HSTORE ./spigletFile/examples/BinaryTree.kg                                                                 0                                                                   ./spigletFile/examples/BinaryTree.kg
+                                                                HSTORE ./spigletFile/examples/BinaryTree.kg                                                                 4                                                                   ./spigletFile/examples/BinaryTree.kg
+                                                                ALOAD v0 SPILLEDARG 4
+                                                                MOVE a0 v0
+                                                                MOVE a1 ./spigletFile/examples/BinaryTree.kg
+                                                                ALOAD v0 SPILLEDARG 3
+                                                                CALL v0
+                                                                
+                                                                MOVE v0 v0
+                                                                 MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                                CJUMP                                                                  Tree_Remove_L32
+                                                                ALOAD v0 SPILLEDARG 1
+                                                                 MOVE t3 v0
+                                                                HLOAD v0 t3                                                                 0                                                                  
+                                                                HLOAD t6 ./spigletFile/examples/BinaryTree.kg                                                                 8                                                                  
+                                                                 MOVE v0 4
+                                                                MOVE v0                                                                  TIMES                                                                   ./spigletFile/examples/BinaryTree.kg 1
+                                                                MOVE v0 v0
+                                                                 MOVE t9 ./spigletFile/examples/BinaryTree.kg
+                                                                ALOAD v0 SPILLEDARG 2
+                                                                HLOAD v0 v0                                                                 24                                                                  
+                                                                HSTORE t9                                                                 0                                                                   ./spigletFile/examples/BinaryTree.kg
+                                                                MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                MOVE a1 t9
+                                                                CALL t6
+                                                                
+                                                                MOVE v0 v0
+                                                                 MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                                ALOAD v0 SPILLEDARG 1
+                                                                 MOVE v0 v0
+                                                                ALOAD v0 SPILLEDARG 6
+                                                                HLOAD v0 v0                                                                 0                                                                  
+                                                                HLOAD v0 ./spigletFile/examples/BinaryTree.kg                                                                 36                                                                  
+                                                                 MOVE v0 4
+                                                                MOVE v0                                                                  TIMES                                                                   ./spigletFile/examples/BinaryTree.kg 1
+                                                                MOVE v0 v0
+                                                                 MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                                 MOVE v0 0
+                                                                HSTORE ./spigletFile/examples/BinaryTree.kg                                                                 0                                                                   ./spigletFile/examples/BinaryTree.kg
+                                                                ALOAD v0 SPILLEDARG 6
+                                                                MOVE a0 v0
+                                                                MOVE a1 ./spigletFile/examples/BinaryTree.kg
+                                                                ALOAD v0 SPILLEDARG 5
+                                                                CALL v0
+                                                                
+                                                                MOVE v0 v0
+                                                                 MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                                JUMP Tree_Remove_L33
+                                                                Tree_Remove_L32                                                                  ALOAD v0 SPILLEDARG 1
+                                                                 MOVE v0 v0
+                                                                ALOAD v0 SPILLEDARG 8
+                                                                HLOAD v0 v0                                                                 0                                                                  
+                                                                HLOAD v0 ./spigletFile/examples/BinaryTree.kg                                                                 4                                                                  
+                                                                 MOVE v0 4
+                                                                MOVE v0                                                                  TIMES                                                                   ./spigletFile/examples/BinaryTree.kg 1
+                                                                MOVE v0 v0
+                                                                 MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                                ALOAD v0 SPILLEDARG 2
+                                                                HLOAD v0 v0                                                                 24                                                                  
+                                                                HSTORE ./spigletFile/examples/BinaryTree.kg                                                                 0                                                                   ./spigletFile/examples/BinaryTree.kg
+                                                                ALOAD v0 SPILLEDARG 8
+                                                                MOVE a0 v0
+                                                                MOVE a1 ./spigletFile/examples/BinaryTree.kg
+                                                                ALOAD v0 SPILLEDARG 7
+                                                                CALL v0
+                                                                
+                                                                MOVE v0 v0
+                                                                 MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                                ALOAD v0 SPILLEDARG 1
+                                                                 MOVE v0 v0
+                                                                ALOAD v0 SPILLEDARG 10
+                                                                HLOAD v0 v0                                                                 0                                                                  
+                                                                HLOAD v0 ./spigletFile/examples/BinaryTree.kg                                                                 40                                                                  
+                                                                 MOVE v0 4
+                                                                MOVE v0                                                                  TIMES                                                                   ./spigletFile/examples/BinaryTree.kg 1
+                                                                MOVE v0 v0
+                                                                 MOVE t3 ./spigletFile/examples/BinaryTree.kg
+                                                                 MOVE v0 0
+                                                                HSTORE t3                                                                 0                                                                   ./spigletFile/examples/BinaryTree.kg
+                                                                ALOAD v0 SPILLEDARG 10
+                                                                MOVE a0 v0
+                                                                MOVE a1 t3
+                                                                ALOAD v0 SPILLEDARG 9
+                                                                CALL v0
+                                                                
+                                                                MOVE t5 v0
+                                                                 MOVE v0 t5
+                                                                Tree_Remove_L33                                                                  NOOP 
+                                                                Tree_Remove_L31                                                                  NOOP 
+                                                                Tree_Remove_L29                                                                  NOOP 
+                                                                MOVE v0 1
+                                                                ALOAD t2 SPILLEDARG 0
+                                                                ALOAD t3 SPILLEDARG 1
+                                                                ALOAD t4 SPILLEDARG 2
+                                                                ALOAD t5 SPILLEDARG 3
+                                                                ALOAD t6 SPILLEDARG 4
+                                                                ALOAD t7 SPILLEDARG 5
+                                                                ALOAD s0 SPILLEDARG 6
+                                                                ALOAD s1 SPILLEDARG 7
+                                                                ALOAD s2 SPILLEDARG 8
+                                                                ALOAD s3 SPILLEDARG 9
+                                                                ALOAD s4 SPILLEDARG 10
+                                                                ALOAD s5 SPILLEDARG 11
+                                                                ALOAD s6 SPILLEDARG 12
+                                                                ALOAD s7 SPILLEDARG 13
+                                                                ALOAD t8 SPILLEDARG 14
+                                                                ALOAD t9 SPILLEDARG 15
+                                                                ALOAD v0 SPILLEDARG 16
+                                                                ALOAD v1 SPILLEDARG 17
+                                                                Tree_RemoveRight [ 2 ][ 17 ][ 2 ]
+                                                                    ASTORE SPILLDARG 0 t2
+                                                                    ASTORE SPILLDARG 1 t3
+                                                                    ASTORE SPILLDARG 2 t4
+                                                                    ASTORE SPILLDARG 3 t5
+                                                                    ASTORE SPILLDARG 4 t6
+                                                                    ASTORE SPILLDARG 5 t7
+                                                                    ASTORE SPILLDARG 6 s0
+                                                                    ASTORE SPILLDARG 7 s1
+                                                                    ASTORE SPILLDARG 8 s2
+                                                                    ASTORE SPILLDARG 9 s3
+                                                                    ASTORE SPILLDARG 10 s4
+                                                                    ASTORE SPILLDARG 11 s5
+                                                                    ASTORE SPILLDARG 12 s6
+                                                                    ASTORE SPILLDARG 13 s7
+                                                                    ASTORE SPILLDARG 14 t8
+                                                                    ASTORE SPILLDARG 15 t9
+                                                                    ASTORE SPILLDARG 16 v0
+                                                                    MOVE t3 a0
+                                                                    MOVE t2 a1
+                                                                    HLOAD t4 t2                                                                     0                                                                      
+                                                                    HLOAD t5 t2                                                                     4                                                                      
+                                                                    JUMP Tree_RemoveRight_L34
+                                                                    Tree_RemoveRight_L34                                                                       MOVE t2 t5
+                                                                    HLOAD t6 t2                                                                     0                                                                      
+                                                                    HLOAD t7 t6                                                                     28                                                                      
+                                                                     MOVE t6 4
+                                                                    MOVE s0                                                                      TIMES                                                                       t6 0
+                                                                    MOVE t6 v0
+                                                                     MOVE s0 t6
+                                                                    MOVE a0 t2
+                                                                    MOVE a1 s0
+                                                                    CALL ./spigletFile/examples/BinaryTree.kg
+                                                                    
+                                                                    MOVE t6 v0
+                                                                     MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                                    CJUMP                                                                      Tree_RemoveRight_L35
+                                                                     MOVE t6 t5
+                                                                    HLOAD t7 t6                                                                     0                                                                      
+                                                                    HLOAD s1 ./spigletFile/examples/BinaryTree.kg                                                                     24                                                                      
+                                                                     MOVE t7 4
+                                                                    MOVE s2                                                                      TIMES                                                                       ./spigletFile/examples/BinaryTree.kg 1
+                                                                    MOVE t7 v0
+                                                                     MOVE s2 ./spigletFile/examples/BinaryTree.kg
+                                                                     MOVE t7 t5
+                                                                    HLOAD s3 t7                                                                     0                                                                      
+                                                                    HLOAD s4 ./spigletFile/examples/BinaryTree.kg                                                                     12                                                                      
+                                                                     MOVE s3 4
+                                                                    MOVE s5                                                                      TIMES                                                                       ./spigletFile/examples/BinaryTree.kg 0
+                                                                    MOVE s3 v0
+                                                                     MOVE s5 ./spigletFile/examples/BinaryTree.kg
+                                                                    MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                    MOVE a1 s5
+                                                                    CALL s4
+                                                                    
+                                                                    MOVE v0 v0
+                                                                     MOVE t7 ./spigletFile/examples/BinaryTree.kg
+                                                                    HLOAD v0 t7                                                                     0                                                                      
+                                                                    HLOAD s6 ./spigletFile/examples/BinaryTree.kg                                                                     20                                                                      
+                                                                     MOVE v0 4
+                                                                    MOVE v0                                                                      TIMES                                                                       ./spigletFile/examples/BinaryTree.kg 0
+                                                                    MOVE v0 v0
+                                                                     MOVE s7 ./spigletFile/examples/BinaryTree.kg
+                                                                    MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                    MOVE a1 s7
+                                                                    CALL s6
+                                                                    
+                                                                    MOVE v0 v0
+                                                                    HSTORE s2                                                                     0                                                                       ./spigletFile/examples/BinaryTree.kg
+                                                                    MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                    MOVE a1 s2
+                                                                    CALL s1
+                                                                    
+                                                                    MOVE v0 v0
+                                                                     MOVE t6 ./spigletFile/examples/BinaryTree.kg
+                                                                     MOVE t4 t5
+                                                                     MOVE t7 t5
+                                                                    HLOAD v0 t7                                                                     0                                                                      
+                                                                    HLOAD t8 ./spigletFile/examples/BinaryTree.kg                                                                     12                                                                      
+                                                                     MOVE v0 4
+                                                                    MOVE v0                                                                      TIMES                                                                       ./spigletFile/examples/BinaryTree.kg 0
+                                                                    MOVE v0 v0
+                                                                     MOVE t9 ./spigletFile/examples/BinaryTree.kg
+                                                                    MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                    MOVE a1 t9
+                                                                    CALL t8
+                                                                    
+                                                                    MOVE v0 v0
+                                                                     MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                                    JUMP Tree_RemoveRight_L34
+                                                                    Tree_RemoveRight_L35                                                                      NOOP 
+                                                                     MOVE t5 t4
+                                                                    HLOAD v0 t5                                                                     0                                                                      
+                                                                    HLOAD s3 ./spigletFile/examples/BinaryTree.kg                                                                     4                                                                      
+                                                                     MOVE v0 4
+                                                                    MOVE v0                                                                      TIMES                                                                       ./spigletFile/examples/BinaryTree.kg 1
+                                                                    MOVE v0 v0
+                                                                     MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                                    HLOAD v0 ./spigletFile/examples/BinaryTree.kg                                                                     24                                                                      
+                                                                    HSTORE v0                                                                     0                                                                       ./spigletFile/examples/BinaryTree.kg
+                                                                    MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                    MOVE a1 v0
+                                                                    CALL s3
+                                                                    
+                                                                    MOVE v0 v0
+                                                                     MOVE t6 ./spigletFile/examples/BinaryTree.kg
+                                                                     MOVE t3 ./spigletFile/examples/BinaryTree.kg
+                                                                    HLOAD v0 t3                                                                     0                                                                      
+                                                                    HLOAD t5 ./spigletFile/examples/BinaryTree.kg                                                                     40                                                                      
+                                                                     MOVE v0 4
+                                                                    MOVE v0                                                                      TIMES                                                                       ./spigletFile/examples/BinaryTree.kg 1
+                                                                    MOVE v0 v0
+                                                                     MOVE t7 ./spigletFile/examples/BinaryTree.kg
+                                                                     MOVE v0 0
+                                                                    HSTORE t7                                                                     0                                                                       ./spigletFile/examples/BinaryTree.kg
+                                                                    MOVE a0 t3
+                                                                    MOVE a1 t7
+                                                                    CALL t5
+                                                                    
+                                                                    MOVE t4 v0
+                                                                     MOVE t6 t4
+                                                                    MOVE v0 1
+                                                                    ALOAD t2 SPILLEDARG 0
+                                                                    ALOAD t3 SPILLEDARG 1
+                                                                    ALOAD t4 SPILLEDARG 2
+                                                                    ALOAD t5 SPILLEDARG 3
+                                                                    ALOAD t6 SPILLEDARG 4
+                                                                    ALOAD t7 SPILLEDARG 5
+                                                                    ALOAD s0 SPILLEDARG 6
+                                                                    ALOAD s1 SPILLEDARG 7
+                                                                    ALOAD s2 SPILLEDARG 8
+                                                                    ALOAD s3 SPILLEDARG 9
+                                                                    ALOAD s4 SPILLEDARG 10
+                                                                    ALOAD s5 SPILLEDARG 11
+                                                                    ALOAD s6 SPILLEDARG 12
+                                                                    ALOAD s7 SPILLEDARG 13
+                                                                    ALOAD t8 SPILLEDARG 14
+                                                                    ALOAD t9 SPILLEDARG 15
+                                                                    ALOAD v0 SPILLEDARG 16
+                                                                    Tree_RemoveLeft [ 2 ][ 17 ][ 2 ]
+                                                                        ASTORE SPILLDARG 0 t2
+                                                                        ASTORE SPILLDARG 1 t3
+                                                                        ASTORE SPILLDARG 2 t4
+                                                                        ASTORE SPILLDARG 3 t5
+                                                                        ASTORE SPILLDARG 4 t6
+                                                                        ASTORE SPILLDARG 5 t7
+                                                                        ASTORE SPILLDARG 6 s0
+                                                                        ASTORE SPILLDARG 7 s1
+                                                                        ASTORE SPILLDARG 8 s2
+                                                                        ASTORE SPILLDARG 9 s3
+                                                                        ASTORE SPILLDARG 10 s4
+                                                                        ASTORE SPILLDARG 11 s5
+                                                                        ASTORE SPILLDARG 12 s6
+                                                                        ASTORE SPILLDARG 13 s7
+                                                                        ASTORE SPILLDARG 14 t8
+                                                                        ASTORE SPILLDARG 15 t9
+                                                                        ASTORE SPILLDARG 16 v0
+                                                                        MOVE t3 a0
+                                                                        MOVE t2 a1
+                                                                        HLOAD t4 t2                                                                         0                                                                          
+                                                                        HLOAD t5 t2                                                                         4                                                                          
+                                                                        JUMP Tree_RemoveLeft_L36
+                                                                        Tree_RemoveLeft_L36                                                                           MOVE t2 t5
+                                                                        HLOAD t6 t2                                                                         0                                                                          
+                                                                        HLOAD t7 t6                                                                         32                                                                          
+                                                                         MOVE t6 4
+                                                                        MOVE s0                                                                          TIMES                                                                           t6 0
+                                                                        MOVE t6 v0
+                                                                         MOVE s0 t6
+                                                                        MOVE a0 t2
+                                                                        MOVE a1 s0
+                                                                        CALL ./spigletFile/examples/BinaryTree.kg
+                                                                        
+                                                                        MOVE t6 v0
+                                                                         MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                                        CJUMP                                                                          Tree_RemoveLeft_L37
+                                                                         MOVE t6 t5
+                                                                        HLOAD t7 t6                                                                         0                                                                          
+                                                                        HLOAD s1 ./spigletFile/examples/BinaryTree.kg                                                                         24                                                                          
+                                                                         MOVE t7 4
+                                                                        MOVE s2                                                                          TIMES                                                                           ./spigletFile/examples/BinaryTree.kg 1
+                                                                        MOVE t7 v0
+                                                                         MOVE s2 ./spigletFile/examples/BinaryTree.kg
+                                                                         MOVE t7 t5
+                                                                        HLOAD s3 t7                                                                         0                                                                          
+                                                                        HLOAD s4 ./spigletFile/examples/BinaryTree.kg                                                                         16                                                                          
+                                                                         MOVE s3 4
+                                                                        MOVE s5                                                                          TIMES                                                                           ./spigletFile/examples/BinaryTree.kg 0
+                                                                        MOVE s3 v0
+                                                                         MOVE s5 ./spigletFile/examples/BinaryTree.kg
+                                                                        MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                        MOVE a1 s5
+                                                                        CALL s4
+                                                                        
+                                                                        MOVE v0 v0
+                                                                         MOVE t7 ./spigletFile/examples/BinaryTree.kg
+                                                                        HLOAD v0 t7                                                                         0                                                                          
+                                                                        HLOAD s6 ./spigletFile/examples/BinaryTree.kg                                                                         20                                                                          
+                                                                         MOVE v0 4
+                                                                        MOVE v0                                                                          TIMES                                                                           ./spigletFile/examples/BinaryTree.kg 0
+                                                                        MOVE v0 v0
+                                                                         MOVE s7 ./spigletFile/examples/BinaryTree.kg
+                                                                        MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                        MOVE a1 s7
+                                                                        CALL s6
+                                                                        
+                                                                        MOVE v0 v0
+                                                                        HSTORE s2                                                                         0                                                                           ./spigletFile/examples/BinaryTree.kg
+                                                                        MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                        MOVE a1 s2
+                                                                        CALL s1
+                                                                        
+                                                                        MOVE v0 v0
+                                                                         MOVE t6 ./spigletFile/examples/BinaryTree.kg
+                                                                         MOVE t4 t5
+                                                                         MOVE t7 t5
+                                                                        HLOAD v0 t7                                                                         0                                                                          
+                                                                        HLOAD t8 ./spigletFile/examples/BinaryTree.kg                                                                         16                                                                          
+                                                                         MOVE v0 4
+                                                                        MOVE v0                                                                          TIMES                                                                           ./spigletFile/examples/BinaryTree.kg 0
+                                                                        MOVE v0 v0
+                                                                         MOVE t9 ./spigletFile/examples/BinaryTree.kg
+                                                                        MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                        MOVE a1 t9
+                                                                        CALL t8
+                                                                        
+                                                                        MOVE v0 v0
+                                                                         MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                                        JUMP Tree_RemoveLeft_L36
+                                                                        Tree_RemoveLeft_L37                                                                          NOOP 
+                                                                         MOVE t5 t4
+                                                                        HLOAD v0 t5                                                                         0                                                                          
+                                                                        HLOAD s3 ./spigletFile/examples/BinaryTree.kg                                                                         8                                                                          
+                                                                         MOVE v0 4
+                                                                        MOVE v0                                                                          TIMES                                                                           ./spigletFile/examples/BinaryTree.kg 1
+                                                                        MOVE v0 v0
+                                                                         MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                                        HLOAD v0 ./spigletFile/examples/BinaryTree.kg                                                                         24                                                                          
+                                                                        HSTORE v0                                                                         0                                                                           ./spigletFile/examples/BinaryTree.kg
+                                                                        MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                        MOVE a1 v0
+                                                                        CALL s3
+                                                                        
+                                                                        MOVE v0 v0
+                                                                         MOVE t6 ./spigletFile/examples/BinaryTree.kg
+                                                                         MOVE t3 ./spigletFile/examples/BinaryTree.kg
+                                                                        HLOAD v0 t3                                                                         0                                                                          
+                                                                        HLOAD t5 ./spigletFile/examples/BinaryTree.kg                                                                         36                                                                          
+                                                                         MOVE v0 4
+                                                                        MOVE v0                                                                          TIMES                                                                           ./spigletFile/examples/BinaryTree.kg 1
+                                                                        MOVE v0 v0
+                                                                         MOVE t7 ./spigletFile/examples/BinaryTree.kg
+                                                                         MOVE v0 0
+                                                                        HSTORE t7                                                                         0                                                                           ./spigletFile/examples/BinaryTree.kg
+                                                                        MOVE a0 t3
+                                                                        MOVE a1 t7
+                                                                        CALL t5
+                                                                        
+                                                                        MOVE t4 v0
+                                                                         MOVE t6 t4
+                                                                        MOVE v0 1
+                                                                        ALOAD t2 SPILLEDARG 0
+                                                                        ALOAD t3 SPILLEDARG 1
+                                                                        ALOAD t4 SPILLEDARG 2
+                                                                        ALOAD t5 SPILLEDARG 3
+                                                                        ALOAD t6 SPILLEDARG 4
+                                                                        ALOAD t7 SPILLEDARG 5
+                                                                        ALOAD s0 SPILLEDARG 6
+                                                                        ALOAD s1 SPILLEDARG 7
+                                                                        ALOAD s2 SPILLEDARG 8
+                                                                        ALOAD s3 SPILLEDARG 9
+                                                                        ALOAD s4 SPILLEDARG 10
+                                                                        ALOAD s5 SPILLEDARG 11
+                                                                        ALOAD s6 SPILLEDARG 12
+                                                                        ALOAD s7 SPILLEDARG 13
+                                                                        ALOAD t8 SPILLEDARG 14
+                                                                        ALOAD t9 SPILLEDARG 15
+                                                                        ALOAD v0 SPILLEDARG 16
+                                                                        Tree_Search [ 2 ][ 17 ][ 2 ]
+                                                                            ASTORE SPILLDARG 0 t2
+                                                                            ASTORE SPILLDARG 1 t3
+                                                                            ASTORE SPILLDARG 2 t4
+                                                                            ASTORE SPILLDARG 3 t5
+                                                                            ASTORE SPILLDARG 4 t6
+                                                                            ASTORE SPILLDARG 5 t7
+                                                                            ASTORE SPILLDARG 6 s0
+                                                                            ASTORE SPILLDARG 7 s1
+                                                                            ASTORE SPILLDARG 8 s2
+                                                                            ASTORE SPILLDARG 9 s3
+                                                                            ASTORE SPILLDARG 10 s4
+                                                                            ASTORE SPILLDARG 11 s5
+                                                                            ASTORE SPILLDARG 12 s6
+                                                                            ASTORE SPILLDARG 13 s7
+                                                                            ASTORE SPILLDARG 14 t8
+                                                                            ASTORE SPILLDARG 15 t9
+                                                                            ASTORE SPILLDARG 16 v0
+                                                                            MOVE t3 a0
+                                                                            MOVE t2 a1
+                                                                            HLOAD t4 t2                                                                             0                                                                              
+                                                                             MOVE t2 t3
+                                                                             MOVE t3 1
+                                                                             MOVE t5 0
+                                                                            JUMP Tree_Search_L38
+                                                                            Tree_Search_L38                                                                               MOVE t6 t3
+                                                                            CJUMP                                                                              Tree_Search_L39
+                                                                             MOVE t7 t2
+                                                                            HLOAD s0 t7                                                                             0                                                                              
+                                                                            HLOAD s1 s0                                                                             20                                                                              
+                                                                             MOVE s0 4
+                                                                            MOVE s2                                                                              TIMES                                                                               s0 0
+                                                                            MOVE s0 v0
+                                                                             MOVE s2 s0
+                                                                            MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                            MOVE a1 s2
+                                                                            CALL s1
+                                                                            
+                                                                            MOVE s0 v0
+                                                                             MOVE t7 ./spigletFile/examples/BinaryTree.kg
+                                                                            MOVE s0                                                                              LT                                                                               t4 t7
+                                                                             MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                                            CJUMP                                                                              Tree_Search_L40
+                                                                             MOVE s0 t2
+                                                                            HLOAD s3 s0                                                                             0                                                                              
+                                                                            HLOAD s4 ./spigletFile/examples/BinaryTree.kg                                                                             32                                                                              
+                                                                             MOVE s3 4
+                                                                            MOVE s5                                                                              TIMES                                                                               ./spigletFile/examples/BinaryTree.kg 0
+                                                                            MOVE s3 v0
+                                                                             MOVE s5 ./spigletFile/examples/BinaryTree.kg
+                                                                            MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                            MOVE a1 s5
+                                                                            CALL s4
+                                                                            
+                                                                            MOVE v0 v0
+                                                                             MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                                            CJUMP                                                                              Tree_Search_L41
+                                                                             MOVE s0 t2
+                                                                            HLOAD v0 s0                                                                             0                                                                              
+                                                                            HLOAD s6 ./spigletFile/examples/BinaryTree.kg                                                                             16                                                                              
+                                                                             MOVE v0 4
+                                                                            MOVE v0                                                                              TIMES                                                                               ./spigletFile/examples/BinaryTree.kg 0
+                                                                            MOVE v0 v0
+                                                                             MOVE s7 ./spigletFile/examples/BinaryTree.kg
+                                                                            MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                            MOVE a1 s7
+                                                                            CALL s6
+                                                                            
+                                                                            MOVE v0 v0
+                                                                             MOVE t2 ./spigletFile/examples/BinaryTree.kg
+                                                                            JUMP Tree_Search_L42
+                                                                            Tree_Search_L41                                                                               MOVE t3 0
+                                                                            Tree_Search_L42                                                                              NOOP 
+                                                                            JUMP Tree_Search_L43
+                                                                            Tree_Search_L40                                                                              MOVE v0                                                                              LT                                                                               ./spigletFile/examples/BinaryTree.kg t4
+                                                                             MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                                            CJUMP                                                                              Tree_Search_L44
+                                                                             MOVE t7 t2
+                                                                            HLOAD v0 t7                                                                             0                                                                              
+                                                                            HLOAD s3 ./spigletFile/examples/BinaryTree.kg                                                                             28                                                                              
+                                                                             MOVE v0 4
+                                                                            MOVE v0                                                                              TIMES                                                                               ./spigletFile/examples/BinaryTree.kg 0
+                                                                            MOVE v0 v0
+                                                                             MOVE t8 ./spigletFile/examples/BinaryTree.kg
+                                                                            MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                            MOVE a1 t8
+                                                                            CALL s3
+                                                                            
+                                                                            MOVE v0 v0
+                                                                             MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                                            CJUMP                                                                              Tree_Search_L45
+                                                                             MOVE t7 t2
+                                                                            HLOAD v0 t7                                                                             0                                                                              
+                                                                            HLOAD t9 ./spigletFile/examples/BinaryTree.kg                                                                             12                                                                              
+                                                                             MOVE v0 4
+                                                                            MOVE v0                                                                              TIMES                                                                               ./spigletFile/examples/BinaryTree.kg 0
+                                                                            MOVE v0 v0
+                                                                             MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                                            MOVE a0 t7
+                                                                            MOVE a1 v0
+                                                                            CALL t9
+                                                                            
+                                                                            MOVE s0 v0
+                                                                             MOVE t2 s0
+                                                                            JUMP Tree_Search_L46
+                                                                            Tree_Search_L45                                                                               MOVE t3 0
+                                                                            Tree_Search_L46                                                                              NOOP 
+                                                                            JUMP Tree_Search_L47
+                                                                            Tree_Search_L44                                                                               MOVE t5 1
+                                                                             MOVE t3 0
+                                                                            Tree_Search_L47                                                                              NOOP 
+                                                                            Tree_Search_L43                                                                              NOOP 
+                                                                            JUMP Tree_Search_L38
+                                                                            Tree_Search_L39                                                                              NOOP 
+                                                                            MOVE v0 t5
+                                                                            ALOAD t2 SPILLEDARG 0
+                                                                            ALOAD t3 SPILLEDARG 1
+                                                                            ALOAD t4 SPILLEDARG 2
+                                                                            ALOAD t5 SPILLEDARG 3
+                                                                            ALOAD t6 SPILLEDARG 4
+                                                                            ALOAD t7 SPILLEDARG 5
+                                                                            ALOAD s0 SPILLEDARG 6
+                                                                            ALOAD s1 SPILLEDARG 7
+                                                                            ALOAD s2 SPILLEDARG 8
+                                                                            ALOAD s3 SPILLEDARG 9
+                                                                            ALOAD s4 SPILLEDARG 10
+                                                                            ALOAD s5 SPILLEDARG 11
+                                                                            ALOAD s6 SPILLEDARG 12
+                                                                            ALOAD s7 SPILLEDARG 13
+                                                                            ALOAD t8 SPILLEDARG 14
+                                                                            ALOAD t9 SPILLEDARG 15
+                                                                            ALOAD v0 SPILLEDARG 16
+                                                                            Tree_Print [ 2 ][ 5 ][ 2 ]
+                                                                                ASTORE SPILLDARG 0 t2
+                                                                                ASTORE SPILLDARG 1 t3
+                                                                                ASTORE SPILLDARG 2 t4
+                                                                                ASTORE SPILLDARG 3 t5
+                                                                                ASTORE SPILLDARG 4 t6
+                                                                                MOVE t2 a0
+                                                                                MOVE a1 a1
+                                                                                 MOVE t3 t2
+                                                                                 MOVE t4 t2
+                                                                                HLOAD t2 t4                                                                                 0                                                                                  
+                                                                                HLOAD t5 t2                                                                                 76                                                                                  
+                                                                                 MOVE t2 4
+                                                                                MOVE t6                                                                                  TIMES                                                                                   t2 1
+                                                                                MOVE t2 v0
+                                                                                 MOVE t6 t2
+                                                                                HSTORE t6                                                                                 0                                                                                   ./spigletFile/examples/BinaryTree.kg
+                                                                                MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                                MOVE a1 t6
+                                                                                CALL t5
+                                                                                
+                                                                                MOVE t2 v0
+                                                                                 MOVE t3 t2
+                                                                                MOVE v0 1
+                                                                                ALOAD t2 SPILLEDARG 0
+                                                                                ALOAD t3 SPILLEDARG 1
+                                                                                ALOAD t4 SPILLEDARG 2
+                                                                                ALOAD t5 SPILLEDARG 3
+                                                                                ALOAD t6 SPILLEDARG 4
+                                                                                Tree_RecPrint [ 2 ][ 18 ][ 2 ]
+                                                                                    ASTORE SPILLDARG 0 t2
+                                                                                    ASTORE SPILLDARG 1 t3
+                                                                                    ASTORE SPILLDARG 2 t4
+                                                                                    ASTORE SPILLDARG 3 t5
+                                                                                    ASTORE SPILLDARG 4 t6
+                                                                                    ASTORE SPILLDARG 5 t7
+                                                                                    ASTORE SPILLDARG 6 s0
+                                                                                    ASTORE SPILLDARG 7 s1
+                                                                                    ASTORE SPILLDARG 8 s2
+                                                                                    ASTORE SPILLDARG 9 s3
+                                                                                    ASTORE SPILLDARG 10 s4
+                                                                                    ASTORE SPILLDARG 11 s5
+                                                                                    ASTORE SPILLDARG 12 s6
+                                                                                    ASTORE SPILLDARG 13 s7
+                                                                                    ASTORE SPILLDARG 14 t8
+                                                                                    ASTORE SPILLDARG 15 t9
+                                                                                    ASTORE SPILLDARG 16 v0
+                                                                                    ASTORE SPILLDARG 17 v1
+                                                                                    MOVE t3 a0
+                                                                                    MOVE t2 a1
+                                                                                    HLOAD t4 t2                                                                                     0                                                                                      
+                                                                                     MOVE t2 t4
+                                                                                    HLOAD t5 t2                                                                                     0                                                                                      
+                                                                                    HLOAD t6 t5                                                                                     32                                                                                      
+                                                                                     MOVE t5 4
+                                                                                    MOVE t7                                                                                      TIMES                                                                                       t5 0
+                                                                                    MOVE t5 v0
+                                                                                     MOVE t7 t5
+                                                                                    MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                                    MOVE a1 t7
+                                                                                    CALL t6
+                                                                                    
+                                                                                    MOVE t5 v0
+                                                                                     MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                                                    CJUMP                                                                                      Tree_RecPrint_L48
+                                                                                     MOVE t2 t3
+                                                                                    HLOAD t5 t2                                                                                     0                                                                                      
+                                                                                    HLOAD s0 ./spigletFile/examples/BinaryTree.kg                                                                                     76                                                                                      
+                                                                                     MOVE t5 4
+                                                                                    MOVE s1                                                                                      TIMES                                                                                       ./spigletFile/examples/BinaryTree.kg 1
+                                                                                    MOVE t5 v0
+                                                                                     MOVE s1 ./spigletFile/examples/BinaryTree.kg
+                                                                                     MOVE t5 t4
+                                                                                    HLOAD s2 t5                                                                                     0                                                                                      
+                                                                                    HLOAD s3 ./spigletFile/examples/BinaryTree.kg                                                                                     16                                                                                      
+                                                                                     MOVE s2 4
+                                                                                    MOVE s4                                                                                      TIMES                                                                                       ./spigletFile/examples/BinaryTree.kg 0
+                                                                                    MOVE s2 v0
+                                                                                     MOVE s4 ./spigletFile/examples/BinaryTree.kg
+                                                                                    MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                                    MOVE a1 s4
+                                                                                    CALL s3
+                                                                                    
+                                                                                    MOVE v0 v0
+                                                                                    HSTORE s1                                                                                     0                                                                                       ./spigletFile/examples/BinaryTree.kg
+                                                                                    MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                                    MOVE a1 s1
+                                                                                    CALL s0
+                                                                                    
+                                                                                    MOVE v0 v0
+                                                                                     MOVE t2 ./spigletFile/examples/BinaryTree.kg
+                                                                                    JUMP Tree_RecPrint_L49
+                                                                                    Tree_RecPrint_L48                                                                                       MOVE t2 1
+                                                                                    Tree_RecPrint_L49                                                                                      NOOP 
+                                                                                     MOVE t5 t4
+                                                                                    HLOAD v0 t5                                                                                     0                                                                                      
+                                                                                    HLOAD s5 ./spigletFile/examples/BinaryTree.kg                                                                                     20                                                                                      
+                                                                                     MOVE v0 4
+                                                                                    MOVE v0                                                                                      TIMES                                                                                       ./spigletFile/examples/BinaryTree.kg 0
+                                                                                    MOVE v0 v0
+                                                                                     MOVE s6 ./spigletFile/examples/BinaryTree.kg
+                                                                                    MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                                    MOVE a1 s6
+                                                                                    CALL s5
+                                                                                    
+                                                                                    MOVE v0 v0
+                                                                                    PRINT ./spigletFile/examples/BinaryTree.kg
+                                                                                     MOVE t5 t4
+                                                                                    HLOAD v0 t5                                                                                     0                                                                                      
+                                                                                    HLOAD s7 ./spigletFile/examples/BinaryTree.kg                                                                                     28                                                                                      
+                                                                                     MOVE v0 4
+                                                                                    MOVE v0                                                                                      TIMES                                                                                       ./spigletFile/examples/BinaryTree.kg 0
+                                                                                    MOVE v0 v0
+                                                                                     MOVE t8 ./spigletFile/examples/BinaryTree.kg
+                                                                                    MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                                    MOVE a1 t8
+                                                                                    CALL s7
+                                                                                    
+                                                                                    MOVE v0 v0
+                                                                                     MOVE v0 ./spigletFile/examples/BinaryTree.kg
+                                                                                    CJUMP                                                                                      Tree_RecPrint_L50
+                                                                                     MOVE t5 ./spigletFile/examples/BinaryTree.kg
+                                                                                    HLOAD v0 t5                                                                                     0                                                                                      
+                                                                                    HLOAD s2 ./spigletFile/examples/BinaryTree.kg                                                                                     76                                                                                      
+                                                                                     MOVE v0 4
+                                                                                    MOVE v0                                                                                      TIMES                                                                                       ./spigletFile/examples/BinaryTree.kg 1
+                                                                                    MOVE v0 v0
+                                                                                     MOVE t9 ./spigletFile/examples/BinaryTree.kg
+                                                                                     MOVE t3 ./spigletFile/examples/BinaryTree.kg
+                                                                                    HLOAD v0 t3                                                                                     0                                                                                      
+                                                                                    HLOAD v0 ./spigletFile/examples/BinaryTree.kg                                                                                     12                                                                                      
+                                                                                     MOVE v0 4
+                                                                                    MOVE v0                                                                                      TIMES                                                                                       ./spigletFile/examples/BinaryTree.kg 0
+                                                                                    MOVE v0 v0
+                                                                                     MOVE v1 ./spigletFile/examples/BinaryTree.kg
+                                                                                    MOVE a0 ./spigletFile/examples/BinaryTree.kg
+                                                                                    MOVE a1 v1
+                                                                                    CALL v0
+                                                                                    
+                                                                                    MOVE v0 v0
+                                                                                    HSTORE t9                                                                                     0                                                                                       ./spigletFile/examples/BinaryTree.kg
+                                                                                    MOVE a0 t5
+                                                                                    MOVE a1 t9
+                                                                                    CALL s2
+                                                                                    
+                                                                                    MOVE t3 v0
+                                                                                     MOVE t2 t3
+                                                                                    JUMP Tree_RecPrint_L51
+                                                                                    Tree_RecPrint_L50                                                                                       MOVE t2 1
+                                                                                    Tree_RecPrint_L51                                                                                      NOOP 
+                                                                                    MOVE v0 1
+                                                                                    ALOAD t2 SPILLEDARG 0
+                                                                                    ALOAD t3 SPILLEDARG 1
+                                                                                    ALOAD t4 SPILLEDARG 2
+                                                                                    ALOAD t5 SPILLEDARG 3
+                                                                                    ALOAD t6 SPILLEDARG 4
+                                                                                    ALOAD t7 SPILLEDARG 5
+                                                                                    ALOAD s0 SPILLEDARG 6
+                                                                                    ALOAD s1 SPILLEDARG 7
+                                                                                    ALOAD s2 SPILLEDARG 8
+                                                                                    ALOAD s3 SPILLEDARG 9
+                                                                                    ALOAD s4 SPILLEDARG 10
+                                                                                    ALOAD s5 SPILLEDARG 11
+                                                                                    ALOAD s6 SPILLEDARG 12
+                                                                                    ALOAD s7 SPILLEDARG 13
+                                                                                    ALOAD t8 SPILLEDARG 14
+                                                                                    ALOAD t9 SPILLEDARG 15
+                                                                                    ALOAD v0 SPILLEDARG 16
+                                                                                    ALOAD v1 SPILLEDARG 17
