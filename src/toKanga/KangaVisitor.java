@@ -148,7 +148,7 @@ public class KangaVisitor extends GJVoidDepthFirst<environ>{
 		environ env = new environ(alloc.tables,n.f0.f0.toString(),0,alloc.usedRegNum);
 		initParam(env,Integer.parseInt(n.f2.f0.toString()));
 		n.f4.accept(this,env);
-		genTail(alloc.usedReg,alloc.usedRegNum);
+		genTail(alloc.stackpos,alloc.usedReg,alloc.usedRegNum);
 		return;
 	}
 	/**
@@ -198,8 +198,8 @@ public class KangaVisitor extends GJVoidDepthFirst<environ>{
 	public void visit(HStoreStmt n,environ env) {
 		String s1 = readTemp(Integer.parseInt(n.f1.f1.f0.tokenImage), env, 0);
 		String s2 = readTemp(Integer.parseInt(n.f3.f1.f0.tokenImage), env, 1);
-		kp("HSTORE " + s1,indent );
-		n.f2.accept(this, null);
+		kp("HSTORE " + s1,indent);
+		n.f2.accept(this, env);
 		kpln(" " + s2,indent);
 		
 	}
@@ -216,7 +216,7 @@ public class KangaVisitor extends GJVoidDepthFirst<environ>{
 		String s1 = writeTemp(Integer.parseInt(n.f1.f1.f0.tokenImage), env, 0,new temp2reg(Integer.parseInt(n.f1.f1.f0.tokenImage)));
 		String s2 = readTemp(Integer.parseInt(n.f2.f1.f0.tokenImage), env, 0);
 		kp("HLOAD " + s1 + " " + s2,indent);
-		n.f3.accept(this, null);
+		n.f3.accept(this, env);
 		kpln("",indent);
 		WriteMem_ifTempinMem(temp, s1);
 	}
@@ -259,7 +259,7 @@ public class KangaVisitor extends GJVoidDepthFirst<environ>{
 			s2 = simpleExp(b.f2, env, 1);
 			s3 = writeTemp(Integer.parseInt(n.f1.f1.f0.tokenImage), env, 0, tempWrite);
 			kp("MOVE " + s3 + " ",indent);
-			b.f0.accept(this, null);
+			b.f0.accept(this, env);
 			kpln(" " + s1 + " " + s2,indent);
 			WriteMem_ifTempinMem(tempWrite, s3);
 			return;
@@ -362,14 +362,15 @@ public class KangaVisitor extends GJVoidDepthFirst<environ>{
 	}
 	void genHead(String name, int a,int b,int c,int[] regs,int usedNum) {
 		kpln(name+" [ "+a+" ][ "+b+" ][ "+c+" ]",indent++);
-		for(int i=0;i<usedNum;i++) {
-			kpln("ASTORE SPILLDARG "+i+" "+RegNames.REGS[regs[i]],indent);
+		for(int i=0;i<b-usedNum;i++) {
+			kpln("ASTORE SPILLEDARG "+i+" "+RegNames.REGS[regs[i]],indent);
 		}
 	}
-	void genTail(int[] regs,int usedNum) {
-		for(int i=0;i<usedNum;i++) {
+	void genTail(int b,int[] regs,int usedNum) {
+		for(int i=0;i<b-usedNum;i++) {
 			kpln("ALOAD "+RegNames.REGS[regs[i]]+" SPILLEDARG "+i,indent);
 		}
+		kpln("END",--indent);
 	}
 	
 	String writeTemp(int t, environ env,int cond,temp2reg t2r) {
@@ -383,7 +384,7 @@ public class KangaVisitor extends GJVoidDepthFirst<environ>{
 				break;
 			}
 		}
-		
+		curr=itr.previous();
 		if(curr.regs.containsKey(t))
 		{
 			int regloc=curr.regs.get(t).regnum;
@@ -430,6 +431,7 @@ public class KangaVisitor extends GJVoidDepthFirst<environ>{
 				break;
 			}
 		}
+		curr=itr.previous();
 		if(curr.regs.containsKey(t))
 		{
 			int regloc=curr.regs.get(t).regnum;

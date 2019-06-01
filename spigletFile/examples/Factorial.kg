@@ -1,0 +1,72 @@
+MAIN [ 0 ][ 15 ][ 2 ]
+    MOVE t2 v0
+     MOVE t0 t2
+     MOVE t2 Fac_ComputeFac
+    HSTORE t0     0       t2
+    MOVE t2 v0
+     MOVE t6 t2
+    HSTORE t6     0       t0
+     MOVE t1 t6
+    HLOAD t6 t1     0      
+     ASTORE  SPILLEDARG 0 t6
+    HLOAD t7 t6     0      
+     ASTORE  SPILLEDARG 0 t7
+     MOVE t6 4
+    MOVE s1      TIMES       t6 1
+    MOVE t6 v0
+     MOVE s1 t6
+     MOVE t6 10
+    HSTORE s1     0       t6
+    MOVE a0 t1
+    MOVE a1 s1
+    CALL t7
+    
+    MOVE t2 v0
+    PRINT t2
+    ALOAD t0 SPILLEDARG 0
+    ALOAD t1 SPILLEDARG 1
+    ALOAD t2 SPILLEDARG 2
+    ALOAD t3 SPILLEDARG 3
+    ALOAD t4 SPILLEDARG 4
+    ALOAD t5 SPILLEDARG 5
+    ALOAD t6 SPILLEDARG 6
+    ALOAD t7 SPILLEDARG 7
+    ALOAD s0 SPILLEDARG 8
+    ALOAD s1 SPILLEDARG 9
+    ALOAD s2 SPILLEDARG 10
+    ALOAD s3 SPILLEDARG 11
+    ALOAD s4 SPILLEDARG 12
+    ALOAD s5 SPILLEDARG 13
+    ALOAD s6 SPILLEDARG 14
+END
+Fac_ComputeFac [ 2 ][ 6 ][ 2 ]
+    MOVE t1 a0
+    MOVE t0 a1
+    HLOAD t2 t0     0      
+     ASTORE  SPILLEDARG 0 t2
+    MOVE t0      LT       t2 1
+     MOVE t3 t0
+    CJUMP t3     Fac_ComputeFac_L0
+     MOVE t0 1
+    JUMP Fac_ComputeFac_L1
+    Fac_ComputeFac_L0       MOVE t3 t1
+    HLOAD t1 t3     0      
+     ASTORE  SPILLEDARG 0 t1
+    HLOAD t4 t1     0      
+     ASTORE  SPILLEDARG 0 t4
+     MOVE t1 4
+    MOVE t5      TIMES       t1 1
+    MOVE t1 v0
+     MOVE t5 t1
+    MOVE t1      MINUS       t2 1
+    HSTORE t5     0       t1
+    MOVE a0 t3
+    MOVE a1 t5
+    CALL t4
+    
+    MOVE t1 v0
+    MOVE t3      TIMES       t2 t1
+     MOVE t0 t3
+    Fac_ComputeFac_L1      NOOP 
+    MOVE v0 t0
+END

@@ -26,7 +26,7 @@ public class Main {
 			//1-PrintLiteral 2-Add 3-Call 4-Vars 5-OutOfBounds
 			
 			//piglet2spiglet("./piglet/examples/QuickSort");
-			spiglet2kanga("./spigletFile/examples/BinaryTree");
+			spiglet2kanga("./spigletFile/examples/Factorial");
 
 		} catch (TokenMgrError e) {
 			e.printStackTrace();
