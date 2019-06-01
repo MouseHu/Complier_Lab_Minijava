@@ -42,9 +42,10 @@ public class Main {
 		//Translate
 		new spiglet.SpigletParser(in);
 		spiglet.syntaxtree.Node spigletroot = SpigletParser.Goal();
-		spigletroot.accept(new KangaVisitor(),null);
-		System.out.println("Piglet to sPiglet Finished");
+		spigletroot.accept(new KangaVisitor(outfile),null);
+		System.out.println("sPiglet to Kanga Finished");
 	}
+	
 	public static void piglet2spiglet(String arg0) throws FileNotFoundException, ParseException{
 		String parse_file = arg0;//input file path  TreeVisitor BubbleSort MoreThan4
 		InputStream in = new FileInputStream(parse_file+".txt");

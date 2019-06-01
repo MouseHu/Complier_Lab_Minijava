@@ -47,6 +47,9 @@ public class IntervalVisitor extends DepthFirstVisitor{
 	 */
 	public void visit(Call n)
 	{
+		if(max_args<n.f3.size()) {
+			max_args=n.f3.size();
+		}
 		n.f1.accept(this);
 		n.f3.accept(this);
 		return;
@@ -61,9 +64,7 @@ public class IntervalVisitor extends DepthFirstVisitor{
 	 */
 	public void visit(Procedure n)
 	{		
-		if(Integer.parseInt(n.f2.toString())>max_args) {
-			max_args=Integer.parseInt(n.f2.toString());
-		}
+		position=0;
 		n.f4.accept(this);
 	}
 	

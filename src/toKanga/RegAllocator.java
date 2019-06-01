@@ -75,7 +75,7 @@ public class RegAllocator {
 	});
 	
 	public RegAllocator(TreeSet<TempInterval> t, int argnum) {
-		nargs=argnum;
+		nargs=argnum; //number of args of the function itself
 		tempList=t;
 		stackpos=0;
 		Table tab=new Table(0);
@@ -98,13 +98,12 @@ public class RegAllocator {
 			TempInterval temp=itr.next();
 			boolean add=false;
 			if(prevnode.pos<temp.beg) {
-				Table temptab=new Table(temp.beg);
-				temptab.regs=new Hashtable<Integer,temp2reg>(prevnode.regs);
-				temptab.stacks=new Hashtable<Integer,temp2reg>(prevnode.stacks);
-				prevnode=temptab;
+				prevnode=new Table(temp.beg);
+				prevnode.regs=new Hashtable<Integer,temp2reg>(tables.getLast().regs);
+				prevnode.stacks=new Hashtable<Integer,temp2reg>(tables.getLast().stacks);
 				add=true;
 			}
-			prevnode = refresh(prevnode);
+			prevnode = refresh(temp,prevnode);
 			int allopos=manager.allocate();
 			if(allopos==-1) {
 				TempInterval a=active.last();
@@ -139,12 +138,13 @@ public class RegAllocator {
 			if(add==true) {
 				tables.add(prevnode);
 			}
-			stackpos+=usedRegNum;
 		}
+		stackpos+=usedRegNum;
+		return;
 	}
 	
-	Table refresh(Table prevnode) {
-		int stage=prevnode.pos;
+	Table refresh(TempInterval t, Table prevnode) {
+		int stage=t.beg;
 		Iterator<TempInterval> itr=active.iterator();
 		while(itr.hasNext()) {
 			TempInterval a=itr.next();
