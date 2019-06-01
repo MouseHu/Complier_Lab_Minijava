@@ -38,6 +38,7 @@ class Table{
 
 class regManager{
 	public boolean regTable[]=new boolean[24];
+	public int tempinreg[]=new int[24];
 	public regManager(){
 		for(int i=0;i<24;i++) {
 			regTable[i]=false;
@@ -47,13 +48,21 @@ class regManager{
 		regTable[freeNo]=false;
 	}
 	int allocate() {
-		for(int i=6;i<24;i++) {
+		for(int i=4;i<22;i++) {
 			if(regTable[i]==false) {
 				regTable[i]=true;
 				return i;
 			}
 		}
 		return -1;
+	}
+	void assign(int a,int b) {
+		this.tempinreg[a]=b;
+		regTable[a]=true;
+	}
+	int get(int a) {
+		if(regTable[a]==false) return -1;
+		else return tempinreg[a];
 	}
 }
 
