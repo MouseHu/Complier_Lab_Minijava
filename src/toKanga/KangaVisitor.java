@@ -388,21 +388,11 @@ public class KangaVisitor extends GJVoidDepthFirst<environ>{
 		}
 		curr=itr.previous();
 		temp2reg temp = curr.regs.get(t);
-
 		if(temp.isreg)
 		{
 			int regloc=temp.regnum;
 			t2r.isreg=true;
 			t2r.regnum=regloc;
-//			System.out.println(regloc);
-//			int oldTempnum = regMan.getVar(templ.loc);
-//			if(c.Curr.spillToMem.containsKey(new Integer(oldTempnum)))
-//			{
-//				Temp_location LocInMem = c.Curr.spillToMem.get(oldTempnum);
-//				kpln(" ASTORE " + " SPILLEDARG " + LocInMem.stackLoc + " " + Regs.REGS[templ.loc] + "\n");
-//				c.Curr.spillToMem.remove(oldTempnum);
-//			}
-//			regMan.assignReg(tempnum,templ.loc);
 			int oldTemp=regMan.get(regloc);
 			if(curr.spills.containsKey(new Integer(oldTemp))) {
 				kpln("ASTORE SPILLEDARG "+curr.spills.get(new Integer(oldTemp)).stackpos+" "+RegNames.REGS[regloc],indent);
@@ -413,7 +403,6 @@ public class KangaVisitor extends GJVoidDepthFirst<environ>{
 		}
 		else
 		{		
-//			System.out.println(t+" "+t2r.tempnum);
 			t2r.isreg=false;
 			t2r.stackpos=temp.stackpos;
 			return  RegNames.REGS[cond+22];
@@ -426,14 +415,11 @@ public class KangaVisitor extends GJVoidDepthFirst<environ>{
 	{
 		ListIterator<Table> itr= env.tables.listIterator();
 		int pos=env.position;
-//		System.out.println("pos:"+pos);
 		Table curr = null;
 		while(itr.hasNext()) {
 			curr=itr.next();
-//			System.out.println(curr.pos);
 			if(curr.pos>pos) {
 				curr=itr.previous();
-//				System.out.println(curr.pos);
 				break;
 			}
 		}
@@ -442,14 +428,6 @@ public class KangaVisitor extends GJVoidDepthFirst<environ>{
 		if(temp.isreg)
 		{
 			int regloc=curr.regs.get(t).regnum;
-//			int oldTempnum = regMan.getVar(templ.loc);
-//			if(c.Curr.spillToMem.containsKey(new Integer(oldTempnum)))
-//			{
-//				Temp_location LocInMem = c.Curr.spillToMem.get(oldTempnum);
-//				kpln(" ASTORE " + " SPILLEDARG " + LocInMem.stackLoc + " " + Regs.REGS[templ.loc] + "\n");
-//				c.Curr.spillToMem.remove(oldTempnum);
-//			}
-//			regMan.assignReg(tempnum,templ.loc);
 			int oldTemp=regMan.get(regloc);
 			if(curr.spills.containsKey(new Integer(oldTemp))) {
 				kpln("ASTORE SPILLEDARG "+curr.spills.get(new Integer(oldTemp)).stackpos+" "+RegNames.REGS[regloc],indent);
@@ -460,7 +438,6 @@ public class KangaVisitor extends GJVoidDepthFirst<environ>{
 		}
 		else
 		{	
-//			System.out.println(t);
 			kpln("ALOAD " + RegNames.REGS[cond+22] + " SPILLEDARG " + temp.stackpos,indent);
 			return  RegNames.REGS[cond+22];
 		}	
@@ -494,7 +471,6 @@ public class KangaVisitor extends GJVoidDepthFirst<environ>{
 				if(t.isreg == true)
 				{
 					kpln("MOVE " + RegNames.REGS[t.regnum] + " " + RegNames.REGS[i] ,indent);
-//					regManager.assignReg(i, t.loc);
 				}
 				else
 				{
