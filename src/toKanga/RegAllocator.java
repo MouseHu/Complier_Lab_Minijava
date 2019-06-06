@@ -24,28 +24,17 @@ class temp2reg{
 class Table{
 	public int pos;
 	public Hashtable<Integer,temp2reg> regs;
-//	Hashtable<Integer,temp2reg> stacks;
 	public Hashtable<Integer,temp2reg> spills;
 	public Table(int p){
 		pos=p;
 		regs=new Hashtable<Integer,temp2reg>();
 		spills=new Hashtable<Integer,temp2reg>();
 	}
-//	public void addNode(temp2reg t) {
-//		if(t.isreg==true) regs.put(t.tempnum,t);
-//		else stacks.put(t.tempnum,t);
-//	}
-//	
-//	public void modifyNode(temp2reg t){
-//		regs.get(t.tempnum).isreg=t.isreg;
-//		regs.get(t.tempnum).stackpos=t.stackpos;
-//		regs.get(t.tempnum).regnum=t.regnum;
-//	}
 }
 
 class regManager{
 	public boolean regTable[]=new boolean[24];
-	int [] tempInReg = new int[24];//¼Ä´æÆ÷i´æµÄÊÇÄÄ¸ö±äÁ¿
+	int [] tempInReg = new int[24];//ï¿½Ä´ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½
 	public int allocated = 0;
 	public regManager(){
 		for(int i=0;i<24;i++) {
@@ -134,7 +123,7 @@ public class RegAllocator {
 				add=true;
 			}
 			refresh(temp,prevnode);
-			if(active.size() == GENERALREG){//Èç¹û¼Ä´æÆ÷ÒÑÂú£¬Ñ¡ÔñÄ³¸ö»îÔ¾±äÁ¿Òç³öµ½ÄÚ´æÖÐ
+			if(active.size() == GENERALREG){//ï¿½ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ï¿½Ô¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½
 				TempInterval a=active.last();
 				if(a.end>temp.end) { 
 					//spill a
@@ -154,21 +143,21 @@ public class RegAllocator {
 					prevnode.regs.put(temp.temp_num,new temp2reg(temp.temp_num,false,stackpos++));
 				}
 			}
-			else//·ñÔò·ÖÅäÒ»¸ö¼Ä´æÆ÷
+			else//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½
 			{
 				int regNum = manager.allocate(temp.temp_num);
 				int i;
-				for(i=0;i<usedRegNum;i++)//±»·ÖÅä¼Ä´æÆ÷µÄÊýÄ¿
+				for(i=0;i<usedRegNum;i++)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿
 				{
 					if(usedReg[i]==regNum)
 						break;
 				}
 				if(i == usedRegNum)
 				{
-					usedReg[usedRegNum++]=regNum;//usedRegsArrayÎª±£´æ¼Ä´æÆ÷ÐòÁÐ
+					usedReg[usedRegNum++]=regNum;//usedRegsArrayÎªï¿½ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				}
-				active.add(temp);//µ±Ç°a±»·ÖÅäÁË¼Ä´æÆ÷
-				prevnode.regs.put(temp.temp_num,new temp2reg(temp.temp_num,true, regNum));//·ÖÅäÐÅÏ¢ÔÚ·ÖÅä±íÖÐ	
+				active.add(temp);//ï¿½ï¿½Ç°aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¼Ä´ï¿½ï¿½ï¿½
+				prevnode.regs.put(temp.temp_num,new temp2reg(temp.temp_num,true, regNum));//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	
 			}
 
 //			int allopos=manager.allocate();
