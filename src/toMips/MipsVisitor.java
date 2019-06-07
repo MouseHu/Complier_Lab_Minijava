@@ -96,9 +96,9 @@ public class MipsVisitor extends GJDepthFirst<String,Object> {
 	
 	public String visit(Goal n, Object argu){
 		max_arg=Integer.parseInt(n.f8.f0.tokenImage);
-		int a=Integer.parseInt(n.f2.toString());
-		int b=Integer.parseInt(n.f5.toString());
-		int c=Integer.parseInt(n.f8.toString());
+		int a=Integer.parseInt(n.f2.f0.toString());
+		int b=Integer.parseInt(n.f5.f0.toString());
+		int c=Integer.parseInt(n.f8.f0.toString());
 		int t1 = (a>4?(a-4):0);
 		int t2 = (c>4?(c-4):0);
 		int stackLength= (b+2+t2-t1)*4;
@@ -139,15 +139,15 @@ public class MipsVisitor extends GJDepthFirst<String,Object> {
 	 */
 	public String visit(Procedure n, Object argu) {
 		max_arg=Integer.parseInt(n.f8.f0.tokenImage);
-		int a=Integer.parseInt(n.f2.toString());
-		int b=Integer.parseInt(n.f5.toString());
-		int c=Integer.parseInt(n.f8.toString());
+		int a=Integer.parseInt(n.f2.f0.toString());
+		int b=Integer.parseInt(n.f5.f0.toString());
+		int c=Integer.parseInt(n.f8.f0.toString());
 		int t1 = (a>4?(a-4):0);
 		int t2 = (c>4?(c-4):0);
 		int stackLength= (b+2+t2-t1)*4;
 		mpln(".text",++indent);
-		mpln(".globl "+n.f0.toString(),indent);
-		mpln(n.f0.toString()+":",--indent);
+		mpln(".globl "+n.f0.f0.toString(),indent);
+		mpln(n.f0.f0.toString()+":",--indent);
 		indent++;
 		genHead(stackLength);
 		n.f10.accept(this,argu);
@@ -196,7 +196,7 @@ public class MipsVisitor extends GJDepthFirst<String,Object> {
 	    * f2 -> Label()
 	    */
 	public String visit(CJumpStmt n, Object argu){
-		mpln("beqz "+n.f1.accept(this,argu)+" "+n.f2.f0.tokenImage,indent);
+		mpln("beqz "+n.f1.accept(this,argu)+" "+n.f2.accept(this,argu),indent);
 		return null;
 	}
 
@@ -216,7 +216,7 @@ public class MipsVisitor extends GJDepthFirst<String,Object> {
 	    * f3 -> Reg()
 	    */
 	   public String visit(HStoreStmt n, Object argu){
-		   mpln("sw "+n.f3.accept(this,argu)+", "+n.f2.toString()+"("+n.f1.accept(this,argu)+")",indent);
+		   mpln("sw "+n.f3.accept(this,argu)+", "+n.f2.accept(this,argu)+"("+n.f1.accept(this,argu)+")",indent);
 		   return null;
 	   }
 
@@ -227,7 +227,7 @@ public class MipsVisitor extends GJDepthFirst<String,Object> {
 	    * f3 -> IntegerLiteral()
 	    */
 	   public String visit(HLoadStmt n, Object argu){
-		   mpln("lw "+n.f1.accept(this,argu)+", "+n.f3.toString()+"("+n.f2.accept(this,argu)+")",indent);
+		   mpln("lw "+n.f1.accept(this,argu)+", "+n.f3.accept(this,argu)+"("+n.f2.accept(this,argu)+")",indent);
 		   return null;
 	   }
 
@@ -250,7 +250,7 @@ public class MipsVisitor extends GJDepthFirst<String,Object> {
 		   else if(n.f2.f0.which==1) {
 			   BinOp op = ((BinOp)n.f2.f0.choice);
 			   String exp=op.f2.accept(this,argu);
-			   mpln(op.f0.accept(this,argu)+" "+n.f1.toString()+", "+op.f1.toString()+", "+exp,indent);
+			   mpln(op.accept(this,argu)+" "+n.f1.accept(this,argu)+", "+op.f1.accept(this,argu)+", "+exp,indent);
 		   }
 		   else {
 			   SimpleExp e=((SimpleExp)n.f2.f0.choice);
@@ -258,10 +258,10 @@ public class MipsVisitor extends GJDepthFirst<String,Object> {
 				   mpln("move "+n.f1.accept(this,argu)+" "+e.accept(this,argu),indent);
 			   }
 			   else if(e.f0.which==1) {
-				   mpln("li "+n.f1.toString()+" "+e.accept(this,argu),indent);
+				   mpln("li "+n.f1.accept(this,argu)+" "+e.accept(this,argu),indent);
 			   }
 			   else {
-				   mpln("la "+n.f1.toString()+" "+e.accept(this,argu),indent);
+				   mpln("la "+n.f1.accept(this,argu)+" "+e.accept(this,argu),indent);
 			   }
 		   }
 		   return  null;
@@ -298,7 +298,7 @@ public class MipsVisitor extends GJDepthFirst<String,Object> {
 	    * f2 -> SpilledArg()
 	    */
 	   public String visit(ALoadStmt n, Object argu){
-		   int val=4*Integer.parseInt(n.f2.f1.toString());
+		   int val=4*Integer.parseInt(n.f2.f1.f0.toString());
 		   if(val >= max_arg*4) mpln("lw "+n.f1.accept(this,argu)+", "+val+"($sp)",indent);
 		   else mpln("lw "+n.f1.accept(this,argu)+", "+val+"($fp)",indent);
 		   return null;
@@ -310,7 +310,7 @@ public class MipsVisitor extends GJDepthFirst<String,Object> {
 	    * f2 -> Reg()
 	    */
 	   public String visit(AStoreStmt n, Object argu){
-		   int val=4*Integer.parseInt(n.f1.f1.toString());
+		   int val=4*Integer.parseInt(n.f1.f1.f0.toString());
 		   if(val >= max_arg*4) mpln("sw "+n.f2.accept(this,argu)+", "+val+"($sp)",indent);
 		   else mpln("sw "+n.f2.accept(this,argu)+", "+val+"($fp)",indent);
 		   return null;
@@ -361,13 +361,13 @@ public class MipsVisitor extends GJDepthFirst<String,Object> {
 	    */
 	   public String visit(HAllocate n, Object argu){
 		   if(n.f1.f0.which==0) {
-			   mpln("move $a0 "+n.f1.f0.accept(this,argu),indent);
+			   mpln("move $a0 "+n.f1.accept(this,argu),indent);
 		   }
 		   else if(n.f1.f0.which==1) {
-			   mpln("li $a0 "+n.f1.f0.accept(this,argu),indent);
+			   mpln("li $a0 "+n.f1.accept(this,argu),indent);
 		   }
 		   else {
-			   mpln("la $a0 "+n.f1.f0.accept(this,argu),indent);
+			   mpln("la $a0 "+n.f1.accept(this,argu),indent);
 		   }
 		   return null;
 	   }
@@ -447,14 +447,14 @@ public class MipsVisitor extends GJDepthFirst<String,Object> {
 	    *       | "v1"
 	    */
 	   public String visit(Reg n, Object argu){
-		   return "$"+n.toString();
+		   return "$"+n.f0.choice.toString();
 	   }
 
 	   /**
 	    * f0 -> <INTEGER_LITERAL>
 	    */
 	   public String visit(IntegerLiteral n, Object argu) {
-		   return n.toString();
+		   return n.f0.toString();
 	   }
 
 	   /**

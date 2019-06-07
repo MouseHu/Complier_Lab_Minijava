@@ -3,7 +3,9 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import spiglet.SpigletParser;
-import toKanga.KangaVisitor;	
+import kanga.KangaParser;
+import toKanga.KangaVisitor;
+import toMips.MipsVisitor;
 import javafx.util.Pair;
 import visitor.*;
 //import visitor_piglet;
@@ -26,7 +28,7 @@ public class Main {
 			//1-PrintLiteral 2-Add 3-Call 4-Vars 5-OutOfBounds
 			
 			//piglet2spiglet("./piglet/examples/QuickSort");
-			spiglet2kanga("./spigletFile/examples/TreeVisitor");
+			kanga2mips("./spigletFile/examples/TreeVisitor");
 
 		} catch (TokenMgrError e) {
 			e.printStackTrace();
@@ -34,6 +36,18 @@ public class Main {
 			e.printStackTrace();
 		}
 	}
+	public static void kanga2mips(String arg0) throws FileNotFoundException, kanga.ParseException{
+		String parse_file = arg0;//input file path  TreeVisitor BubbleSort MoreThan4
+		InputStream in = new FileInputStream(parse_file+".kg");
+		String outfile = parse_file+".s";//output file path
+		
+		//Translate
+		new kanga.KangaParser(in);
+		kanga.syntaxtree.Node kangaroot = KangaParser.Goal();
+		kangaroot.accept(new MipsVisitor(outfile),null);
+		System.out.println("Kanga to Mips Finished");
+	}
+	
 	public static void spiglet2kanga(String arg0) throws FileNotFoundException, spiglet.ParseException{
 		String parse_file = arg0;//input file path  TreeVisitor BubbleSort MoreThan4
 		InputStream in = new FileInputStream(parse_file+".spg");
