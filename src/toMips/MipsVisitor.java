@@ -1,41 +1,59 @@
 package toMips;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 
-import kanga.syntaxtree.*;
-import kanga.visitor.*;
-public class MipsVisitor extends GJDepthFirst<String,Object> {
-	public String outfile;
+import com.sun.xml.internal.ws.util.StringUtils;
+
+import kanga.syntaxtree.ALoadStmt;
+import kanga.syntaxtree.AStoreStmt;
+import kanga.syntaxtree.BinOp;
+import kanga.syntaxtree.CJumpStmt;
+import kanga.syntaxtree.CallStmt;
+import kanga.syntaxtree.ErrorStmt;
+import kanga.syntaxtree.Exp;
+import kanga.syntaxtree.HAllocate;
+import kanga.syntaxtree.HLoadStmt;
+import kanga.syntaxtree.HStoreStmt;
+import kanga.syntaxtree.IntegerLiteral;
+import kanga.syntaxtree.JumpStmt;
+import kanga.syntaxtree.Label;
+import kanga.syntaxtree.MoveStmt;
+import kanga.syntaxtree.NoOpStmt;
+import kanga.syntaxtree.Operator;
+import kanga.syntaxtree.PassArgStmt;
+import kanga.syntaxtree.PrintStmt;
+import kanga.syntaxtree.Procedure;
+import kanga.syntaxtree.Reg;
+import kanga.syntaxtree.SimpleExp;
+import kanga.syntaxtree.SpilledArg;
+import kanga.syntaxtree.Stmt;
+import kanga.syntaxtree.StmtList;
+import kanga.syntaxtree.Goal;
+import kanga.visitor.GJVoidDepthFirst;
+import spiglet.AbstractSPigletResult;
+import syntaxtree.Identifier;
+import kanga.syntaxtree.NodeOptional;
+import toKanga.IntervalVisitor;
+import toKanga.RegAllocator;
+import toKanga.RegNames;
+
+
+public class MipsVisitor extends GJVoidDepthFirst<Integer>{
 	public static OutputStreamWriter writer;
-	int max_arg=0;
-	int indent;
+	String outfile;
+	int indent=0;
+	int max_arg;
 	public MipsVisitor(String out) throws FileNotFoundException{
-		outfile=out;
+		outfile = out;
 		writer = new OutputStreamWriter(new FileOutputStream(outfile));
-		indent=0;
 	}
-	/**
-	 * f0 -> "MAIN"
-	 * f1 -> "["
-	 * f2 -> IntegerLiteral()
-	 * f3 -> "]"
-	 * f4 -> "["
-	 * f5 -> IntegerLiteral()
-	 * f6 -> "]"
-	 * f7 -> "["
-	 * f8 -> IntegerLiteral()
-	 * f9 -> "]"
-	 * f10 -> StmtList()
-	 * f11 -> "END"
-	 * f12 -> ( Procedure() )*
-	 * f13 -> <EOF>
-	 */
 	public void mpln(String s, int indent){
 		String res = "";
 		for(int i=0;i<indent;i++) {
-			res+="    ";
+			res+="\t";
 		}
 		res+=s;
 		res+='\n';
@@ -50,10 +68,9 @@ public class MipsVisitor extends GJDepthFirst<String,Object> {
 	public void mp(String s, int indent){
 		String res = "";
 		for(int i=0;i<indent;i++) {
-			res+="    ";
+			res+="\t";
 		}
 		res+=s;
-		res+=' ';
 		try {
 			writer.write(res);
 			writer.flush();
@@ -62,151 +79,113 @@ public class MipsVisitor extends GJDepthFirst<String,Object> {
 		}
 		return;
 	}
-	void genHead(int l) {
-		mpln("sw $fp, -8($sp)",indent);
-		mpln("move $fp $sp",indent);
-		mpln("subu $sp, $sp, "+l,indent);
-		mpln("sw $ra, -4($fp)",indent);
-		return;
-	}
-	void genTail(int l) {
-		mpln("lw $ra -4($fp)",indent);
-		mpln("lw $fp -8($fp)",indent);
-		mpln("addu $sp, $sp, "+l,indent);
-		mpln("j $ra",indent);
-		return;
-	}
 	/**
-	 * Grammar production:
-	 * f0 -> "MAIN"
-	 * f1 -> "["
-	 * f2 -> IntegerLiteral()
-	 * f3 -> "]"
-	 * f4 -> "["
-	 * f5 -> IntegerLiteral()
-	 * f6 -> "]"
-	 * f7 -> "["
-	 * f8 -> IntegerLiteral()
-	 * f9 -> "]"
-	 * f10 -> StmtList()
-	 * f11 -> "END"
-	 * f12 -> ( Procedure() )*
-	 * f13 -> <EOF>
-	 */
-	
-	public String visit(Goal n, Object argu){
-		max_arg=Integer.parseInt(n.f8.f0.tokenImage);
-		int a=Integer.parseInt(n.f2.f0.toString());
-		int b=Integer.parseInt(n.f5.f0.toString());
-		int c=Integer.parseInt(n.f8.f0.toString());
-		int t1 = (a>4?(a-4):0);
-		int t2 = (c>4?(c-4):0);
-		int stackLength= (b+2+t2-t1)*4;
-		mpln(".text",++indent);
-		mpln(".globl main",indent);
-		mpln("main:",--indent);
-		indent++;
-		genHead(stackLength);
-		n.f10.accept(this,argu);
-		genTail(stackLength);
-		indent--;
-		n.f12.accept(this,argu);
-		mp(extra(),0);
-		return null;
-	}
+	    * f0 -> "MAIN"
+	    * f1 -> "["
+	    * f2 -> IntegerLiteral()
+	    * f3 -> "]"
+	    * f4 -> "["
+	    * f5 -> IntegerLiteral()
+	    * f6 -> "]"
+	    * f7 -> "["
+	    * f8 -> IntegerLiteral()
+	    * f9 -> "]"
+	    * f10 -> StmtList()
+	    * f11 -> "END"
+	    * f12 -> ( Procedure() )*
+	    * f13 -> <EOF>
+	    */
+	   public void visit(Goal n, Integer argu) {
+		  
+		  int a = Integer.parseInt(n.f2.f0.tokenImage);
+		  int b = Integer.parseInt(n.f5.f0.tokenImage);
+		  int c = Integer.parseInt(n.f8.f0.tokenImage);
+		  max_arg =c;
+		  mpln(".text",++indent);
+		  mpln(".globl main",indent);
+		  mpln("main:",--indent);
+		  indent++;
+		  genHead(a,b,c);
+	      n.f10.accept(this, argu);
+	      genTail(a,b,c);
+	      mpln("",indent);
+	      indent--;
+	      n.f12.accept(this, argu);
+	      
+	      printSysfunc();
+	   }
 
-	/**
-	 * f0 -> ( ( Label() )? Stmt() )*
-	 */
-	public String visit(StmtList n, Object argu){
-		n.f0.accept(this,argu);
-		return null;
-	}
+	   /**
+	    * f0 -> ( ( Label() )? Stmt() )*
+	    */
+	   public void visit(StmtList n, Integer argu) {//yes
+	      n.f0.accept(this, argu);
+	   }
 
-	/**
-	 * f0 -> Label()
-	 * f1 -> "["
-	 * f2 -> IntegerLiteral()
-	 * f3 -> "]"
-	 * f4 -> "["
-	 * f5 -> IntegerLiteral()
-	 * f6 -> "]"
-	 * f7 -> "["
-	 * f8 -> IntegerLiteral()
-	 * f9 -> "]"
-	 * f10 -> StmtList()
-	 * f11 -> "END"
-	 */
-	public String visit(Procedure n, Object argu) {
-		max_arg=Integer.parseInt(n.f8.f0.tokenImage);
-		int a=Integer.parseInt(n.f2.f0.toString());
-		int b=Integer.parseInt(n.f5.f0.toString());
-		int c=Integer.parseInt(n.f8.f0.toString());
-		int t1 = (a>4?(a-4):0);
-		int t2 = (c>4?(c-4):0);
-		int stackLength= (b+2+t2-t1)*4;
-		mpln(".text",++indent);
-		mpln(".globl "+n.f0.f0.toString(),indent);
-		mpln(n.f0.f0.toString()+":",--indent);
-		indent++;
-		genHead(stackLength);
-		n.f10.accept(this,argu);
-		genTail(stackLength);
-		indent--;
-		return null;
-	}
-	/**
-	 * f0 -> NoOpStmt()
-	 *       | ErrorStmt()
-	 *       | CJumpStmt()
-	 *       | JumpStmt()
-	 *       | HStoreStmt()
-	 *       | HLoadStmt()
-	 *       | MoveStmt()
-	 *       | PrintStmt()
-	 *       | ALoadStmt()
-	 *       | AStoreStmt()
-	 *       | PassArgStmt()
-	 *       | CallStmt()
-	 */
-	public String visit(Stmt n, Object argu) {
-		n.f0.accept(this,argu);
-		return null;
-	}
+	   /**
+	    * f0 -> Label()
+	    * f1 -> "["
+	    * f2 -> IntegerLiteral()
+	    * f3 -> "]"
+	    * f4 -> "["
+	    * f5 -> IntegerLiteral()
+	    * f6 -> "]"
+	    * f7 -> "["
+	    * f8 -> IntegerLiteral()
+	    * f9 -> "]"
+	    * f10 -> StmtList()
+	    * f11 -> "END"
+	    */
+	   public void visit(Procedure n, Integer argu) {
+		  int a = Integer.parseInt(n.f2.f0.tokenImage);
+		  int b = Integer.parseInt(n.f5.f0.tokenImage);
+		  int c = Integer.parseInt(n.f8.f0.tokenImage);
+		  max_arg =c;
+		  mpln(".text",++indent);
+		  mpln(".globl "+n.f0.f0.toString(),indent);
+		  mpln(n.f0.f0.toString()+":",--indent);
+		  indent++;
+		  genHead(a,b,c);
+	      n.f10.accept(this, argu);
+	      genTail(a,b,c);
+	      mpln("",indent);
+	      indent--;
+	   }
+	   /**
+	    * f0 -> "NOOP"
+	    */
+	   public void visit(NoOpStmt n, Integer argu) {//yes
+	      mpln("nop",indent);
+	   }
 
-	/**
-	 * f0 -> "NOOP"
-	 */
-	public String visit(NoOpStmt n, Object argu){
-		mpln("nop",indent);
-		return null;
-	}
-
-	/**
-     * f0 -> "ERROR"
-	 */
-	public String visit(ErrorStmt n, Object argu) {
-		mpln("jal _error",indent);
-		return null;
-	}
+	   /**
+	    * f0 -> "ERROR"
+	    */
+	   public void visit(ErrorStmt n, Integer argu) {//yes
+		  mpln("jal str_er",indent);  
+	   }
 
 	   /**
 	    * f0 -> "CJUMP"
 	    * f1 -> Reg()
 	    * f2 -> Label()
 	    */
-	public String visit(CJumpStmt n, Object argu){
-		mpln("beqz "+n.f1.accept(this,argu)+" "+n.f2.accept(this,argu),indent);
-		return null;
-	}
+	   public void visit(CJumpStmt n, Integer argu) {//yes
+		  mp("beqz ",indent);
+	      n.f1.accept(this, argu);
+	      mp("",0);
+	      n.f2.accept(this, argu);
+	      mpln("",0);
+	   }
 
 	   /**
 	    * f0 -> "JUMP"
 	    * f1 -> Label()
 	    */
-	   public String visit(JumpStmt n, Object argu){
-		   mpln("b "+n.f1.f0.tokenImage,indent);
-		   return null;
+	   public void visit(JumpStmt n, Integer argu) {//yes
+	      mp("j ",indent);
+	      n.f1.accept(this, argu);
+	      mpln("",0);
 	   }
 
 	   /**
@@ -215,9 +194,14 @@ public class MipsVisitor extends GJDepthFirst<String,Object> {
 	    * f2 -> IntegerLiteral()
 	    * f3 -> Reg()
 	    */
-	   public String visit(HStoreStmt n, Object argu){
-		   mpln("sw "+n.f3.accept(this,argu)+", "+n.f2.accept(this,argu)+"("+n.f1.accept(this,argu)+")",indent);
-		   return null;
+	   public void visit(HStoreStmt n, Integer argu) {//yes
+		   mp("sw ",indent);
+		   n.f1.accept(this,null);
+		   mp(", ",0);
+		   n.f2.accept(this,null);
+		   mp("(",0);
+		   n.f3.accept(this,null);
+		   mpln(")",0);             
 	   }
 
 	   /**
@@ -226,82 +210,94 @@ public class MipsVisitor extends GJDepthFirst<String,Object> {
 	    * f2 -> Reg()
 	    * f3 -> IntegerLiteral()
 	    */
-	   public String visit(HLoadStmt n, Object argu){
-		   mpln("lw "+n.f1.accept(this,argu)+", "+n.f3.accept(this,argu)+"("+n.f2.accept(this,argu)+")",indent);
-		   return null;
+	   public void visit(HLoadStmt n, Integer argu) {//yes
+		   mp("lw ",indent);
+		   n.f1.accept(this,null);
+		   mp(", ",0);
+		   n.f3.accept(this,null);
+		   mp("(",0);
+		   n.f2.accept(this,null);
+		   mpln(")",0);  
 	   }
 
 	   /**
 	    * f0 -> "MOVE"
 	    * f1 -> Reg()
 	    * f2 -> Exp()
-	    * 				/** Exp()
-	    				* Grammar production:
-						 * f0 -> HAllocate()
-						 *       | BinOp()
-						 *       | SimpleExp()
 	    */
-	   public String visit(MoveStmt n, Object argu){	     
-		   if(n.f2.f0.which==0) {
-			   n.f2.f0.accept(this,argu);
-			   mpln("jal _halloc",indent);
-			   mpln("move "+n.f1.accept(this,argu)+" $v0",indent);
-		   }
-		   else if(n.f2.f0.which==1) {
-			   BinOp op = ((BinOp)n.f2.f0.choice);
-			   String exp=op.f2.accept(this,argu);
-			   mpln(op.accept(this,argu)+" "+n.f1.accept(this,argu)+", "+op.f1.accept(this,argu)+", "+exp,indent);
-		   }
-		   else {
-			   SimpleExp e=((SimpleExp)n.f2.f0.choice);
-			   if(e.f0.which==0) {
-				   mpln("move "+n.f1.accept(this,argu)+" "+e.accept(this,argu),indent);
-			   }
-			   else if(e.f0.which==1) {
-				   mpln("li "+n.f1.accept(this,argu)+" "+e.accept(this,argu),indent);
-			   }
-			   else {
-				   mpln("la "+n.f1.accept(this,argu)+" "+e.accept(this,argu),indent);
-			   }
-		   }
-		   return  null;
+	   public void visit(MoveStmt n, Integer argu) {
+	      switch(n.f2.f0.which) {
+	      case 0:// HALLOCATE
+	    	  n.f2.accept(this,null); 
+	    	  mp("move ",indent);
+	    	  n.f1.accept(this,null);
+	    	  mpln(" $v0",0);                     
+	    	  break;
+	      case 1://BinOp()
+	    	  ((BinOp)(n.f2.f0.choice)).f0.accept(this,null);
+	    	  n.f1.accept(this,null);
+	    	  mp(", ",0);
+	    	  ((BinOp)(n.f2.f0.choice)).f1.accept(this,null);
+	    	  mp(", ",0);
+	    	  ((BinOp)(n.f2.f0.choice)).f2.accept(this,null);
+	    	  mpln("",0);
+	    	  break;
+	      case 2://SimpleExp()
+	    	  switch(((SimpleExp)n.f2.f0.choice).f0.which) {
+	    	  case 0://reg
+	    		  mp("move ",indent);
+	    		  break;
+	    	  case 1:// integer literal
+	    		  mp("li ",indent);
+	    		  break;
+	    	  case 2:// label
+	    		  mp("la ",indent);
+	    		  break;
+	    	  }
+	    	  n.f1.accept(this,null);
+	    	  mp(" ",0);
+	    	  n.f2.accept(this,null);
+	    	  mpln("",0);
+	    	  break;
+	      }
 	   }
 
 	   /**
 	    * f0 -> "PRINT"
 	    * f1 -> SimpleExp()
-	    * 					/** SimpleExp
-					    * Grammar production:
-					    * f0 -> Reg()
-					    *       | IntegerLiteral()
-					    *       | Label()
-					    */
-	   public String visit(PrintStmt n, Object argu){
-		   if(n.f1.f0.which==0) {
-			   mpln("move $a0 "+n.f1.f0.accept(this,argu),indent);
-		   }
-		   else if(n.f1.f0.which==1) {
-			   mpln("li $a0 "+n.f1.f0.accept(this,argu),indent);
-		   }
-		   else {
-			   mpln("la $a0 "+n.f1.f0.accept(this,argu),indent);
-		   }
-		   mpln("jal _print",indent);
-		   return null;
+	    */
+	   public void visit(PrintStmt n, Integer argu) {//yes
+		   switch(n.f1.f0.which) {
+	    	  case 0://reg
+	    		  mp("move ",indent);
+	    		  break;
+	    	  case 1:// integer literal
+	    		  mp("li ",indent);
+	    		  break;
+	    	  case 2:// label
+	    		  mp("la ",indent);
+	    		  break;
+	    	  }
+	      mp("$a0 ",0);
+	      n.f1.accept(this,null);
+	      mpln("",0);
+	      mpln("jal _print",indent);  
 	   }
-	   
-	   
 
 	   /**
 	    * f0 -> "ALOAD"
 	    * f1 -> Reg()
 	    * f2 -> SpilledArg()
 	    */
-	   public String visit(ALoadStmt n, Object argu){
-		   int val=4*Integer.parseInt(n.f2.f1.f0.toString());
-		   if(val >= max_arg*4) mpln("lw "+n.f1.accept(this,argu)+", "+val+"($sp)",indent);
-		   else mpln("lw "+n.f1.accept(this,argu)+", "+val+"($fp)",indent);
-		   return null;
+	   public void visit(ALoadStmt n, Integer argu) {//yes
+		   mp("lw ",indent);
+		   n.f1.accept(this,null);
+		   int pos = Integer.parseInt(n.f2.f1.f0.tokenImage)*4;
+		   if(pos>max_arg*4)
+			   mpln(","+pos+"($sp)",0);
+		   else
+			   mpln(","+pos+"($fp)",0);
+		  
 	   }
 
 	   /**
@@ -309,11 +305,14 @@ public class MipsVisitor extends GJDepthFirst<String,Object> {
 	    * f1 -> SpilledArg()
 	    * f2 -> Reg()
 	    */
-	   public String visit(AStoreStmt n, Object argu){
-		   int val=4*Integer.parseInt(n.f1.f1.f0.toString());
-		   if(val >= max_arg*4) mpln("sw "+n.f2.accept(this,argu)+", "+val+"($sp)",indent);
-		   else mpln("sw "+n.f2.accept(this,argu)+", "+val+"($fp)",indent);
-		   return null;
+	   public void visit(AStoreStmt n, Integer argu) {//yes
+		   mp("sw ",indent);
+		   n.f2.accept(this,null);
+		   int pos = Integer.parseInt(n.f1.f1.f0.tokenImage)*4;
+		   if(pos>max_arg*4)
+			   mpln(", "+pos+"($sp)",0);
+		   else
+			   mpln(", "+pos+"($fp)",0); 
 	   }
 
 	   /**
@@ -321,76 +320,65 @@ public class MipsVisitor extends GJDepthFirst<String,Object> {
 	    * f1 -> IntegerLiteral()
 	    * f2 -> Reg()
 	    */
-	   public String visit(PassArgStmt n, Object argu){
-		   int pos=Integer.parseInt(n.f1.f0.tokenImage);
-		   mpln("sw "+n.f2.accept(this,argu)+", "+4*(pos-1)+"($sp)",indent);
-		   return null;
+	   public void visit(PassArgStmt n, Integer argu) {//yes
+		   mp("sw",indent);
+		   n.f2.accept(this,null);
+		   int pos = (Integer.parseInt(n.f1.f0.tokenImage)-1)*4;
+		   mpln(", "+pos+"($sp)",0);
 	   }
 
 	   /**
 	    * f0 -> "CALL"
 	    * f1 -> SimpleExp()
 	    */
-	   public String visit(CallStmt n, Object argu) {
-		   String val = n.f1.accept(this,argu);
-		   if(n.f1.f0.which == 0){
-			   mpln("jalr "+val,indent);
-		   }
-		   if(n.f1.f0.which == 1){
-		       mpln("li $a0 "+val,indent);
-		       mpln("jalr $a0",indent);
-		   }
-		   else if(n.f1.f0.which == 2) mpln("jal "+val,indent);	 
-		   return null;
+	   public void visit(CallStmt n, Integer argu) {//yes
+		  switch(n.f1.f0.which) {
+	    	  case 0://reg
+	    		  mp("jalr ",indent);
+	    		  n.f1.accept(this,null);
+	    		  mpln("",0);
+	    		  break;
+	    	  case 1:// integer literal
+	    		  mp("li $a0",indent);
+	    		  n.f1.accept(this,null);
+	    		  mpln("",0);
+		    	  mpln("jalr $a0",indent);
+	    		  break;
+	    	  case 2:// label
+	    		  mp("jal ",indent);
+	    		  n.f1.accept(this,null);
+	    		  mpln("",0);
+	    		  break;
+		  }
+	      
+	      
 	   }
-	   
 
-	   /**
-	    * f0 -> HAllocate()
-	    *       | BinOp()
-	    *       | SimpleExp()
-	    */
-	   public String visit(Exp n, int argu){
-		   n.f0.accept(this,argu);
-		   return null;
-	   }
 
 	   /**
 	    * f0 -> "HALLOCATE"
 	    * f1 -> SimpleExp()
 	    */
-	   public String visit(HAllocate n, Object argu){
-		   if(n.f1.f0.which==0) {
-			   mpln("move $a0 "+n.f1.accept(this,argu),indent);
+	   public void visit(HAllocate n, Integer argu) {//yes
+		   switch(n.f1.f0.which) {
+	    	  case 0://reg
+	    		  mp("move ",indent);
+	    		  break;
+	    	  case 1:// integer literal
+	    		  mp("li ",indent);
+	    		  break;
+	    	  case 2:// label
+	    		  mp("la ",indent);
+	    		  break;
 		   }
-		   else if(n.f1.f0.which==1) {
-			   mpln("li $a0 "+n.f1.accept(this,argu),indent);
-		   }
-		   else {
-			   mpln("la $a0 "+n.f1.accept(this,argu),indent);
-		   }
-		   return null;
+		  mp("$a0 ",0);
+		  n.f1.accept(this,null);
+		  mpln("",0);
+		  mpln("jal _halloc",indent);
+		  
+//	      n.f1.accept(this, argu);
 	   }
 
-	   /**
-	    * f0 -> Operator()
-	    * f1 -> Reg()
-	    * f2 -> SimpleExp()
-	    */
-	   public String visit(BinOp n, Object argu){
-		   if(n.f0.f0.which==0) {
-			   return "slt";
-		   }
-		   else if(n.f0.f0.which==1) {
-			   return "add";
-		   }
-		   else if(n.f0.f0.which==2) {
-			   return "sub";
-		   }
-		   else{
-			   return "mul";
-		   }
-	   }
 
 	   /**
 	    * f0 -> "LT"
@@ -398,26 +386,23 @@ public class MipsVisitor extends GJDepthFirst<String,Object> {
 	    *       | "MINUS"
 	    *       | "TIMES"
 	    */
-	   public String visit(Operator n, Object argu){
-		   return null;
-	   }
-
-	   /**
-	    * f0 -> "SPILLEDARG"
-	    * f1 -> IntegerLiteral()
-	    */
-	   public String visit(SpilledArg n, Object argu){
-		   return null;
-	   }
-
-	   /**
-	    * f0 -> Reg()
-	    *       | IntegerLiteral()
-	    *       | Label()
-	    */
-	   public String visit(SimpleExp n, Object argu) {
-		   if(n.f0.which != 2) return n.f0.accept(this,argu);
-		   else return ((Label)n.f0.choice).f0.tokenImage;
+	   public void visit(Operator n, Integer argu) {//yes
+	      n.f0.accept(this, argu);
+	      switch(n.f0.which) {
+	      case 0:
+	    	  mp("slt ",indent);
+	    	  break;
+	      case 1:
+	    	  mp("add ",indent);
+	    	  break;
+	      case 2:
+	    	  mp("sub ",indent);
+	    	  break;
+	      case 3:
+	    	  mp("mul ",indent);
+	    	  break;
+	    	  
+	      }
 	   }
 
 	   /**
@@ -446,57 +431,83 @@ public class MipsVisitor extends GJDepthFirst<String,Object> {
 	    *       | "v0"
 	    *       | "v1"
 	    */
-	   public String visit(Reg n, Object argu){
-		   return "$"+n.f0.choice.toString();
+	   public void visit(Reg n, Integer argu) {//yes
+	      mp("$"+n.f0.choice.toString(),0);
 	   }
 
 	   /**
 	    * f0 -> <INTEGER_LITERAL>
 	    */
-	   public String visit(IntegerLiteral n, Object argu) {
-		   return n.f0.toString();
+	   public void visit(IntegerLiteral n, Integer argu) {//yes
+	      mp(n.f0.tokenImage,0);
 	   }
 
 	   /**
 	    * f0 -> <IDENTIFIER>
 	    */
-	   public String visit(Label n, Object argu){
-		   return n.f0.tokenImage;
+	   public void visit(Label n, Integer argu) {//yes
+		   mp(n.f0.tokenImage,0);
 	   }
-	   public String extra()
-		{
-			String temp = "         .text            \n" +
-			 "         .globl _hallocs  \n" +
-			 "_hallocs:                 \n" +
-			 "         li $v0, 9        \n" +
-			 "         syscall          \n" +
-			 "         j $ra            \n" +
-			 "                          \n" +
-			 "         .text            \n" +
-			 "         .globl _printint \n" +
-			 "_printint:                \n" +
-			 "         li $v0, 1        \n" +
-			 "         syscall          \n" +
-			 "         la $a0, newl     \n" +
-			 "         li $v0, 4        \n" +
-			 "         syscall          \n" +
-			 "         j $ra            \n" +
-			 "                          \n" +
-			 "         .data            \n" +
-			 "         .align   0       \n" +
-			 "newl:    .asciiz \"\\n\"  \n" +
-			 "         .data            \n" +
-			 "         .align   0       \n" +
-			 "str_er:  .asciiz \" ERROR: abnormal termination\\n\" "+
-			 "                          \n" +
-			 "         .text            \n" +
-			 "         .globl _error    \n" +
-			 "_error:                   \n" +
-			 "         li $v0, 4        \n" +
-			 "         la $a0, str_er   \n" +
-			 "         syscall          \n" +
-			 "         li $v0, 10       \n" +
-			 "         syscall          \n";
-			return temp;
-		}
+	   
+	   public void genHead(int a,int b ,int c) {
+		   int t1 = (a>4?(a-4):0);
+		   int t2 = (c>4?(c-4):0);
+		   int stackLength= (b+2+t2-t1)*4;
+		   mpln("sw $fp, -8($sp)",indent);
+		   mpln("subu $sp, $sp, "+stackLength,indent);
+		   mpln("sw $ra, -"+4+"($fp)",indent);
+		   
+		   
+	   }
+	   
+	   public void genTail(int a,int b,int c) {
+		   int t1 = (a>4?(a-4):0);
+		   int t2 = (c>4?(c-4):0);
+		   int stackLength= (b+2+t2-t1)*4;
+		   mpln("lw $ra, -"+4+"($fp)",indent);
+		   mpln("lw $fp, -"+8+"($fp)",indent);
+		   mpln("addu $sp, $sp, "+stackLength,indent);
+		   mpln("j $ra",indent);
+	   }
+	   public void printSysfunc() {
+		   String temp = "         .text            \n" +
+					 "         .globl _hallocs  \n" +
+					 "_hallocs:                 \n" +
+					 "         li $v0, 9        \n" +
+					 "         syscall          \n" +
+					 "         j $ra            \n" +
+					 "                          \n" +
+					 "         .text            \n" +
+					 "         .globl _printint \n" +
+					 "_printint:                \n" +
+					 "         li $v0, 1        \n" +
+					 "         syscall          \n" +
+					 "         la $a0, newl     \n" +
+					 "         li $v0, 4        \n" +
+					 "         syscall          \n" +
+					 "         j $ra            \n" +
+					 "                          \n" +
+					 "         .data            \n" +
+					 "         .align   0       \n" +
+					 "newl:    .asciiz \"\\n\"  \n" +
+					 "         .data            \n" +
+					 "         .align   0       \n" +
+					 "str_er:  .asciiz \" ERROR: abnormal termination\\n\" "+
+					 "                          \n" +
+					 "         .text            \n" +
+					 "         .globl _error    \n" +
+					 "_error:                   \n" +
+					 "         li $v0, 4        \n" +
+					 "         la $a0, str_er   \n" +
+					 "         syscall          \n" +
+					 "         li $v0, 10       \n" +
+					 "         syscall          \n";
+		   mpln(temp,indent);
+	   }
+	   public void visit(NodeOptional n, Integer argu) {// for label only
+			if(n.present()){
+				n.node.accept(this,null);
+				mp(":",0);
+			}
+	   }
 }

@@ -18,17 +18,13 @@ import piglet.*;
 import spiglet.*;
 public class Main {
 	
-	
-	
-	
-	
 	public static void main(String args[]) throws syntaxtree_piglet.ParseException{
 		try{
 			// BinaryTree BubbleSort Factorial LinearSearch MoreThan4 LinkedList QuickSort TreeVisitor
 			//1-PrintLiteral 2-Add 3-Call 4-Vars 5-OutOfBounds
 			
 			//piglet2spiglet("./piglet/examples/QuickSort");
-			kanga2mips("./spigletFile/examples/TreeVisitor");
+			kanga2mips("./spigletFile/examples/Factorial2");
 
 		} catch (TokenMgrError e) {
 			e.printStackTrace();
