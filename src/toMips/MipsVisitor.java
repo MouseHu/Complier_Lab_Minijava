@@ -145,6 +145,7 @@ public class MipsVisitor extends GJVoidDepthFirst<Integer>{
 		  mpln(".globl "+n.f0.f0.toString(),indent);
 		  mpln(n.f0.f0.toString()+":",--indent);
 		  indent++;
+		  mpln("sw $fp, -8($sp)",indent);
 		  genHead(a,b,c);
 	      n.f10.accept(this, argu);
 	      genTail(a,b,c);
@@ -162,7 +163,7 @@ public class MipsVisitor extends GJVoidDepthFirst<Integer>{
 	    * f0 -> "ERROR"
 	    */
 	   public void visit(ErrorStmt n, Integer argu) {//yes
-		  mpln("jal str_er",indent);  
+		  mpln("jal _error",indent);  
 	   }
 
 	   /**
@@ -173,7 +174,7 @@ public class MipsVisitor extends GJVoidDepthFirst<Integer>{
 	   public void visit(CJumpStmt n, Integer argu) {//yes
 		  mp("beqz ",indent);
 	      n.f1.accept(this, argu);
-	      mp("",0);
+	      mp(" ",0);
 	      n.f2.accept(this, argu);
 	      mpln("",0);
 	   }
@@ -196,11 +197,11 @@ public class MipsVisitor extends GJVoidDepthFirst<Integer>{
 	    */
 	   public void visit(HStoreStmt n, Integer argu) {//yes
 		   mp("sw ",indent);
-		   n.f1.accept(this,null);
+		   n.f3.accept(this,null);
 		   mp(", ",0);
 		   n.f2.accept(this,null);
 		   mp("(",0);
-		   n.f3.accept(this,null);
+		   n.f1.accept(this,null);
 		   mpln(")",0);             
 	   }
 
@@ -213,7 +214,7 @@ public class MipsVisitor extends GJVoidDepthFirst<Integer>{
 	   public void visit(HLoadStmt n, Integer argu) {//yes
 		   mp("lw ",indent);
 		   n.f1.accept(this,null);
-		   mp(", ",0);
+		   mp(" ",0);
 		   n.f3.accept(this,null);
 		   mp("(",0);
 		   n.f2.accept(this,null);
@@ -453,7 +454,8 @@ public class MipsVisitor extends GJVoidDepthFirst<Integer>{
 		   int t1 = (a>4?(a-4):0);
 		   int t2 = (c>4?(c-4):0);
 		   int stackLength= (b+2+t2-t1)*4;
-		   mpln("sw $fp, -8($sp)",indent);
+
+		   mpln("move $fp, $sp",indent);
 		   mpln("subu $sp, $sp, "+stackLength,indent);
 		   mpln("sw $ra, -"+4+"($fp)",indent);
 		   
@@ -471,15 +473,15 @@ public class MipsVisitor extends GJVoidDepthFirst<Integer>{
 	   }
 	   public void printSysfunc() {
 		   String temp = "         .text            \n" +
-					 "         .globl _hallocs  \n" +
-					 "_hallocs:                 \n" +
+					 "         .globl _halloc  \n" +
+					 "_halloc:                 \n" +
 					 "         li $v0, 9        \n" +
 					 "         syscall          \n" +
 					 "         j $ra            \n" +
 					 "                          \n" +
 					 "         .text            \n" +
-					 "         .globl _printint \n" +
-					 "_printint:                \n" +
+					 "         .globl _print \n" +
+					 "_print:                \n" +
 					 "         li $v0, 1        \n" +
 					 "         syscall          \n" +
 					 "         la $a0, newl     \n" +

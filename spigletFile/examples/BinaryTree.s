@@ -8,7 +8,7 @@ main:
 	jal _halloc
 	move $t0 $v0
 	move $t1 $t0
-	la $t0 TV_Start
+	la $t0 BT_Start
 	sw $t0, 0($t1)
 	li $a0 4
 	jal _halloc
@@ -40,11 +40,11 @@ main:
 	j $ra
 	
 	.text
-	.globl TV_Start
-TV_Start:
+	.globl BT_Start
+BT_Start:
 	sw $fp, -8($sp)
 	move $fp, $sp
-	subu $sp, $sp, 36
+	subu $sp, $sp, 32
 	sw $ra, -4($fp)
 	sw $t0, 0($fp)
 	sw $t1, 4($fp)
@@ -52,10 +52,9 @@ TV_Start:
 	sw $t3, 12($sp)
 	sw $t4, 16($sp)
 	sw $t5, 20($sp)
-	sw $t6, 24($sp)
 	move $a0 $a0
 	move $a1 $a1
-	li $a0 84
+	li $a0 80
 	jal _halloc
 	move $t0 $v0
 	move $t1 $t0
@@ -79,8 +78,6 @@ TV_Start:
 	sw $t0, 8($t1)
 	la $t0 Tree_Insert
 	sw $t0, 48($t1)
-	la $t0 Tree_accept
-	sw $t0, 80($t1)
 	la $t0 Tree_Print
 	sw $t0, 72($t1)
 	la $t0 Tree_Init
@@ -162,6 +159,20 @@ TV_Start:
 	move $t5 $t3
 	li $t3 8
 	sw $t3, 0($t5)
+	move $a0 $t2
+	move $a1 $t5
+	jalr $t4
+	move $t3 $v0
+	move $t1 $t3
+	move $t2 $t0
+	lw $t3 0($t2)
+	lw $t4 72($t3)
+	li $t3 4
+	mul $t5, $t3, 0
+	move $a0 $t5
+	jal _halloc
+	move $t3 $v0
+	move $t5 $t3
 	move $a0 $t2
 	move $a1 $t5
 	jalr $t4
@@ -277,45 +288,6 @@ TV_Start:
 	jalr $t4
 	move $t3 $v0
 	move $t1 $t3
-	li $a0 100000000
-	jal _print
-	li $a0 8
-	jal _halloc
-	move $t2 $v0
-	move $t3 $t2
-	la $t2 Visitor_visit
-	sw $t2, 0($t3)
-	la $t2 MyVisitor_visit
-	sw $t2, 0($t3)
-	li $a0 12
-	jal _halloc
-	move $t2 $v0
-	move $t4 $t2
-	li $t2 0
-	sw $t2, 8($t4)
-	li $t2 0
-	sw $t2, 4($t4)
-	sw $t3, 0($t4)
-	move $t2 $t4
-	li $a0 50000000
-	jal _print
-	move $t3 $t0
-	lw $t4 0($t3)
-	lw $t5 80($t4)
-	li $t4 4
-	mul $t6, $t4, 1
-	move $a0 $t6
-	jal _halloc
-	move $t4 $v0
-	move $t6 $t4
-	sw $t2, 0($t6)
-	move $a0 $t3
-	move $a1 $t6
-	jalr $t5
-	move $t2 $v0
-	move $t3 $t2
-	li $a0 100000000
-	jal _print
 	move $t2 $t0
 	lw $t3 0($t2)
 	lw $t4 68($t3)
@@ -455,10 +427,9 @@ TV_Start:
 	lw $t3,12($sp)
 	lw $t4,16($sp)
 	lw $t5,20($sp)
-	lw $t6,24($sp)
 	lw $ra, -4($fp)
 	lw $fp, -8($fp)
-	addu $sp, $sp, 36
+	addu $sp, $sp, 32
 	j $ra
 	
 	.text
@@ -767,7 +738,7 @@ Tree_Insert:
 	move $t1 $a0
 	move $t0 $a1
 	lw $t2 0($t0)
-	li $a0 84
+	li $a0 80
 	jal _halloc
 	move $t0 $v0
 	move $t3 $t0
@@ -791,8 +762,6 @@ Tree_Insert:
 	sw $t0, 8($t3)
 	la $t0 Tree_Insert
 	sw $t0, 48($t3)
-	la $t0 Tree_accept
-	sw $t0, 80($t3)
 	la $t0 Tree_Print
 	sw $t0, 72($t3)
 	la $t0 Tree_Init
@@ -2069,316 +2038,6 @@ Tree_RecPrint_L51:	nop
 	lw $ra, -4($fp)
 	lw $fp, -8($fp)
 	addu $sp, $sp, 44
-	j $ra
-	
-	.text
-	.globl Tree_accept
-Tree_accept:
-	sw $fp, -8($sp)
-	move $fp, $sp
-	subu $sp, $sp, 28
-	sw $ra, -4($fp)
-	sw $t0, 0($fp)
-	sw $t1, 4($fp)
-	sw $t2, 8($fp)
-	sw $t3, 12($sp)
-	sw $t4, 16($sp)
-	move $t1 $a0
-	move $t0 $a1
-	lw $t2 0($t0)
-	li $a0 333
-	jal _print
-	move $t0 $t2
-	lw $t2 0($t0)
-	lw $t3 0($t2)
-	li $t2 4
-	mul $t4, $t2, 1
-	move $a0 $t4
-	jal _halloc
-	move $t2 $v0
-	move $t4 $t2
-	sw $t1, 0($t4)
-	move $a0 $t0
-	move $a1 $t4
-	jalr $t3
-	move $t1 $v0
-	move $t0 $t1
-	li $v0 0
-	lw $t0,0($fp)
-	lw $t1,4($fp)
-	lw $t2,8($fp)
-	lw $t3,12($sp)
-	lw $t4,16($sp)
-	lw $ra, -4($fp)
-	lw $fp, -8($fp)
-	addu $sp, $sp, 28
-	j $ra
-	
-	.text
-	.globl Visitor_visit
-Visitor_visit:
-	sw $fp, -8($sp)
-	move $fp, $sp
-	subu $sp, $sp, 36
-	sw $ra, -4($fp)
-	sw $t0, 0($fp)
-	sw $t1, 4($fp)
-	sw $t2, 8($fp)
-	sw $t3, 12($sp)
-	sw $t4, 16($sp)
-	sw $t5, 20($sp)
-	sw $t6, 24($sp)
-	move $t1 $a0
-	move $t0 $a1
-	lw $t2 0($t0)
-	move $t0 $t2
-	lw $t3 0($t0)
-	lw $t4 28($t3)
-	li $t3 4
-	mul $t5, $t3, 0
-	move $a0 $t5
-	jal _halloc
-	move $t3 $v0
-	move $t5 $t3
-	move $a0 $t0
-	move $a1 $t5
-	jalr $t4
-	move $t3 $v0
-	move $t0 $t3
-	beqz $t0 Visitor_visit_L52
-	move $t0 $t2
-	lw $t3 0($t0)
-	lw $t4 12($t3)
-	li $t3 4
-	mul $t5, $t3, 0
-	move $a0 $t5
-	jal _halloc
-	move $t3 $v0
-	move $t5 $t3
-	move $a0 $t0
-	move $a1 $t5
-	jalr $t4
-	move $t3 $v0
-	sw $t3, 8($t1)
-	lw $t0 8($t1)
-	move $t3 $t0
-	lw $t0 0($t3)
-	lw $t4 80($t0)
-	li $t0 4
-	mul $t5, $t0, 1
-	move $a0 $t5
-	jal _halloc
-	move $t0 $v0
-	move $t5 $t0
-	sw $t1, 0($t5)
-	move $a0 $t3
-	move $a1 $t5
-	jalr $t4
-	move $t0 $v0
-	move $t3 $t0
-	j Visitor_visit_L53
-Visitor_visit_L52:	li $t3 0
-Visitor_visit_L53:	nop
-	move $t0 $t2
-	lw $t4 0($t0)
-	lw $t5 32($t4)
-	li $t4 4
-	mul $t6, $t4, 0
-	move $a0 $t6
-	jal _halloc
-	move $t4 $v0
-	move $t6 $t4
-	move $a0 $t0
-	move $a1 $t6
-	jalr $t5
-	move $t4 $v0
-	move $t0 $t4
-	beqz $t0 Visitor_visit_L54
-	move $t0 $t2
-	lw $t2 0($t0)
-	lw $t4 16($t2)
-	li $t2 4
-	mul $t5, $t2, 0
-	move $a0 $t5
-	jal _halloc
-	move $t2 $v0
-	move $t5 $t2
-	move $a0 $t0
-	move $a1 $t5
-	jalr $t4
-	move $t2 $v0
-	sw $t2, 4($t1)
-	lw $t0 4($t1)
-	move $t2 $t0
-	lw $t0 0($t2)
-	lw $t4 80($t0)
-	li $t0 4
-	mul $t5, $t0, 1
-	move $a0 $t5
-	jal _halloc
-	move $t0 $v0
-	move $t5 $t0
-	sw $t1, 0($t5)
-	move $a0 $t2
-	move $a1 $t5
-	jalr $t4
-	move $t0 $v0
-	move $t3 $t0
-	j Visitor_visit_L55
-Visitor_visit_L54:	li $t3 0
-Visitor_visit_L55:	nop
-	li $v0 0
-	lw $t0,0($fp)
-	lw $t1,4($fp)
-	lw $t2,8($fp)
-	lw $t3,12($sp)
-	lw $t4,16($sp)
-	lw $t5,20($sp)
-	lw $t6,24($sp)
-	lw $ra, -4($fp)
-	lw $fp, -8($fp)
-	addu $sp, $sp, 36
-	j $ra
-	
-	.text
-	.globl MyVisitor_visit
-MyVisitor_visit:
-	sw $fp, -8($sp)
-	move $fp, $sp
-	subu $sp, $sp, 36
-	sw $ra, -4($fp)
-	sw $t0, 0($fp)
-	sw $t1, 4($fp)
-	sw $t2, 8($fp)
-	sw $t3, 12($sp)
-	sw $t4, 16($sp)
-	sw $t5, 20($sp)
-	sw $t6, 24($sp)
-	move $t1 $a0
-	move $t0 $a1
-	lw $t2 0($t0)
-	move $t0 $t2
-	lw $t3 0($t0)
-	lw $t4 28($t3)
-	li $t3 4
-	mul $t5, $t3, 0
-	move $a0 $t5
-	jal _halloc
-	move $t3 $v0
-	move $t5 $t3
-	move $a0 $t0
-	move $a1 $t5
-	jalr $t4
-	move $t3 $v0
-	move $t0 $t3
-	beqz $t0 MyVisitor_visit_L56
-	move $t0 $t2
-	lw $t3 0($t0)
-	lw $t4 12($t3)
-	li $t3 4
-	mul $t5, $t3, 0
-	move $a0 $t5
-	jal _halloc
-	move $t3 $v0
-	move $t5 $t3
-	move $a0 $t0
-	move $a1 $t5
-	jalr $t4
-	move $t3 $v0
-	sw $t3, 8($t1)
-	lw $t0 8($t1)
-	move $t3 $t0
-	lw $t0 0($t3)
-	lw $t4 80($t0)
-	li $t0 4
-	mul $t5, $t0, 1
-	move $a0 $t5
-	jal _halloc
-	move $t0 $v0
-	move $t5 $t0
-	sw $t1, 0($t5)
-	move $a0 $t3
-	move $a1 $t5
-	jalr $t4
-	move $t0 $v0
-	move $t3 $t0
-	j MyVisitor_visit_L57
-MyVisitor_visit_L56:	li $t3 0
-MyVisitor_visit_L57:	nop
-	move $t0 $t2
-	lw $t4 0($t0)
-	lw $t5 20($t4)
-	li $t4 4
-	mul $t6, $t4, 0
-	move $a0 $t6
-	jal _halloc
-	move $t4 $v0
-	move $t6 $t4
-	move $a0 $t0
-	move $a1 $t6
-	jalr $t5
-	move $t4 $v0
-	move $a0 $t4
-	jal _print
-	move $t0 $t2
-	lw $t4 0($t0)
-	lw $t5 32($t4)
-	li $t4 4
-	mul $t6, $t4, 0
-	move $a0 $t6
-	jal _halloc
-	move $t4 $v0
-	move $t6 $t4
-	move $a0 $t0
-	move $a1 $t6
-	jalr $t5
-	move $t4 $v0
-	move $t0 $t4
-	beqz $t0 MyVisitor_visit_L58
-	move $t0 $t2
-	lw $t2 0($t0)
-	lw $t4 16($t2)
-	li $t2 4
-	mul $t5, $t2, 0
-	move $a0 $t5
-	jal _halloc
-	move $t2 $v0
-	move $t5 $t2
-	move $a0 $t0
-	move $a1 $t5
-	jalr $t4
-	move $t2 $v0
-	sw $t2, 4($t1)
-	lw $t0 4($t1)
-	move $t2 $t0
-	lw $t0 0($t2)
-	lw $t4 80($t0)
-	li $t0 4
-	mul $t5, $t0, 1
-	move $a0 $t5
-	jal _halloc
-	move $t0 $v0
-	move $t5 $t0
-	sw $t1, 0($t5)
-	move $a0 $t2
-	move $a1 $t5
-	jalr $t4
-	move $t0 $v0
-	move $t3 $t0
-	j MyVisitor_visit_L59
-MyVisitor_visit_L58:	li $t3 0
-MyVisitor_visit_L59:	nop
-	li $v0 0
-	lw $t0,0($fp)
-	lw $t1,4($fp)
-	lw $t2,8($fp)
-	lw $t3,12($sp)
-	lw $t4,16($sp)
-	lw $t5,20($sp)
-	lw $t6,24($sp)
-	lw $ra, -4($fp)
-	lw $fp, -8($fp)
-	addu $sp, $sp, 36
 	j $ra
 	
          .text            
