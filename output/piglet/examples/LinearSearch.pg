@@ -1,0 +1,307 @@
+MAIN
+    PRINT
+        CALL
+        BEGIN
+            MOVE TEMP 20
+            BEGIN
+                MOVE TEMP 21 HALLOCATE 16
+                HSTORE TEMP 21 4 LS_Print
+                HSTORE TEMP 21 12 LS_Init
+                HSTORE TEMP 21 0 LS_Start
+                HSTORE TEMP 21 8 LS_Search
+                MOVE TEMP 22 HALLOCATE 12
+                HSTORE TEMP 22 4 0
+                HSTORE TEMP 22 8 0
+                HSTORE TEMP 22 0 TEMP 21
+                RETURN TEMP 22
+            END
+            HLOAD TEMP 23 TEMP 20 0
+            HLOAD TEMP 24 TEMP 23 0
+        RETURN TEMP 24
+        END
+        (TEMP 20
+        BEGIN
+            MOVE TEMP 25 HALLOCATE TIMES 4 1
+            HSTORE TEMP 25 0
+                10
+            RETURN TEMP 25
+        END
+        )
+END
+LS_Start [ 2 ]
+    BEGIN
+        HLOAD TEMP 26 TEMP 1 0
+        MOVE TEMP 27
+        CALL
+        BEGIN
+            MOVE TEMP 28
+            TEMP 0
+            HLOAD TEMP 29 TEMP 28 0
+            HLOAD TEMP 30 TEMP 29 12
+        RETURN TEMP 30
+        END
+        (TEMP 28
+        BEGIN
+            MOVE TEMP 31 HALLOCATE TIMES 4 1
+            HSTORE TEMP 31 0
+                TEMP 26
+            RETURN TEMP 31
+        END
+        )
+        MOVE TEMP 32
+        CALL
+        BEGIN
+            MOVE TEMP 33
+            TEMP 0
+            HLOAD TEMP 34 TEMP 33 0
+            HLOAD TEMP 35 TEMP 34 4
+        RETURN TEMP 35
+        END
+        (TEMP 33
+        BEGIN
+            MOVE TEMP 36 HALLOCATE TIMES 4 0
+            RETURN TEMP 36
+        END
+        )
+        PRINT
+            9999
+        PRINT
+            CALL
+            BEGIN
+                MOVE TEMP 37
+                TEMP 0
+                HLOAD TEMP 38 TEMP 37 0
+                HLOAD TEMP 39 TEMP 38 8
+            RETURN TEMP 39
+            END
+            (TEMP 37
+            BEGIN
+                MOVE TEMP 40 HALLOCATE TIMES 4 1
+                HSTORE TEMP 40 0
+                    8
+                RETURN TEMP 40
+            END
+            )
+        PRINT
+            CALL
+            BEGIN
+                MOVE TEMP 41
+                TEMP 0
+                HLOAD TEMP 42 TEMP 41 0
+                HLOAD TEMP 43 TEMP 42 8
+            RETURN TEMP 43
+            END
+            (TEMP 41
+            BEGIN
+                MOVE TEMP 44 HALLOCATE TIMES 4 1
+                HSTORE TEMP 44 0
+                    12
+                RETURN TEMP 44
+            END
+            )
+        PRINT
+            CALL
+            BEGIN
+                MOVE TEMP 45
+                TEMP 0
+                HLOAD TEMP 46 TEMP 45 0
+                HLOAD TEMP 47 TEMP 46 8
+            RETURN TEMP 47
+            END
+            (TEMP 45
+            BEGIN
+                MOVE TEMP 48 HALLOCATE TIMES 4 1
+                HSTORE TEMP 48 0
+                    17
+                RETURN TEMP 48
+            END
+            )
+        PRINT
+            CALL
+            BEGIN
+                MOVE TEMP 49
+                TEMP 0
+                HLOAD TEMP 50 TEMP 49 0
+                HLOAD TEMP 51 TEMP 50 8
+            RETURN TEMP 51
+            END
+            (TEMP 49
+            BEGIN
+                MOVE TEMP 52 HALLOCATE TIMES 4 1
+                HSTORE TEMP 52 0
+                    50
+                RETURN TEMP 52
+            END
+            )
+        RETURN
+            55
+    END
+LS_Print [ 2 ]
+    BEGIN
+        MOVE TEMP 53
+        1
+        JUMP L0
+            L0 CJUMP
+            LT
+            TEMP 53
+            BEGIN
+                HLOAD TEMP 54 TEMP 0 8
+                RETURN TEMP 54 
+            END
+            L1
+            PRINT
+                BEGIN
+                    MOVE TEMP 55
+                    BEGIN
+                        HLOAD TEMP 56 TEMP 0 4
+                        RETURN TEMP 56 
+                    END
+                    MOVE TEMP 57
+                    TEMP 53
+                    MOVE TEMP 55 PLUS TEMP 55 TIMES 4 PLUS 1 TEMP 57
+                    HLOAD TEMP 58 TEMP 55 0
+                RETURN TEMP 58
+                END
+            MOVE TEMP 53
+            PLUS
+            TEMP 53
+            1
+            JUMP L0
+            L1 NOOP
+        RETURN
+            0
+    END
+LS_Search [ 2 ]
+    BEGIN
+        HLOAD TEMP 59 TEMP 1 0
+        MOVE TEMP 60
+        1
+        MOVE TEMP 61
+        0
+        MOVE TEMP 62
+        0
+        JUMP L2
+            L2 CJUMP
+            LT
+            TEMP 60
+            BEGIN
+                HLOAD TEMP 63 TEMP 0 8
+                RETURN TEMP 63 
+            END
+            L3
+            MOVE TEMP 64
+            BEGIN
+                MOVE TEMP 65
+                BEGIN
+                    HLOAD TEMP 66 TEMP 0 4
+                    RETURN TEMP 66 
+                END
+                MOVE TEMP 67
+                TEMP 60
+                MOVE TEMP 65 PLUS TEMP 65 TIMES 4 PLUS 1 TEMP 67
+                HLOAD TEMP 68 TEMP 65 0
+            RETURN TEMP 68
+            END
+            MOVE TEMP 69
+            PLUS
+            TEMP 59
+            1
+            CJUMP
+                LT
+                TEMP 64
+                TEMP 59
+                L4
+                MOVE TEMP 70
+                0
+                JUMP L5
+                L4
+                    CJUMP
+                        LT
+                        LT
+                        TEMP 64
+                        TEMP 69
+                        1
+                        L6
+                        MOVE TEMP 70
+                        0
+                        JUMP L7
+                        L6
+                            MOVE TEMP 61
+                            1
+                            MOVE TEMP 62
+                            1
+                            MOVE TEMP 60
+                            BEGIN
+                                HLOAD TEMP 71 TEMP 0 8
+                                RETURN TEMP 71 
+                            END
+                        L7 NOOP
+                L5 NOOP
+            MOVE TEMP 60
+            PLUS
+            TEMP 60
+            1
+            JUMP L2
+            L3 NOOP
+        RETURN
+            TEMP 62
+    END
+LS_Init [ 2 ]
+    BEGIN
+        HLOAD TEMP 72 TEMP 1 0
+        HSTORE TEMP 0 8
+        TEMP 72
+        HSTORE TEMP 0 4
+        BEGIN
+            MOVE TEMP 73
+            TEMP 72
+            MOVE TEMP 74 HALLOCATE TIMES 4 PLUS 1 TEMP 73
+            HSTORE TEMP 74 0 TEMP 73
+            RETURN TEMP 74
+        END
+        MOVE TEMP 75
+        1
+        MOVE TEMP 76
+        PLUS
+        BEGIN
+            HLOAD TEMP 77 TEMP 0 8
+            RETURN TEMP 77 
+        END
+        1
+        JUMP L8
+            L8 CJUMP
+            LT
+            TEMP 75
+            BEGIN
+                HLOAD TEMP 78 TEMP 0 8
+                RETURN TEMP 78 
+            END
+            L9
+            MOVE TEMP 79
+            TIMES
+            2
+            TEMP 75
+            MOVE TEMP 80
+            MINUS
+            TEMP 76
+            3
+            HLOAD TEMP 81 TEMP 0 4
+            MOVE TEMP 82
+            TEMP 75
+            HSTORE PLUS TEMP 81 TIMES 4 PLUS 1 TEMP 82 0
+            PLUS
+            TEMP 79
+            TEMP 80
+            MOVE TEMP 75
+            PLUS
+            TEMP 75
+            1
+            MOVE TEMP 76
+            MINUS
+            TEMP 76
+            1
+            JUMP L8
+            L9 NOOP
+        RETURN
+            0
+    END
